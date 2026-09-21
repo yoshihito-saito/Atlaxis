@@ -89,6 +89,10 @@ def prepare_storage(paths):
     for folder in (paths.standard_probes, paths.probes / "custom", paths.atlases,
                    paths.planning, paths.config / "brainglobe"):
         folder.mkdir(parents=True, exist_ok=True)
+    readme = paths.root / "README.md"
+    if not readme.exists():
+        guide = Path(__file__).resolve().parent / "data" / "README.md"
+        _write_bytes(readme, guide.read_bytes())
     manifest_path = paths.config / "standard-probes.json"
     previous = json.loads(manifest_path.read_text(encoding="utf-8")) if manifest_path.exists() else {}
     installed = dict(previous)

@@ -36,7 +36,7 @@ class DataFoldersDialog(QDialog):
         form.addRow("Atlaxis folder", row)
         layout.addLayout(form)
         description = QLabel(
-            "Creates probes/standard, probes/custom, atlases and planning inside this folder.\n"
+            "Creates README.md, probes/standard, probes/custom, atlases and planning inside this folder.\n"
             "Standard probes are copied; edited files and custom probes are kept.\n"
             "Existing plans and atlas downloads elsewhere are not moved."
         )

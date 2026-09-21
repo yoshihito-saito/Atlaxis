@@ -16,6 +16,7 @@ archive from [Releases](https://github.com/yoshihito-saito/Atlaxis/releases). No
 | Windows x64 | Extract `Atlaxis-Windows-x64.zip` and run **Atlaxis.exe**. Keep the entire extracted folder together. |
 
 On first launch, choose a data folder (default: `Documents/Atlaxis`).
+A local `README.md` quick-start guide is saved there; an existing README is kept.
 Atlases download on first use. Developers: [install from source](docs/development.md).
 
 ## Workflow
