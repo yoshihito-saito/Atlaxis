@@ -10,7 +10,7 @@ from pathlib import Path
 from xml.etree import ElementTree as ET
 
 from probe_planner.atlas.coordinates import (
-    reference_pose, shank_tip_stereotaxic_mm, brain_surface_dv_mm, pose_axis_tilts,
+    shank_surface_reference, shank_tip_stereotaxic_mm, pose_axis_tilts,
 )
 from probe_planner.probes.neuropixels import (
     is_neuropixels, active_site_ids, export_acquisition_imro, export_selection, import_imro,
@@ -163,16 +163,17 @@ def save_planning_bundle(path, plan, atlas, region_rows):
                 "target_active": int(not np_probe or (contact is not None and contact.contact_id in active))})
         ap_tilt, ml_tilt, roll = pose_axis_tilts(probe.pose)
         for shank in sorted({contact.shank_id for contact in geometry.contacts}):
-            entry = reference_pose(geometry, probe.pose, shank)
             tip = shank_tip_stereotaxic_mm(geometry, probe.pose, shank)
-            surface = brain_surface_dv_mm(atlas, plan.coordinates, entry.ap_mm, entry.ml_mm)
+            surface = shank_surface_reference(geometry, probe.pose, shank, atlas, plan.coordinates)
             coordinates.append({"probe_number": number, "probe_id": probe.id, "model": geometry.name,
                 "shank": shank, "reference_shank": int(shank == probe.selected_shank_id),
-                "entry_ap_mm": entry.ap_mm, "entry_ml_mm": -entry.ml_mm, "entry_dv_bregma_mm": entry.dv_mm,
+                "entry_ap_mm": "" if surface is None else surface.entry_mm[0],
+                "entry_ml_mm": "" if surface is None else -surface.entry_mm[1],
+                "entry_dv_bregma_mm": "" if surface is None else surface.entry_mm[2],
                 "tip_ap_mm": tip[0], "tip_ml_mm": -tip[1], "tip_dv_bregma_mm": tip[2],
-                "tip_dv_below_entry_surface_mm": "" if surface is None else tip[2] - surface,
+                "tip_dv_below_entry_surface_mm": "" if surface is None else surface.dv_mm,
                 "ap_tilt_deg": ap_tilt, "ml_tilt_deg": ml_tilt, "roll_deg": roll,
-                "insertion_depth_mm": probe.pose.depth_mm})
+                "insertion_depth_mm": "" if surface is None else surface.depth_mm})
         manifest_probes.append({"number": number, "id": probe.id, "model": geometry.name,
                                 "headstage_id": mapping.headstage_id,
                                 "xml_channel_offset": offset, "n_channels": count})
@@ -190,8 +191,11 @@ def save_planning_bundle(path, plan, atlas, region_rows):
         "CSV coordinates match the controls: mm, Bregma AP anterior+, ML anatomical left+, DV ventral+.\n"
         "Angles: degrees, AP tilt anterior+, ML tilt anatomical left+.\n"
         "Plan JSON retains canonical anatomical right-positive ML and azimuth/elevation/roll angles.\n"
-        "The surface-relative tip DV uses the dorsal surface at each shank's entry AP/ML.\n"
-        "Blank surface DV means no annotated surface. Insertion depth follows the tilted probe axis.\n"
+        "Each shank's entry is the first annotated brain boundary along its insertion axis.\n"
+        "Insertion depth is signed axis travel from that entry; tip DV is its vertical component.\n"
+        "Depth is negative before entry, zero at the surface, positive after entry.\n"
+        "Blank entry/depth fields mean that the shank's axis misses annotated tissue.\n"
+        "Plan JSON retains the canonical pose transform; its depth field is not the per-shank surface depth.\n"
         "probes.xml combines all probes in plan order. Hardware and XML channels are zero-based;\n"
         "channel_index.csv records each probe's headstage, offset and any known site/shank correspondence.\n"
         "This is a channelGroups template, not complete recording metadata. Merge it with\n"

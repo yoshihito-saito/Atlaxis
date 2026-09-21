@@ -1,4 +1,4 @@
-from dataclasses import fields, asdict, astuple
+from dataclasses import fields, asdict, astuple, replace
 from copy import deepcopy
 from functools import wraps
 from pathlib import Path
@@ -17,8 +17,8 @@ from PySide6.QtWidgets import (
 from probe_planner.atlas.brainglobe_backend import load_atlas
 from probe_planner.atlas.coordinates import (
     AtlasCoordinates, atlas_default_coordinates, um_to_mm, reference_pose, canonical_pose,
-    brain_surface_dv_mm, shank_tip_stereotaxic_mm, entry_pose_at_tip_dv,
-    pose_axis_tilts, pose_with_axis_tilts,
+    brain_surface_dv_mm, shank_surface_reference, insertion_direction,
+    insertion_surface_entry_mm, pose_at_shank_insertion, pose_axis_tilts, pose_with_axis_tilts,
 )
 from probe_planner.implant.pose import ImplantPose
 from probe_planner.atlas.regions import brain_region_ids
@@ -230,7 +230,7 @@ class MainWindow(QMainWindow):
         controls = [("ap_mm", "AP", -10000, 10000), ("ml_mm", "ML", -10000, 10000),
                     ("dv_mm", "DV (tip)", -1e9, 1e9),
                     ("ap_tilt_deg", "AP tilt", -180, 180), ("ml_tilt_deg", "ML tilt", -90, 90),
-                    ("roll_deg", "Roll", -180, 180), ("depth_mm", "Insertion depth", 0, 10000)]
+                    ("roll_deg", "Roll", -180, 180), ("depth_mm", "Insertion depth", -10000, 10000)]
         for name, label, minimum, maximum in controls:
             spin = QDoubleSpinBox()
             spin.setRange(minimum, maximum)
@@ -472,19 +472,21 @@ class MainWindow(QMainWindow):
         probe = self.selected_probe
         displayed = (reference_pose(probe.geometry, probe.pose, probe.selected_shank_id)
                      if probe else ImplantPose())
-        surface = self.entry_surface_dv(displayed) if probe else None
-        tip_dv = (shank_tip_stereotaxic_mm(probe.geometry, probe.pose, probe.selected_shank_id)[2]
-                  if probe else None)
+        surface = (shank_surface_reference(probe.geometry, probe.pose, probe.selected_shank_id,
+                                           self.atlas, self.frame) if probe else None)
         values = asdict(displayed)
+        if surface is not None:
+            values["ap_mm"], values["ml_mm"] = surface.entry_mm[:2]
+            values["dv_mm"], values["depth_mm"] = surface.dv_mm, surface.depth_mm
         # Controls use left-positive ML; saved poses retain right-positive ML.
-        values["ml_mm"] = -displayed.ml_mm
+        values["ml_mm"] = -values["ml_mm"]
         values["ap_tilt_deg"], values["ml_tilt_deg"], values["roll_deg"] = pose_axis_tilts(displayed)
         for name, control in self.controls.items():
             control.blockSignals(True)
             value = values[name]
-            if name == "dv_mm":
+            if name in ("dv_mm", "depth_mm"):
                 control.setSpecialValueText("No surface" if surface is None else "")
-                value = control.minimum() if surface is None else tip_dv - surface
+                value = control.minimum() if surface is None else value
                 control.setEnabled(surface is not None)
             control.setValue(value)
             control.blockSignals(False)
@@ -493,11 +495,13 @@ class MainWindow(QMainWindow):
             "Entry coordinate of the reference shank, relative to Bregma: "
             "positive = anatomical left, negative = anatomical right")
         self.controls["dv_mm"].setToolTip(
-            "Reference-shank tip depth below the brain surface at the entry AP/ML. "
+            "Vertical tip depth from this shank's insertion-axis intersection with the brain surface. "
             "Editing DV adjusts insertion depth along the current axis; positive = ventral."
             if surface is not None else
-            "No annotated brain surface at this AP/ML, or atlas/Bregma not loaded. Choose a valid AP/ML.")
-        self.controls["depth_mm"].setToolTip("Distance advanced along the probe axis from the insertion entry")
+            "No annotated surface along this shank's axis, or atlas/Bregma not loaded. Adjust AP/ML or tilt.")
+        self.controls["depth_mm"].setToolTip(
+            "Distance along this shank's axis from the brain surface: negative before entry, "
+            "zero at the surface, positive after entry. Editing moves the whole probe.")
         self.controls["ap_tilt_deg"].setToolTip("Sagittal tilt: positive = anterior, negative = posterior")
         self.controls["ml_tilt_deg"].setToolTip("Tilt out of the sagittal plane: positive = anatomical left, negative = anatomical right")
         self.controls["roll_deg"].setToolTip("Rotation about the tilted probe axis")
@@ -517,7 +521,11 @@ class MainWindow(QMainWindow):
             surface = self.entry_surface_dv(entry)
             if surface is not None:
                 entry.dv_mm += surface
-                probe.pose = canonical_pose(probe.geometry, entry, probe.selected_shank_id)
+                origin = insertion_surface_entry_mm(self.atlas, self.frame,
+                    [entry.ap_mm, entry.ml_mm, entry.dv_mm], insertion_direction(entry))
+                probe.pose = (canonical_pose(probe.geometry, entry, probe.selected_shank_id) if origin is None else
+                              pose_at_shank_insertion(probe.geometry, entry, probe.selected_shank_id,
+                                                      origin, entry.depth_mm))
             self.surface_pending_probes.discard(probe.id)
 
     @guarded
@@ -770,17 +778,32 @@ class MainWindow(QMainWindow):
         if name == "ml_mm":
             value = -value
         entry = reference_pose(probe.geometry, probe.pose, probe.selected_shank_id)
-        surface = self.entry_surface_dv(entry)
-        if name == "dv_mm":
+        surface = shank_surface_reference(probe.geometry, probe.pose, probe.selected_shank_id,
+                                          self.atlas, self.frame)
+        depth = entry.depth_mm
+        if surface is not None:
+            entry = replace(entry, ap_mm=surface.entry_mm[0], ml_mm=surface.entry_mm[1],
+                            dv_mm=surface.entry_mm[2], depth_mm=0.0)
+            depth = surface.depth_mm
+        if name in ("dv_mm", "depth_mm"):
             try:
                 if surface is None:
-                    raise ValueError("Choose an AP/ML with an annotated brain surface before setting DV.")
-                edited = entry_pose_at_tip_dv(entry, surface, value)
-                if edited.depth_mm > self.controls["depth_mm"].maximum():
-                    raise ValueError("This DV exceeds the insertion depth limit for the current tilt.")
+                    raise ValueError("Choose an AP/ML and tilt whose insertion axis meets the annotated brain.")
+                depth = value
+                if name == "dv_mm":
+                    vertical = insertion_direction(entry)[2]
+                    if abs(vertical) <= 8 * np.finfo(float).eps:
+                        if value != 0:
+                            raise ValueError("A horizontal probe cannot change DV by insertion. Change the tilt first.")
+                        depth = 0.0
+                    else:
+                        depth = value / vertical
+                if not self.controls["depth_mm"].minimum() <= depth <= self.controls["depth_mm"].maximum():
+                    raise ValueError("This DV exceeds the insertion depth limits for the current tilt.")
             except ValueError:
                 self.refresh_pose_controls()
                 raise
+            edited = entry
         elif name in ("ap_tilt_deg", "ml_tilt_deg", "roll_deg"):
             angles = dict(zip(("ap_tilt_deg", "ml_tilt_deg", "roll_deg"), pose_axis_tilts(entry)))
             angles[name] = value
@@ -792,8 +815,16 @@ class MainWindow(QMainWindow):
         if name in ("ap_mm", "ml_mm"):
             new_surface = self.entry_surface_dv(edited)
             if new_surface is not None:
-                edited.dv_mm = new_surface + (entry.dv_mm - surface if surface is not None else 0)
-        probe.pose = canonical_pose(probe.geometry, edited, probe.selected_shank_id)
+                edited.dv_mm = new_surface
+        origin = [edited.ap_mm, edited.ml_mm, edited.dv_mm]
+        if name not in ("dv_mm", "depth_mm") and self.atlas is not None and self.frame is not None:
+            # The new axis can cross a different voxel boundary even when its
+            # pivot was on the old surface. Preserve signed travel from the new entry.
+            new_origin = insertion_surface_entry_mm(self.atlas, self.frame, origin, insertion_direction(edited))
+            if new_origin is not None:
+                origin = new_origin
+        probe.pose = pose_at_shank_insertion(probe.geometry, edited, probe.selected_shank_id,
+                                             origin, depth)
         self.refresh_pose_controls()
         self.recompute()
         self.setWindowModified(True)

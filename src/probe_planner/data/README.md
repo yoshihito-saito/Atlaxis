@@ -24,6 +24,14 @@ This README is created only when missing, so your edits are kept as well.
 5. Click **Save & Update** to create a plan under `planning/`. Click it again after
    editing to update the same plan and its associated outputs.
 
+Each reference shank uses its own insertion-axis intersection with the annotated
+brain surface as zero. **Insertion depth** measures distance along that axis;
+**DV (tip)** measures the vertical distance from the same point. Negative depth
+means before entry. Switching shanks updates the displayed coordinates without
+moving the probe. Entering zero moves the whole probe until the selected tip
+reaches the surface; other shanks can remain above or below it. **No surface**
+means the axis misses annotated tissue (or atlas/Bregma is not loaded).
+
 ## Neuropixels channel selection
 
 1. Open **Probe plane**, draw a rectangle or polygon, and choose its Region and

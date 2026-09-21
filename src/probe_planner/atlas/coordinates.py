@@ -71,10 +71,16 @@ class AtlasCoordinates:
         return np.asarray(atlas_um, dtype=float) / np.asarray(self.resolution_um)
 
 
+def insertion_direction(pose: ImplantPose):
+    """Unit insertion direction in stereotaxic AP/ML/DV axes."""
+    azimuth, tilt = np.deg2rad([pose.azimuth_deg, pose.elevation_deg])
+    return np.array([np.sin(tilt) * np.cos(azimuth),
+                     np.sin(tilt) * np.sin(azimuth), np.cos(tilt)])
+
+
 def probe_to_stereotaxic_matrix(geometry: ProbeGeometry, pose: ImplantPose):
-    azimuth, tilt, roll = np.deg2rad([pose.azimuth_deg, pose.elevation_deg, pose.roll_deg])
-    direction = np.array([np.sin(tilt) * np.cos(azimuth),
-                          np.sin(tilt) * np.sin(azimuth), np.cos(tilt)])
+    azimuth, roll = np.deg2rad([pose.azimuth_deg, pose.roll_deg])
+    direction = insertion_direction(pose)
     lateral = np.array([-np.sin(azimuth), np.cos(azimuth), 0.0])
     proximal = -direction
     rotation = np.column_stack((lateral, proximal, np.cross(lateral, proximal)))
@@ -112,7 +118,7 @@ def shank_reference_um(geometry: ProbeGeometry, shank_id: int):
 
 
 def reference_pose(geometry: ProbeGeometry, pose: ImplantPose, shank_id: int):
-    """Display the selected shank's entry point without moving the probe."""
+    """Selected shank's saved zero-travel point, not necessarily on the surface."""
     rotation = probe_to_stereotaxic_matrix(geometry, pose)[:3, :3]
     offset = rotation @ (shank_reference_um(geometry, shank_id) - np.asarray(geometry.tip_um))
     entry = np.array([pose.ap_mm, pose.ml_mm, pose.dv_mm]) + um_to_mm(offset)
@@ -131,6 +137,84 @@ def shank_tip_stereotaxic_mm(geometry: ProbeGeometry, pose: ImplantPose, shank_i
     """Current physical tip after axis travel, in Bregma-relative AP/ML/DV mm."""
     tip = shank_reference_um(geometry, shank_id)
     return um_to_mm(transform_points(tip[None, :], probe_to_stereotaxic_matrix(geometry, pose))[0])
+
+
+def insertion_surface_entry_mm(atlas, frame: AtlasCoordinates, tip_mm, direction):
+    """First annotated cell on the full directed insertion line, in stereo mm.
+
+    Intersect the atlas box, then inspect each interval between voxel boundaries.
+    This follows the native floor-index cells exactly, without fixed-step sampling.
+    Hidden annotation labels still count as tissue. A line missing tissue returns
+    None, including a line merely touching a voxel corner/edge with zero length.
+    """
+    tip_mm = np.asarray(tip_mm, dtype=float)
+    direction = np.asarray(direction, dtype=float)
+    position = frame.atlas_to_voxel(frame.stereotaxic_to_atlas(mm_to_um(tip_mm)[None, :]))[0]
+    velocity = (frame.stereo_to_atlas_matrix[:3, :3] @ direction
+                * 1000.0 / np.asarray(frame.resolution_um))
+    shape = np.asarray(atlas.annotation.shape)
+    moving = np.abs(velocity) > 8 * np.finfo(float).eps * 1000 / np.asarray(frame.resolution_um)
+    velocity[~moving] = 0.0
+    if not moving.any() or np.any((~moving) & ((position < 0) | (position >= shape))):
+        return None
+    ends = np.stack((-position[moving] / velocity[moving],
+                     (shape[moving] - position[moving]) / velocity[moving]))
+    start, stop = ends.min(axis=0).max(), ends.max(axis=0).min()
+    if stop <= start:
+        return None
+    boundaries = [np.array([start, stop])]
+    for axis in np.flatnonzero(moving):
+        crossings = (np.arange(shape[axis] + 1) - position[axis]) / velocity[axis]
+        boundaries.append(crossings[(crossings > start) & (crossings < stop)])
+    distances = np.unique(np.concatenate(boundaries))
+    # Ignore only floating-point splits of coincident cell boundaries.
+    roundoff = 32 * np.finfo(float).eps * max(1.0, abs(start), abs(stop))
+    intervals = np.flatnonzero(np.diff(distances) > roundoff)
+    midpoints = (distances[intervals] + distances[intervals + 1]) / 2
+    indices = np.floor(position + midpoints[:, None] * velocity).astype(int)
+    valid = np.all((indices >= 0) & (indices < shape), axis=1)
+    intervals, indices = intervals[valid], indices[valid]
+    occupied = np.flatnonzero(atlas.annotation[tuple(indices.T)])
+    if not len(occupied):
+        return None
+    return tip_mm + distances[intervals[occupied[0]]] * direction
+
+
+@dataclass(frozen=True)
+class ShankSurfaceReference:
+    entry_mm: np.ndarray
+    depth_mm: float
+    dv_mm: float
+
+
+def shank_surface_reference(geometry, pose, shank_id, atlas, frame):
+    """Per-shank surface entry, signed axis travel and vertical tip depth.
+
+    This is a read-only view of the physical pose; selecting a shank never moves it.
+    """
+    if atlas is None or frame is None:
+        return None
+    tip = shank_tip_stereotaxic_mm(geometry, pose, shank_id)
+    direction = insertion_direction(pose)
+    entry = insertion_surface_entry_mm(atlas, frame, tip, direction)
+    if entry is None:
+        return None
+    return ShankSurfaceReference(entry, float(np.dot(tip - entry, direction)), float(tip[2] - entry[2]))
+
+
+def pose_at_shank_insertion(geometry, pose, shank_id, entry_mm, depth_mm):
+    """Place a rigid probe from a shank's surface origin and signed travel.
+
+    Keep the saved nonnegative canonical travel contract: negative surface travel
+    is represented by an entry translated back along the same axis. The other
+    shanks retain their rigid offsets; no geometry or orientation is changed.
+    """
+    if not np.isfinite(depth_mm):
+        raise ValueError("Insertion depth must be finite millimeters.")
+    position = np.asarray(entry_mm) + min(0.0, depth_mm) * insertion_direction(pose)
+    displayed = replace(pose, ap_mm=position[0], ml_mm=position[1], dv_mm=position[2],
+                        depth_mm=max(0.0, depth_mm))
+    return canonical_pose(geometry, displayed, shank_id)
 
 
 def entry_pose_at_tip_dv(entry: ImplantPose, surface_dv_mm: float, tip_dv_mm: float):
