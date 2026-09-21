@@ -8,16 +8,24 @@ Plan electrophysiology probe placement and Neuropixels recording channels in a 3
 ## Install
 
 Standalone releases are being prepared. Once available, download your platform's
-archive from [Releases](https://github.com/yoshihito-saito/Atlaxis/releases). No Python setup is required.
+installer from [Releases](https://github.com/yoshihito-saito/Atlaxis/releases). No Python setup is required.
 
 | Platform | Installation |
 | --- | --- |
-| macOS Apple Silicon | Unzip `Atlaxis-macOS-arm64.zip`, move **Atlaxis.app** to **Applications**, and open it. |
-| Windows x64 | Extract `Atlaxis-Windows-x64.zip` and run **Atlaxis.exe**. Keep the entire extracted folder together. |
+| macOS Apple Silicon | Open `Atlaxis-macOS-arm64.dmg`, drag **Atlaxis.app** onto **Applications**, eject the disk image, and open the app from Applications. |
+| Windows x64 | Run `Atlaxis-Windows-x64-Setup.exe`, follow the installer, and launch **Atlaxis** from the Start menu. |
+
+Builds are currently unsigned. On macOS, if Apple cannot verify the app, confirm
+the download source and use **System Settings → Privacy & Security → Open Anyway**.
+The installer format does not remove OS security checks.
 
 On first launch, choose a data folder (default: `Documents/Atlaxis`).
 A local `README.md` quick-start guide is saved there; an existing README is kept.
 Atlases download on first use. Developers: [install from source](docs/development.md).
+
+To update, quit Atlaxis and replace the Mac app or run the new Windows installer.
+To uninstall, remove the Mac app or use Windows **Settings → Apps**. Your chosen
+data folder and saved settings are retained.
 
 ## Workflow
 

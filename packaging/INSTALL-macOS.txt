@@ -1,0 +1,17 @@
+Install Atlaxis (Apple Silicon Mac)
+
+1. Drag Atlaxis.app onto the Applications shortcut in this window.
+2. Eject the Atlaxis disk image and open Atlaxis from Applications.
+3. On first launch, choose an Atlaxis data folder. To reuse existing atlases,
+   probes and plans, select your existing Atlaxis data folder.
+
+Python does not need to be installed separately.
+
+This build is not signed with an Apple Developer ID or notarized. If macOS says
+Apple cannot verify the app, first confirm it came from the Atlaxis build you
+intended to download. Click Done, then open System Settings > Privacy & Security
+and choose Open Anyway for Atlaxis. This does not disable system-wide protection.
+
+To update: quit Atlaxis, then replace the app in Applications with the new one.
+To uninstall: move the app from Applications to Trash. Your chosen data folder
+and saved settings remain separate from the app.

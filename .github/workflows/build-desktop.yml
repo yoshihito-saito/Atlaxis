@@ -14,8 +14,10 @@ jobs:
         include:
           - os: macos-14
             artifact: Atlaxis-macOS-arm64
+            installer: Atlaxis-macOS-arm64.dmg
           - os: windows-2022
             artifact: Atlaxis-Windows-x64
+            installer: Atlaxis-Windows-x64-Setup.exe
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -27,17 +29,21 @@ jobs:
       - run: uv run --no-sync python -m PyInstaller --noconfirm packaging/Atlaxis.spec
       - name: Archive matching application source
         run: git archive --format=zip --output=dist/Atlaxis-source.zip HEAD
-      - name: Archive macOS app preserving bundle links
+      - name: Create macOS disk image
         if: runner.os == 'macOS'
-        run: ditto -c -k --sequesterRsrc --keepParent dist/Atlaxis.app dist/Atlaxis-macOS-arm64.zip
-      - name: Archive Windows application folder
+        run: bash packaging/build_macos_dmg.sh
+      - name: Create Windows installer
         if: runner.os == 'Windows'
         shell: pwsh
-        run: Compress-Archive -Path dist/Atlaxis -DestinationPath dist/Atlaxis-Windows-x64.zip
+        run: |
+          $appVersion = uv run --no-sync python -c "import pathlib, tomllib; print(tomllib.loads(pathlib.Path('pyproject.toml').read_text(encoding='utf-8'))['project']['version'])"
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          & "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe" "/DAppVersion=$appVersion" packaging/Atlaxis.iss
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
       - uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.artifact }}
           path: |
-            dist/${{ matrix.artifact }}.zip
+            dist/${{ matrix.installer }}
             dist/Atlaxis-source.zip
           if-no-files-found: error

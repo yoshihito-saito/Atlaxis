@@ -40,14 +40,40 @@ uv run --no-sync python -m PyInstaller --noconfirm packaging/Atlaxis.spec
 ```
 
 macOS produces `dist/Atlaxis.app`; Windows produces `dist/Atlaxis/Atlaxis.exe`
-with its required sibling files. Distribute the entire app/folder. GitHub Actions'
-**Build standalone desktop apps** workflow is manually triggered and archives
-macOS arm64 and Windows x64 outputs. It does not publish releases automatically.
-The local macOS attempt stopped after antivirus quarantined PyInstaller's `runw`
-bootloader. No finished app is available yet; that detection is unresolved. The
-configurations have not been validated on clean computers. Signing,
-notarization and GUI/OpenGL validation remain release tasks; no signed installer
-is produced by this initial workflow.
+with its required sibling files. GitHub Actions' **Build standalone desktop apps**
+workflow is manually triggered and packages these as installers. It uses macOS
+`hdiutil` and the Inno Setup compiler already installed on the Windows runner.
+It does not publish releases automatically.
+
+On macOS, package the app with:
+
+```sh
+bash packaging/build_macos_dmg.sh
+```
+
+This produces `dist/Atlaxis-macOS-arm64.dmg` containing the app, an Applications
+shortcut and installation instructions. `ditto` preserves app bundle symlinks;
+`hdiutil verify` checks the resulting compressed disk image.
+
+On Windows with Inno Setup 6 installed, run in PowerShell:
+
+```powershell
+$appVersion = uv run --no-sync python -c "import pathlib, tomllib; print(tomllib.loads(pathlib.Path('pyproject.toml').read_text(encoding='utf-8'))['project']['version'])"
+& "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe" "/DAppVersion=$appVersion" packaging/Atlaxis.iss
+```
+
+This produces `dist/Atlaxis-Windows-x64-Setup.exe`. It installs the complete bundle
+under the current user's `LocalAppData\Programs\Atlaxis`, adds a Start menu shortcut
+and offers an optional desktop shortcut. A stable AppId retains the installation
+location across upgrades. Uninstall removes installed app files, not the user's
+chosen atlas/probe/plan data folder or Qt settings. The data folder is still chosen
+by Atlaxis on first launch, not by the installer.
+
+Upload the DMG, setup EXE and matching `Atlaxis-source.zip` to a release targeting
+the build commit. Actions downloads wrap each installer/source pair in an artifact
+ZIP; extract that outer ZIP before uploading the individual release assets.
+Developer ID signing, Apple notarization, Windows signing and interactive
+installation/GUI validation remain separate release tasks.
 
 The build collects third-party notices from its own environment and bundles them
 with the app. The workflow also creates a matching application source archive.
