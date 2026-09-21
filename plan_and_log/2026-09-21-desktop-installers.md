@@ -30,5 +30,16 @@ comes from pyproject.toml. The workflow uploads installers and matching source;
 installation/build documentation now describes these formats.
 
 Source and the scoped diff were reviewed. No local PyInstaller build, dependency
-installation, broad tests or new test infrastructure. Native CI build pending;
-interactive install/uninstall, GUI operation and OS signature trust are separate.
+installation, broad tests or new test infrastructure.
+
+Committed and pushed as `dfc1bb5`. The manually dispatched [desktop build
+35655285060](https://github.com/yoshihito-saito/Atlaxis/actions/runs/35655285060)
+completed successfully on macos-14 and windows-2022 at that commit. Both native
+PyInstaller builds, installer packaging and artifact uploads succeeded; the macOS
+packaging step also ran `hdiutil verify`. Artifacts are `Atlaxis-macOS-arm64`
+(10664045905) and `Atlaxis-Windows-x64` (10664326581), containing the DMG or setup
+EXE and matching source ZIP. README installation/update/uninstall instructions are
+included in that source revision. No Release was published.
+
+Interactive install/uninstall and installed-app GUI operation were not tested.
+Signing and notarization are not configured, so OS trust warnings remain possible.
