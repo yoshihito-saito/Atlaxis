@@ -34,6 +34,9 @@ original ontology remained untouched; all known records retained their identity.
 The diff was reviewed. Full GUI atlas loading and other atlas datasets have not
 been exercised; errors unrelated to missing region metadata are outside this fix.
 
-Previous Windows-build correction a69d57b is already pushed; triggering a fresh
-remote build was interrupted because browser control was not approved. This
-atlas correction is to be included in the next user-authorized build.
+Committed/pushed as 5fc3fa9, including the preceding Windows-build correction
+a69d57b. Dispatched the desktop workflow through the GitHub API after browser
+control was unavailable. [Run 35652484676](https://github.com/yoshihito-saito/Atlaxis/actions/runs/35652484676)
+completed successfully for macOS arm64 and Windows x64 on code commit 5fc3fa9.
+Confirmed both artifacts exist: Atlaxis-macOS-arm64 (10663265824) and
+Atlaxis-Windows-x64 (10662293898). Built application GUI behavior remains untested.

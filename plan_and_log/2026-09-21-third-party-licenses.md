@@ -97,3 +97,9 @@ The targeted diff was reviewed. No local app build was run.
 
 The user subsequently requested completing the GitHub build from Codex as well;
 dispatch and target-platform build verification are now in scope.
+
+Correction committed/pushed as a69d57b. After the subsequent atlas fix, dispatched
+[desktop run 35652484676](https://github.com/yoshihito-saito/Atlaxis/actions/runs/35652484676)
+on commit 5fc3fa9 through the GitHub API. Both macOS arm64 and Windows x64 jobs
+completed successfully and uploaded their artifacts. The Windows job passed the
+unchanged license verification and completed PyInstaller packaging.
