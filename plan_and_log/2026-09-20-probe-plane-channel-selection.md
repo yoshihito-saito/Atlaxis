@@ -518,3 +518,42 @@ The original 24 site/channel pairs remained unchanged; two new ROIs received
 180 channels each; the empty row received zero (384 total). Temporary files
 under `/tmp/atlaxis-roi-check.LTfOhT` were cleaned. No tests were added and no
 broad suite/build or manual macOS interaction was run.
+
+### Multiple channel-selection regions per ROI (2026-09-21)
+
+Goal: allow a single ROI to target a union such as CA1 + DG. A contact must
+remain inside the drawn range and Brain scope, and its native label or an
+ancestor must match at least one selected region. Parent selections include
+their direct annotation and descendants; overlapping selections never duplicate
+contacts. Existing assignments, geometry, densities and allocation stay unchanged.
+
+Steps:
+1. Add optional region_ids to SelectionROI, retaining legacy region_id lookup
+   for old plans. An explicit empty list matches nothing; unrestricted Brain
+   remains the default. Preserve the settings in existing dataclass serialization.
+2. Add independent checkboxes to the existing hierarchical region picker, with
+   search, clear and explicit All Brain controls. A cleared picker cannot Apply
+   an accidental unrestricted selection; Cancel leaves the ROI unchanged.
+3. Display combined acronyms with full names in the tooltip, and register the
+   union of the selected regions/subtrees inside each drawn ROI.
+4. Review the scoped diff and run one focused real-atlas selection/persistence
+   check; no new tests or broad validation.
+
+Result (uncommitted): implemented independent multi-region checkboxes, combined
+acronyms/full-name tooltips and union filtering at registration. Search preserves
+checked regions outside the current results. Apply is disabled when no regions
+are checked; All Brain is an explicit action. The optional region_ids list takes
+precedence when present; otherwise legacy region_id retains its original meaning.
+Existing plan/selection JSON serialization preserves the new field automatically.
+No allocator, assignment, atlas annotation or coordinate changes were needed.
+
+Scoped diff reviewed. One focused check passed (exit 0):
+`QT_QPA_PLATFORM=offscreen MPLCONFIGDIR="$region_check_dir/matplotlib"
+PYTHONPATH=src .venv/bin/python -B -`. With actual Waxholm StructuresDict/native
+annotation and NP2 four-shank geometry, Qt input selected CA1 and DG across search
+filters. Registration retained exactly their 440 physical sites in the drawn
+span (174 CA1 + 266 DG), excluding other labels. The same flow checked cleared
+Apply/Cancel, overlapping parent/child selection without duplicate sites, empty
+filter rejection, legacy single-region loading, and plan/NP selection JSON
+round-trips. The temporary cache/plan directories were cleaned. No new tests,
+broad suite, full application launch or manual macOS interaction was run.

@@ -101,10 +101,17 @@ class SelectionROI:
     assigned_sites: list[str] = field(default_factory=list)
     polygon_um: list[list[float]] | None = None  # Local plane vertices; None for rectangles.
     selection_mode: str | None = None
+    region_ids: list[int] | None = None  # Selected subtree roots; None uses legacy region_id.
 
     def __post_init__(self):
         if self.selection_mode is None:
             self.selection_mode = "Polygon" if self.polygon_um is not None else "Rectangle"
+
+    @property
+    def selected_region_ids(self):
+        if self.region_ids is not None:
+            return self.region_ids
+        return [self.region_id] if self.region_id is not None else None
 
 
 @dataclass
@@ -146,6 +153,10 @@ class ChannelMap:
                 raise ValueError("ROI selection mode must be Rectangle or Polygon.")
             if roi.region_id is not None and (type(roi.region_id) is not int or roi.region_id <= 0):
                 raise ValueError("ROI region IDs must be positive integers.")
+            if roi.region_ids is not None and (not isinstance(roi.region_ids, list)
+                    or any(type(rid) is not int or rid <= 0 for rid in roi.region_ids)
+                    or len(set(roi.region_ids)) != len(roi.region_ids)):
+                raise ValueError("ROI region IDs must be a list of unique positive integers.")
             if type(roi.registered) is not bool:
                 raise ValueError("ROI registration must be boolean.")
             if roi.bounds_um is not None:

@@ -134,43 +134,65 @@ class RegionDialog(QDialog):
 
 
 class RegionSelectionDialog(QDialog):
-    """Choose one ROI region, including all of the chosen parent's descendants."""
+    """Choose a union of ROI regions, each including its descendants."""
 
-    def __init__(self, structures, region_id, parent=None, available_ids=None):
+    def __init__(self, structures, region_ids, parent=None, available_ids=None):
         super().__init__(parent)
-        self.setWindowTitle("Channel selection region")
+        self.setWindowTitle("Channel selection regions")
         self.resize(620, 540)
-        self.selected_region_id = region_id
+        self.selected_region_ids = None if region_ids is None else list(region_ids)
         layout = QVBoxLayout(self)
         search = QLineEdit()
         search.setPlaceholderText("Search name or acronym")
         layout.addWidget(search)
+        actions = QHBoxLayout()
         all_regions = QPushButton("All Brain regions")
         all_regions.clicked.connect(self.select_brain)
-        layout.addWidget(all_regions)
+        actions.addWidget(all_regions)
+        clear = QPushButton("Clear")
+        clear.clicked.connect(self.clear_selection)
+        actions.addWidget(clear)
+        actions.addStretch()
+        layout.addLayout(actions)
         self.tree = QTreeWidget()
         self.tree.setHeaderLabels(["Region / layer", "Acronym"])
         self.items, _ = populate_region_tree(self.tree, structures, available_ids)
         self.tree.setColumnWidth(0, 420)
         self.tree.expandToDepth(1)
-        if region_id in self.items:
-            self.tree.setCurrentItem(self.items[region_id])
-            self.tree.scrollToItem(self.items[region_id])
+        for rid, item in self.items.items():
+            item.setFlags(item.flags() | Qt.ItemIsUserCheckable)
+            item.setCheckState(0, Qt.Checked if rid in (region_ids or []) else Qt.Unchecked)
+        if region_ids and region_ids[0] in self.items:
+            self.tree.setCurrentItem(self.items[region_ids[0]])
+            self.tree.scrollToItem(self.items[region_ids[0]])
         layout.addWidget(self.tree)
-        layout.addWidget(QLabel("Selecting a parent includes its subregions."))
+        hint = QLabel("Check one or more regions. Each checked region includes all its subregions. "
+                      "Channels in any checked region are eligible within the drawn ROI.")
+        hint.setWordWrap(True)
+        layout.addWidget(hint)
         buttons = QDialogButtonBox(QDialogButtonBox.Ok | QDialogButtonBox.Cancel)
+        self.apply_button = buttons.button(QDialogButtonBox.Ok)
+        self.apply_button.setText("Apply")
         buttons.accepted.connect(self.apply_region)
         buttons.rejected.connect(self.reject)
         layout.addWidget(buttons)
-        self.tree.itemDoubleClicked.connect(lambda *_: self.apply_region())
+        self.tree.itemChanged.connect(self.update_apply)
+        self.update_apply()
         search.textChanged.connect(lambda query: filter_region_tree(list(self.items.values()), query))
 
     def select_brain(self):
-        self.selected_region_id = None
+        self.selected_region_ids = None
         self.accept()
 
+    def clear_selection(self):
+        for item in self.items.values():
+            item.setCheckState(0, Qt.Unchecked)
+
+    def update_apply(self, *_):
+        self.apply_button.setEnabled(any(item.checkState(0) == Qt.Checked for item in self.items.values()))
+
     def apply_region(self):
-        item = self.tree.currentItem()
-        if item is not None:
-            self.selected_region_id = item.data(0, Qt.UserRole)
+        selected = [rid for rid, item in self.items.items() if item.checkState(0) == Qt.Checked]
+        if selected:
+            self.selected_region_ids = selected
             self.accept()

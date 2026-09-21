@@ -250,12 +250,18 @@ class ProbePlanePanel(QWidget):
                 mode.setEnabled(not roi.registered)
                 mode.currentTextChanged.connect(lambda value, r=roi: self.edit_roi(r, selection_mode=value))
                 self.table.setCellWidget(index, 1, mode)
-                metadata = (self.atlas.structures.get(roi.region_id, {})
-                            if self.atlas is not None and roi.region_id is not None else {})
-                acronym = metadata.get("acronym", str(roi.region_id)) if roi.region_id is not None else "Brain"
+                region_ids = roi.selected_region_ids
+                metadata = [(self.atlas.structures.get(rid, {}) if self.atlas is not None else {})
+                            for rid in (region_ids or [])]
+                acronym = (" + ".join(region.get("acronym", str(rid))
+                           for rid, region in zip(region_ids, metadata)) if region_ids else
+                           "Brain" if region_ids is None else "No regions")
+                names = ("\n".join(region.get("name", str(rid))
+                         for rid, region in zip(region_ids, metadata)) if region_ids else
+                         "All Brain regions" if region_ids is None else "No regions selected")
                 region = QPushButton()
                 region.setText(region.fontMetrics().elidedText(acronym, Qt.ElideRight, 104))
-                region.setToolTip(metadata.get("name", "All Brain regions") + " · Choose region / layer…")
+                region.setToolTip(names + "\nChoose regions / layers…")
                 region.setEnabled(not roi.registered)
                 region.clicked.connect(lambda _, r=roi: self.choose_region(r))
                 self.table.setCellWidget(index, 2, region)
@@ -299,10 +305,10 @@ class ProbePlanePanel(QWidget):
     def choose_region(self, roi):
         if self.atlas is None or roi.registered:
             return
-        dialog = RegionSelectionDialog(self.atlas.structures, roi.region_id, self,
+        dialog = RegionSelectionDialog(self.atlas.structures, roi.selected_region_ids, self,
                                        available_ids=self.available_region_ids)
         if dialog.exec() == QDialog.Accepted:
-            self.edit_roi(roi, region_id=dialog.selected_region_id)
+            self.edit_roi(roi, region_id=None, region_ids=dialog.selected_region_ids)
             self.refresh_rois()
         dialog.deleteLater()
 
@@ -364,9 +370,10 @@ class ProbePlanePanel(QWidget):
         allowed = brain_region_ids(self.atlas.structures)
         regions = {row["contact_id"]: row["region_id"] for row in self.rows}
         brain_sites = [site for site in roi.sites if regions.get(site) in allowed]
-        if roi.region_id is not None:
-            sites = [site for site in brain_sites if regions.get(site) == roi.region_id or roi.region_id in
-                     self.atlas.structures.get(regions.get(site), {}).get("structure_id_path", [])]
+        if roi.selected_region_ids is not None:
+            selected = set(roi.selected_region_ids)
+            sites = [site for site in brain_sites if regions[site] in selected or selected.intersection(
+                     self.atlas.structures[regions[site]].get("structure_id_path", []))]
         else:
             sites = brain_sites
         if not sites:
