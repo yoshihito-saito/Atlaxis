@@ -68,3 +68,32 @@ unrelated work were left intact.
 - The current snapshot excludes PyInstaller because it is not installed locally;
   its pinned upstream texts are included, and the build collects it and its
   dependencies after the workflow's existing installation step.
+
+## Windows checkout follow-up (2026-09-21)
+
+Build run 35650868482 on commit ae9a766 failed on Windows with
+`Upstream notice has changed: pyinstaller/COPYING.txt`. The macOS build produced
+its artifact. The failed check reads the tracked upstream notice, not an
+installed package's license. No repository attributes currently prevent Windows
+checkout line-ending conversion from changing those hash-locked bytes.
+
+Scope and steps:
+1. Preserve original upstream notice bytes during Git checkout with a targeted
+   `.gitattributes` rule; leave notice files, expected hashes and strict validation intact.
+2. Run one focused Git checkout-filter check with `core.autocrlf=true` on the
+   reported file, comparing the previous and corrected checkout hashes.
+3. Review the two-file change and commit/push the build correction. A fresh
+   Windows workflow run is still required to verify the complete build.
+
+Added `third_party/licenses/upstream/** -text`; strict SHA-256 validation and
+all original notice files remain unchanged. The focused check ran via
+`.venv/bin/python -B -`, using Git's `cat-file --filters` with
+`core.autocrlf=true`. The first invocation did not isolate the previous attributes
+because it still ran inside the real working directory; after correcting the
+working directory, the single rerun passed. The previous checkout introduced 648
+CRLF sequences and hash `2f715155...`; the corrected checkout retained the manifest
+hash `0598064c...`. This reproduces the reported mismatch without weakening it.
+The targeted diff was reviewed. No local app build was run.
+
+The user subsequently requested completing the GitHub build from Codex as well;
+dispatch and target-platform build verification are now in scope.

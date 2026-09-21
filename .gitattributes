@@ -1,0 +1,2 @@
+# Keep hash-locked upstream notices byte-for-byte on every platform.
+third_party/licenses/upstream/** -text
