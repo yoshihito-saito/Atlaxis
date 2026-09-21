@@ -1,0 +1,39 @@
+name: Build standalone desktop apps
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-14
+            artifact: Atlaxis-macOS-arm64
+          - os: windows-2022
+            artifact: Atlaxis-Windows-x64
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      - run: uv sync --locked
+      - run: uv pip install "pyinstaller==6.22.3"
+      - run: uv run --no-sync python -m PyInstaller --noconfirm packaging/Atlaxis.spec
+      - name: Archive macOS app preserving bundle links
+        if: runner.os == 'macOS'
+        run: ditto -c -k --sequesterRsrc --keepParent dist/Atlaxis.app dist/Atlaxis-macOS-arm64.zip
+      - name: Archive Windows application folder
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: Compress-Archive -Path dist/Atlaxis -DestinationPath dist/Atlaxis-Windows-x64.zip
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact }}
+          path: dist/${{ matrix.artifact }}.zip
+          if-no-files-found: error

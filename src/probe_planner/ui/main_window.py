@@ -4,8 +4,8 @@ from functools import wraps
 from pathlib import Path
 
 import numpy as np
-from PySide6.QtCore import QThread, Signal, Qt, QTimer
-from PySide6.QtGui import QAction
+from PySide6.QtCore import QThread, Signal, Qt, QTimer, QUrl
+from PySide6.QtGui import QAction, QDesktopServices
 from PySide6.QtWidgets import (
     QMainWindow, QWidget, QHBoxLayout, QVBoxLayout, QFormLayout, QGroupBox,
     QLabel, QLineEdit, QPushButton, QDoubleSpinBox, QSplitter,
@@ -24,7 +24,8 @@ from probe_planner.implant.pose import ImplantPose
 from probe_planner.implant.instance import ProbeInstance
 from probe_planner.implant.region_mapping import map_contacts
 from probe_planner.probes.importers import load_geometry_json, load_cellexplorer
-from probe_planner.probes.library import probe_library_path, planning_path
+from probe_planner.probes.library import probe_import_path, planning_path
+from probe_planner.storage import active_paths, default_paths, saved_paths
 from probe_planner.probes.favorites import FavoriteProbes
 from probe_planner.probes.wiring import headstage_map
 from probe_planner.probes.model import ChannelMap
@@ -39,6 +40,7 @@ from probe_planner.rendering.regions import load_region_meshes, default_hidden_r
 from probe_planner.rendering.scene import load_display_mesh
 from .dialogs import CoordinateDialog, ProbeImportDialog, HeadstageSelector
 from .atlas_dialog import AtlasDialog
+from .storage_dialog import DataFoldersDialog
 from .region_dialog import RegionDialog
 from .probe_plane import ProbePlanePanel
 from .probe_summary import ProbeSummary
@@ -126,6 +128,11 @@ class MainWindow(QMainWindow):
             action.triggered.connect(handler)
             toolbar.addAction(action)
             self.actions.append(action)
+
+        settings_menu = self.menuBar().addMenu("Settings")
+        self.storage_action = settings_menu.addAction("Data folder…", self.configure_data_folders)
+        settings_menu.addAction("Open data folder", lambda: self.open_data_folder(False))
+        settings_menu.addAction("Open atlas folder", lambda: self.open_data_folder(True))
 
         root = QSplitter(Qt.Horizontal)
         left = QWidget()
@@ -558,6 +565,7 @@ class MainWindow(QMainWindow):
 
     def refresh_enabled(self):
         self.load_button.setEnabled(not self.busy)
+        self.storage_action.setEnabled(not self.busy)
         self.probe_tabs.setEnabled(not self.busy)
         self.favorites_button.setEnabled(not self.busy)
         self.summary_tabs.setEnabled(not self.busy)
@@ -580,6 +588,20 @@ class MainWindow(QMainWindow):
         answer = QMessageBox.question(self, "Unsaved plan", "Save changes before continuing?",
             QMessageBox.Save | QMessageBox.Discard | QMessageBox.Cancel, QMessageBox.Save)
         return answer == QMessageBox.Discard or (answer == QMessageBox.Save and self.save_project())
+
+    @guarded
+    def configure_data_folders(self):
+        dialog = DataFoldersDialog(saved_paths() or active_paths() or default_paths(), self)
+        if dialog.exec() == QDialog.Accepted:
+            QMessageBox.information(self, "Data folder saved",
+                "Restart Atlaxis to use this folder. The current plan and data have not been moved.")
+        dialog.deleteLater()
+
+    @guarded
+    def open_data_folder(self, atlas=False):
+        paths = active_paths()
+        if paths is not None:
+            QDesktopServices.openUrl(QUrl.fromLocalFile(str(paths.atlases if atlas else paths.root)))
 
     @guarded
     def start_atlas(self, checked=False):
@@ -708,7 +730,7 @@ class MainWindow(QMainWindow):
         chooser.setWindowTitle("Import probe geometry")
         chooser.setFileMode(QFileDialog.ExistingFile)
         chooser.setNameFilter("Probe geometry (*.json *.mat)")
-        chooser.setDirectory(str(probe_library_path()))
+        chooser.setDirectory(str(probe_import_path()))
         accepted = chooser.exec() == QDialog.Accepted
         filenames = chooser.selectedFiles() if accepted else []
         chooser.deleteLater()

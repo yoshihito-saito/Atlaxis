@@ -22,6 +22,65 @@ macOS Apple Silicon and Windows x64 are the intended platforms. Configured CI
 checks installation and module imports; interactive Windows validation remains
 outstanding. See `plan_and_log/2026-09-19-pilot.md` for actual checks.
 
+## Data folders
+
+On the first GUI launch, select only the Atlaxis data folder (default:
+Documents/Atlaxis). **Browse…** selects where to create `Atlaxis`; selecting an
+existing `Atlaxis` folder reuses it. Atlas downloads always use its `atlases/`
+subfolder. The application creates:
+
+```text
+Atlaxis/
+  probes/standard/    # Bundled manufacturer libraries and companions
+  probes/custom/      # User-created or edited probe designs
+  atlases/            # Atlas downloads
+  planning/           # New plan bundles
+  .atlaxis/           # Template hashes and private BrainGlobe configuration
+```
+
+Standard probes are copied from the application. On later launches, new files
+are added and unchanged managed files can be updated; edited/pre-existing files
+are preserved. Nothing in `probes/custom` is overwritten or deleted. Library
+favorites retain their manufacturer-relative identities. The repository's
+`probes/` remains the source for distribution and command-line companion generation.
+
+**Settings → Data folder…** saves the destination for the next launch; the current
+session keeps using its existing paths. **Open data folder** and **Open atlas
+folder** open the active locations. Saved plans and downloads are not moved by
+changing folders. Open an existing plan at its original location and use **Save
+as…** to create a copy in the new planning folder. App updates do not remove plans.
+Previously configured external atlas paths are no longer used. To reuse those
+downloads, copy their complete atlas directories (for example `whs_sd_rat_39um_v*`)
+into `Atlaxis/atlases/` before loading them. External files are left untouched.
+
+Before importing BrainGlobe, startup sets the process-local `BRAINGLOBE_CONFIG_DIR`
+to `.atlaxis/brainglobe`. Global BrainGlobe configuration files are not modified.
+Atlas downloads remain optional; only selecting **Load** downloads a volume.
+
+## Standalone builds
+
+`packaging/Atlaxis.spec` describes a native PyInstaller one-folder build including
+Python, dependencies and the probe library. Atlas volumes and user plans are not
+bundled. The supplied `logo/Atlaxis.icns` is the macOS app icon, `logo/Atlaxis.ico`
+is the Windows executable icon, and `logo/Atlaxis.png` is included for Qt windows
+in source, wheel and standalone launches. Build on the target OS with Python 3.11:
+
+```sh
+uv sync --locked
+uv pip install "pyinstaller==6.22.3"
+uv run --no-sync python -m PyInstaller --noconfirm packaging/Atlaxis.spec
+```
+
+macOS produces `dist/Atlaxis.app`; Windows produces `dist/Atlaxis/Atlaxis.exe`
+with its required sibling files. Distribute the entire app/folder. GitHub Actions'
+**Build standalone desktop apps** workflow is manually triggered and archives
+macOS arm64 and Windows x64 outputs. It does not publish releases automatically.
+The local macOS attempt stopped after antivirus quarantined PyInstaller's `runw`
+bootloader. No finished app is available yet; that detection is unresolved. The
+configurations have not been validated on clean computers. Signing,
+notarization and GUI/OpenGL validation remain release tasks; no signed installer
+is produced by this initial workflow.
+
 ## Workflow
 
 1. **Load atlas** opens a searchable atlas table, initially choosing
@@ -42,8 +101,9 @@ outstanding. See `plan_and_log/2026-09-19-pilot.md` for actual checks.
 2. Click **+ Probe** below Atlas and choose a JSON or CellExplorer
    `chanCoords.channelInfo.mat` file. A separate window shows the body, sites
    and import details. **Import** adds the probe; **Cancel** leaves the plan
-   untouched. The chooser opens `probes/`, containing 171 Cambridge NeuroTech
-   models plus the NeuroNexus and Neuropixels layouts. The preview includes a
+   untouched. The chooser opens the data folder's `probes/`; `standard/` contains
+   171 Cambridge NeuroTech models plus the NeuroNexus and Neuropixels layouts,
+   and `custom/` holds your own designs. The preview includes a
    zoom-aware scale bar; source and dimensional limitations are recorded in
    [the library documentation](probes/README.md).
 3. Each imported probe gets a **number · probe name** tab. Click its **×** to
@@ -285,7 +345,8 @@ creates `planning/experiment/plan.json` and planning reports in that folder.
 After editing, **Save & Update** (Cmd+S on macOS) overwrites the same plan and
 updates the reports without another filename dialog. **Save as…** creates a
 separate named copy. **Open plan** also starts in `planning/`; existing
-standalone plan JSONs remain readable. Installed apps use `~/Documents/Atlaxis/planning/`.
+standalone plan JSONs remain readable. GUI sessions use the selected data folder's
+`planning/` directory (Documents/Atlaxis/planning by default).
 
 - `planned_coordinates.csv`: each shank's entry/tip coordinates (mm), AP/ML tilt
   and roll (degrees), insertion travel, and selected reference-shank flag. AP/ML

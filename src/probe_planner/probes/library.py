@@ -1,15 +1,25 @@
 from pathlib import Path
 
+from probe_planner.storage import active_paths, bundled_probe_path
+
 
 def probe_library_path():
-    """Use the editable checkout library, or the copy included in the wheel."""
-    module = Path(__file__).resolve()
-    checkout = module.parents[3] / "probes"
-    return checkout if checkout.is_dir() else module.parents[1] / "data" / "probes"
+    """GUI uses persistent standards; library-generation CLI uses its source copy."""
+    paths = active_paths()
+    return paths.standard_probes if paths is not None else bundled_probe_path()
+
+
+def probe_import_path():
+    """Let the GUI browse both standard and custom probes from one folder."""
+    paths = active_paths()
+    return paths.probes if paths is not None else probe_library_path()
 
 
 def planning_path():
-    """Keep checkout plans together; installed apps use a writable user folder."""
+    """GUI plans use the selected data folder; non-GUI callers keep prior defaults."""
+    paths = active_paths()
+    if paths is not None:
+        return paths.planning
     checkout = Path(__file__).resolve().parents[3]
     folder = (checkout if (checkout / "pyproject.toml").is_file()
               else Path.home() / "Documents" / "Atlaxis") / "planning"

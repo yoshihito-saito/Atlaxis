@@ -28,3 +28,4 @@ packages = ["src/probe_planner"]
 
 [tool.hatch.build.targets.wheel.force-include]
 "probes" = "probe_planner/data/probes"
+"logo/Atlaxis.png" = "probe_planner/data/Atlaxis.png"
