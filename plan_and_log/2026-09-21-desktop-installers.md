@@ -43,3 +43,13 @@ included in that source revision. No Release was published.
 
 Interactive install/uninstall and installed-app GUI operation were not tested.
 Signing and notarization are not configured, so OS trust warnings remain possible.
+
+## Release publication
+
+At the user's subsequent request, published [v0.1.0](https://github.com/yoshihito-saito/Atlaxis/releases/tag/v0.1.0)
+from the exact build commit `dfc1bb5`. Attached the macOS DMG, Windows setup EXE,
+and matching source ZIP. Verified downloaded Actions artifact SHA-256 hashes and
+uploaded Release asset hashes, sizes and published state. Both source archives
+identify the same commit; their text files differ only in platform line endings.
+The Release uses the macOS source archive. Updated the main-branch README to link
+to the available release. No rebuild or interactive installation was performed.

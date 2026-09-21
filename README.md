@@ -7,8 +7,8 @@ Plan electrophysiology probe placement and Neuropixels recording channels in a 3
 
 ## Install
 
-Standalone releases are being prepared. Once available, download your platform's
-installer from [Releases](https://github.com/yoshihito-saito/Atlaxis/releases). No Python setup is required.
+Download your platform's installer from
+[Releases](https://github.com/yoshihito-saito/Atlaxis/releases/latest). No Python setup is required.
 
 | Platform | Installation |
 | --- | --- |
