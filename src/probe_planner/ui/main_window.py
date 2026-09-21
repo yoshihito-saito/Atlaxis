@@ -666,9 +666,14 @@ class MainWindow(QMainWindow):
             self.calibration_source = "Waxholm Bregma preset · atlas-aligned axes" if self.frame else ""
         self.atlas_name.setText(atlas.name)
         resolution = " × ".join(f"{value:g}" for value in atlas.resolution_um)
-        self.atlas_info.setText(f"Loaded · {resolution} µm voxels")
+        missing = sorted(rid for rid, region in atlas.structures.items() if region.get("metadata_missing"))
+        notice = f" · {len(missing)} region(s) missing metadata" if missing else ""
+        self.atlas_info.setText(f"Loaded · {resolution} µm voxels{notice}")
         self.atlas_info.setToolTip(f"{atlas.name} · v{atlas.version}\n"
-                                  f"Shape: {atlas.annotation.shape}\nOrigin: {atlas.orientation}")
+                                  f"Shape: {atlas.annotation.shape}\nOrigin: {atlas.orientation}"
+                                  + ("\nUnknown region labels: " + ", ".join(map(str, missing))
+                                     + "\nOriginal annotation IDs are preserved; anatomical metadata is unavailable."
+                                     if missing else ""))
         if plan:
             self.probes = plan.probes
             self.surface_pending_probes.clear()

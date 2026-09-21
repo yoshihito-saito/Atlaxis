@@ -5,7 +5,7 @@ from pathlib import Path
 import numpy as np
 import pyvista as pv
 from scipy.ndimage import binary_closing, binary_fill_holes
-from probe_planner.atlas.regions import brain_region_ids, spinal_display_interior
+from probe_planner.atlas.regions import brain_region_ids, include_unknown_regions, spinal_display_interior
 
 
 def default_hidden_regions(atlas):
@@ -78,9 +78,7 @@ def load_region_meshes(atlas, progress):
             if len(excluded):
                 clipped_labels.update(int(value) for value in np.unique(atlas.annotation[index].flat[excluded]))
     labels.discard(0)
-    unknown = labels.difference(atlas.structures)
-    if unknown:
-        raise ValueError(f"Atlas has labels without region metadata: {sorted(unknown)}")
+    include_unknown_regions(atlas, labels)
     parents = {ancestor for region in atlas.structures.values()
                for ancestor in region.get("structure_id_path", [])[:-1]}
     meshes = {}
@@ -93,7 +91,8 @@ def load_region_meshes(atlas, progress):
     for index, region_id in enumerate(sorted(labels), 1):
         region = atlas.structures[region_id]
         progress(f"Preparing 3D regions… {index}/{len(labels)} · {region['acronym']}")
-        path = Path(atlas.backend.meshfile_from_structure(region_id))
+        path = (None if region.get("metadata_missing") else
+                Path(atlas.backend.meshfile_from_structure(region_id)))
         # Parent mesh files include their descendants; using them for a direct
         # parent label would make unchecked children remain visible.
         if region_id in clipped_labels:
@@ -107,7 +106,7 @@ def load_region_meshes(atlas, progress):
                 mesh.save(temporary)
                 temporary.replace(cache)
         else:
-            mesh = (label_surface(atlas, region_id) if region_id in parents or not path.is_file()
+            mesh = (label_surface(atlas, region_id) if region_id in parents or path is None or not path.is_file()
                     else pv.read(path))
         if not mesh.n_cells:
             raise ValueError(f"Empty 3D surface for {region['acronym']} ({region_id}).")

@@ -4,6 +4,23 @@ import numpy as np
 from scipy.ndimage import binary_fill_holes
 
 
+def include_unknown_regions(atlas, labels):
+    """Describe orphan annotation IDs without inventing anatomical metadata.
+
+    Keep placeholders local to Atlaxis, leaving BrainGlobe's source ontology and
+    annotation unchanged. Standalone paths deliberately assert no known parent.
+    """
+    missing = set(labels).difference(atlas.structures) - {0}
+    if missing:
+        atlas.structures = dict(atlas.structures)
+        for region_id in sorted(missing):
+            atlas.structures[region_id] = {
+                "id": region_id, "name": f"Unknown region {region_id} (metadata missing)",
+                "acronym": f"Unknown {region_id}", "rgb_triplet": [160, 160, 160],
+                "structure_id_path": [region_id], "metadata_missing": True,
+            }
+
+
 def brain_region_ids(structures):
     """Use the explicit Brain subtree when supplied by the atlas ontology."""
     roots = {rid for rid, region in structures.items()
