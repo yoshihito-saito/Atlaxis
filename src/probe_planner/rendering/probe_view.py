@@ -14,7 +14,7 @@ REFERENCE_COLOR = "#00fff0"
 
 
 class ProbeView(SectionView):
-    sitesSelected = Signal(object, object)
+    sitesSelected = Signal(object, object, object)
     selectionStarted = Signal()
 
     def __init__(self, *, labels=True):
@@ -30,7 +30,10 @@ class ProbeView(SectionView):
         self.labels = labels
         self.draw_selection = False
         self.selection_start = self.selection_rect = None
-        self.roi_rects = []
+        self.selection_mode = "Rectangle"
+        self.selection_vertices = []
+        self.selection_hover = None
+        self.roi_shapes = []
         self.face_z = None
         self.setMinimumWidth(180)
         self.setToolTip("Scroll to zoom · Drag to pan · Double-click to fit")
@@ -146,19 +149,28 @@ class ProbeView(SectionView):
                 label = (f"ch {channel} · {region}" if channel is not None
                          else f"{contact.contact_id} · {region}")
                 labels.append((point, label, active, contact.shank_id, contact.x_um))
-        for bounds, registered, selected in self.roi_rects:
+        for shape, registered, selected in self.roi_shapes:
             pen = QPen(QColor("#00fff0" if registered else "#ffd166"), 0,
                        Qt.SolidLine if registered else Qt.DashLine)
             pen.setCosmetic(True)
             pen.setWidthF(1.3 if selected else 0.7)
             painter.setPen(pen)
             painter.setBrush(Qt.NoBrush)
-            painter.drawRect(bounds)
+            if isinstance(shape, QPolygonF):
+                painter.drawPolygon(shape)
+            else:
+                painter.drawRect(shape)
         if self.selection_rect is not None:
             pen = QPen(QColor("#ffd166"), 0, Qt.DashLine)
             painter.setPen(pen)
             painter.setBrush(QColor(255, 209, 102, 25))
             painter.drawRect(self.selection_rect)
+        if self.selection_vertices:
+            points = self.selection_vertices + ([self.selection_hover] if self.selection_hover is not None else [])
+            pen = QPen(QColor("#ffd166"), 0, Qt.DashLine)
+            painter.setPen(pen)
+            painter.setBrush(QColor(255, 209, 102, 25))
+            painter.drawPolygon(QPolygonF(points))
         # Fixed-size labels, culled on overlap. Zoom reveals all nearby channels;
         # a low-zoom full-shaft view is not overwhelmed by thousands of strings.
         transform = painter.worldTransform()
@@ -184,14 +196,61 @@ class ProbeView(SectionView):
         painter.restore()
 
     def mouseDoubleClickEvent(self, event):
+        if self.draw_selection and self.selection_mode == "Polygon" and event.button() == Qt.LeftButton:
+            point = self.mapToScene(event.position().toPoint())
+            if not self.selection_vertices:
+                self.selectionStarted.emit()
+            if not self.selection_vertices or point != self.selection_vertices[-1]:
+                self.selection_vertices.append(point)
+            self.finish_polygon()
+            event.accept()
+            return
         self.fit()
         event.accept()
 
+    def cancel_selection(self):
+        self.selection_start = self.selection_rect = None
+        self.selection_vertices = []
+        self.selection_hover = None
+        self.viewport().update()
+
+    def set_selection_mode(self, mode):
+        if mode != self.selection_mode:
+            self.cancel_selection()
+            self.selection_mode = mode
+
+    def finish_polygon(self):
+        polygon = QPolygonF(self.selection_vertices)
+        if len(polygon) < 3 or polygon.boundingRect().isEmpty():
+            return
+        sites = [contact.contact_id for contact, uv in zip(self.probe.geometry.contacts, self.uv)
+                 if polygon.containsPoint(QPointF(*uv), Qt.OddEvenFill)] if self.probe else []
+        bounds = polygon.boundingRect()
+        vertices = [[point.x(), point.y()] for point in self.selection_vertices]
+        self.cancel_selection()
+        self.sitesSelected.emit(sites, [bounds.left(), bounds.top(), bounds.right(), bounds.bottom()], vertices)
+
+    def keyPressEvent(self, event):
+        if event.key() == Qt.Key_Escape:
+            self.cancel_selection()
+            event.accept()
+        else:
+            super().keyPressEvent(event)
+
     def mousePressEvent(self, event):
         if self.draw_selection and event.button() == Qt.LeftButton:
-            self.selectionStarted.emit()
-            self.selection_start = self.mapToScene(event.position().toPoint())
-            self.selection_rect = QRectF(self.selection_start, self.selection_start)
+            point = self.mapToScene(event.position().toPoint())
+            if self.selection_mode == "Polygon":
+                if not self.selection_vertices:
+                    self.selectionStarted.emit()
+                if not self.selection_vertices or point != self.selection_vertices[-1]:
+                    self.selection_vertices.append(point)
+                    self.selection_hover = point
+            else:
+                self.selectionStarted.emit()
+                self.selection_start = point
+                self.selection_rect = QRectF(point, point)
+            self.viewport().update()
             event.accept()
         elif event.button() == Qt.RightButton:
             self.pan_position = event.position()
@@ -207,24 +266,30 @@ class ProbeView(SectionView):
             sites = [contact.contact_id for contact, uv in zip(self.probe.geometry.contacts, self.uv)
                      if rectangle.contains(QPointF(*uv))] if self.probe else []
             self.selection_start = self.selection_rect = None
-            self.sitesSelected.emit(sites, [rectangle.left(), rectangle.top(), rectangle.right(), rectangle.bottom()])
+            self.sitesSelected.emit(sites, [rectangle.left(), rectangle.top(), rectangle.right(), rectangle.bottom()], None)
             self.viewport().update()
             event.accept()
         elif event.button() == Qt.RightButton:
             self.pan_position = None
             self.unsetCursor()
             event.accept()
+        elif self.draw_selection and self.selection_mode == "Polygon" and event.button() == Qt.LeftButton:
+            event.accept()
         else:
             super().mouseReleaseEvent(event)
 
     def mouseMoveEvent(self, event):
         point = self.mapToScene(event.position().toPoint())
+        if self.pan_position is not None:
+            super().mouseMoveEvent(event)
+            return
+        if self.selection_vertices:
+            self.selection_hover = point
+            self.viewport().update()
+            return
         if self.selection_start is not None:
             self.selection_rect = QRectF(self.selection_start, point).normalized()
             self.viewport().update()
-            return
-        if self.pan_position is not None:
-            super().mouseMoveEvent(event)
             return
         if self.probe and len(self.uv):
             distances = np.sum((self.uv - (point.x(), point.y())) ** 2, axis=1)

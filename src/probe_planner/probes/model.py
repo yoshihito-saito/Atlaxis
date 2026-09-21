@@ -99,6 +99,12 @@ class SelectionROI:
     sites: list[str] = field(default_factory=list)
     registered: bool = False
     assigned_sites: list[str] = field(default_factory=list)
+    polygon_um: list[list[float]] | None = None  # Local plane vertices; None for rectangles.
+    selection_mode: str | None = None
+
+    def __post_init__(self):
+        if self.selection_mode is None:
+            self.selection_mode = "Polygon" if self.polygon_um is not None else "Rectangle"
 
 
 @dataclass
@@ -136,6 +142,8 @@ class ChannelMap:
             roi_ids.add(roi.id)
             if roi.density not in {"Full", "Half", "Quarter", "Low"}:
                 raise ValueError("Invalid ROI density.")
+            if roi.selection_mode not in {"Rectangle", "Polygon"}:
+                raise ValueError("ROI selection mode must be Rectangle or Polygon.")
             if roi.region_id is not None and (type(roi.region_id) is not int or roi.region_id <= 0):
                 raise ValueError("ROI region IDs must be positive integers.")
             if type(roi.registered) is not bool:
@@ -145,6 +153,11 @@ class ChannelMap:
                 if (bounds.shape != (4,) or not np.isfinite(bounds).all()
                         or bounds[2] < bounds[0] or bounds[3] < bounds[1]):
                     raise ValueError("ROI bounds must be ordered, finite plane coordinates in µm.")
+            if roi.polygon_um is not None:
+                polygon = np.asarray(roi.polygon_um)
+                if (polygon.ndim != 2 or polygon.shape[1] != 2 or len(polygon) < 3
+                        or not np.isfinite(polygon).all()):
+                    raise ValueError("ROI polygons require at least three finite plane vertices in µm.")
             sites, assigned = set(roi.sites), set(roi.assigned_sites)
             if not sites.issubset(known) or len(sites) != len(roi.sites):
                 raise ValueError("ROI sites must be unique known contacts.")

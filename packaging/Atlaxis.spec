@@ -1,14 +1,31 @@
 """Native one-folder build; run PyInstaller on the target operating system."""
 
 from pathlib import Path
+import runpy
 import sys
+from tempfile import TemporaryDirectory
 import tomllib
 
 from PyInstaller.utils.hooks import collect_data_files, collect_submodules, copy_metadata
 
 root = Path(SPECPATH).parent
 version = tomllib.loads((root / "pyproject.toml").read_text(encoding="utf-8"))["project"]["version"]
+# Keep the temporary directory alive through Analysis and COLLECT.
+notice_stage = TemporaryDirectory(prefix="atlaxis-licenses-")
+notice_dir = Path(notice_stage.name) / "environment"
+runpy.run_path(str(root / "packaging/collect_licenses.py"))["collect"](
+    notice_dir, include_build_tool=True,
+)
 datas = [
+    (str(root / "LICENSE.md"), "."),
+    (str(root / "THIRD_PARTY_NOTICES.md"), "."),
+    (str(root / "docs/licensing.md"), "docs"),
+    (str(root / "docs/development.md"), "docs"),
+    (str(root / "third_party/probemaps.lock.json"), "third_party"),
+    (str(notice_dir), "third_party/licenses/environment"),
+    (str(root / "third_party/licenses/upstream"), "third_party/licenses/upstream"),
+    (str(root / "third_party/licenses/probe-data"), "third_party/licenses/probe-data"),
+    (str(root / "third_party/licenses/atlas"), "third_party/licenses/atlas"),
     (str(root / "probes"), "probe_planner/data/probes"),
     (str(root / "logo/Atlaxis.png"), "probe_planner/data"),
 ]
@@ -34,3 +51,4 @@ if sys.platform == "darwin":
                  icon=str(root / "logo/Atlaxis.icns"),
                  info_plist={"CFBundleShortVersionString": version,
                              "NSHighResolutionCapable": True})
+notice_stage.cleanup()

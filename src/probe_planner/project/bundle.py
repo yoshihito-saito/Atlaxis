@@ -168,8 +168,8 @@ def save_planning_bundle(path, plan, atlas, region_rows):
             surface = brain_surface_dv_mm(atlas, plan.coordinates, entry.ap_mm, entry.ml_mm)
             coordinates.append({"probe_number": number, "probe_id": probe.id, "model": geometry.name,
                 "shank": shank, "reference_shank": int(shank == probe.selected_shank_id),
-                "entry_ap_mm": entry.ap_mm, "entry_ml_mm": entry.ml_mm, "entry_dv_bregma_mm": entry.dv_mm,
-                "tip_ap_mm": tip[0], "tip_ml_mm": tip[1], "tip_dv_bregma_mm": tip[2],
+                "entry_ap_mm": entry.ap_mm, "entry_ml_mm": -entry.ml_mm, "entry_dv_bregma_mm": entry.dv_mm,
+                "tip_ap_mm": tip[0], "tip_ml_mm": -tip[1], "tip_dv_bregma_mm": tip[2],
                 "tip_dv_below_entry_surface_mm": "" if surface is None else tip[2] - surface,
                 "ap_tilt_deg": ap_tilt, "ml_tilt_deg": ml_tilt, "roll_deg": roll,
                 "insertion_depth_mm": probe.pose.depth_mm})
@@ -187,7 +187,9 @@ def save_planning_bundle(path, plan, atlas, region_rows):
         f"Saved at: {datetime.now(timezone.utc).isoformat(timespec='seconds')}\n"
         f"Atlas: {plan.atlas_name}, version {plan.atlas_version}\n"
         "Open the plan JSON in Atlaxis to restore probes, poses and ROI selections.\n"
-        "Coordinates: mm, Bregma AP anterior+, ML right+, DV ventral+. Angles: degrees.\n"
+        "CSV coordinates match the controls: mm, Bregma AP anterior+, ML anatomical left+, DV ventral+.\n"
+        "Angles: degrees, AP tilt anterior+, ML tilt anatomical left+.\n"
+        "Plan JSON retains canonical anatomical right-positive ML and azimuth/elevation/roll angles.\n"
         "The surface-relative tip DV uses the dorsal surface at each shank's entry AP/ML.\n"
         "Blank surface DV means no annotated surface. Insertion depth follows the tilted probe axis.\n"
         "probes.xml combines all probes in plan order. Hardware and XML channels are zero-based;\n"

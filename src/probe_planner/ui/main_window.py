@@ -9,8 +9,8 @@ from PySide6.QtGui import QAction, QDesktopServices
 from PySide6.QtWidgets import (
     QMainWindow, QWidget, QHBoxLayout, QVBoxLayout, QFormLayout, QGroupBox,
     QLabel, QLineEdit, QPushButton, QDoubleSpinBox, QSplitter,
-    QFileDialog, QMessageBox, QDialog, QToolButton, QMenu,
-    QProgressBar, QComboBox, QTabBar, QTabWidget,
+    QFileDialog, QMessageBox, QDialog, QToolButton,
+    QProgressBar, QComboBox, QTabWidget, QStackedWidget,
     QCheckBox, QSlider, QProgressDialog,
 )
 
@@ -21,30 +21,32 @@ from probe_planner.atlas.coordinates import (
     pose_axis_tilts, pose_with_axis_tilts,
 )
 from probe_planner.implant.pose import ImplantPose
+from probe_planner.atlas.regions import brain_region_ids
 from probe_planner.implant.instance import ProbeInstance
 from probe_planner.implant.region_mapping import map_contacts
 from probe_planner.probes.importers import load_geometry_json, load_cellexplorer
-from probe_planner.probes.library import probe_import_path, planning_path
+from probe_planner.probes.library import probe_import_path, probe_library_path, planning_path
 from probe_planner.storage import active_paths, default_paths, saved_paths
 from probe_planner.probes.favorites import FavoriteProbes
 from probe_planner.probes.wiring import headstage_map
 from probe_planner.probes.model import ChannelMap
 from probe_planner.probes.neuropixels import (
-    activate_roi, remove_roi, import_imro, is_neuropixels, active_site_ids,
+    activate_roi, activate_rois_balanced, remove_roi, import_imro, is_neuropixels, active_site_ids,
     import_selection,
 )
 from probe_planner.project.save_load import Plan, load_plan, export_contacts
 from probe_planner.project.bundle import save_planning_bundle, prepare_channel_export, write_channel_export
 from probe_planner.rendering.slice_view import SliceWorkspace
-from probe_planner.rendering.regions import load_region_meshes, default_hidden_regions
+from probe_planner.rendering.regions import load_region_meshes, default_hidden_regions, brain_display_region_ids
 from probe_planner.rendering.scene import load_display_mesh
-from .dialogs import CoordinateDialog, ProbeImportDialog, HeadstageSelector
+from .dialogs import CoordinateDialog, ProbeImportDialog, HeadstageSelector, ProbeLibraryFilter
 from .atlas_dialog import AtlasDialog
 from .storage_dialog import DataFoldersDialog
 from .region_dialog import RegionDialog
 from .probe_plane import ProbePlanePanel
 from .probe_summary import ProbeSummary
-from .style import STYLE
+from .probe_selection import ProbeSelector, FavoriteProbesDialog
+from .style import STYLE, question
 
 
 def guarded(function):
@@ -89,7 +91,10 @@ class ChannelSelector(QThread):
 
     def run(self):
         try:
-            self.selected.emit(activate_roi(self.geometry, self.mapping, self.roi_id, self.eligible_sites))
+            mapping = (activate_rois_balanced(self.geometry, self.mapping, self.eligible_sites)
+                       if self.roi_id is None else
+                       activate_roi(self.geometry, self.mapping, self.roi_id, self.eligible_sites))
+            self.selected.emit(mapping)
         except Exception as error:
             self.failed.emit(str(error))
 
@@ -97,7 +102,7 @@ class ChannelSelector(QThread):
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Atlaxis · Probe Planner — pilot[*]")
+        self.setWindowTitle("Atlaxis[*]")
         available = self.screen().availableGeometry()
         self.resize(min(1320, available.width() - 40), min(800, available.height() - 60))
         self.setStyleSheet(STYLE)
@@ -120,7 +125,6 @@ class MainWindow(QMainWindow):
         for label, handler, shortcut in (
             ("Open plan", self.open_project, "Ctrl+O"),
             ("Save && Update", self.save_project, "Ctrl+S"),
-            ("Save as…", lambda checked=False: self.save_project(save_as=True), "Ctrl+Shift+S"),
         ):
             action = QAction(label, self)
             if shortcut:
@@ -168,23 +172,33 @@ class MainWindow(QMainWindow):
         layout.addWidget(atlas_box)
         probe_box = QGroupBox("Probe")
         probe_layout = QVBoxLayout(probe_box)
-        self.favorites_button = QToolButton()
-        self.favorites_button.setText("★ Favorite probes")
-        self.favorites_button.setPopupMode(QToolButton.InstantPopup)
-        self.favorites_button.setToolTip("Import a favorite probe; use the star on a probe tab to add or remove it")
-        self.favorites_menu = QMenu(self.favorites_button)
-        self.favorites_menu.aboutToShow.connect(self.refresh_favorites_menu)
-        self.favorites_button.setMenu(self.favorites_menu)
-        probe_layout.addWidget(self.favorites_button, 0, Qt.AlignLeft)
-        self.probe_tabs = QTabBar()
-        self.probe_tabs.setObjectName("probeTabs")
-        self.probe_tabs.setDrawBase(False)
-        self.probe_tabs.setExpanding(False)
-        self.probe_tabs.setElideMode(Qt.ElideRight)
-        self.probe_tabs.setUsesScrollButtons(True)
-        self.probe_tabs.currentChanged.connect(self.select_probe)
-        self.probe_tabs.tabBarClicked.connect(self.probe_tab_clicked)
-        probe_layout.addWidget(self.probe_tabs)
+        probe_actions = QHBoxLayout()
+        probe_actions.setSpacing(6)
+        self.add_probe_button = QToolButton()
+        self.add_probe_button.setObjectName("addProbe")
+        self.add_probe_button.setText("+")
+        self.add_probe_button.setFixedSize(22, 22)
+        self.add_probe_button.setAccessibleName("Add probe")
+        self.add_probe_button.setToolTip("Add probe")
+        self.add_probe_button.clicked.connect(self.import_geometry)
+        probe_actions.addWidget(self.add_probe_button)
+        self.favorites_button = QPushButton("Favorite")
+        self.favorites_button.setToolTip("Open the list of registered favorite probes")
+        self.favorites_button.clicked.connect(self.show_favorites)
+        probe_actions.addWidget(self.favorites_button)
+        probe_actions.addStretch()
+        self.favorite_star = QToolButton()
+        self.favorite_star.setObjectName("favoriteProbe")
+        self.favorite_star.setCheckable(True)
+        self.favorite_star.setFixedSize(22, 22)
+        self.favorite_star.clicked.connect(lambda checked=False: self.toggle_favorite(self.selected_probe))
+        probe_actions.addWidget(self.favorite_star)
+        probe_layout.addLayout(probe_actions)
+        self.probe_selector = ProbeSelector(removable=True)
+        self.probe_selector.setAccessibleName("Probe")
+        self.probe_selector.currentIndexChanged.connect(self.select_probe)
+        self.probe_selector.removeRequested.connect(self.remove_probe)
+        probe_layout.addWidget(self.probe_selector)
         self.probe_page = QWidget()
         self.probe_page.setObjectName("probePage")
         page_layout = QVBoxLayout(self.probe_page)
@@ -272,6 +286,7 @@ class MainWindow(QMainWindow):
         self.probe_plane = ProbePlanePanel()
         self.probe_plane.blueprintChanged.connect(lambda: self.setWindowModified(True))
         self.probe_plane.generateRequested.connect(self.generate_channels)
+        self.probe_plane.generateBalancedRequested.connect(lambda: self.generate_channels(None))
         self.probe_plane.removeRequested.connect(self.remove_selection_roi)
         self.probe_plane.resetRequested.connect(self.reset_channel_selection)
         self.workspace_tabs.addTab(self.probe_plane, "Probe plane")
@@ -285,12 +300,14 @@ class MainWindow(QMainWindow):
         layout = QVBoxLayout(right)
         layout.setContentsMargins(6, 6, 6, 0)
         layout.addWidget(QLabel("Channel regions"))
-        self.summary_tabs = QTabWidget()
-        self.summary_tabs.setUsesScrollButtons(True)
-        self.summary_tabs.setElideMode(Qt.ElideRight)
-        self.summary_tabs.currentChanged.connect(self.select_summary)
+        self.summary_selector = ProbeSelector()
+        self.summary_selector.setAccessibleName("Channel regions probe")
+        self.summary_pages = QStackedWidget()
+        self.summary_pages.setObjectName("probeSummaryPages")
+        self.summary_selector.currentIndexChanged.connect(self.select_summary)
         self.probe_summaries = {}
-        layout.addWidget(self.summary_tabs, 1)
+        layout.addWidget(self.summary_selector)
+        layout.addWidget(self.summary_pages, 1)
         root.addWidget(right)
         root.setStretchFactor(1, 1)
         root.setSizes([310, 870, 270])
@@ -301,7 +318,7 @@ class MainWindow(QMainWindow):
         self.statusBar().addPermanentWidget(self.loading_progress)
         self.loading_progress.hide()
         self.refresh_probe_selector()
-        self.statusBar().showMessage("Load an atlas, then use + Probe to import a probe.")
+        self.statusBar().showMessage("Load an atlas, then use + to import a probe.")
 
     @property
     def selected_probe(self):
@@ -340,33 +357,22 @@ class MainWindow(QMainWindow):
         return f"{number} · {probe.geometry.name}"
 
     def refresh_probe_selector(self):
-        self.probe_tabs.blockSignals(True)
-        self.summary_tabs.blockSignals(True)
-        while self.probe_tabs.count():
-            self.probe_tabs.removeTab(0)
-        # Keep each probe's views and zoom while tabs are reordered/removed.
-        while self.summary_tabs.count():
-            self.summary_tabs.removeTab(0)
+        self.probe_selector.blockSignals(True)
+        self.summary_selector.blockSignals(True)
+        self.probe_selector.clear()
+        self.summary_selector.clear()
+        # Keep each probe's views and zoom while entries are reordered/removed.
+        while self.summary_pages.count():
+            self.summary_pages.removeWidget(self.summary_pages.widget(0))
         valid_ids = {probe.id for probe in self.probes}
         for probe_id in list(self.probe_summaries):
             if probe_id not in valid_ids:
                 self.probe_summaries.pop(probe_id).deleteLater()
-        for probe in self.probes:
-            index = self.probe_tabs.addTab(self.probe_label(probe))
-            self.probe_tabs.setTabData(index, probe.id)
-            self.probe_tabs.setTabToolTip(index, self.probe_label(probe))
-            star = QToolButton()
-            star.setObjectName("favoriteProbe")
-            star.setCheckable(True)
-            star.setFixedSize(22, 22)
-            star.clicked.connect(lambda checked=False, probe=probe: self.toggle_favorite(probe))
-            self.probe_tabs.setTabButton(index, QTabBar.LeftSide, star)
-            close = QPushButton("×")
-            close.setObjectName("closeProbe")
-            close.setFixedSize(20, 20)
-            close.setToolTip("Remove probe")
-            close.clicked.connect(lambda checked=False, probe_id=probe.id: self.close_probe_tab(probe_id))
-            self.probe_tabs.setTabButton(index, QTabBar.RightSide, close)
+        for index, probe in enumerate(self.probes):
+            label = self.probe_label(probe)
+            for selector in (self.probe_selector, self.summary_selector):
+                selector.addItem(label, probe.id)
+                selector.setItemData(index, label, Qt.ToolTipRole)
             if (probe.id not in self.probe_summaries or
                     self.probe_summaries[probe.id].probe.geometry is not probe.geometry):
                 old_summary = self.probe_summaries.pop(probe.id, None)
@@ -377,75 +383,64 @@ class MainWindow(QMainWindow):
                 summary.importRequested.connect(self.import_channel_map)
                 summary.exportRequested.connect(self.export_channel_map)
                 self.probe_summaries[probe.id] = summary
-            self.summary_tabs.addTab(self.probe_summaries[probe.id], self.probe_label(probe))
-            self.summary_tabs.setTabToolTip(index, self.probe_label(probe))
-        plus = self.probe_tabs.addTab("+ Probe")
-        for side in (QTabBar.LeftSide, QTabBar.RightSide):
-            self.probe_tabs.setTabButton(plus, side, None)
-        index = next((i for i, p in enumerate(self.probes) if p.id == self.current_probe_id), plus)
-        self.probe_tabs.setCurrentIndex(index)
-        self.summary_tabs.setCurrentIndex(index if self.probes else -1)
-        self.probe_tabs.blockSignals(False)
-        self.summary_tabs.blockSignals(False)
-        self.refresh_favorite_stars()
+            self.summary_pages.addWidget(self.probe_summaries[probe.id])
+        index = next((i for i, p in enumerate(self.probes) if p.id == self.current_probe_id),
+                     0 if self.probes else -1)
+        self.probe_selector.setCurrentIndex(index)
+        self.summary_selector.setCurrentIndex(index)
+        self.probe_selector.blockSignals(False)
+        self.summary_selector.blockSignals(False)
         self.select_probe(index)
 
-    def refresh_favorite_stars(self):
-        for index, probe in enumerate(self.probes):
-            star = self.probe_tabs.tabButton(index, QTabBar.LeftSide)
-            favorite = self.favorite_probes.contains(probe.geometry)
-            star.setChecked(favorite)
-            star.setText("★" if favorite else "☆")
-            star.setToolTip("Remove from Favorite probes" if favorite else "Add to Favorite probes")
+    def refresh_favorite_button(self):
+        probe = self.selected_probe
+        self.favorite_star.setVisible(probe is not None)
+        favorite = probe is not None and self.favorite_probes.contains(probe.geometry)
+        self.favorite_star.setChecked(favorite)
+        self.favorite_star.setText("★" if favorite else "☆")
+        action = "Remove from Favorite probes" if favorite else "Add to Favorite probes"
+        self.favorite_star.setToolTip(f"{self.probe_label(probe)}\n{action}" if probe else action)
 
     @guarded
     def toggle_favorite(self, probe):
+        if probe is None:
+            return
         try:
             self.favorite_probes.toggle(probe.geometry, probe.channel_map)
         finally:
-            self.refresh_favorite_stars()
+            self.refresh_favorite_button()
 
-    def refresh_favorites_menu(self):
-        self.favorites_menu.clear()
-        for entry in sorted(self.favorite_probes.entries, key=lambda entry: entry["name"].casefold()):
-            action = self.favorites_menu.addAction(entry["name"])
-            action.triggered.connect(lambda checked=False, key=entry["key"]: self.import_favorite(key))
-        if not self.favorite_probes.entries:
-            self.favorites_menu.addAction("Click ☆ on a probe tab to add it").setEnabled(False)
+    @guarded
+    def show_favorites(self, checked=False):
+        dialog = FavoriteProbesDialog(self.favorite_probes.entries, self)
+        accepted = dialog.exec() == QDialog.Accepted
+        key = dialog.selected_key
+        dialog.deleteLater()
+        if accepted and key is not None:
+            self.import_favorite(key)
 
     @guarded
     def import_favorite(self, key):
         geometry, mapping = self.favorite_probes.load(key)
         self.confirm_probe_import(geometry, mapping)
 
-    def probe_tab_clicked(self, index):
-        if self.probe_tabs.tabData(index) is None and not self.busy:
-            QTimer.singleShot(0, self.import_geometry)
-
-    def close_probe_tab(self, probe_id):
-        index = next(i for i, probe in enumerate(self.probes) if probe.id == probe_id)
-        self.remove_probe(index)
-
     def select_summary(self, index):
         if 0 <= index < len(self.probes):
-            self.probe_tabs.setCurrentIndex(index)
+            self.probe_selector.setCurrentIndex(index)
 
     @guarded
     def select_probe(self, index=None):
         if index is None:
-            index = self.probe_tabs.currentIndex()
-        probe_id = self.probe_tabs.tabData(index)
-        if probe_id is None and self.probes:
-            # + Probe is an action, not an empty editable instance.
-            previous = next(i for i, p in enumerate(self.probes) if p.id == self.current_probe_id)
-            self.probe_tabs.blockSignals(True)
-            self.probe_tabs.setCurrentIndex(previous)
-            self.probe_tabs.blockSignals(False)
-            return
+            index = self.probe_selector.currentIndex()
+        probe_id = self.probe_selector.itemData(index)
         self.current_probe_id = probe_id
-        self.summary_tabs.blockSignals(True)
-        self.summary_tabs.setCurrentIndex(index if self.probes else -1)
-        self.summary_tabs.blockSignals(False)
+        self.summary_selector.blockSignals(True)
+        self.summary_selector.setCurrentIndex(index if self.probes else -1)
+        self.summary_selector.blockSignals(False)
+        self.summary_pages.setCurrentIndex(index if self.probes else -1)
+        for selector in (self.probe_selector, self.summary_selector):
+            selector.setToolTip(selector.currentText())
+        self.refresh_favorite_button()
         self.shank_selector.blockSignals(True)
         self.shank_selector.clear()
         if self.selected_probe:
@@ -481,6 +476,8 @@ class MainWindow(QMainWindow):
         tip_dv = (shank_tip_stereotaxic_mm(probe.geometry, probe.pose, probe.selected_shank_id)[2]
                   if probe else None)
         values = asdict(displayed)
+        # Controls use left-positive ML; saved poses retain right-positive ML.
+        values["ml_mm"] = -displayed.ml_mm
         values["ap_tilt_deg"], values["ml_tilt_deg"], values["roll_deg"] = pose_axis_tilts(displayed)
         for name, control in self.controls.items():
             control.blockSignals(True)
@@ -491,8 +488,10 @@ class MainWindow(QMainWindow):
                 control.setEnabled(surface is not None)
             control.setValue(value)
             control.blockSignals(False)
-        for name in ("ap_mm", "ml_mm"):
-            self.controls[name].setToolTip("Entry coordinate of the reference shank, relative to Bregma")
+        self.controls["ap_mm"].setToolTip("Entry coordinate of the reference shank, relative to Bregma")
+        self.controls["ml_mm"].setToolTip(
+            "Entry coordinate of the reference shank, relative to Bregma: "
+            "positive = anatomical left, negative = anatomical right")
         self.controls["dv_mm"].setToolTip(
             "Reference-shank tip depth below the brain surface at the entry AP/ML. "
             "Editing DV adjusts insertion depth along the current axis; positive = ventral."
@@ -500,7 +499,7 @@ class MainWindow(QMainWindow):
             "No annotated brain surface at this AP/ML, or atlas/Bregma not loaded. Choose a valid AP/ML.")
         self.controls["depth_mm"].setToolTip("Distance advanced along the probe axis from the insertion entry")
         self.controls["ap_tilt_deg"].setToolTip("Sagittal tilt: positive = anterior, negative = posterior")
-        self.controls["ml_tilt_deg"].setToolTip("Tilt out of the sagittal plane: positive = right, negative = left")
+        self.controls["ml_tilt_deg"].setToolTip("Tilt out of the sagittal plane: positive = anatomical left, negative = anatomical right")
         self.controls["roll_deg"].setToolTip("Rotation about the tilted probe axis")
 
     def entry_surface_dv(self, entry):
@@ -531,7 +530,7 @@ class MainWindow(QMainWindow):
 
     @guarded
     def remove_probe(self, index):
-        probe_id = self.probe_tabs.tabData(index)
+        probe_id = self.probe_selector.itemData(index)
         if probe_id is None:
             return
         self.probes = [probe for probe in self.probes if probe.id != probe_id]
@@ -566,9 +565,11 @@ class MainWindow(QMainWindow):
     def refresh_enabled(self):
         self.load_button.setEnabled(not self.busy)
         self.storage_action.setEnabled(not self.busy)
-        self.probe_tabs.setEnabled(not self.busy)
+        self.probe_selector.setEnabled(bool(self.probes) and not self.busy)
+        self.add_probe_button.setEnabled(not self.busy)
         self.favorites_button.setEnabled(not self.busy)
-        self.summary_tabs.setEnabled(not self.busy)
+        self.favorite_star.setEnabled(self.selected_probe is not None and not self.busy)
+        self.summary_selector.setEnabled(bool(self.probes) and not self.busy)
         self.shank_selector.setEnabled(self.selected_probe is not None and not self.busy)
         self.calibrate_button.setEnabled(self.atlas is not None and not self.busy)
         self.regions_button.setEnabled(self.atlas is not None and not self.busy)
@@ -585,7 +586,7 @@ class MainWindow(QMainWindow):
     def discard_changes(self):
         if not self.isWindowModified():
             return True
-        answer = QMessageBox.question(self, "Unsaved plan", "Save changes before continuing?",
+        answer = question(self, "Unsaved plan", "Save changes before continuing?",
             QMessageBox.Save | QMessageBox.Discard | QMessageBox.Cancel, QMessageBox.Save)
         return answer == QMessageBox.Discard or (answer == QMessageBox.Save and self.save_project())
 
@@ -643,7 +644,7 @@ class MainWindow(QMainWindow):
         same_atlas = (self.atlas is not None and self.atlas.name == atlas.name
                       and self.atlas.version == atlas.version)
         self.atlas = atlas
-        self.available_region_ids = set(meshes)
+        self.available_region_ids = set(meshes) & brain_display_region_ids(atlas)
         if not same_atlas:
             self.selected_mask_ids = self.available_region_ids - default_hidden_regions(atlas)
         else:
@@ -729,7 +730,9 @@ class MainWindow(QMainWindow):
         chooser.setOption(QFileDialog.DontUseNativeDialog, True)
         chooser.setWindowTitle("Import probe geometry")
         chooser.setFileMode(QFileDialog.ExistingFile)
-        chooser.setNameFilter("Probe geometry (*.json *.mat)")
+        chooser.setNameFilter("Probe geometry (*.json)")
+        library_filter = ProbeLibraryFilter(probe_library_path(), chooser)
+        chooser.setProxyModel(library_filter)
         chooser.setDirectory(str(probe_import_path()))
         accepted = chooser.exec() == QDialog.Accepted
         filenames = chooser.selectedFiles() if accepted else []
@@ -764,6 +767,8 @@ class MainWindow(QMainWindow):
     @guarded
     def update_pose(self, name, value):
         probe = self.selected_probe
+        if name == "ml_mm":
+            value = -value
         entry = reference_pose(probe.geometry, probe.pose, probe.selected_shank_id)
         surface = self.entry_surface_dv(entry)
         if name == "dv_mm":
@@ -801,7 +806,8 @@ class MainWindow(QMainWindow):
                                               self.atlas, self.frame, probe.id))
         self.slices.show_probes(self.atlas, self.frame, self.probes, self.selected_probe, fit=fit)
         selected_rows = [row for row in self.rows if row["probe"] == self.current_probe_id]
-        self.probe_plane.set_context(self.atlas, self.frame, self.selected_probe, selected_rows)
+        self.probe_plane.set_context(self.atlas, self.frame, self.selected_probe, selected_rows,
+                                     available_ids=self.available_region_ids)
         for probe in self.probes:
             rows = [row for row in self.rows if row["probe"] == probe.id]
             self.probe_summaries[probe.id].update_probe(probe, rows)
@@ -810,7 +816,7 @@ class MainWindow(QMainWindow):
             outside = sum(row["region_id"] == -1 for row in self.rows)
             self.statusBar().showMessage(f"{len(self.rows)} sites · {outside} outside atlas")
         elif self.atlas:
-            self.statusBar().showMessage("Atlas ready · + Probe to import." if not self.probes else
+            self.statusBar().showMessage("Atlas ready · + to import." if not self.probes else
                                         "Set Bregma to place probes in this atlas.")
 
     @guarded
@@ -895,7 +901,7 @@ class MainWindow(QMainWindow):
             message += "Export updates these files together:\n" + "\n".join(file.name for file in files)
             if self.save_path:
                 message += "\nThe open plan and its README will also be saved with the current selection."
-            if QMessageBox.question(self, "Export channel selection", message,
+            if question(self, "Export channel selection", message,
                     QMessageBox.Ok | QMessageBox.Cancel, QMessageBox.Cancel) != QMessageBox.Ok:
                 return
         if self.save_path and not self.save_project():
@@ -921,26 +927,32 @@ class MainWindow(QMainWindow):
         if self.atlas is None or self.frame is None:
             raise ValueError("Load an atlas before selecting channels from brain regions.")
         existing = active_site_ids(probe.geometry, probe.channel_map)
-        roi = next((roi for roi in probe.channel_map.rois if roi.id == roi_id), None)
-        if roi is None or not roi.registered or roi.assigned_sites:
+        rois = [roi for roi in probe.channel_map.rois if roi.registered and not roi.assigned_sites
+                and (roi_id is None or roi.id == roi_id)]
+        if not rois:
             return
         if len(existing) == 384:
             self.probe_plane.status.setText("All 384 channels are assigned. Remove an ROI or Reset all to free channels.")
             return
-        if not set(roi.sites) - existing:
-            self.probe_plane.status.setText("This ROI contains no new sites. Existing channels are unchanged.")
+        sites = {site for roi in rois for site in roi.sites}
+        if not sites - existing:
+            self.probe_plane.status.setText("These ROIs contain no new sites. Existing channels are unchanged.")
             return
+        allowed_regions = brain_region_ids(self.atlas.structures)
         eligible = {row["contact_id"] for row in self.rows
-                    if row["probe"] == probe.id and row["region_id"] > 0}
-        if not (eligible & set(roi.sites)) - existing:
+                    if row["probe"] == probe.id and row["region_id"] in allowed_regions}
+        if not (eligible & sites) - existing:
             self.probe_plane.status.setText("No new ROI sites are inside annotated tissue. Existing channels are unchanged.")
             return
         self.channel_previous_active = len(existing)
-        self.channel_roi_snapshot = asdict(roi)
+        self.channel_roi_snapshot = [asdict(roi) for roi in probe.channel_map.rois]
+        self.channel_activation_ids = [roi.id for roi in rois]
         self.channel_target = (probe.id, id(probe.geometry), astuple(probe.pose), id(self.atlas),
                                repr(self.frame), id(probe.channel_map))
         self.channel_worker = ChannelSelector(probe.geometry, probe.channel_map, roi_id, eligible, self)
-        self.channel_progress = QProgressDialog("Adding ROI channels with NeuroCarto; existing channels are locked…", "", 0, 0, self)
+        message = ("Sharing free channels equally across ROIs; existing channels are locked…" if roi_id is None else
+                   "Adding ROI channels with NeuroCarto; existing channels are locked…")
+        self.channel_progress = QProgressDialog(message, "", 0, 0, self)
         self.channel_progress.setWindowTitle("Channel selection")
         self.channel_progress.setCancelButton(None)
         self.channel_progress.setWindowModality(Qt.WindowModal)
@@ -956,17 +968,18 @@ class MainWindow(QMainWindow):
         if probe is None or self.channel_target != (probe.id, id(probe.geometry), astuple(probe.pose),
                                                     id(self.atlas), repr(self.frame), id(probe.channel_map)):
             return  # Never apply an obsolete result to another pose or atlas.
-        roi = next((roi for roi in probe.channel_map.rois if roi.id == self.channel_roi_snapshot["id"]), None)
-        if roi is None or asdict(roi) != self.channel_roi_snapshot:
+        if [asdict(roi) for roi in probe.channel_map.rois] != self.channel_roi_snapshot:
             return
         probe.channel_map = mapping
         self.recompute()
         self.setWindowModified(True)
-        count = len(mapping.contact_to_channel)
+        count = len(active_site_ids(probe.geometry, mapping))
         added = count - self.channel_previous_active
-        self.probe_plane.status.setText(f"{roi.name}: added {added}. Existing channels preserved. " +
-            ("No free hardware channels match this ROI." if added == 0 else
-             "Add ROI to assign another range." if count < 384 else "All channels assigned."))
+        counts = ", ".join(f"{roi.name}: {len(roi.assigned_sites)}" for roi in mapping.rois
+                           if roi.id in self.channel_activation_ids)
+        self.probe_plane.status.setText(f"Added {added} · {counts}. Existing channels preserved. " +
+            ("No free hardware channels match these ROIs." if added == 0 else
+             "Counts depend on available sites, density and shared hardware channels."))
 
     def channel_selection_finished(self):
         self.channel_progress.close()
@@ -993,7 +1006,7 @@ class MainWindow(QMainWindow):
             if path != self.save_path:
                 path = path.with_suffix("") / "plan.json"
                 if path.parent.exists() and any(path.parent.iterdir()):
-                    if QMessageBox.question(self, "Replace planning bundle",
+                    if question(self, "Replace planning bundle",
                             f"Update the plan and companion outputs in {path.parent}?",
                             QMessageBox.Save | QMessageBox.Cancel, QMessageBox.Cancel) != QMessageBox.Save:
                         return False
@@ -1015,7 +1028,7 @@ class MainWindow(QMainWindow):
         # Reject clipping; editing one control preserves all other stored values.
         if any(abs(getattr(probe.pose, field.name)) > 10000
                for probe in plan.probes for field in fields(ImplantPose)):
-            raise ValueError("Project pose exceeds this pilot's numerical control range.")
+            raise ValueError("Project pose exceeds the supported numerical control range.")
         self.pending_plan, self.pending_path = plan, Path(filename)
         self.begin_load(plan.atlas_name, plan.atlas_version)
 

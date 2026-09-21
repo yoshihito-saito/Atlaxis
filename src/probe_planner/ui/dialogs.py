@@ -3,13 +3,31 @@ from PySide6.QtWidgets import (
     QVBoxLayout, QGraphicsItem, QComboBox,
 )
 from PySide6.QtGui import QColor, QPen, QBrush, QPolygonF
-from PySide6.QtCore import QPointF, Qt
+from PySide6.QtCore import QPointF, Qt, QSortFilterProxyModel
 from html import escape
+from pathlib import Path
 import numpy as np
 
 from probe_planner.rendering.slice_view import SectionView
 from probe_planner.probes.wiring import headstage_map
 from probe_planner.probes.neuropixels import is_neuropixels
+
+
+class ProbeLibraryFilter(QSortFilterProxyModel):
+    """Hide companion folders beneath the library's flat manufacturer folders."""
+
+    def __init__(self, library_root, parent=None):
+        super().__init__(parent)
+        self.library_root = Path(library_root).resolve()
+
+    def filterAcceptsRow(self, row, parent):
+        model = self.sourceModel()
+        index = model.index(row, 0, parent)
+        if model.isDir(index):
+            path = Path(model.filePath(index)).resolve()
+            if path.parent.parent == self.library_root:
+                return False
+        return super().filterAcceptsRow(row, parent)
 
 
 class HeadstageSelector(QComboBox):

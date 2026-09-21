@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 
 import numpy as np
@@ -16,6 +16,7 @@ class AtlasModel:
     root_mesh_path: Path
     backend: object
     reference_volume: np.ndarray | None = None
+    spinal_display_cache: dict[int, np.ndarray] = field(default_factory=dict, repr=False, compare=False)
 
     @property
     def reference(self):

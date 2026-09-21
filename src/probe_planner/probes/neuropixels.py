@@ -3,6 +3,7 @@
 import re
 import json
 from copy import deepcopy
+from collections import deque
 from dataclasses import asdict
 
 import numpy as np
@@ -148,6 +149,94 @@ def remove_roi(geometry, mapping, roi_id):
     for site in set(roi.sites) - retained:
         result.blueprint.pop(site, None)
     result.pending_sites = [site for site in result.pending_sites if site in retained]
+    result.validate(geometry)
+    return result
+
+
+def activate_rois_balanced(geometry, mapping, eligible_sites):
+    """Share free channels fairly across new ROIs, locking existing assignments.
+
+    NeuroCarto supplies each ROI's density/routing candidates. Round-robin
+    augmenting paths maximize the minimum new ROI count within those candidates;
+    a saturated ROI yields remaining capacity to the others. Each channel has
+    one owner even for overlapping ranges. Imported/previous active sites stay.
+    """
+    mapping.validate(geometry)
+    rois = [roi for roi in mapping.rois if roi.registered and not roi.assigned_sites]
+    if not rois:
+        raise ValueError("Draw and register an unassigned ROI first.")
+    locked = active_site_ids(geometry, mapping)
+    candidates, orders = [], []
+    contacts = {c.contact_id: c for c in geometry.contacts}
+    blueprint = dict(mapping.blueprint)
+    for roi in rois:
+        local_blueprint = dict(mapping.blueprint)
+        for site in set(roi.sites) - locked:
+            local_blueprint[site] = roi.density
+            blueprint[site] = roi.density
+        selected = automatic_map(geometry, local_blueprint, eligible_sites,
+                                 current_map=mapping, candidate_sites=roi.sites)
+        by_channel = {channel: site for site, channel in selected.contact_to_channel.items()
+                      if site not in locked}
+        candidates.append(by_channel)
+        # Spread partial quotas over the ROI's candidate depth range, rather
+        # than taking a prefix at one end. No extra sites bypass density selection.
+        channels = sorted(by_channel, key=lambda ch: (contacts[by_channel[ch]].y_um,
+                                                      contacts[by_channel[ch]].x_um))
+        intervals, order = deque([(0, len(channels))]), []
+        while intervals:
+            low, high = intervals.popleft()
+            if low < high:
+                mid = (low + high) // 2
+                order.append(channels[mid])
+                intervals.extend(((low, mid), (mid + 1, high)))
+        orders.append(order)
+
+    owners = {}
+
+    def augment(index, seen_rois, seen_channels):
+        if index in seen_rois:
+            return False
+        seen_rois.add(index)
+        for channel in orders[index]:
+            if channel in seen_channels or owners.get(channel) == index:
+                continue
+            seen_channels.add(channel)
+            owner = owners.get(channel)
+            if owner is None or augment(owner, seen_rois, seen_channels):
+                owners[channel] = index
+                return True
+        return False
+
+    counts = [0] * len(rois)
+    while True:
+        changed = False
+        for index in sorted(range(len(rois)), key=lambda i: (counts[i], i)):
+            if augment(index, set(), set()):
+                counts[index] += 1
+                changed = True
+        if not changed:
+            break
+
+    # Reconstruct only active selections, preserving imported reference/gains.
+    baseline = deepcopy(mapping)
+    baseline.contact_to_channel = {site: mapping.contact_to_channel[site] for site in locked}
+    baseline.skipped = []
+    routed, topology = _selection_routing(geometry, baseline)
+    assigned = {roi.id: [] for roi in rois}
+    for channel, index in owners.items():
+        site = candidates[index][channel]
+        routed.add_electrode(topology[site])
+        assigned[rois[index].id].append(site)
+        blueprint[site] = rois[index].density
+    result = _from_neurocarto(geometry, routed, blueprint)
+    result.rois = deepcopy(mapping.rois)
+    for roi in result.rois:
+        if roi.id in assigned:
+            roi.assigned_sites = sorted(assigned[roi.id])
+    if any(result.contact_to_channel.get(site) != mapping.contact_to_channel[site] for site in locked):
+        raise ValueError("Balanced selection attempted to alter an existing active channel.")
+    result.source_imro = _complete_routing(routed, topology)
     result.validate(geometry)
     return result
 

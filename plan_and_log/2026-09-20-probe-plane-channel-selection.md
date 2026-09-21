@@ -341,3 +341,180 @@ shank and target flag (324 targets, 60 fillers), compared standalone/companion
 CSV contents, restored the original target JSON and checked map non-mutation.
 No test files, broad suites or hardware/software acquisition runs were added.
 Live GUI and SpikeGLX/Open Ephys loading remain unverified.
+
+## Follow-up: polygon ranges, balanced ROI activation, and Brain hierarchy
+
+Goal: separate Rectangle/Polygon drawing, add Activate channels immediately left
+of Reset all, and use the same Brain-only region hierarchy for masks and ROI
+region selection. The user's corrected choice locks all existing active channels;
+only remaining capacity is shared between registered, unassigned ROIs.
+
+Steps:
+1. Persist optional probe-plane polygon vertices alongside existing rectangle
+   bounds. Add click vertices / double-click finish / Escape cancel interactions;
+   keep ordinary probes free of selection controls and retain pan/zoom.
+2. Share Brain subtree filtering and hierarchical region-tree construction.
+   Exclude Waxholm Root siblings (spinal cord / inner ear); atlases without a
+   named Brain node retain their native hierarchy. Filter initial masks too.
+3. Add a batch activation action, registering valid drawn ranges first. Build
+   independent per-ROI candidate maps with existing NeuroCarto density selection,
+   then share free hardware channels using round-robin augmenting matching.
+   Augmenting paths resolve channel conflicts without reducing another ROI's
+   allocation. Exhausted ROIs yield remaining capacity to other ROIs. Preserve
+   existing site/channel pairs and reference/gain settings, unique ROI ownership,
+   and all per-row activation/removal/reset behavior.
+4. Run allocation off-thread and reject stale results, including ROI edits.
+   Report achieved per-ROI counts. Persist polygons in existing plan/selection
+   JSON via optional dataclass fields, without changing geometry or routing IDs.
+5. Review scoped diffs and run at most one lightweight changed-file check; no
+   new tests or broad validation under the current repository instructions.
+
+The allocation target is equal channel counts among new ROIs, subject to the
+existing NeuroCarto density candidate maps and hardware conflicts. Matching is
+max-min fair over those candidates, not a promise of 384 sites or global density
+optimization over all electrodes. Overlap consumes one channel and has one ROI
+owner. Existing/imported active sites are immutable and excluded from new quotas.
+No atlas voxels, scientific coordinates, or saved rectangle semantics change.
+
+Acceptance: both shape types survive saving/loading; polygon selection uses its
+interior rather than its bounding box; parents include their actual descendants;
+Brain-only masks exclude other root branches; allocations cannot duplicate a
+channel, use sites outside the ROI/tissue, or change existing active assignments.
+Empty/insufficient/overlapping/full-capacity cases must remain explicit.
+
+Outcome (uncommitted): implemented both drawing modes and optional polygon
+storage. Rectangle remains the default; Polygon uses odd-even interior selection,
+click vertices, double-click or click the first vertex to finish, and Escape to
+cancel. ROI changes/reset clear incomplete drawing. The batch button sits left
+of Reset all, registers drawn ranges, and preserves existing active assignments.
+Independent density candidates are matched across free channels; the status
+reports each processed ROI's assigned count. Previous ROI removal ownership and
+per-row activation remain intact. Background results compare the complete ROI
+snapshot before applying.
+
+Both dialogs use the same Brain-subtree tree builder and search behavior. ROI
+selection includes descendants of the chosen parent. Initial/current masks also
+exclude non-Brain branches; tissue eligibility is restricted to the same scope.
+The raw atlas and brain-outline mesh are unchanged. Atlases lacking an explicit
+Brain node keep their ontology. No plan or acquisition file was rewritten.
+
+Reviewed scoped diffs, signal connections, routing construction, and persistence
+paths. One lightweight syntax check passed (exit 0):
+`PYTHONPYCACHEPREFIX="$roi_check_dir" .venv/bin/python -m py_compile src/probe_planner/atlas/regions.py src/probe_planner/probes/model.py src/probe_planner/probes/neuropixels.py src/probe_planner/rendering/probe_view.py src/probe_planner/ui/region_dialog.py src/probe_planner/ui/probe_plane.py src/probe_planner/ui/main_window.py`.
+The unique `/tmp/atlaxis-roi-check.XXXXXX` cache directory was cleaned afterward.
+No tests were added or run. Live drawing, save/load round trips and numerical
+allocation were not executed; hardware/density limits can prevent equal counts.
+
+Additional display correction: exclude Waxholm spinal cord (`SpC`) from the
+brain outline as well as the already filtered region masks. The existing cache
+key includes excluded region IDs, so the next atlas load builds a new outline.
+Atlas annotations remain intact. Source/diff inspection only; rendering not run.
+
+The follow-up screenshot still showed the sagittal grayscale texture extending
+into the spinal cord: `section_rgba` used every nonzero annotation for alpha,
+independently of the color-mask and outline filters. Added optional tissue
+visibility to the shared texture function and passed the Brain subtree for both
+orthogonal sections and the probe plane. This makes non-Brain labels transparent
+even at zero mask opacity, without changing atlas arrays, contrast scaling,
+sampling, or contact lookup. Source/call-site diffs reviewed. Syntax check passed
+(exit 0): `PYTHONPYCACHEPREFIX="$slice_check_dir" .venv/bin/python -m py_compile
+src/probe_planner/rendering/slice_view.py src/probe_planner/ui/probe_plane.py`.
+The unique `/tmp/atlaxis-slice-check.XXXXXX` cache was cleaned. No live rendering
+or image comparison was run; restarting the app rebuilds in-memory textures.
+
+### Remaining spinal tail: preserve brain portions of shared labels
+
+Read-only inspection of native Waxholm AP planes 850/900/950/1000 found the
+remaining tail labels PVG (56) and CC (70), both classified under Brain. In planes
+850/950/1000 their voxels lie entirely inside the filled SpC cross-section. At
+750/800, PVG/CC have brain voxels but no surrounding SpC. Hiding these labels
+globally would incorrectly remove the brain portions.
+
+Implementation steps:
+1. Derive sparse display-only exclusions from holes enclosed by the native SpC
+   label in each AP cross-section (4-connected background fill, no dilation or
+   coordinate cutoff). Keep original annotation and anatomical lookup unchanged.
+2. Apply the same exclusions to region surfaces, the outer outline, orthogonal
+   textures and oblique probe-plane textures; retain the original section labels
+   separately from display visibility. Invalidate affected display-mesh caches.
+3. Prepare/cache cross-section exclusions during existing background atlas mesh
+   processing. Avoid a second full-volume annotation or mask allocation.
+4. Review the changed paths and perform one narrow changed-code check using the
+   observed posterior cross-sections and a brain cross-section, without a broad
+   atlas/GUI validation or new test infrastructure.
+
+Result (uncommitted): implemented sparse per-AP-plane exclusion indices for
+non-SpC voxels enclosed by the native cord cross-section. They are prepared in
+the existing background mesh pass and cached on the loaded AtlasModel. No extra
+volume-sized array is allocated. Region surfaces containing these voxels are
+contoured with the exclusions and cached separately; the outline cache moved to
+shell-v3. Both section types carry a separate display mask; original labels,
+sampling coordinates, contact lookup, and source TIFFs remain unchanged.
+
+Scoped source/diff inspection completed. One focused changed-code check passed
+(exit 0): `PYTHONPATH=src .venv/bin/python -B -`, reading the actual installed
+Waxholm annotation/reference TIFFs read-only and invoking `section_at` and
+`section_rgba` on AP slices 750, 850, 950 and 1000. At 750, all 1,080 original PVG
+voxels remained visible. At 850/950/1000, SpC/PVG/CC visibility was zero and all
+pixels in those cord-only sections were transparent. Source annotation equality
+was checked after each section. No new test files, full-volume validation or GUI
+rendering was run. Full 3D remeshing remains unexecuted in this check; it uses the
+same exclusions and will rebuild its affected caches on the next atlas load.
+
+### Ear-side nerve projection
+
+Added Waxholm `7n-u` (facial nerve, unspecified; label 35) to display exclusions.
+Its magenta color and native mesh AP extent (24,121.5–26,617.5 µm) identify the
+ear-side projection. The separately annotated intracranial branches `asc7` and
+`g7` remain available. A shared display-region scope now drives region-mask
+availability and orthogonal/oblique textures, so Select all and same-atlas reload
+cannot restore excluded peripheral nerves. Outline cache keys already include
+excluded IDs and therefore rebuild for label 35. Raw annotations and channel
+region lookup are unchanged.
+
+Scoped diff/call-site inspection completed. One focused changed-code check
+passed (exit 0): `MPLCONFIGDIR="$ear_check_dir/matplotlib" PYTHONPATH=src
+.venv/bin/python -B -`. It read the actual Waxholm AP slice 650, passed it through
+`section_at`/`section_rgba`, and confirmed all 653 label-35 voxels were transparent,
+35 was excluded from surface/outline selection, 57/72 remained available, and
+the source annotation was unchanged. The unique `/tmp/atlaxis-ear-check.XXXXXX`
+directory was cleaned. No new tests or full GUI/3D rendering runs were added.
+
+### ROI drawing and per-row controls (2026-09-21)
+
+Goal: restore rectangle drawing, finish polygons at the double-click position,
+and make each ROI's settings and channel assignment accessible in a compact table.
+BrainGlobe's StructuresDict rejects a None lookup key: the default unrestricted
+ROI currently interrupts row creation before drawing is enabled.
+
+Steps:
+1. Avoid the invalid lookup and keep table signal blocking scoped to its rebuild.
+2. Store the drawing mode per ROI, retaining compatibility with existing polygon
+   and rectangle plans; include the double-click location as the final vertex.
+3. Bound the Region column and expose per-row activation. Preserve assigned
+   site/channel pairs; batch activation shares remaining channels among unset
+   ROIs only. The user confirmed per-row Activate buttons, without numeric quotas.
+4. Inspect the scoped diff and run one focused changed-code check covering the
+   real StructuresDict failure and ROI interaction; no broad suite or new tests.
+
+Result (uncommitted): guarded the unset-region lookup and used QSignalBlocker
+around table rebuilding. Each ROI now persists its drawing mode; older plans
+infer it from their existing polygon or rectangle. Double-click includes the
+clicked position as the final polygon vertex. The Region column is 120 px,
+with compact per-row Shape, Density, Register, Activate and Remove controls.
+Activate also registers a drawn draft. Batch activation ignores undrawn rows
+and reuses the existing allocator that locks assigned site/channel pairs and
+shares free channels among unassigned ROIs. No numeric quota or allocator
+semantics change was introduced.
+
+Scoped diff and captured widget image inspected. One focused check passed
+(exit 0): `QT_QPA_PLATFORM=offscreen MPLCONFIGDIR="$roi_check_dir/matplotlib"
+PYTHONPATH=src .venv/bin/python -B -`, using the installed Waxholm structures and
+read-only TIFFs, catalog NP2 four-shank geometry, QTest input events and real
+NeuroCarto allocation. It reproduced the original StructuresDict TypeError,
+then checked rectangle drawing, the exact final polygon vertex, per-row modes
+and JSON round-trip, individual Activate, and batch Activate with an empty row.
+The original 24 site/channel pairs remained unchanged; two new ROIs received
+180 channels each; the empty row received zero (384 total). Temporary files
+under `/tmp/atlaxis-roi-check.LTfOhT` were cleaned. No tests were added and no
+broad suite/build or manual macOS interaction was run.

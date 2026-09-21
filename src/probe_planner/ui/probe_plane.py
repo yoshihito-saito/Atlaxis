@@ -4,15 +4,19 @@ from copy import copy, deepcopy
 from dataclasses import astuple
 from uuid import uuid4
 
-from PySide6.QtCore import QThread, Signal, QTimer, Qt, QRectF
+from PySide6.QtCore import QThread, Signal, QTimer, Qt, QRectF, QPointF, QSignalBlocker
+from PySide6.QtGui import QPolygonF
 from PySide6.QtWidgets import (QWidget, QVBoxLayout, QHBoxLayout, QLabel, QComboBox,
-    QPushButton, QTableWidget, QTableWidgetItem, QHeaderView, QAbstractItemView)
+    QPushButton, QTableWidget, QTableWidgetItem, QHeaderView, QAbstractItemView, QDialog)
 
 from probe_planner.atlas.probe_section import probe_section
+from probe_planner.atlas.regions import brain_region_ids
 from probe_planner.probes.neuropixels import CATEGORIES, is_neuropixels, active_site_ids
 from probe_planner.probes.model import SelectionROI
 from probe_planner.rendering.probe_view import ProbeView
 from probe_planner.rendering.slice_view import section_rgba
+from probe_planner.rendering.regions import brain_display_region_ids
+from .region_dialog import RegionSelectionDialog
 
 
 class PlaneWorker(QThread):
@@ -35,6 +39,7 @@ class PlaneWorker(QThread):
 class ProbePlanePanel(QWidget):
     blueprintChanged = Signal()
     generateRequested = Signal(str)
+    generateBalancedRequested = Signal()
     removeRequested = Signal(str)
     resetRequested = Signal()
 
@@ -42,6 +47,7 @@ class ProbePlanePanel(QWidget):
         super().__init__()
         self.atlas = self.frame = self.probe = None
         self.rows = []
+        self.available_region_ids = None
         self.key = self.sampled_key = None
         self.worker = None
         self.section = None
@@ -62,8 +68,8 @@ class ProbePlanePanel(QWidget):
         add.clicked.connect(self.add_roi)
         header.addWidget(add)
         controls.addLayout(header)
-        self.table = QTableWidget(0, 7)
-        self.table.setHorizontalHeaderLabels(["ROI", "Region", "Density", "Sites / Ch", "", "", ""])
+        self.table = QTableWidget(0, 8)
+        self.table.setHorizontalHeaderLabels(["ROI", "Shape", "Region", "Density", "Sites / Active", "", "Channels", ""])
         self.table.verticalHeader().hide()
         self.table.verticalHeader().setDefaultSectionSize(34)
         self.table.setEditTriggers(QAbstractItemView.NoEditTriggers)
@@ -71,12 +77,19 @@ class ProbePlanePanel(QWidget):
         self.table.setSelectionMode(QAbstractItemView.SingleSelection)
         self.table.setWordWrap(False)
         self.table.setStyleSheet("QPushButton { padding: 3px 5px; font-size: 11px; } "
-                                 "QComboBox { padding: 3px; font-size: 11px; }")
-        self.table.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
-        self.table.horizontalHeader().setSectionResizeMode(1, QHeaderView.Stretch)
+                                 "QComboBox { padding: 3px; font-size: 11px; } "
+                                 "QHeaderView::section { padding: 4px 6px; font-size: 11px; }")
+        self.table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        self.table.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeToContents)
+        self.table.horizontalHeader().setSectionResizeMode(2, QHeaderView.Fixed)
+        self.table.setColumnWidth(2, 120)
         self.table.currentCellChanged.connect(self.select_roi)
         controls.addWidget(self.table)
         footer = QHBoxLayout()
+        self.activate_all = QPushButton("Activate channels")
+        self.activate_all.setToolTip("Keep existing channels; share free channels equally across unassigned ROIs")
+        self.activate_all.clicked.connect(self.activate_pending_rois)
+        footer.addWidget(self.activate_all)
         reset = QPushButton("Reset all")
         reset.setToolTip("Clear active channels and selection, and restore the default view")
         reset.clicked.connect(self.resetRequested)
@@ -98,7 +111,8 @@ class ProbePlanePanel(QWidget):
 
     def reset_view(self):
         self.selected_roi_id = None
-        self.view.selection_start = self.view.selection_rect = None
+        self.view.cancel_selection()
+        self.view.set_selection_mode("Rectangle")
         self.view.pan_position = None
         self.view.unsetCursor()
         self.view.fit()
@@ -115,12 +129,13 @@ class ProbePlanePanel(QWidget):
             if self.worker:
                 self.worker.requestInterruption()
 
-    def set_context(self, atlas, frame, probe, rows):
+    def set_context(self, atlas, frame, probe, rows, *, available_ids=None):
         previous = self.probe
         self.atlas, self.frame, self.probe, self.rows = atlas, frame, probe, rows
+        self.available_region_ids = available_ids
         if previous is not probe:
             self.selected_roi_id = None
-            self.view.selection_start = self.view.selection_rect = None
+            self.view.cancel_selection()
         self.view.set_probe(probe, rows)
         ready = atlas is not None and frame is not None and probe is not None
         key = (id(atlas), repr(frame), id(probe.geometry), astuple(probe.pose),
@@ -170,13 +185,14 @@ class ProbePlanePanel(QWidget):
             self.needs_fit = False
         off_plane = max(abs(c.z_um - section.face_z_um) for c in self.probe.geometry.contacts)
         note = f" · projected sites up to {off_plane:.2f} µm off plane" if off_plane > 0.01 else ""
-        hint = ("Drag a range → Register → Activate Channels. Add ROI for another range; right-drag to pan."
+        hint = ("Rectangle: drag. Polygon: click vertices, double-click to finish. Add ROI, then Activate channels; right-drag to pan."
                 if is_neuropixels(self.probe.geometry) else "Site tooltips report regions at their true 3D positions.")
         self.status.setText(f"Probe plane · {section.pixel_um[0]:g} µm pixels{note}. {hint}")
 
     def display_section(self):
         self.view.set_section_image(self.section,
-            section_rgba(self.section, self.colors, self.opacity), self.atlas)
+            section_rgba(self.section, self.colors, self.opacity,
+                         visible_ids=brain_display_region_ids(self.atlas)), self.atlas)
 
     def failed(self, key, message):
         if key == self.key:
@@ -201,14 +217,17 @@ class ProbePlanePanel(QWidget):
         while f"ROI {number}" in names:
             number += 1
         roi = SelectionROI(uuid4().hex, f"ROI {number}")
+        self.view.cancel_selection()
         self.probe.channel_map.rois.append(roi)
         self.selected_roi_id = roi.id
         self.refresh_rois()
         self.blueprintChanged.emit()
-        self.status.setText("Drag to draw this ROI. Register fixes its range, region and density.")
+        self.status.setText("Draw a rectangle or polygon. Register fixes its range, region and density.")
 
     def select_roi(self, row, *_):
         if self.probe and 0 <= row < len(self.probe.channel_map.rois):
+            if self.selected_roi_id != self.probe.channel_map.rois[row].id:
+                self.view.cancel_selection()
             self.selected_roi_id = self.probe.channel_map.rois[row].id
         self.update_ranges()
 
@@ -218,50 +237,53 @@ class ProbePlanePanel(QWidget):
             self.selected_roi_id = rois[-1].id if rois else None
         count = len(active_site_ids(self.probe.geometry, self.probe.channel_map)) if self.probe else 0
         self.count.setText(f"Mapped {count}/384")
-        region_ids = {row["region_id"] for row in self.rows if row["region_id"] > 0}
-        if self.atlas:
-            region_ids |= {parent for rid in list(region_ids)
-                           for parent in self.atlas.structures.get(rid, {}).get("structure_id_path", [])}
-        self.table.blockSignals(True)
-        self.table.setRowCount(0)
-        self.table.setRowCount(len(rois))
-        for index, roi in enumerate(rois):
-            self.table.setItem(index, 0, QTableWidgetItem(roi.name))
-            region = QComboBox()
-            region.setMinimumContentsLength(6)
-            region.setSizeAdjustPolicy(QComboBox.AdjustToMinimumContentsLengthWithIcon)
-            region.addItem("All regions", None)
-            ids = region_ids | ({roi.region_id} if roi.region_id else set())
-            for rid in sorted(ids, key=lambda rid: self.atlas.structures.get(rid, {}).get("acronym", "") if self.atlas else ""):
-                metadata = self.atlas.structures.get(rid, {}) if self.atlas else {}
-                region.addItem(metadata.get("acronym", str(rid)), rid)
-                region.setItemData(region.count() - 1, metadata.get("name", ""), Qt.ToolTipRole)
-            region.setCurrentIndex(max(0, region.findData(roi.region_id)))
-            region.setEnabled(not roi.registered)
-            region.currentIndexChanged.connect(lambda _, r=roi, box=region: self.edit_roi(r, region_id=box.currentData()))
-            self.table.setCellWidget(index, 1, region)
-            density = QComboBox()
-            density.addItems(CATEGORIES[:-1])
-            density.setCurrentText(roi.density)
-            density.setEnabled(not roi.registered)
-            density.currentTextChanged.connect(lambda value, r=roi: self.edit_roi(r, density=value))
-            self.table.setCellWidget(index, 2, density)
-            self.table.setItem(index, 3, QTableWidgetItem(f"{len(roi.sites)} / {len(roi.assigned_sites)}"))
-            register = QPushButton("Registered" if roi.registered else "Register")
-            register.setEnabled(not roi.registered and bool(roi.sites))
-            register.clicked.connect(lambda _, rid=roi.id: self.register_roi(rid))
-            self.table.setCellWidget(index, 4, register)
-            activate = QPushButton("Active" if roi.assigned_sites else "Activate Channels")
-            activate.setEnabled(roi.registered and not roi.assigned_sites and count < 384)
-            activate.clicked.connect(lambda _, rid=roi.id: self.generateRequested.emit(rid))
-            self.table.setCellWidget(index, 5, activate)
-            remove = QPushButton("Remove")
-            remove.clicked.connect(lambda _, rid=roi.id: self.removeRequested.emit(rid))
-            self.table.setCellWidget(index, 6, remove)
-            if roi.id == self.selected_roi_id:
-                self.table.setCurrentCell(index, 0)
+        self.activate_all.setEnabled(count < 384 and any(roi.sites and not roi.assigned_sites for roi in rois))
+        with QSignalBlocker(self.table):
+            self.table.setRowCount(0)
+            self.table.setRowCount(len(rois))
+            for index, roi in enumerate(rois):
+                self.table.setItem(index, 0, QTableWidgetItem(roi.name))
+                mode = QComboBox()
+                mode.addItems(["Rectangle", "Polygon"])
+                mode.setCurrentText(roi.selection_mode)
+                mode.setToolTip("Rectangle: drag. Polygon: click vertices, double-click the final vertex. Escape to cancel.")
+                mode.setEnabled(not roi.registered)
+                mode.currentTextChanged.connect(lambda value, r=roi: self.edit_roi(r, selection_mode=value))
+                self.table.setCellWidget(index, 1, mode)
+                metadata = (self.atlas.structures.get(roi.region_id, {})
+                            if self.atlas is not None and roi.region_id is not None else {})
+                acronym = metadata.get("acronym", str(roi.region_id)) if roi.region_id is not None else "Brain"
+                region = QPushButton()
+                region.setText(region.fontMetrics().elidedText(acronym, Qt.ElideRight, 104))
+                region.setToolTip(metadata.get("name", "All Brain regions") + " · Choose region / layer…")
+                region.setEnabled(not roi.registered)
+                region.clicked.connect(lambda _, r=roi: self.choose_region(r))
+                self.table.setCellWidget(index, 2, region)
+                density = QComboBox()
+                density.addItems(CATEGORIES[:-1])
+                density.setCurrentText(roi.density)
+                density.setEnabled(not roi.registered)
+                density.currentTextChanged.connect(lambda value, r=roi: self.edit_roi(r, density=value))
+                self.table.setCellWidget(index, 3, density)
+                counts = QTableWidgetItem(f"{len(roi.sites)} / {len(roi.assigned_sites)}")
+                counts.setTextAlignment(Qt.AlignCenter)
+                self.table.setItem(index, 4, counts)
+                register = QPushButton("Registered" if roi.registered else "Register")
+                register.setEnabled(not roi.registered and bool(roi.sites))
+                register.clicked.connect(lambda _, rid=roi.id: self.register_roi(rid))
+                self.table.setCellWidget(index, 5, register)
+                activate = QPushButton("Assigned" if roi.assigned_sites else "Activate")
+                activate.setToolTip("Assigned channels are kept during batch activation." if roi.assigned_sites else
+                                   "Fix this ROI and assign its channels, keeping existing assignments.")
+                activate.setEnabled(bool(roi.sites) and not roi.assigned_sites and count < 384)
+                activate.clicked.connect(lambda _, rid=roi.id: self.activate_roi(rid))
+                self.table.setCellWidget(index, 6, activate)
+                remove = QPushButton("Remove")
+                remove.clicked.connect(lambda _, rid=roi.id: self.removeRequested.emit(rid))
+                self.table.setCellWidget(index, 7, remove)
+                if roi.id == self.selected_roi_id:
+                    self.table.setCurrentCell(index, 0)
         self.table.setFixedHeight(32 + 34 * min(4, max(1, len(rois))) + 14)
-        self.table.blockSignals(False)
         self.update_ranges()
 
     def edit_roi(self, roi, **changes):
@@ -274,12 +296,46 @@ class ProbePlanePanel(QWidget):
         self.update_ranges()
         self.blueprintChanged.emit()
 
+    def choose_region(self, roi):
+        if self.atlas is None or roi.registered:
+            return
+        dialog = RegionSelectionDialog(self.atlas.structures, roi.region_id, self,
+                                       available_ids=self.available_region_ids)
+        if dialog.exec() == QDialog.Accepted:
+            self.edit_roi(roi, region_id=dialog.selected_region_id)
+            self.refresh_rois()
+        dialog.deleteLater()
+
+    def activate_roi(self, roi_id):
+        roi = self.roi(roi_id)
+        if roi is None or roi.assigned_sites:
+            return
+        if not roi.registered and not self.register_roi(roi_id):
+            return
+        self.generateRequested.emit(roi_id)
+
+    def activate_pending_rois(self):
+        if self.probe is None:
+            return
+        for roi in self.probe.channel_map.rois:
+            if roi.sites and not roi.registered and not self.register_roi(roi.id):
+                return
+        self.generateBalancedRequested.emit()
+
     def update_ranges(self):
         rois = self.probe.channel_map.rois if self.probe else []
-        self.view.roi_rects = [(QRectF(b[0], b[1], b[2] - b[0], b[3] - b[1]),
-                                roi.registered, roi.id == self.selected_roi_id)
-                               for roi in rois if (b := roi.bounds_um) is not None]
+        self.view.roi_shapes = []
+        for roi in rois:
+            if roi.polygon_um is not None:
+                shape = QPolygonF([QPointF(*point) for point in roi.polygon_um])
+            elif roi.bounds_um is not None:
+                b = roi.bounds_um
+                shape = QRectF(b[0], b[1], b[2] - b[0], b[3] - b[1])
+            else:
+                continue
+            self.view.roi_shapes.append((shape, roi.registered, roi.id == self.selected_roi_id))
         selected = self.roi()
+        self.view.set_selection_mode(selected.selection_mode if selected else "Rectangle")
         self.view.draw_selection = (self.probe is not None and is_neuropixels(self.probe.geometry)
                                     and self.section is not None and (selected is None or not selected.registered))
         self.view.viewport().update()
@@ -289,33 +345,36 @@ class ProbePlanePanel(QWidget):
             self.add_roi()
         roi = self.roi()
         if roi and not roi.registered:
-            roi.bounds_um, roi.sites = None, []
+            roi.bounds_um, roi.polygon_um, roi.sites = None, None, []
             self.refresh_rois()
             self.blueprintChanged.emit()
 
-    def apply_range(self, sites, bounds):
+    def apply_range(self, sites, bounds, polygon=None):
         roi = self.roi()
         if roi is None or roi.registered:
             return
-        roi.bounds_um, roi.sites = bounds, sites
+        roi.bounds_um, roi.polygon_um, roi.sites = bounds, polygon, sites
         self.refresh_rois()
         self.blueprintChanged.emit()
 
     def register_roi(self, roi_id):
         roi = self.roi(roi_id)
         if roi is None or roi.registered or self.atlas is None:
-            return
+            return False
+        allowed = brain_region_ids(self.atlas.structures)
+        regions = {row["contact_id"]: row["region_id"] for row in self.rows}
+        brain_sites = [site for site in roi.sites if regions.get(site) in allowed]
         if roi.region_id is not None:
-            regions = {row["contact_id"]: row["region_id"] for row in self.rows}
-            sites = [site for site in roi.sites if regions.get(site) == roi.region_id or roi.region_id in
+            sites = [site for site in brain_sites if regions.get(site) == roi.region_id or roi.region_id in
                      self.atlas.structures.get(regions.get(site), {}).get("structure_id_path", [])]
         else:
-            sites = list(roi.sites)
+            sites = brain_sites
         if not sites:
-            self.status.setText("No sites match this range and region. Change the region or redraw.")
-            return
+            self.status.setText(f"{roi.name}: no sites match this range and Brain region. Change the region or redraw.")
+            return False
         roi.sites, roi.registered = sites, True
         self.selected_roi_id = roi.id
         self.refresh_rois()
         self.blueprintChanged.emit()
         self.status.setText(f"{roi.name} registered · {len(sites)} sites · {roi.density}. Activate Channels to assign.")
+        return True

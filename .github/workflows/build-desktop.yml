@@ -25,6 +25,8 @@ jobs:
       - run: uv sync --locked
       - run: uv pip install "pyinstaller==6.22.3"
       - run: uv run --no-sync python -m PyInstaller --noconfirm packaging/Atlaxis.spec
+      - name: Archive matching application source
+        run: git archive --format=zip --output=dist/Atlaxis-source.zip HEAD
       - name: Archive macOS app preserving bundle links
         if: runner.os == 'macOS'
         run: ditto -c -k --sequesterRsrc --keepParent dist/Atlaxis.app dist/Atlaxis-macOS-arm64.zip
@@ -35,5 +37,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.artifact }}
-          path: dist/${{ matrix.artifact }}.zip
+          path: |
+            dist/${{ matrix.artifact }}.zip
+            dist/Atlaxis-source.zip
           if-no-files-found: error

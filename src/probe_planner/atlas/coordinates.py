@@ -168,17 +168,17 @@ def _euler_degrees(rotation, axes):
 def pose_axis_tilts(pose: ImplantPose):
     """GUI AP/ML tilt and axial roll, preserving the complete saved orientation.
 
-    Intrinsic YXZ angles correspond to Ry(AP) Rx(-ML) Rz(roll). ML lies in
-    [-90, 90]; AP and roll in [-180, 180]. Positive AP/ML tilt anterior/right.
+    Intrinsic YXZ angles correspond to Ry(AP) Rx(ML) Rz(roll). ML lies in
+    [-90, 90]; AP and roll in [-180, 180]. Positive AP/ML tilt anterior/left.
     """
     rotation = Rotation.from_euler("ZYZ", [pose.azimuth_deg, pose.elevation_deg, pose.roll_deg], degrees=True)
-    ap, negative_ml, roll = _euler_degrees(rotation, "YXZ")
-    return float(ap), float(-negative_ml), float(roll)
+    ap, ml, roll = _euler_degrees(rotation, "YXZ")
+    return float(ap), float(ml), float(roll)
 
 
 def pose_with_axis_tilts(pose: ImplantPose, ap_deg, ml_deg, roll_deg):
     """Convert GUI tilts to saved angles, retaining entry and insertion travel."""
-    rotation = Rotation.from_euler("YXZ", [ap_deg, -ml_deg, roll_deg], degrees=True)
+    rotation = Rotation.from_euler("YXZ", [ap_deg, ml_deg, roll_deg], degrees=True)
     azimuth, elevation, roll = _euler_degrees(rotation, "ZYZ")
     return replace(pose, azimuth_deg=float(azimuth), elevation_deg=float(elevation), roll_deg=float(roll))
 

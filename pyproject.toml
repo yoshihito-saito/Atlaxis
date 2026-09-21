@@ -5,8 +5,10 @@ build-backend = "hatchling.build"
 [project]
 name = "probe-planner"
 version = "0.1.0"
-description = "Generic atlas-based electrophysiology probe planning pilot"
+description = "Atlaxis: atlas-based electrophysiology probe planning"
 readme = "README.md"
+license = "GPL-3.0-only"
+license-files = ["LICENSE.md", "THIRD_PARTY_NOTICES.md", "third_party/licenses/**/*"]
 requires-python = ">=3.11,<3.12"
 dependencies = [
   "numpy>=1.26,<3",
@@ -21,6 +23,7 @@ dependencies = [
 ]
 
 [project.scripts]
+atlaxis = "probe_planner.__main__:main"
 probe-planner = "probe_planner.__main__:main"
 
 [tool.hatch.build.targets.wheel]

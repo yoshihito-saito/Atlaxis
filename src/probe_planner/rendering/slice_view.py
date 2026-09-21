@@ -15,6 +15,7 @@ from vtkmodules.vtkInteractionWidgets import vtkOrientationMarkerWidget
 from vtkmodules.vtkRenderingCore import vtkCellPicker, vtkPropAssembly
 
 from probe_planner.atlas.sections import section_at, shank_tip_atlas_position
+from .regions import brain_display_region_ids
 from .scene import Scene
 from .navigation import NavigationInteractor
 
@@ -30,7 +31,8 @@ def anatomical_views(orientation):
             "Oblique": (anterior + right + 0.7 * dorsal, dorsal)}
 
 
-def section_rgba(section, mask_colors=None, mask_opacity=0.25):
+def section_rgba(section, mask_colors=None, mask_opacity=0.25, *, visible_ids=None):
+    """Apply tissue visibility independently of the optional region-color overlay."""
     reference = np.asarray(section.reference, dtype=float)
     foreground = reference[reference > 0]
     low, high = np.percentile(foreground, [1, 99]) if foreground.size else (0, 1)
@@ -40,6 +42,10 @@ def section_rgba(section, mask_colors=None, mask_opacity=0.25):
     rgba[:, :, :3] = gray[:, :, None]
     labels = section.annotation
     mask = labels != 0
+    if visible_ids is not None:
+        mask &= np.isin(labels, list(visible_ids))
+    if section.display_mask is not None:
+        mask &= section.display_mask
     rgba[:, :, 3] = np.where(mask, 255, 0)
     edges = np.zeros(mask.shape, dtype=bool)
     edges[1:] |= labels[1:] != labels[:-1]
@@ -380,7 +386,8 @@ class SliceWorkspace(QWidget):
             key = (name, section.index)
             if key != self.displayed_keys.get(name):
                 if key not in self.cache:
-                    texture = pv.Texture(section_rgba(section, self.mask_colors, self.mask_opacity))
+                    texture = pv.Texture(section_rgba(section, self.mask_colors, self.mask_opacity,
+                                                      visible_ids=brain_display_region_ids(atlas)))
                     texture.interpolate = True
                     texture.repeat = False
                     self.cache[key] = texture

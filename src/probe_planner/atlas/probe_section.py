@@ -6,6 +6,7 @@ import numpy as np
 from scipy.ndimage import map_coordinates
 
 from .coordinates import probe_to_atlas
+from .regions import spinal_display_hidden
 
 
 @dataclass
@@ -15,6 +16,7 @@ class ProbeSection:
     pixel_um: tuple[float, float]
     origin_uv: tuple[float, float]
     face_z_um: float
+    display_mask: np.ndarray | None = None
 
 
 def probe_section(atlas, frame, instance, interrupted=lambda: False):
@@ -37,6 +39,7 @@ def probe_section(atlas, frame, instance, interrupted=lambda: False):
     width, height = np.ceil((upper - lower) / pitch).astype(int)
     reference = np.zeros((height, width), dtype=np.float32)
     annotation = np.zeros((height, width), dtype=atlas.annotation.dtype)
+    display_mask = np.ones((height, width), dtype=bool)
     matrix = probe_to_atlas(geometry, instance.pose, frame)
     resolution = np.asarray(atlas.resolution_um)
     shape = np.asarray(atlas.annotation.shape)
@@ -54,8 +57,9 @@ def probe_section(atlas, frame, instance, interrupted=lambda: False):
         inside = np.all((voxels >= 0) & (voxels < shape), axis=2)
         indices = np.floor(voxels[inside]).astype(int)
         annotation[start:stop][inside] = atlas.annotation[tuple(indices.T)]
+        display_mask[start:stop][inside] = ~spinal_display_hidden(atlas, indices)
         # Existing atlas positions identify voxel cells; sample at cell centers.
         reference[start:stop][inside] = map_coordinates(
             atlas.reference, (voxels[inside] - 0.5).T, order=1,
             output=np.float32, mode="nearest", prefilter=False)
-    return ProbeSection(reference, annotation, (pitch, pitch), tuple(lower), face_z)
+    return ProbeSection(reference, annotation, (pitch, pitch), tuple(lower), face_z, display_mask)

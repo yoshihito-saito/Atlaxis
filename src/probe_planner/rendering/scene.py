@@ -19,7 +19,7 @@ def load_display_mesh(path, progress, *, atlas=None):
 
         annotation_stat = (atlas.backend.root_dir / ANNOTATION_FILENAME).stat()
         ids = "-".join(map(str, sorted(excluded)))
-        suffix = f"-shell-v2-without-{ids}-{annotation_stat.st_size}-{annotation_stat.st_mtime_ns}"
+        suffix = f"-shell-v3-without-{ids}-{annotation_stat.st_size}-{annotation_stat.st_mtime_ns}"
     cache = cache_dir / f"{path.stem}-{stat.st_size}-{stat.st_mtime_ns}-50k-v1{suffix}.vtp"
     if cache.exists():
         progress("Loading cached brain surface…")

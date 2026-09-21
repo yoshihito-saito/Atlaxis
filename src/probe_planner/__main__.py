@@ -15,7 +15,7 @@ def main():
     from probe_planner.ui.style import STYLE
 
     application = QApplication(sys.argv)
-    application.setApplicationName("Atlaxis Probe Planner")
+    application.setApplicationName("Atlaxis")
     application.setOrganizationName("Atlaxis")
     package = Path(probe_planner.__file__).resolve().parent
     icon = package / "data" / "Atlaxis.png"

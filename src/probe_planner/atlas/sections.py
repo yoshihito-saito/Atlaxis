@@ -7,6 +7,7 @@ import numpy as np
 from .coordinates import (
     probe_to_atlas, probe_to_stereotaxic_matrix, transform_points, um_to_mm, shank_reference_um,
 )
+from .regions import spinal_display_hidden
 
 
 @dataclass
@@ -21,6 +22,7 @@ class Section:
     pixel_um: tuple[float, float]
     caption: str
     axis_labels: str
+    display_mask: np.ndarray | None = None
 
 
 def probe_positions(instance, atlas=None, frame=None):
@@ -59,6 +61,11 @@ def section_at(atlas, frame, center, name, *, slice_index=None):
     order = [remaining.index(vertical), remaining.index(horizontal)]
     annotation = atlas.annotation[tuple(slicing)].transpose(order)
     reference = atlas.reference[tuple(slicing)].transpose(order)
+    rows, columns = np.nonzero(annotation)
+    indices = np.empty((len(rows), 3), dtype=int)
+    indices[:, normal], indices[:, vertical], indices[:, horizontal] = index, rows, columns
+    display_mask = np.ones(annotation.shape, dtype=bool)
+    display_mask[rows, columns] = ~spinal_display_hidden(atlas, indices)
     # Describe the actual displayed section, not an out-of-bounds requested one.
     location = center.copy()
     location[normal] = index * atlas.resolution_um[normal]
@@ -75,4 +82,4 @@ def section_at(atlas, frame, center, name, *, slice_index=None):
             "s": "Dorsal ↓ Ventral", "i": "Ventral ↓ Dorsal"}
     return Section(name, horizontal, vertical, normal, index, reference, annotation,
                    (atlas.resolution_um[horizontal], atlas.resolution_um[vertical]), caption,
-                   f"{ends[atlas.orientation[horizontal]]}   |   {ends[atlas.orientation[vertical]]}")
+                   f"{ends[atlas.orientation[horizontal]]}   |   {ends[atlas.orientation[vertical]]}", display_mask)
