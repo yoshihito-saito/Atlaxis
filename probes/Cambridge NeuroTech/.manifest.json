@@ -1,0 +1,1945 @@
+{
+  "repository": "https://github.com/SpikeInterface/probeinterface_library",
+  "revision": "bb40894cdf55787fed7b7198ea854497d52ca687",
+  "model_count": 171,
+  "models": [
+    {
+      "model": "ASSY-1-E-1",
+      "file": "ASSY-1-E-1.json",
+      "sites": 16,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-16-a16-om16"
+      ],
+      "source_blob_sha1": "be23d0d022f636111935f5c5e77b1d6092972ffa"
+    },
+    {
+      "model": "ASSY-1-E-2",
+      "file": "ASSY-1-E-2.json",
+      "sites": 16,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-16-a16-om16"
+      ],
+      "source_blob_sha1": "169d34ade4872b68068fb37aa2f91d32f9e1dc9b"
+    },
+    {
+      "model": "ASSY-1-P-1",
+      "file": "ASSY-1-P-1.json",
+      "sites": 16,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-16-a16-om16"
+      ],
+      "source_blob_sha1": "9c06b525023993c797f2dd34668f8cc92f79fc61"
+    },
+    {
+      "model": "ASSY-1-P-2",
+      "file": "ASSY-1-P-2.json",
+      "sites": 16,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-16-a16-om16"
+      ],
+      "source_blob_sha1": "e4d6fb56f2aef0b2d2d2d13df6e18f5a2e0f36ac"
+    },
+    {
+      "model": "ASSY-116-E-1",
+      "file": "ASSY-116-E-1.json",
+      "sites": 32,
+      "shanks": 2,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-32"
+      ],
+      "source_blob_sha1": "6c0ef3c12ae5d66a40e45ae373bc0dd05a5ea7e8"
+    },
+    {
+      "model": "ASSY-116-E-2",
+      "file": "ASSY-116-E-2.json",
+      "sites": 32,
+      "shanks": 2,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-32"
+      ],
+      "source_blob_sha1": "a65fe7bfaa9a31db8fffe2e12d4b17a48bbbd873"
+    },
+    {
+      "model": "ASSY-116-Fb",
+      "file": "ASSY-116-Fb.json",
+      "sites": 32,
+      "shanks": 3,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-32"
+      ],
+      "source_blob_sha1": "f02e8ec7e9fc7a41d90a7d9ccd62621812aaa072"
+    },
+    {
+      "model": "ASSY-116-H10b",
+      "file": "ASSY-116-H10b.json",
+      "sites": 32,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-32"
+      ],
+      "source_blob_sha1": "10a80c3bc5d17de8f87c9114ef6f73d83fc79e5b"
+    },
+    {
+      "model": "ASSY-116-H1b",
+      "file": "ASSY-116-H1b.json",
+      "sites": 32,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "d68f041abad6b25b322fdcdec354b271923ef840"
+    },
+    {
+      "model": "ASSY-116-H4",
+      "file": "ASSY-116-H4.json",
+      "sites": 32,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-32"
+      ],
+      "source_blob_sha1": "75e7e6e7d9e57c73995f0dd3854a6856f81291a7"
+    },
+    {
+      "model": "ASSY-116-H6b",
+      "file": "ASSY-116-H6b.json",
+      "sites": 32,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-32"
+      ],
+      "source_blob_sha1": "a4870a301cef262146489041d8344cbe5d95dcc6"
+    },
+    {
+      "model": "ASSY-116-H7b",
+      "file": "ASSY-116-H7b.json",
+      "sites": 32,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-32"
+      ],
+      "source_blob_sha1": "7eecb77a56e5109c8ebb762f73fbbc6a81b91849"
+    },
+    {
+      "model": "ASSY-116-H8b",
+      "file": "ASSY-116-H8b.json",
+      "sites": 32,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-32"
+      ],
+      "source_blob_sha1": "fa1f798ea2a60c1a6dd740b68846def190731b34"
+    },
+    {
+      "model": "ASSY-116-L2",
+      "file": "ASSY-116-L2.json",
+      "sites": 32,
+      "shanks": 2,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "e475753cf5a182dbd0d1a156aec5eca2e8ee8cad"
+    },
+    {
+      "model": "ASSY-116-P-1",
+      "file": "ASSY-116-P-1.json",
+      "sites": 32,
+      "shanks": 2,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-32"
+      ],
+      "source_blob_sha1": "069d162b128c601afe51748f2d236bc6d9ad206c"
+    },
+    {
+      "model": "ASSY-116-P-2",
+      "file": "ASSY-116-P-2.json",
+      "sites": 32,
+      "shanks": 2,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-32"
+      ],
+      "source_blob_sha1": "2c818632b0389b0890afebc528f4319ab4c77bf1"
+    },
+    {
+      "model": "ASSY-156-E-1",
+      "file": "ASSY-156-E-1.json",
+      "sites": 64,
+      "shanks": 4,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-64"
+      ],
+      "source_blob_sha1": "bb8496bb48c75419c863f5e6f7ca90908968c317"
+    },
+    {
+      "model": "ASSY-156-E-2",
+      "file": "ASSY-156-E-2.json",
+      "sites": 64,
+      "shanks": 4,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-64"
+      ],
+      "source_blob_sha1": "dfd1b5632370cf53a9f2d53af2a91d3b7539536d"
+    },
+    {
+      "model": "ASSY-156-F",
+      "file": "ASSY-156-F.json",
+      "sites": 64,
+      "shanks": 6,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-64"
+      ],
+      "source_blob_sha1": "ef6c4ac30e0ed28071d675d3140c82b8cf99bb97"
+    },
+    {
+      "model": "ASSY-156-H1",
+      "file": "ASSY-156-H1.json",
+      "sites": 64,
+      "shanks": 2,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "b8d7cbe9361fc1df029c4b53528220f62cece80b"
+    },
+    {
+      "model": "ASSY-156-H10",
+      "file": "ASSY-156-H10.json",
+      "sites": 64,
+      "shanks": 2,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-64"
+      ],
+      "source_blob_sha1": "9e2378d867325d711534224cfc2b6553d6aacf5d"
+    },
+    {
+      "model": "ASSY-156-H2",
+      "file": "ASSY-156-H2.json",
+      "sites": 64,
+      "shanks": 2,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-64"
+      ],
+      "source_blob_sha1": "467fd0b1bcf615ea05efb7029e79aff55f02c673"
+    },
+    {
+      "model": "ASSY-156-H3",
+      "file": "ASSY-156-H3.json",
+      "sites": 64,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-64"
+      ],
+      "source_blob_sha1": "b48e932ab85d33164e7c88bebe84dcd6c4f38b27"
+    },
+    {
+      "model": "ASSY-156-H5",
+      "file": "ASSY-156-H5.json",
+      "sites": 64,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-64"
+      ],
+      "source_blob_sha1": "c7f7722f72b01d6bc1ea4638a7f86ee116dd90f6"
+    },
+    {
+      "model": "ASSY-156-H6",
+      "file": "ASSY-156-H6.json",
+      "sites": 64,
+      "shanks": 2,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-64"
+      ],
+      "source_blob_sha1": "014d2f602b49ff3121a3d9c4875a9021e19aa103"
+    },
+    {
+      "model": "ASSY-156-H7",
+      "file": "ASSY-156-H7.json",
+      "sites": 64,
+      "shanks": 2,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-64"
+      ],
+      "source_blob_sha1": "7ccc65a5b661ce8046f6ab80d3fba7b3e1df7dd8"
+    },
+    {
+      "model": "ASSY-156-H8",
+      "file": "ASSY-156-H8.json",
+      "sites": 64,
+      "shanks": 2,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-64"
+      ],
+      "source_blob_sha1": "07bd5d379c4e996fd441f255589b84c9cff6c71f"
+    },
+    {
+      "model": "ASSY-156-H9",
+      "file": "ASSY-156-H9.json",
+      "sites": 64,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-64"
+      ],
+      "source_blob_sha1": "a8ea916f11a104919c32cc2aba0447ab3a2d62e4"
+    },
+    {
+      "model": "ASSY-156-L3",
+      "file": "ASSY-156-L3.json",
+      "sites": 64,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-64"
+      ],
+      "source_blob_sha1": "73e32f290daee27e0299052bf66271f7ddc611bb"
+    },
+    {
+      "model": "ASSY-156-M1v1",
+      "file": "ASSY-156-M1v1.json",
+      "sites": 64,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "23b4095475ba55aaefb61c40e5268d1721452682"
+    },
+    {
+      "model": "ASSY-156-M1v2",
+      "file": "ASSY-156-M1v2.json",
+      "sites": 64,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-64"
+      ],
+      "source_blob_sha1": "a66f66de3ca996054a9baa7f9f5ad496b9f0585c"
+    },
+    {
+      "model": "ASSY-156-M2v1",
+      "file": "ASSY-156-M2v1.json",
+      "sites": 64,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "6042f935fd281ad7c8ad22885d9d14869938d2dc"
+    },
+    {
+      "model": "ASSY-156-M2v2",
+      "file": "ASSY-156-M2v2.json",
+      "sites": 64,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-64"
+      ],
+      "source_blob_sha1": "4ffc7e86b4060fc4458967107c9ee0134b119d64"
+    },
+    {
+      "model": "ASSY-156-P-1",
+      "file": "ASSY-156-P-1.json",
+      "sites": 64,
+      "shanks": 4,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-64"
+      ],
+      "source_blob_sha1": "4df63ee306bec6b784cdfc5965fdd2474523287e"
+    },
+    {
+      "model": "ASSY-156-P-2",
+      "file": "ASSY-156-P-2.json",
+      "sites": 64,
+      "shanks": 4,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-64"
+      ],
+      "source_blob_sha1": "e093129d64c13cb050fafc860fcd9d51a30b3a9f"
+    },
+    {
+      "model": "ASSY-158-E-1",
+      "file": "ASSY-158-E-1.json",
+      "sites": 64,
+      "shanks": 4,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "2ead41cd35aa7e8db79b6e4e009c4b9f8573a0e3"
+    },
+    {
+      "model": "ASSY-158-E-2",
+      "file": "ASSY-158-E-2.json",
+      "sites": 64,
+      "shanks": 4,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "d56db22f73a3ee69d89c8132240cdde4b2781af7"
+    },
+    {
+      "model": "ASSY-158-F",
+      "file": "ASSY-158-F.json",
+      "sites": 64,
+      "shanks": 6,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "2931d77462339690fef502afd82e686217e0e28f"
+    },
+    {
+      "model": "ASSY-158-H10",
+      "file": "ASSY-158-H10.json",
+      "sites": 64,
+      "shanks": 2,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "a370e216690d822b91c0ed9d482637dd10da6991"
+    },
+    {
+      "model": "ASSY-158-H2",
+      "file": "ASSY-158-H2.json",
+      "sites": 64,
+      "shanks": 2,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "7d9e667a045a5f34c974494338a257fe61536537"
+    },
+    {
+      "model": "ASSY-158-H3",
+      "file": "ASSY-158-H3.json",
+      "sites": 64,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "6962d70c691576e3d42a7be9ff0fa5d77a73e1a2"
+    },
+    {
+      "model": "ASSY-158-H5",
+      "file": "ASSY-158-H5.json",
+      "sites": 64,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "8aa7c240374bf06bdea37d0652e930aab2febb2f"
+    },
+    {
+      "model": "ASSY-158-H6",
+      "file": "ASSY-158-H6.json",
+      "sites": 64,
+      "shanks": 2,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "42568aa144c346675234f7fd5dfb30fda5b0700c"
+    },
+    {
+      "model": "ASSY-158-H7",
+      "file": "ASSY-158-H7.json",
+      "sites": 64,
+      "shanks": 2,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "dcf82d77c9dd9850619a4b48a4bd0e8f4883cbae"
+    },
+    {
+      "model": "ASSY-158-H8",
+      "file": "ASSY-158-H8.json",
+      "sites": 64,
+      "shanks": 2,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "9487bfbd6d3c70f5a64bee4cabff66aa685352c5"
+    },
+    {
+      "model": "ASSY-158-H9",
+      "file": "ASSY-158-H9.json",
+      "sites": 64,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "f62fd9bd4e196ad7792172ff13954e540da0100d"
+    },
+    {
+      "model": "ASSY-158-L3",
+      "file": "ASSY-158-L3.json",
+      "sites": 64,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "c86078e067d132c2faedf9853cbaa7513130096d"
+    },
+    {
+      "model": "ASSY-158-M1v1",
+      "file": "ASSY-158-M1v1.json",
+      "sites": 64,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "3589fefbe2af36cbf86b27ca6f6f2d4f4bc326c3"
+    },
+    {
+      "model": "ASSY-158-M1v2",
+      "file": "ASSY-158-M1v2.json",
+      "sites": 64,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "dac5bdf97b5cb0e7cafff17d1ac25b1c05797cc5"
+    },
+    {
+      "model": "ASSY-158-M2v1",
+      "file": "ASSY-158-M2v1.json",
+      "sites": 64,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "af3f5aeee8a2756957a6c3ab4cb1a466517ea115"
+    },
+    {
+      "model": "ASSY-158-M2v2",
+      "file": "ASSY-158-M2v2.json",
+      "sites": 64,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "e55f40e6b887cde79d03cc0015581580be46a8a3"
+    },
+    {
+      "model": "ASSY-158-P-1",
+      "file": "ASSY-158-P-1.json",
+      "sites": 64,
+      "shanks": 4,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "154f80e0f52b3cb51d114f6ed85b6c3366bb90b0"
+    },
+    {
+      "model": "ASSY-158-P-2",
+      "file": "ASSY-158-P-2.json",
+      "sites": 64,
+      "shanks": 4,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "af36bc1390c0ff8270e17a836191c5a4bd51a1b5"
+    },
+    {
+      "model": "ASSY-196-E-1",
+      "file": "ASSY-196-E-1.json",
+      "sites": 32,
+      "shanks": 2,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "804e6ec8fb3f2e9127364a5de7ba53ba762360ac"
+    },
+    {
+      "model": "ASSY-196-E-2",
+      "file": "ASSY-196-E-2.json",
+      "sites": 32,
+      "shanks": 2,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "750ef518a673f3b47eedec4a4becc1c1e27aa2f8"
+    },
+    {
+      "model": "ASSY-196-Fb",
+      "file": "ASSY-196-Fb.json",
+      "sites": 32,
+      "shanks": 3,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "ef5bc60f65f16e52ba5dba369e324509d6b6c446"
+    },
+    {
+      "model": "ASSY-196-H10b",
+      "file": "ASSY-196-H10b.json",
+      "sites": 32,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "1154c316fefaef05b34a1984576aa6e8b508b50b"
+    },
+    {
+      "model": "ASSY-196-H4",
+      "file": "ASSY-196-H4.json",
+      "sites": 32,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "73e0c7ffa3f0c9c815fec19077e9d45f79b47cbf"
+    },
+    {
+      "model": "ASSY-196-H6b",
+      "file": "ASSY-196-H6b.json",
+      "sites": 32,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "791999fc5a4a123311a0ba3e1921ae75ae3f8dbd"
+    },
+    {
+      "model": "ASSY-196-P-1",
+      "file": "ASSY-196-P-1.json",
+      "sites": 32,
+      "shanks": 2,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "8d02c8849543dab01e24a29a137016118f411221"
+    },
+    {
+      "model": "ASSY-196-P-2",
+      "file": "ASSY-196-P-2.json",
+      "sites": 32,
+      "shanks": 2,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "f267661d8e7e622fe774e34c85edae50490803db"
+    },
+    {
+      "model": "ASSY-236-E-1",
+      "file": "ASSY-236-E-1.json",
+      "sites": 64,
+      "shanks": 4,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "mini-amp-64-v1"
+      ],
+      "source_blob_sha1": "0cb4835b6c1ef2eaf71add0cc9e5f2e1cded02e1"
+    },
+    {
+      "model": "ASSY-236-E-2",
+      "file": "ASSY-236-E-2.json",
+      "sites": 64,
+      "shanks": 4,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "mini-amp-64-v1"
+      ],
+      "source_blob_sha1": "555d0363e50a9e8dbc7c520b9f74a830c5009b7d"
+    },
+    {
+      "model": "ASSY-236-F",
+      "file": "ASSY-236-F.json",
+      "sites": 64,
+      "shanks": 6,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "mini-amp-64-v1"
+      ],
+      "source_blob_sha1": "f93f02764abb24a22c7bee2a3ebe2c86df43e4c6"
+    },
+    {
+      "model": "ASSY-236-H1",
+      "file": "ASSY-236-H1.json",
+      "sites": 64,
+      "shanks": 2,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "5751d3ba00ab3069e8adcaef42ca041b63a856cb"
+    },
+    {
+      "model": "ASSY-236-H10",
+      "file": "ASSY-236-H10.json",
+      "sites": 64,
+      "shanks": 2,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "mini-amp-64-v1"
+      ],
+      "source_blob_sha1": "27f4edb9544de604efa50efbbce3c10c7912fce1"
+    },
+    {
+      "model": "ASSY-236-H2",
+      "file": "ASSY-236-H2.json",
+      "sites": 64,
+      "shanks": 2,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "mini-amp-64-v1"
+      ],
+      "source_blob_sha1": "28a30f68159aa851852c26d4d3ec3ca3a87450c5"
+    },
+    {
+      "model": "ASSY-236-H3",
+      "file": "ASSY-236-H3.json",
+      "sites": 64,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "mini-amp-64-v1"
+      ],
+      "source_blob_sha1": "89561e2767a2f1781bef990c29d7e2f4ccbbc59c"
+    },
+    {
+      "model": "ASSY-236-H5",
+      "file": "ASSY-236-H5.json",
+      "sites": 64,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "mini-amp-64-v1"
+      ],
+      "source_blob_sha1": "f7673a3db3a5b87918292e05f7b2dd4a4383d823"
+    },
+    {
+      "model": "ASSY-236-H6",
+      "file": "ASSY-236-H6.json",
+      "sites": 64,
+      "shanks": 2,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "mini-amp-64-v1"
+      ],
+      "source_blob_sha1": "bacc27227d17687c2358c437b77ae6c2d10d0546"
+    },
+    {
+      "model": "ASSY-236-H7",
+      "file": "ASSY-236-H7.json",
+      "sites": 64,
+      "shanks": 2,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "mini-amp-64-v1"
+      ],
+      "source_blob_sha1": "e59b75695b01fa4d875de29d56a318b4de8da5fc"
+    },
+    {
+      "model": "ASSY-236-H8",
+      "file": "ASSY-236-H8.json",
+      "sites": 64,
+      "shanks": 2,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "mini-amp-64-v1"
+      ],
+      "source_blob_sha1": "93c3825c068719d531cbec565d6f2a1c62c3ba9f"
+    },
+    {
+      "model": "ASSY-236-H9",
+      "file": "ASSY-236-H9.json",
+      "sites": 64,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "mini-amp-64-v1"
+      ],
+      "source_blob_sha1": "bef1c158d92c9fe455b5729620c60a3deced0a8b"
+    },
+    {
+      "model": "ASSY-236-L3",
+      "file": "ASSY-236-L3.json",
+      "sites": 64,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "mini-amp-64-v1"
+      ],
+      "source_blob_sha1": "f59b36b6440bb8acddf40218da6f2c4e0433053d"
+    },
+    {
+      "model": "ASSY-236-M1v1",
+      "file": "ASSY-236-M1v1.json",
+      "sites": 64,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "mini-amp-64-v1"
+      ],
+      "source_blob_sha1": "b2c55b96c457332d8570709c8462672c30ccf513"
+    },
+    {
+      "model": "ASSY-236-M1v2",
+      "file": "ASSY-236-M1v2.json",
+      "sites": 64,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "mini-amp-64-v1"
+      ],
+      "source_blob_sha1": "84faeefe3a43e6591415564732090d9b629d2fa6"
+    },
+    {
+      "model": "ASSY-236-M2v1",
+      "file": "ASSY-236-M2v1.json",
+      "sites": 64,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "mini-amp-64-v1"
+      ],
+      "source_blob_sha1": "419e1bf9908ba087f6a14ef4f31ef64ea99f9812"
+    },
+    {
+      "model": "ASSY-236-M2v2",
+      "file": "ASSY-236-M2v2.json",
+      "sites": 64,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "mini-amp-64-v1"
+      ],
+      "source_blob_sha1": "619d59af60077a8e59006044c8440a21e7ade8f8"
+    },
+    {
+      "model": "ASSY-236-P-1",
+      "file": "ASSY-236-P-1.json",
+      "sites": 64,
+      "shanks": 4,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "mini-amp-64-v1"
+      ],
+      "source_blob_sha1": "b65ec5ce62b2c0ad25ca0f9f0f1d7edb441c1bd5"
+    },
+    {
+      "model": "ASSY-236-P-2",
+      "file": "ASSY-236-P-2.json",
+      "sites": 64,
+      "shanks": 4,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "mini-amp-64-v1"
+      ],
+      "source_blob_sha1": "1fcfaac47ef82b163cfc876c1800fbe6c84e2370"
+    },
+    {
+      "model": "ASSY-276-E-1",
+      "file": "ASSY-276-E-1.json",
+      "sites": 64,
+      "shanks": 4,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "cde317d86ea46a8eaedc6fa622a7063838890c69"
+    },
+    {
+      "model": "ASSY-276-E-2",
+      "file": "ASSY-276-E-2.json",
+      "sites": 64,
+      "shanks": 4,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "7138634d4671a5897c327219aae7af1099b8044e"
+    },
+    {
+      "model": "ASSY-276-F",
+      "file": "ASSY-276-F.json",
+      "sites": 64,
+      "shanks": 6,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "4a6e27f0058fef6371743b43bd771365132560a3"
+    },
+    {
+      "model": "ASSY-276-H10",
+      "file": "ASSY-276-H10.json",
+      "sites": 64,
+      "shanks": 2,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "0277312256903010d4352210959762f7d079ea19"
+    },
+    {
+      "model": "ASSY-276-H2",
+      "file": "ASSY-276-H2.json",
+      "sites": 64,
+      "shanks": 2,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "b04431423167877a6935093dab862b13f4e761a0"
+    },
+    {
+      "model": "ASSY-276-H3",
+      "file": "ASSY-276-H3.json",
+      "sites": 64,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "b91c0b73c884a1c05970ee0f2546622d56565c68"
+    },
+    {
+      "model": "ASSY-276-H5",
+      "file": "ASSY-276-H5.json",
+      "sites": 64,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "b1ab31f87baddcbe881bc0700064202c93908c82"
+    },
+    {
+      "model": "ASSY-276-H6",
+      "file": "ASSY-276-H6.json",
+      "sites": 64,
+      "shanks": 2,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "6df7810eac17550b63643634c3a174c8ec00f282"
+    },
+    {
+      "model": "ASSY-276-H7",
+      "file": "ASSY-276-H7.json",
+      "sites": 64,
+      "shanks": 2,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "28a9f772354dd100ce3df9e342be648db1ccdf2e"
+    },
+    {
+      "model": "ASSY-276-H8",
+      "file": "ASSY-276-H8.json",
+      "sites": 64,
+      "shanks": 2,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "254e27fddc93a19d0036529907da598a0cc5a132"
+    },
+    {
+      "model": "ASSY-276-H9",
+      "file": "ASSY-276-H9.json",
+      "sites": 64,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "6310f95bb074285d8ab218a2d3032a988303c0c5"
+    },
+    {
+      "model": "ASSY-276-L3",
+      "file": "ASSY-276-L3.json",
+      "sites": 64,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "12ac2961ceab389fd2a6653e4ba006c848b6355b"
+    },
+    {
+      "model": "ASSY-276-M1v1",
+      "file": "ASSY-276-M1v1.json",
+      "sites": 64,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "23afc7f08c155fd56bdc15097fb43a75e6fd5ed6"
+    },
+    {
+      "model": "ASSY-276-M1v2",
+      "file": "ASSY-276-M1v2.json",
+      "sites": 64,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "5b7715efa450b044be91f15002a07946aed55664"
+    },
+    {
+      "model": "ASSY-276-M2v1",
+      "file": "ASSY-276-M2v1.json",
+      "sites": 64,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "f9c0179d064b274cbf566ce6e61d028c56152fa5"
+    },
+    {
+      "model": "ASSY-276-M2v2",
+      "file": "ASSY-276-M2v2.json",
+      "sites": 64,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "ad9068e78e1c08438a9e827bed8601fcb3f51a5e"
+    },
+    {
+      "model": "ASSY-276-P-1",
+      "file": "ASSY-276-P-1.json",
+      "sites": 64,
+      "shanks": 4,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "0dfcaefdc8ab7b0a0a50ec3c02778aa980d08371"
+    },
+    {
+      "model": "ASSY-276-P-2",
+      "file": "ASSY-276-P-2.json",
+      "sites": 64,
+      "shanks": 4,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "d5c445f7d2cec8703156c155109bb5fa7bee2762"
+    },
+    {
+      "model": "ASSY-325-E-1",
+      "file": "ASSY-325-E-1.json",
+      "sites": 64,
+      "shanks": 4,
+      "mapped_channels": 64,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "builtin-intan"
+      ],
+      "source_blob_sha1": "d9b7470eaf5dc93f2de5233be09f93e76fab7a27"
+    },
+    {
+      "model": "ASSY-325-E-2",
+      "file": "ASSY-325-E-2.json",
+      "sites": 64,
+      "shanks": 4,
+      "mapped_channels": 64,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "builtin-intan"
+      ],
+      "source_blob_sha1": "f4bcaf245417c2587b6c1a1ee1f4efb956817498"
+    },
+    {
+      "model": "ASSY-325-F",
+      "file": "ASSY-325-F.json",
+      "sites": 64,
+      "shanks": 6,
+      "mapped_channels": 64,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "builtin-intan"
+      ],
+      "source_blob_sha1": "43c4c031ed8d00d773993cbb2695d1c03c5a209c"
+    },
+    {
+      "model": "ASSY-325-H10",
+      "file": "ASSY-325-H10.json",
+      "sites": 64,
+      "shanks": 2,
+      "mapped_channels": 64,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "builtin-intan"
+      ],
+      "source_blob_sha1": "70746a4a3587203fcaf5378cf588def55a87c62a"
+    },
+    {
+      "model": "ASSY-325-H2",
+      "file": "ASSY-325-H2.json",
+      "sites": 64,
+      "shanks": 2,
+      "mapped_channels": 64,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "builtin-intan"
+      ],
+      "source_blob_sha1": "e4064553161ca8f282c419699a1592fa9e3fc06f"
+    },
+    {
+      "model": "ASSY-325-H3",
+      "file": "ASSY-325-H3.json",
+      "sites": 63,
+      "shanks": 1,
+      "mapped_channels": 63,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "builtin-intan"
+      ],
+      "source_blob_sha1": "d05d364fae7442aa5506f47929c9cde6b18cc48b"
+    },
+    {
+      "model": "ASSY-325-H5",
+      "file": "ASSY-325-H5.json",
+      "sites": 64,
+      "shanks": 1,
+      "mapped_channels": 64,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "builtin-intan"
+      ],
+      "source_blob_sha1": "fad0ba0f970e5ec1f12c96e020fb545a95225cbc"
+    },
+    {
+      "model": "ASSY-325-H6",
+      "file": "ASSY-325-H6.json",
+      "sites": 64,
+      "shanks": 2,
+      "mapped_channels": 64,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "builtin-intan"
+      ],
+      "source_blob_sha1": "f04819312879aac818069904c230e64b3116b7f0"
+    },
+    {
+      "model": "ASSY-325-H7",
+      "file": "ASSY-325-H7.json",
+      "sites": 64,
+      "shanks": 2,
+      "mapped_channels": 64,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "builtin-intan"
+      ],
+      "source_blob_sha1": "36b69f8b0a2f8cc2507693d0de16c1337f23b827"
+    },
+    {
+      "model": "ASSY-325-H8",
+      "file": "ASSY-325-H8.json",
+      "sites": 64,
+      "shanks": 2,
+      "mapped_channels": 64,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "builtin-intan"
+      ],
+      "source_blob_sha1": "3ba4fc1c2cd2c0e9efa87412cf511483c3bc9b49"
+    },
+    {
+      "model": "ASSY-325-H9",
+      "file": "ASSY-325-H9.json",
+      "sites": 63,
+      "shanks": 1,
+      "mapped_channels": 63,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "builtin-intan"
+      ],
+      "source_blob_sha1": "d20ce07e06cf0b0714f73654d045d8af3a926fb2"
+    },
+    {
+      "model": "ASSY-325-L3",
+      "file": "ASSY-325-L3.json",
+      "sites": 63,
+      "shanks": 1,
+      "mapped_channels": 63,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "builtin-intan"
+      ],
+      "source_blob_sha1": "bfa734897a9460d9f1e72f3f2d34be5d15ac2a98"
+    },
+    {
+      "model": "ASSY-325-M1v2",
+      "file": "ASSY-325-M1v2.json",
+      "sites": 64,
+      "shanks": 1,
+      "mapped_channels": 64,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "builtin-intan"
+      ],
+      "source_blob_sha1": "c95065b0b9c735556ad28ee3bd189988599ac17d"
+    },
+    {
+      "model": "ASSY-325-M2v2",
+      "file": "ASSY-325-M2v2.json",
+      "sites": 64,
+      "shanks": 1,
+      "mapped_channels": 64,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "builtin-intan"
+      ],
+      "source_blob_sha1": "fbfd4d3ef41ef0d1cb4d37a23f3836f482ac9c09"
+    },
+    {
+      "model": "ASSY-325-P-1",
+      "file": "ASSY-325-P-1.json",
+      "sites": 64,
+      "shanks": 4,
+      "mapped_channels": 64,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "builtin-intan"
+      ],
+      "source_blob_sha1": "2ec977fd186175a00ce82f811d888e8ef4d0f702"
+    },
+    {
+      "model": "ASSY-325-P-2",
+      "file": "ASSY-325-P-2.json",
+      "sites": 64,
+      "shanks": 4,
+      "mapped_channels": 64,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "builtin-intan"
+      ],
+      "source_blob_sha1": "a8bb204db1be2bfce9a883b63da006ae2b7b0442"
+    },
+    {
+      "model": "ASSY-325D-E-1",
+      "file": "ASSY-325D-E-1.json",
+      "sites": 128,
+      "shanks": 4,
+      "mapped_channels": 128,
+      "curated_correction": true,
+      "headstage_profiles": [
+        "builtin-intan"
+      ],
+      "source_blob_sha1": "6f607c7b685c15cd5c673e56f46b92fdcc41ff57"
+    },
+    {
+      "model": "ASSY-325D-E-2",
+      "file": "ASSY-325D-E-2.json",
+      "sites": 128,
+      "shanks": 4,
+      "mapped_channels": 128,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "builtin-intan"
+      ],
+      "source_blob_sha1": "696ca674e4b8e1046c8723ac66fd24f05e2ce6b6"
+    },
+    {
+      "model": "ASSY-325D-F",
+      "file": "ASSY-325D-F.json",
+      "sites": 128,
+      "shanks": 6,
+      "mapped_channels": 128,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "builtin-intan"
+      ],
+      "source_blob_sha1": "0bc5449a57294f5bcee8a9469281d09646e4aa6f"
+    },
+    {
+      "model": "ASSY-325D-H10",
+      "file": "ASSY-325D-H10.json",
+      "sites": 128,
+      "shanks": 2,
+      "mapped_channels": 128,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "builtin-intan"
+      ],
+      "source_blob_sha1": "b9772112e4a2abce172f176133463fae082081dd"
+    },
+    {
+      "model": "ASSY-325D-H7",
+      "file": "ASSY-325D-H7.json",
+      "sites": 128,
+      "shanks": 2,
+      "mapped_channels": 128,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "builtin-intan"
+      ],
+      "source_blob_sha1": "16413905960f2340a1ff602412390d0eca417fa0"
+    },
+    {
+      "model": "ASSY-325D-P-1",
+      "file": "ASSY-325D-P-1.json",
+      "sites": 128,
+      "shanks": 4,
+      "mapped_channels": 128,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "builtin-intan"
+      ],
+      "source_blob_sha1": "bbf14ddf34dfbc79845fd1ceaf17ddff23611594"
+    },
+    {
+      "model": "ASSY-325D-P-2",
+      "file": "ASSY-325D-P-2.json",
+      "sites": 128,
+      "shanks": 4,
+      "mapped_channels": 128,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "builtin-intan"
+      ],
+      "source_blob_sha1": "3a0af8ad19684fe72fb4b3b9d1e76fbe66e5c2f9"
+    },
+    {
+      "model": "ASSY-350-F8-0",
+      "file": "ASSY-350-F8-0.json",
+      "sites": 128,
+      "shanks": 8,
+      "mapped_channels": 128,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "builtin-intan"
+      ],
+      "source_blob_sha1": "ca24e151a1ac722822456a7babf71f7ef8f26dbe"
+    },
+    {
+      "model": "ASSY-350-F8-1",
+      "file": "ASSY-350-F8-1.json",
+      "sites": 128,
+      "shanks": 8,
+      "mapped_channels": 128,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "builtin-intan"
+      ],
+      "source_blob_sha1": "6c7376bf08ba8f8bd3df86ec1eb99a84b114d4a9"
+    },
+    {
+      "model": "ASSY-350-F8-2",
+      "file": "ASSY-350-F8-2.json",
+      "sites": 128,
+      "shanks": 8,
+      "mapped_channels": 128,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "builtin-intan"
+      ],
+      "source_blob_sha1": "5c01af29979ce3639bb22e5b313251002d4d44c8"
+    },
+    {
+      "model": "ASSY-350-H12",
+      "file": "ASSY-350-H12.json",
+      "sites": 128,
+      "shanks": 2,
+      "mapped_channels": 128,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "builtin-intan"
+      ],
+      "source_blob_sha1": "86d568e352f091708f96c27ecf0431cc590f9a52"
+    },
+    {
+      "model": "ASSY-350-H13",
+      "file": "ASSY-350-H13.json",
+      "sites": 128,
+      "shanks": 1,
+      "mapped_channels": 128,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "builtin-intan"
+      ],
+      "source_blob_sha1": "079d90630f8e69216eee64bd0be13349ff4828e8"
+    },
+    {
+      "model": "ASSY-350-H14-1",
+      "file": "ASSY-350-H14-1.json",
+      "sites": 128,
+      "shanks": 4,
+      "mapped_channels": 128,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "builtin-intan"
+      ],
+      "source_blob_sha1": "296495e32fb9d55b194456d9dc4e58dbecc38a35"
+    },
+    {
+      "model": "ASSY-350-H14-2",
+      "file": "ASSY-350-H14-2.json",
+      "sites": 128,
+      "shanks": 4,
+      "mapped_channels": 128,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "builtin-intan"
+      ],
+      "source_blob_sha1": "803236909b40c0c1e104561399f4ded85bae258e"
+    },
+    {
+      "model": "ASSY-350-H15",
+      "file": "ASSY-350-H15.json",
+      "sites": 128,
+      "shanks": 2,
+      "mapped_channels": 128,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "builtin-intan"
+      ],
+      "source_blob_sha1": "04f2437e37d9952b3eb52cdbca620ab86c762e9b"
+    },
+    {
+      "model": "ASSY-350-H15_2",
+      "file": "ASSY-350-H15_2.json",
+      "sites": 128,
+      "shanks": 2,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "539f8e0012a5395ce0339fb354986170fee0a893"
+    },
+    {
+      "model": "ASSY-350-H16",
+      "file": "ASSY-350-H16.json",
+      "sites": 128,
+      "shanks": 4,
+      "mapped_channels": 128,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "builtin-intan"
+      ],
+      "source_blob_sha1": "1ed29bc0c29ab03c5f2083c7a922aaf37acfaca5"
+    },
+    {
+      "model": "ASSY-350-H20",
+      "file": "ASSY-350-H20.json",
+      "sites": 128,
+      "shanks": 4,
+      "mapped_channels": 128,
+      "curated_correction": true,
+      "headstage_profiles": [
+        "builtin-intan"
+      ],
+      "source_blob_sha1": "2d7eadf699001c6ffad3bda68a5862dee4ed2725"
+    },
+    {
+      "model": "ASSY-350-L13",
+      "file": "ASSY-350-L13.json",
+      "sites": 128,
+      "shanks": 2,
+      "mapped_channels": 128,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "builtin-intan"
+      ],
+      "source_blob_sha1": "eea03ef517d394c8e3d037dd2150dea31f26f880"
+    },
+    {
+      "model": "ASSY-350-L14",
+      "file": "ASSY-350-L14.json",
+      "sites": 128,
+      "shanks": 8,
+      "mapped_channels": 128,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "builtin-intan"
+      ],
+      "source_blob_sha1": "ad38031695983717fb0cc18ccac2dacc7a0df1a0"
+    },
+    {
+      "model": "ASSY-37-E-1",
+      "file": "ASSY-37-E-1.json",
+      "sites": 32,
+      "shanks": 2,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-32-a32-om32"
+      ],
+      "source_blob_sha1": "99c223188b7efd715f9e46613d737f3dbb2792d5"
+    },
+    {
+      "model": "ASSY-37-E-2",
+      "file": "ASSY-37-E-2.json",
+      "sites": 32,
+      "shanks": 2,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-32-a32-om32"
+      ],
+      "source_blob_sha1": "295655abc6f6a41098fc0cbc52b0e904cf47ecec"
+    },
+    {
+      "model": "ASSY-37-Fb",
+      "file": "ASSY-37-Fb.json",
+      "sites": 32,
+      "shanks": 3,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-32-a32-om32"
+      ],
+      "source_blob_sha1": "2c68279145efcbb40007ae4ee568596f7b8c30ab"
+    },
+    {
+      "model": "ASSY-37-H10b",
+      "file": "ASSY-37-H10b.json",
+      "sites": 32,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-32-a32-om32"
+      ],
+      "source_blob_sha1": "0edf4b0d0664b35807d8dac2609ec98f64c5d5e7"
+    },
+    {
+      "model": "ASSY-37-H1b",
+      "file": "ASSY-37-H1b.json",
+      "sites": 32,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "e88312799ba64bd4a54abe310f8fa5f51f22cf19"
+    },
+    {
+      "model": "ASSY-37-H3",
+      "file": "ASSY-37-H3.json",
+      "sites": 64,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "a3ee8836c8a12fb936ababf4829a0caaf630e67c"
+    },
+    {
+      "model": "ASSY-37-H4",
+      "file": "ASSY-37-H4.json",
+      "sites": 32,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-32-a32-om32"
+      ],
+      "source_blob_sha1": "2008ffe2fdeb28501c9e225728783eef9421ef23"
+    },
+    {
+      "model": "ASSY-37-H6b",
+      "file": "ASSY-37-H6b.json",
+      "sites": 32,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-32-a32-om32"
+      ],
+      "source_blob_sha1": "94c344783d644bfcab55c1151c8cb1ef98bcf7d6"
+    },
+    {
+      "model": "ASSY-37-H7b",
+      "file": "ASSY-37-H7b.json",
+      "sites": 32,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-32-a32-om32"
+      ],
+      "source_blob_sha1": "16c85d74cfb22b1bde917ab9c1dfa19853eac9ed"
+    },
+    {
+      "model": "ASSY-37-H8b",
+      "file": "ASSY-37-H8b.json",
+      "sites": 32,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-32-a32-om32"
+      ],
+      "source_blob_sha1": "25879dbe8454cf5087e1da756434baea241c4e22"
+    },
+    {
+      "model": "ASSY-37-L2",
+      "file": "ASSY-37-L2.json",
+      "sites": 32,
+      "shanks": 2,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-32-a32-om32"
+      ],
+      "source_blob_sha1": "785fa769de724fb594a4f076e2a18da0a76493db"
+    },
+    {
+      "model": "ASSY-37-P-1",
+      "file": "ASSY-37-P-1.json",
+      "sites": 32,
+      "shanks": 2,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-32-a32-om32"
+      ],
+      "source_blob_sha1": "31d6241d3ed75d5599c49b3084e3ea815b10ae19"
+    },
+    {
+      "model": "ASSY-37-P-2",
+      "file": "ASSY-37-P-2.json",
+      "sites": 32,
+      "shanks": 2,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-32-a32-om32"
+      ],
+      "source_blob_sha1": "6bd66febfff6ffce6b80c194d64b774df4bb81be"
+    },
+    {
+      "model": "ASSY-77-E-1",
+      "file": "ASSY-77-E-1.json",
+      "sites": 64,
+      "shanks": 4,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-64-a64-om32x2"
+      ],
+      "source_blob_sha1": "b5a3397a2602c409e401cec5eae1efc738f6bdf1"
+    },
+    {
+      "model": "ASSY-77-E-2",
+      "file": "ASSY-77-E-2.json",
+      "sites": 64,
+      "shanks": 4,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-64-a64-om32x2"
+      ],
+      "source_blob_sha1": "dae76f5c4eb37545e6e3b557b6ec452685fe76b5"
+    },
+    {
+      "model": "ASSY-77-F",
+      "file": "ASSY-77-F.json",
+      "sites": 64,
+      "shanks": 6,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-64-a64-om32x2"
+      ],
+      "source_blob_sha1": "4dec0c136f8163ad3d6d581c35b6f7ca95836f13"
+    },
+    {
+      "model": "ASSY-77-H1",
+      "file": "ASSY-77-H1.json",
+      "sites": 64,
+      "shanks": 2,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "5794c73127066bcdcfffc804db03f7c0aac8c63d"
+    },
+    {
+      "model": "ASSY-77-H10",
+      "file": "ASSY-77-H10.json",
+      "sites": 64,
+      "shanks": 2,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-64-a64-om32x2"
+      ],
+      "source_blob_sha1": "fde256ec3e595cf0a26a4d0f92dddaf9daa6149c"
+    },
+    {
+      "model": "ASSY-77-H2",
+      "file": "ASSY-77-H2.json",
+      "sites": 64,
+      "shanks": 2,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-64-a64-om32x2"
+      ],
+      "source_blob_sha1": "ef90a6fcd4c8972fdf7c7dd101b157d7daa26527"
+    },
+    {
+      "model": "ASSY-77-H3",
+      "file": "ASSY-77-H3.json",
+      "sites": 64,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-64-a64-om32x2"
+      ],
+      "source_blob_sha1": "f3b75d883b0a894212310f767b23a45ec3745d45"
+    },
+    {
+      "model": "ASSY-77-H5",
+      "file": "ASSY-77-H5.json",
+      "sites": 64,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-64-a64-om32x2"
+      ],
+      "source_blob_sha1": "d04a023933143c8c5237601b3927cfffa58f9b9e"
+    },
+    {
+      "model": "ASSY-77-H6",
+      "file": "ASSY-77-H6.json",
+      "sites": 64,
+      "shanks": 2,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-64-a64-om32x2"
+      ],
+      "source_blob_sha1": "be9a97963d9842e8b5bf249372d27633b3f49c86"
+    },
+    {
+      "model": "ASSY-77-H7",
+      "file": "ASSY-77-H7.json",
+      "sites": 64,
+      "shanks": 2,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-64-a64-om32x2"
+      ],
+      "source_blob_sha1": "ca6b12f00c45c8fe8f9b99b9dfe9b4fe735a5dcd"
+    },
+    {
+      "model": "ASSY-77-H8",
+      "file": "ASSY-77-H8.json",
+      "sites": 64,
+      "shanks": 2,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-64-a64-om32x2"
+      ],
+      "source_blob_sha1": "83c1eeedc21436e57a3a310a7cd14aeee6daf26f"
+    },
+    {
+      "model": "ASSY-77-H9",
+      "file": "ASSY-77-H9.json",
+      "sites": 64,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-64-a64-om32x2"
+      ],
+      "source_blob_sha1": "668451b59a5950ea25997e298779126bf6bea78a"
+    },
+    {
+      "model": "ASSY-77-L3",
+      "file": "ASSY-77-L3.json",
+      "sites": 64,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-64-a64-om32x2"
+      ],
+      "source_blob_sha1": "3fb3f8ef3030b0f002233dfa48d3b987344ac5fe"
+    },
+    {
+      "model": "ASSY-77-M1v1",
+      "file": "ASSY-77-M1v1.json",
+      "sites": 64,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "7fbda6936be6f11fe0063502d2a7138201f44002"
+    },
+    {
+      "model": "ASSY-77-M1v2",
+      "file": "ASSY-77-M1v2.json",
+      "sites": 64,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-64-a64-om32x2"
+      ],
+      "source_blob_sha1": "a57049f408d70de7215d2d6a2e0fcd7130addf4d"
+    },
+    {
+      "model": "ASSY-77-M2v1",
+      "file": "ASSY-77-M2v1.json",
+      "sites": 64,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "67da9ee4b9be61edbf53a8c2f98c8c65bc7681c9"
+    },
+    {
+      "model": "ASSY-77-M2v2",
+      "file": "ASSY-77-M2v2.json",
+      "sites": 64,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-64-a64-om32x2"
+      ],
+      "source_blob_sha1": "4f9bd7c58da7c1bde15fa75f26a7f450305ce6da"
+    },
+    {
+      "model": "ASSY-77-P-1",
+      "file": "ASSY-77-P-1.json",
+      "sites": 64,
+      "shanks": 4,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-64-a64-om32x2"
+      ],
+      "source_blob_sha1": "63a9d675d8cec776ad8ead50694159b30aa7b204"
+    },
+    {
+      "model": "ASSY-77-P-2",
+      "file": "ASSY-77-P-2.json",
+      "sites": 64,
+      "shanks": 4,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-64-a64-om32x2"
+      ],
+      "source_blob_sha1": "0fe45ef88d0abaa0ab3c930c2183a2d97205ae93"
+    },
+    {
+      "model": "ASSY-79-E-1",
+      "file": "ASSY-79-E-1.json",
+      "sites": 16,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-16"
+      ],
+      "source_blob_sha1": "50b5d5484ecc2b164a13aef2620a6ac6e16a7dbd"
+    },
+    {
+      "model": "ASSY-79-E-2",
+      "file": "ASSY-79-E-2.json",
+      "sites": 16,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-16"
+      ],
+      "source_blob_sha1": "b4d338e7dc41495371dfc1491789b16cea7e4529"
+    },
+    {
+      "model": "ASSY-79-L1",
+      "file": "ASSY-79-L1.json",
+      "sites": 16,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [],
+      "source_blob_sha1": "ad199f4d524c7e3b898ab5008b945c16f6e206d9"
+    },
+    {
+      "model": "ASSY-79-P-1",
+      "file": "ASSY-79-P-1.json",
+      "sites": 16,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-16"
+      ],
+      "source_blob_sha1": "bd8315074cc7749b208bb41eecbbbf29a42e2bb1"
+    },
+    {
+      "model": "ASSY-79-P-2",
+      "file": "ASSY-79-P-2.json",
+      "sites": 16,
+      "shanks": 1,
+      "mapped_channels": 0,
+      "curated_correction": false,
+      "headstage_profiles": [
+        "intan-rhd-16"
+      ],
+      "source_blob_sha1": "b3c63bd63050d2a240e5786f86e2430113ae338c"
+    }
+  ]
+}

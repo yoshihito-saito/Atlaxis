@@ -1,0 +1,1131 @@
+{
+  "geometry": {
+    "name": "ASSY-325-L3",
+    "contacts": [
+      {
+        "contact_id": "1",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 2473.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "2",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 3173.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "3",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 2523.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "4",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 3123.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "5",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 2573.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "6",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 3073.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "7",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 2623.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "8",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 3023.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "9",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 2673.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "10",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 2973.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "11",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 2723.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "12",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 2923.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "13",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 2773.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "14",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 2873.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "15",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 2823.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "16",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 2423.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "17",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 1673.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "18",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 2373.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "19",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 1723.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "20",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 2323.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "21",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 1773.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "22",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 2273.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "23",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 1823.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "24",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 2223.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "25",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 1873.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "26",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 2173.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "27",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 1923.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "28",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 2123.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "29",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 1973.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "30",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 2073.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "31",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 2023.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "32",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 1223.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "33",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 1273.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "34",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 1173.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "35",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 1323.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "36",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 1123.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "37",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 1373.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "38",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 1073.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "39",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 1423.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "40",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 1023.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "41",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 1473.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "42",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 973.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "43",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 1523.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "44",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 923.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "45",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 1573.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "46",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 873.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "47",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 1623.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "48",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 423.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "49",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 473.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "50",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 373.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "51",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 523.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "52",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 323.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "53",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 573.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "54",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 273.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "55",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 623.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "56",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 223.52478379610503,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "57",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 673.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "58",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 173.52478379610503,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "59",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 723.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "60",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 123.52478379610503,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "61",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 773.524783796105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "62",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 73.52478379610503,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "63",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 823.524783796105,
+        "z_um": -7.5
+      }
+    ],
+    "tip_um": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "y_to_base": 1,
+    "units": "um",
+    "bodies": [
+      {
+        "outline_um": [
+          [
+            -24.0,
+            9073.524783796105,
+            0.0
+          ],
+          [
+            24.0,
+            9073.524783796105,
+            0.0
+          ],
+          [
+            24.0,
+            61.93548387096773,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            -24.0,
+            61.93548387096773,
+            0.0
+          ]
+        ],
+        "thickness_um": 15.0,
+        "shank_id": 0
+      }
+    ],
+    "metadata": {
+      "manufacturer": "Cambridge NeuroTech",
+      "assembly": "ASSY-325",
+      "provisional": true,
+      "geometry_status": "upstream_unverified",
+      "coordinate_convention": "um; leftmost contour tip at origin; +x across shanks; +y toward base; front is -z.",
+      "site_id_convention": "Physical source IDs retained; recording channels are assigned by the selected official wiring profile.",
+      "source_origin_um": [
+        0.0,
+        -73.52478379610503,
+        0.0
+      ],
+      "source_annotations": {
+        "manufacturer": "cambridgeneurotech",
+        "model_name": "ASSY-325-L3"
+      },
+      "source_shank_ids": [],
+      "shank_note": "Zero-based left-to-right shanks recovered from sharp contour tips; common base partitioned at inter-tip midpoints. Source labels retained separately.",
+      "faces": 1,
+      "contact_sides": [
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front"
+      ],
+      "contact_shapes": [
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect"
+      ],
+      "contact_shape_params": [
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        }
+      ],
+      "display_thickness_um": 15.0,
+      "body_note": "Upstream 2D outline retained, including any common base. Nominal extrusion only: 15 um single-sided / 30 um double-sided; exact physical thickness is unspecified.",
+      "geometry_note": "Unverified upstream dimensions and tip origin. x/y are translated without scaling; face z uses nominal half-thickness with unknown physical error. No manufacturer-wide dimensional audit performed. Source supplies 63 sites; no additional site has been invented.",
+      "routing_note": "Manufacturer zero-based Intan / Open Ephys channels. Upstream geometry omits the uppermost physical site (channel 0); no site was fabricated.",
+      "headstage_profiles": [
+        {
+          "id": "builtin-intan",
+          "label": "Built-in Intan",
+          "n_channels": 64,
+          "contact_to_channel": {
+            "2": 2,
+            "4": 4,
+            "6": 6,
+            "8": 8,
+            "10": 10,
+            "12": 12,
+            "14": 14,
+            "15": 15,
+            "13": 13,
+            "11": 11,
+            "9": 9,
+            "7": 7,
+            "5": 5,
+            "3": 3,
+            "1": 1,
+            "16": 16,
+            "18": 18,
+            "20": 20,
+            "22": 22,
+            "24": 24,
+            "26": 26,
+            "28": 28,
+            "30": 30,
+            "31": 31,
+            "29": 29,
+            "27": 27,
+            "25": 25,
+            "23": 23,
+            "21": 21,
+            "19": 19,
+            "17": 17,
+            "47": 47,
+            "45": 45,
+            "43": 43,
+            "41": 41,
+            "39": 39,
+            "37": 37,
+            "35": 35,
+            "33": 33,
+            "32": 32,
+            "34": 34,
+            "36": 36,
+            "38": 38,
+            "40": 40,
+            "42": 42,
+            "44": 44,
+            "46": 46,
+            "63": 63,
+            "61": 61,
+            "59": 59,
+            "57": 57,
+            "55": 55,
+            "53": 53,
+            "51": 51,
+            "49": 49,
+            "48": 48,
+            "50": 50,
+            "52": 52,
+            "54": 54,
+            "56": 56,
+            "58": 58,
+            "60": 60,
+            "62": 62
+          },
+          "source_url": "https://www.cambridgeneurotech.com/assets/files/ASSY-325-H3_L3-map.pdf",
+          "source_sha256": "0b612240823fbd7ee13b19d785371d63e58cc6108073234e2171225cf7a69bdd",
+          "note": "Upstream geometry omits the uppermost physical site (channel 0); no site was fabricated.",
+          "missing_channels": [
+            0
+          ]
+        }
+      ],
+      "headstage_fixed": true,
+      "sources": [
+        {
+          "url": "https://www.cambridgeneurotech.com/assets/files/ASSY-325-H3_L3-map.pdf",
+          "sha256": "0b612240823fbd7ee13b19d785371d63e58cc6108073234e2171225cf7a69bdd"
+        },
+        {
+          "url": "https://github.com/SpikeInterface/probeinterface_library/blob/bb40894cdf55787fed7b7198ea854497d52ca687/cambridgeneurotech/ASSY-325-L3/ASSY-325-L3.json",
+          "revision": "bb40894cdf55787fed7b7198ea854497d52ca687",
+          "blob_sha1": "bfa734897a9460d9f1e72f3f2d34be5d15ac2a98"
+        }
+      ],
+      "source_license": "MIT; see LICENSE-ProbeInterface.txt in this directory.",
+      "upstream_model": "ASSY-325-L3",
+      "conversion": "ProbeInterface JSON to Atlaxis"
+    }
+  },
+  "channel_map": {
+    "contact_to_channel": {
+      "2": 2,
+      "4": 4,
+      "6": 6,
+      "8": 8,
+      "10": 10,
+      "12": 12,
+      "14": 14,
+      "15": 15,
+      "13": 13,
+      "11": 11,
+      "9": 9,
+      "7": 7,
+      "5": 5,
+      "3": 3,
+      "1": 1,
+      "16": 16,
+      "18": 18,
+      "20": 20,
+      "22": 22,
+      "24": 24,
+      "26": 26,
+      "28": 28,
+      "30": 30,
+      "31": 31,
+      "29": 29,
+      "27": 27,
+      "25": 25,
+      "23": 23,
+      "21": 21,
+      "19": 19,
+      "17": 17,
+      "47": 47,
+      "45": 45,
+      "43": 43,
+      "41": 41,
+      "39": 39,
+      "37": 37,
+      "35": 35,
+      "33": 33,
+      "32": 32,
+      "34": 34,
+      "36": 36,
+      "38": 38,
+      "40": 40,
+      "42": 42,
+      "44": 44,
+      "46": 46,
+      "63": 63,
+      "61": 61,
+      "59": 59,
+      "57": 57,
+      "55": 55,
+      "53": 53,
+      "51": 51,
+      "49": 49,
+      "48": 48,
+      "50": 50,
+      "52": 52,
+      "54": 54,
+      "56": 56,
+      "58": 58,
+      "60": 60,
+      "62": 62
+    },
+    "n_channels": 64,
+    "groups": [
+      [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63
+      ]
+    ],
+    "skipped": [],
+    "source_xml": null,
+    "blueprint": {},
+    "source_imro": null,
+    "pending_sites": [],
+    "rois": [],
+    "headstage_id": "builtin-intan"
+  }
+}

@@ -1,0 +1,30 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "probe-planner"
+version = "0.1.0"
+description = "Generic atlas-based electrophysiology probe planning pilot"
+readme = "README.md"
+requires-python = ">=3.11,<3.12"
+dependencies = [
+  "numpy>=1.26,<3",
+  "scipy>=1.12,<2",
+  "PySide6>=6.7,<7",
+  "pyvista>=0.44,<0.47",
+  "vtk>=9.3,<9.6",
+  "pyvistaqt>=0.11,<0.12",
+  "brainglobe-atlasapi==2.3.1",
+  "tifffile>=2023.7.10",
+  "neurocarto==0.2.2",
+]
+
+[project.scripts]
+probe-planner = "probe_planner.__main__:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/probe_planner"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"probes" = "probe_planner/data/probes"

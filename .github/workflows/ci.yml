@@ -1,0 +1,15 @@
+name: Desktop import check
+on: [push, pull_request]
+jobs:
+  import:
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      - run: uv sync --locked
+      - run: uv run python -c "from probe_planner.ui.main_window import MainWindow"

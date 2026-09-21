@@ -1,0 +1,1381 @@
+{
+  "geometry": {
+    "name": "A4x32-Poly2-lin-5mm-20s-150-160",
+    "contacts": [
+      {
+        "contact_id": "s0_front_0000",
+        "shank_id": 0,
+        "x_um": 8.660254037844387,
+        "y_um": 35,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0001",
+        "shank_id": 0,
+        "x_um": -8.660254037844387,
+        "y_um": 45,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0002",
+        "shank_id": 0,
+        "x_um": 8.660254037844387,
+        "y_um": 55,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0003",
+        "shank_id": 0,
+        "x_um": -8.660254037844387,
+        "y_um": 65,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0004",
+        "shank_id": 0,
+        "x_um": 8.660254037844387,
+        "y_um": 75,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0005",
+        "shank_id": 0,
+        "x_um": -8.660254037844387,
+        "y_um": 85,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0006",
+        "shank_id": 0,
+        "x_um": 8.660254037844387,
+        "y_um": 95,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0007",
+        "shank_id": 0,
+        "x_um": -8.660254037844387,
+        "y_um": 105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0008",
+        "shank_id": 0,
+        "x_um": 8.660254037844387,
+        "y_um": 115,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0009",
+        "shank_id": 0,
+        "x_um": -8.660254037844387,
+        "y_um": 125,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0010",
+        "shank_id": 0,
+        "x_um": 8.660254037844387,
+        "y_um": 135,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0011",
+        "shank_id": 0,
+        "x_um": -8.660254037844387,
+        "y_um": 145,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0012",
+        "shank_id": 0,
+        "x_um": 8.660254037844387,
+        "y_um": 155,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0013",
+        "shank_id": 0,
+        "x_um": -8.660254037844387,
+        "y_um": 165,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0014",
+        "shank_id": 0,
+        "x_um": 8.660254037844387,
+        "y_um": 175,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0015",
+        "shank_id": 0,
+        "x_um": -8.660254037844387,
+        "y_um": 185,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0016",
+        "shank_id": 0,
+        "x_um": 8.660254037844387,
+        "y_um": 195,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0017",
+        "shank_id": 0,
+        "x_um": -8.660254037844387,
+        "y_um": 205,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0018",
+        "shank_id": 0,
+        "x_um": 8.660254037844387,
+        "y_um": 215,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0019",
+        "shank_id": 0,
+        "x_um": -8.660254037844387,
+        "y_um": 225,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0020",
+        "shank_id": 0,
+        "x_um": 8.660254037844387,
+        "y_um": 235,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0021",
+        "shank_id": 0,
+        "x_um": -8.660254037844387,
+        "y_um": 245,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0022",
+        "shank_id": 0,
+        "x_um": 8.660254037844387,
+        "y_um": 255,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0023",
+        "shank_id": 0,
+        "x_um": -8.660254037844387,
+        "y_um": 265,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0024",
+        "shank_id": 0,
+        "x_um": 8.660254037844387,
+        "y_um": 275,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0025",
+        "shank_id": 0,
+        "x_um": -8.660254037844387,
+        "y_um": 285,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0026",
+        "shank_id": 0,
+        "x_um": 8.660254037844387,
+        "y_um": 295,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0027",
+        "shank_id": 0,
+        "x_um": -8.660254037844387,
+        "y_um": 305,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0028",
+        "shank_id": 0,
+        "x_um": 8.660254037844387,
+        "y_um": 315,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0029",
+        "shank_id": 0,
+        "x_um": -8.660254037844387,
+        "y_um": 325,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0030",
+        "shank_id": 0,
+        "x_um": 0,
+        "y_um": 425,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0031",
+        "shank_id": 0,
+        "x_um": 0,
+        "y_um": 525,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0000",
+        "shank_id": 1,
+        "x_um": 158.6602540378444,
+        "y_um": 35,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0001",
+        "shank_id": 1,
+        "x_um": 141.3397459621556,
+        "y_um": 45,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0002",
+        "shank_id": 1,
+        "x_um": 158.6602540378444,
+        "y_um": 55,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0003",
+        "shank_id": 1,
+        "x_um": 141.3397459621556,
+        "y_um": 65,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0004",
+        "shank_id": 1,
+        "x_um": 158.6602540378444,
+        "y_um": 75,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0005",
+        "shank_id": 1,
+        "x_um": 141.3397459621556,
+        "y_um": 85,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0006",
+        "shank_id": 1,
+        "x_um": 158.6602540378444,
+        "y_um": 95,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0007",
+        "shank_id": 1,
+        "x_um": 141.3397459621556,
+        "y_um": 105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0008",
+        "shank_id": 1,
+        "x_um": 158.6602540378444,
+        "y_um": 115,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0009",
+        "shank_id": 1,
+        "x_um": 141.3397459621556,
+        "y_um": 125,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0010",
+        "shank_id": 1,
+        "x_um": 158.6602540378444,
+        "y_um": 135,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0011",
+        "shank_id": 1,
+        "x_um": 141.3397459621556,
+        "y_um": 145,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0012",
+        "shank_id": 1,
+        "x_um": 158.6602540378444,
+        "y_um": 155,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0013",
+        "shank_id": 1,
+        "x_um": 141.3397459621556,
+        "y_um": 165,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0014",
+        "shank_id": 1,
+        "x_um": 158.6602540378444,
+        "y_um": 175,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0015",
+        "shank_id": 1,
+        "x_um": 141.3397459621556,
+        "y_um": 185,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0016",
+        "shank_id": 1,
+        "x_um": 158.6602540378444,
+        "y_um": 195,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0017",
+        "shank_id": 1,
+        "x_um": 141.3397459621556,
+        "y_um": 205,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0018",
+        "shank_id": 1,
+        "x_um": 158.6602540378444,
+        "y_um": 215,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0019",
+        "shank_id": 1,
+        "x_um": 141.3397459621556,
+        "y_um": 225,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0020",
+        "shank_id": 1,
+        "x_um": 158.6602540378444,
+        "y_um": 235,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0021",
+        "shank_id": 1,
+        "x_um": 141.3397459621556,
+        "y_um": 245,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0022",
+        "shank_id": 1,
+        "x_um": 158.6602540378444,
+        "y_um": 255,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0023",
+        "shank_id": 1,
+        "x_um": 141.3397459621556,
+        "y_um": 265,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0024",
+        "shank_id": 1,
+        "x_um": 158.6602540378444,
+        "y_um": 275,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0025",
+        "shank_id": 1,
+        "x_um": 141.3397459621556,
+        "y_um": 285,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0026",
+        "shank_id": 1,
+        "x_um": 158.6602540378444,
+        "y_um": 295,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0027",
+        "shank_id": 1,
+        "x_um": 141.3397459621556,
+        "y_um": 305,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0028",
+        "shank_id": 1,
+        "x_um": 158.6602540378444,
+        "y_um": 315,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0029",
+        "shank_id": 1,
+        "x_um": 141.3397459621556,
+        "y_um": 325,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0030",
+        "shank_id": 1,
+        "x_um": 150,
+        "y_um": 525,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0031",
+        "shank_id": 1,
+        "x_um": 150,
+        "y_um": 625,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0000",
+        "shank_id": 2,
+        "x_um": 308.66025403784437,
+        "y_um": 35,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0001",
+        "shank_id": 2,
+        "x_um": 291.33974596215563,
+        "y_um": 45,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0002",
+        "shank_id": 2,
+        "x_um": 308.66025403784437,
+        "y_um": 55,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0003",
+        "shank_id": 2,
+        "x_um": 291.33974596215563,
+        "y_um": 65,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0004",
+        "shank_id": 2,
+        "x_um": 308.66025403784437,
+        "y_um": 75,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0005",
+        "shank_id": 2,
+        "x_um": 291.33974596215563,
+        "y_um": 85,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0006",
+        "shank_id": 2,
+        "x_um": 308.66025403784437,
+        "y_um": 95,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0007",
+        "shank_id": 2,
+        "x_um": 291.33974596215563,
+        "y_um": 105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0008",
+        "shank_id": 2,
+        "x_um": 308.66025403784437,
+        "y_um": 115,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0009",
+        "shank_id": 2,
+        "x_um": 291.33974596215563,
+        "y_um": 125,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0010",
+        "shank_id": 2,
+        "x_um": 308.66025403784437,
+        "y_um": 135,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0011",
+        "shank_id": 2,
+        "x_um": 291.33974596215563,
+        "y_um": 145,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0012",
+        "shank_id": 2,
+        "x_um": 308.66025403784437,
+        "y_um": 155,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0013",
+        "shank_id": 2,
+        "x_um": 291.33974596215563,
+        "y_um": 165,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0014",
+        "shank_id": 2,
+        "x_um": 308.66025403784437,
+        "y_um": 175,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0015",
+        "shank_id": 2,
+        "x_um": 291.33974596215563,
+        "y_um": 185,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0016",
+        "shank_id": 2,
+        "x_um": 308.66025403784437,
+        "y_um": 195,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0017",
+        "shank_id": 2,
+        "x_um": 291.33974596215563,
+        "y_um": 205,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0018",
+        "shank_id": 2,
+        "x_um": 308.66025403784437,
+        "y_um": 215,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0019",
+        "shank_id": 2,
+        "x_um": 291.33974596215563,
+        "y_um": 225,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0020",
+        "shank_id": 2,
+        "x_um": 308.66025403784437,
+        "y_um": 235,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0021",
+        "shank_id": 2,
+        "x_um": 291.33974596215563,
+        "y_um": 245,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0022",
+        "shank_id": 2,
+        "x_um": 308.66025403784437,
+        "y_um": 255,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0023",
+        "shank_id": 2,
+        "x_um": 291.33974596215563,
+        "y_um": 265,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0024",
+        "shank_id": 2,
+        "x_um": 308.66025403784437,
+        "y_um": 275,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0025",
+        "shank_id": 2,
+        "x_um": 291.33974596215563,
+        "y_um": 285,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0026",
+        "shank_id": 2,
+        "x_um": 308.66025403784437,
+        "y_um": 295,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0027",
+        "shank_id": 2,
+        "x_um": 291.33974596215563,
+        "y_um": 305,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0028",
+        "shank_id": 2,
+        "x_um": 308.66025403784437,
+        "y_um": 315,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0029",
+        "shank_id": 2,
+        "x_um": 291.33974596215563,
+        "y_um": 325,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0030",
+        "shank_id": 2,
+        "x_um": 300,
+        "y_um": 625,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0031",
+        "shank_id": 2,
+        "x_um": 300,
+        "y_um": 725,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0000",
+        "shank_id": 3,
+        "x_um": 458.66025403784437,
+        "y_um": 35,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0001",
+        "shank_id": 3,
+        "x_um": 441.33974596215563,
+        "y_um": 45,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0002",
+        "shank_id": 3,
+        "x_um": 458.66025403784437,
+        "y_um": 55,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0003",
+        "shank_id": 3,
+        "x_um": 441.33974596215563,
+        "y_um": 65,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0004",
+        "shank_id": 3,
+        "x_um": 458.66025403784437,
+        "y_um": 75,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0005",
+        "shank_id": 3,
+        "x_um": 441.33974596215563,
+        "y_um": 85,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0006",
+        "shank_id": 3,
+        "x_um": 458.66025403784437,
+        "y_um": 95,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0007",
+        "shank_id": 3,
+        "x_um": 441.33974596215563,
+        "y_um": 105,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0008",
+        "shank_id": 3,
+        "x_um": 458.66025403784437,
+        "y_um": 115,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0009",
+        "shank_id": 3,
+        "x_um": 441.33974596215563,
+        "y_um": 125,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0010",
+        "shank_id": 3,
+        "x_um": 458.66025403784437,
+        "y_um": 135,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0011",
+        "shank_id": 3,
+        "x_um": 441.33974596215563,
+        "y_um": 145,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0012",
+        "shank_id": 3,
+        "x_um": 458.66025403784437,
+        "y_um": 155,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0013",
+        "shank_id": 3,
+        "x_um": 441.33974596215563,
+        "y_um": 165,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0014",
+        "shank_id": 3,
+        "x_um": 458.66025403784437,
+        "y_um": 175,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0015",
+        "shank_id": 3,
+        "x_um": 441.33974596215563,
+        "y_um": 185,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0016",
+        "shank_id": 3,
+        "x_um": 458.66025403784437,
+        "y_um": 195,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0017",
+        "shank_id": 3,
+        "x_um": 441.33974596215563,
+        "y_um": 205,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0018",
+        "shank_id": 3,
+        "x_um": 458.66025403784437,
+        "y_um": 215,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0019",
+        "shank_id": 3,
+        "x_um": 441.33974596215563,
+        "y_um": 225,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0020",
+        "shank_id": 3,
+        "x_um": 458.66025403784437,
+        "y_um": 235,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0021",
+        "shank_id": 3,
+        "x_um": 441.33974596215563,
+        "y_um": 245,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0022",
+        "shank_id": 3,
+        "x_um": 458.66025403784437,
+        "y_um": 255,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0023",
+        "shank_id": 3,
+        "x_um": 441.33974596215563,
+        "y_um": 265,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0024",
+        "shank_id": 3,
+        "x_um": 458.66025403784437,
+        "y_um": 275,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0025",
+        "shank_id": 3,
+        "x_um": 441.33974596215563,
+        "y_um": 285,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0026",
+        "shank_id": 3,
+        "x_um": 458.66025403784437,
+        "y_um": 295,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0027",
+        "shank_id": 3,
+        "x_um": 441.33974596215563,
+        "y_um": 305,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0028",
+        "shank_id": 3,
+        "x_um": 458.66025403784437,
+        "y_um": 315,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0029",
+        "shank_id": 3,
+        "x_um": 441.33974596215563,
+        "y_um": 325,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0030",
+        "shank_id": 3,
+        "x_um": 450,
+        "y_um": 725,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0031",
+        "shank_id": 3,
+        "x_um": 450,
+        "y_um": 825,
+        "z_um": -7.5
+      }
+    ],
+    "tip_um": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "y_to_base": 1,
+    "units": "um",
+    "bodies": [
+      {
+        "outline_um": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            -16,
+            35,
+            0
+          ],
+          [
+            -38.5,
+            325,
+            0
+          ],
+          [
+            -38.5,
+            5000,
+            0
+          ],
+          [
+            38.5,
+            5000,
+            0
+          ],
+          [
+            38.5,
+            325,
+            0
+          ],
+          [
+            16,
+            35,
+            0
+          ]
+        ],
+        "thickness_um": 15,
+        "shank_id": 0
+      },
+      {
+        "outline_um": [
+          [
+            150,
+            0,
+            0
+          ],
+          [
+            134,
+            35,
+            0
+          ],
+          [
+            111.5,
+            325,
+            0
+          ],
+          [
+            111.5,
+            5000,
+            0
+          ],
+          [
+            188.5,
+            5000,
+            0
+          ],
+          [
+            188.5,
+            325,
+            0
+          ],
+          [
+            166,
+            35,
+            0
+          ]
+        ],
+        "thickness_um": 15,
+        "shank_id": 1
+      },
+      {
+        "outline_um": [
+          [
+            300,
+            0,
+            0
+          ],
+          [
+            284,
+            35,
+            0
+          ],
+          [
+            261.5,
+            325,
+            0
+          ],
+          [
+            261.5,
+            5000,
+            0
+          ],
+          [
+            338.5,
+            5000,
+            0
+          ],
+          [
+            338.5,
+            325,
+            0
+          ],
+          [
+            316,
+            35,
+            0
+          ]
+        ],
+        "thickness_um": 15,
+        "shank_id": 2
+      },
+      {
+        "outline_um": [
+          [
+            450,
+            0,
+            0
+          ],
+          [
+            434,
+            35,
+            0
+          ],
+          [
+            411.5,
+            325,
+            0
+          ],
+          [
+            411.5,
+            5000,
+            0
+          ],
+          [
+            488.5,
+            5000,
+            0
+          ],
+          [
+            488.5,
+            325,
+            0
+          ],
+          [
+            466,
+            35,
+            0
+          ]
+        ],
+        "thickness_um": 15,
+        "shank_id": 3
+      }
+    ],
+    "metadata": {
+      "manufacturer": "NeuroNexus",
+      "sources": [
+        {
+          "url": "https://solutions.neuronexus.com/hubfs/Penetrating_Probe_Catalog_V2.1.pdf",
+          "pdf_page": 116
+        }
+      ],
+      "source_accessed": "2026-09-20",
+      "site_id_convention": "Zero-based shank and physical site index; front/back in local z.",
+      "coordinate_convention": "um; first shank tip at origin; +x across shanks; +y toward base; front is -z.",
+      "layout_note": "4 shanks; 150 um tip pitch; sites ordered tip-to-base then left-to-right.",
+      "body_note": "Schematic shaft silhouettes from catalog dimensions; taper transitions are interpolated. Connector and headstage omitted.",
+      "routing_note": "Choose the exact package / headstage. Other connections remain unassigned.",
+      "site_area_um2": 160,
+      "catalog_sha256": "27881fa444792f145353d81ca0359a272afe4d8f72a88c35bebbc0465d33a5ba",
+      "connection_label": "Package / headstage",
+      "headstage_profiles": [
+        {
+          "source_url": "https://www.neuronexus.com/files/probemapping/128-channel/Activus128-Maps.pdf",
+          "pdf_pages": [
+            2
+          ],
+          "source_sha256": "f5cb1cc640dce87a13fc7fa000a1897a61b71aaca8d9b83338f55f3bcb1721dd",
+          "numbering": "zero-based recording channel",
+          "source_numbering": "zero-based recording channel",
+          "id": "neuronexus_activus128",
+          "label": "Activus 128 (AV / AVH / AVI / AVIH)",
+          "note": "Official Activus 128 channel numbering (0-127). Use only the AV / AVH / AVI / AVIH package variants listed in this map.",
+          "n_channels": 128,
+          "contact_to_channel": {
+            "s0_front_0000": 87,
+            "s0_front_0001": 77,
+            "s0_front_0002": 85,
+            "s0_front_0003": 75,
+            "s0_front_0004": 83,
+            "s0_front_0005": 65,
+            "s0_front_0006": 95,
+            "s0_front_0007": 67,
+            "s0_front_0008": 94,
+            "s0_front_0009": 71,
+            "s0_front_0010": 92,
+            "s0_front_0011": 69,
+            "s0_front_0012": 90,
+            "s0_front_0013": 70,
+            "s0_front_0014": 88,
+            "s0_front_0015": 68,
+            "s0_front_0016": 89,
+            "s0_front_0017": 66,
+            "s0_front_0018": 91,
+            "s0_front_0019": 64,
+            "s0_front_0020": 93,
+            "s0_front_0021": 78,
+            "s0_front_0022": 80,
+            "s0_front_0023": 76,
+            "s0_front_0024": 82,
+            "s0_front_0025": 74,
+            "s0_front_0026": 86,
+            "s0_front_0027": 72,
+            "s0_front_0028": 84,
+            "s0_front_0029": 73,
+            "s0_front_0030": 79,
+            "s0_front_0031": 81,
+            "s1_front_0000": 106,
+            "s1_front_0001": 116,
+            "s1_front_0002": 102,
+            "s1_front_0003": 120,
+            "s1_front_0004": 98,
+            "s1_front_0005": 115,
+            "s1_front_0006": 109,
+            "s1_front_0007": 118,
+            "s1_front_0008": 105,
+            "s1_front_0009": 122,
+            "s1_front_0010": 101,
+            "s1_front_0011": 126,
+            "s1_front_0012": 97,
+            "s1_front_0013": 124,
+            "s1_front_0014": 96,
+            "s1_front_0015": 121,
+            "s1_front_0016": 99,
+            "s1_front_0017": 117,
+            "s1_front_0018": 103,
+            "s1_front_0019": 113,
+            "s1_front_0020": 107,
+            "s1_front_0021": 114,
+            "s1_front_0022": 111,
+            "s1_front_0023": 119,
+            "s1_front_0024": 108,
+            "s1_front_0025": 123,
+            "s1_front_0026": 104,
+            "s1_front_0027": 127,
+            "s1_front_0028": 100,
+            "s1_front_0029": 125,
+            "s1_front_0030": 112,
+            "s1_front_0031": 110,
+            "s2_front_0000": 28,
+            "s2_front_0001": 10,
+            "s2_front_0002": 22,
+            "s2_front_0003": 4,
+            "s2_front_0004": 17,
+            "s2_front_0005": 12,
+            "s2_front_0006": 27,
+            "s2_front_0007": 8,
+            "s2_front_0008": 23,
+            "s2_front_0009": 7,
+            "s2_front_0010": 21,
+            "s2_front_0011": 3,
+            "s2_front_0012": 18,
+            "s2_front_0013": 1,
+            "s2_front_0014": 20,
+            "s2_front_0015": 5,
+            "s2_front_0016": 24,
+            "s2_front_0017": 9,
+            "s2_front_0018": 25,
+            "s2_front_0019": 13,
+            "s2_front_0020": 29,
+            "s2_front_0021": 15,
+            "s2_front_0022": 30,
+            "s2_front_0023": 11,
+            "s2_front_0024": 26,
+            "s2_front_0025": 6,
+            "s2_front_0026": 19,
+            "s2_front_0027": 2,
+            "s2_front_0028": 16,
+            "s2_front_0029": 0,
+            "s2_front_0030": 14,
+            "s2_front_0031": 32,
+            "s3_front_0000": 59,
+            "s3_front_0001": 43,
+            "s3_front_0002": 55,
+            "s3_front_0003": 37,
+            "s3_front_0004": 51,
+            "s3_front_0005": 46,
+            "s3_front_0006": 60,
+            "s3_front_0007": 42,
+            "s3_front_0008": 56,
+            "s3_front_0009": 36,
+            "s3_front_0010": 52,
+            "s3_front_0011": 31,
+            "s3_front_0012": 48,
+            "s3_front_0013": 35,
+            "s3_front_0014": 49,
+            "s3_front_0015": 39,
+            "s3_front_0016": 53,
+            "s3_front_0017": 41,
+            "s3_front_0018": 57,
+            "s3_front_0019": 45,
+            "s3_front_0020": 61,
+            "s3_front_0021": 44,
+            "s3_front_0022": 62,
+            "s3_front_0023": 40,
+            "s3_front_0024": 58,
+            "s3_front_0025": 38,
+            "s3_front_0026": 54,
+            "s3_front_0027": 34,
+            "s3_front_0028": 50,
+            "s3_front_0029": 33,
+            "s3_front_0030": 47,
+            "s3_front_0031": 63
+          },
+          "source_contact_numbers": {
+            "s0_front_0000": 87,
+            "s0_front_0001": 77,
+            "s0_front_0002": 85,
+            "s0_front_0003": 75,
+            "s0_front_0004": 83,
+            "s0_front_0005": 65,
+            "s0_front_0006": 95,
+            "s0_front_0007": 67,
+            "s0_front_0008": 94,
+            "s0_front_0009": 71,
+            "s0_front_0010": 92,
+            "s0_front_0011": 69,
+            "s0_front_0012": 90,
+            "s0_front_0013": 70,
+            "s0_front_0014": 88,
+            "s0_front_0015": 68,
+            "s0_front_0016": 89,
+            "s0_front_0017": 66,
+            "s0_front_0018": 91,
+            "s0_front_0019": 64,
+            "s0_front_0020": 93,
+            "s0_front_0021": 78,
+            "s0_front_0022": 80,
+            "s0_front_0023": 76,
+            "s0_front_0024": 82,
+            "s0_front_0025": 74,
+            "s0_front_0026": 86,
+            "s0_front_0027": 72,
+            "s0_front_0028": 84,
+            "s0_front_0029": 73,
+            "s0_front_0030": 79,
+            "s0_front_0031": 81,
+            "s1_front_0000": 106,
+            "s1_front_0001": 116,
+            "s1_front_0002": 102,
+            "s1_front_0003": 120,
+            "s1_front_0004": 98,
+            "s1_front_0005": 115,
+            "s1_front_0006": 109,
+            "s1_front_0007": 118,
+            "s1_front_0008": 105,
+            "s1_front_0009": 122,
+            "s1_front_0010": 101,
+            "s1_front_0011": 126,
+            "s1_front_0012": 97,
+            "s1_front_0013": 124,
+            "s1_front_0014": 96,
+            "s1_front_0015": 121,
+            "s1_front_0016": 99,
+            "s1_front_0017": 117,
+            "s1_front_0018": 103,
+            "s1_front_0019": 113,
+            "s1_front_0020": 107,
+            "s1_front_0021": 114,
+            "s1_front_0022": 111,
+            "s1_front_0023": 119,
+            "s1_front_0024": 108,
+            "s1_front_0025": 123,
+            "s1_front_0026": 104,
+            "s1_front_0027": 127,
+            "s1_front_0028": 100,
+            "s1_front_0029": 125,
+            "s1_front_0030": 112,
+            "s1_front_0031": 110,
+            "s2_front_0000": 28,
+            "s2_front_0001": 10,
+            "s2_front_0002": 22,
+            "s2_front_0003": 4,
+            "s2_front_0004": 17,
+            "s2_front_0005": 12,
+            "s2_front_0006": 27,
+            "s2_front_0007": 8,
+            "s2_front_0008": 23,
+            "s2_front_0009": 7,
+            "s2_front_0010": 21,
+            "s2_front_0011": 3,
+            "s2_front_0012": 18,
+            "s2_front_0013": 1,
+            "s2_front_0014": 20,
+            "s2_front_0015": 5,
+            "s2_front_0016": 24,
+            "s2_front_0017": 9,
+            "s2_front_0018": 25,
+            "s2_front_0019": 13,
+            "s2_front_0020": 29,
+            "s2_front_0021": 15,
+            "s2_front_0022": 30,
+            "s2_front_0023": 11,
+            "s2_front_0024": 26,
+            "s2_front_0025": 6,
+            "s2_front_0026": 19,
+            "s2_front_0027": 2,
+            "s2_front_0028": 16,
+            "s2_front_0029": 0,
+            "s2_front_0030": 14,
+            "s2_front_0031": 32,
+            "s3_front_0000": 59,
+            "s3_front_0001": 43,
+            "s3_front_0002": 55,
+            "s3_front_0003": 37,
+            "s3_front_0004": 51,
+            "s3_front_0005": 46,
+            "s3_front_0006": 60,
+            "s3_front_0007": 42,
+            "s3_front_0008": 56,
+            "s3_front_0009": 36,
+            "s3_front_0010": 52,
+            "s3_front_0011": 31,
+            "s3_front_0012": 48,
+            "s3_front_0013": 35,
+            "s3_front_0014": 49,
+            "s3_front_0015": 39,
+            "s3_front_0016": 53,
+            "s3_front_0017": 41,
+            "s3_front_0018": 57,
+            "s3_front_0019": 45,
+            "s3_front_0020": 61,
+            "s3_front_0021": 44,
+            "s3_front_0022": 62,
+            "s3_front_0023": 40,
+            "s3_front_0024": 58,
+            "s3_front_0025": 38,
+            "s3_front_0026": 54,
+            "s3_front_0027": 34,
+            "s3_front_0028": 50,
+            "s3_front_0029": 33,
+            "s3_front_0030": 47,
+            "s3_front_0031": 63
+          }
+        }
+      ]
+    }
+  },
+  "channel_map": {
+    "contact_to_channel": {},
+    "n_channels": 128,
+    "groups": [],
+    "skipped": [],
+    "source_xml": null,
+    "blueprint": {},
+    "source_imro": null,
+    "pending_sites": [],
+    "rois": [],
+    "headstage_id": null
+  }
+}

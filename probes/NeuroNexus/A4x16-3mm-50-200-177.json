@@ -1,0 +1,1252 @@
+{
+  "geometry": {
+    "name": "A4x16-3mm-50-200-177",
+    "contacts": [
+      {
+        "contact_id": "s0_front_0000",
+        "shank_id": 0,
+        "x_um": 0,
+        "y_um": 50,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0001",
+        "shank_id": 0,
+        "x_um": 0,
+        "y_um": 100,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0002",
+        "shank_id": 0,
+        "x_um": 0,
+        "y_um": 150,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0003",
+        "shank_id": 0,
+        "x_um": 0,
+        "y_um": 200,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0004",
+        "shank_id": 0,
+        "x_um": 0,
+        "y_um": 250,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0005",
+        "shank_id": 0,
+        "x_um": 0,
+        "y_um": 300,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0006",
+        "shank_id": 0,
+        "x_um": 0,
+        "y_um": 350,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0007",
+        "shank_id": 0,
+        "x_um": 0,
+        "y_um": 400,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0008",
+        "shank_id": 0,
+        "x_um": 0,
+        "y_um": 450,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0009",
+        "shank_id": 0,
+        "x_um": 0,
+        "y_um": 500,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0010",
+        "shank_id": 0,
+        "x_um": 0,
+        "y_um": 550,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0011",
+        "shank_id": 0,
+        "x_um": 0,
+        "y_um": 600,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0012",
+        "shank_id": 0,
+        "x_um": 0,
+        "y_um": 650,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0013",
+        "shank_id": 0,
+        "x_um": 0,
+        "y_um": 700,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0014",
+        "shank_id": 0,
+        "x_um": 0,
+        "y_um": 750,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0015",
+        "shank_id": 0,
+        "x_um": 0,
+        "y_um": 800,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0000",
+        "shank_id": 1,
+        "x_um": 200,
+        "y_um": 50,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0001",
+        "shank_id": 1,
+        "x_um": 200,
+        "y_um": 100,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0002",
+        "shank_id": 1,
+        "x_um": 200,
+        "y_um": 150,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0003",
+        "shank_id": 1,
+        "x_um": 200,
+        "y_um": 200,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0004",
+        "shank_id": 1,
+        "x_um": 200,
+        "y_um": 250,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0005",
+        "shank_id": 1,
+        "x_um": 200,
+        "y_um": 300,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0006",
+        "shank_id": 1,
+        "x_um": 200,
+        "y_um": 350,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0007",
+        "shank_id": 1,
+        "x_um": 200,
+        "y_um": 400,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0008",
+        "shank_id": 1,
+        "x_um": 200,
+        "y_um": 450,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0009",
+        "shank_id": 1,
+        "x_um": 200,
+        "y_um": 500,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0010",
+        "shank_id": 1,
+        "x_um": 200,
+        "y_um": 550,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0011",
+        "shank_id": 1,
+        "x_um": 200,
+        "y_um": 600,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0012",
+        "shank_id": 1,
+        "x_um": 200,
+        "y_um": 650,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0013",
+        "shank_id": 1,
+        "x_um": 200,
+        "y_um": 700,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0014",
+        "shank_id": 1,
+        "x_um": 200,
+        "y_um": 750,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0015",
+        "shank_id": 1,
+        "x_um": 200,
+        "y_um": 800,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0000",
+        "shank_id": 2,
+        "x_um": 400,
+        "y_um": 50,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0001",
+        "shank_id": 2,
+        "x_um": 400,
+        "y_um": 100,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0002",
+        "shank_id": 2,
+        "x_um": 400,
+        "y_um": 150,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0003",
+        "shank_id": 2,
+        "x_um": 400,
+        "y_um": 200,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0004",
+        "shank_id": 2,
+        "x_um": 400,
+        "y_um": 250,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0005",
+        "shank_id": 2,
+        "x_um": 400,
+        "y_um": 300,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0006",
+        "shank_id": 2,
+        "x_um": 400,
+        "y_um": 350,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0007",
+        "shank_id": 2,
+        "x_um": 400,
+        "y_um": 400,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0008",
+        "shank_id": 2,
+        "x_um": 400,
+        "y_um": 450,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0009",
+        "shank_id": 2,
+        "x_um": 400,
+        "y_um": 500,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0010",
+        "shank_id": 2,
+        "x_um": 400,
+        "y_um": 550,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0011",
+        "shank_id": 2,
+        "x_um": 400,
+        "y_um": 600,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0012",
+        "shank_id": 2,
+        "x_um": 400,
+        "y_um": 650,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0013",
+        "shank_id": 2,
+        "x_um": 400,
+        "y_um": 700,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0014",
+        "shank_id": 2,
+        "x_um": 400,
+        "y_um": 750,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0015",
+        "shank_id": 2,
+        "x_um": 400,
+        "y_um": 800,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0000",
+        "shank_id": 3,
+        "x_um": 600,
+        "y_um": 50,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0001",
+        "shank_id": 3,
+        "x_um": 600,
+        "y_um": 100,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0002",
+        "shank_id": 3,
+        "x_um": 600,
+        "y_um": 150,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0003",
+        "shank_id": 3,
+        "x_um": 600,
+        "y_um": 200,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0004",
+        "shank_id": 3,
+        "x_um": 600,
+        "y_um": 250,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0005",
+        "shank_id": 3,
+        "x_um": 600,
+        "y_um": 300,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0006",
+        "shank_id": 3,
+        "x_um": 600,
+        "y_um": 350,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0007",
+        "shank_id": 3,
+        "x_um": 600,
+        "y_um": 400,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0008",
+        "shank_id": 3,
+        "x_um": 600,
+        "y_um": 450,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0009",
+        "shank_id": 3,
+        "x_um": 600,
+        "y_um": 500,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0010",
+        "shank_id": 3,
+        "x_um": 600,
+        "y_um": 550,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0011",
+        "shank_id": 3,
+        "x_um": 600,
+        "y_um": 600,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0012",
+        "shank_id": 3,
+        "x_um": 600,
+        "y_um": 650,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0013",
+        "shank_id": 3,
+        "x_um": 600,
+        "y_um": 700,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0014",
+        "shank_id": 3,
+        "x_um": 600,
+        "y_um": 750,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0015",
+        "shank_id": 3,
+        "x_um": 600,
+        "y_um": 800,
+        "z_um": -7.5
+      }
+    ],
+    "tip_um": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "y_to_base": 1,
+    "units": "um",
+    "bodies": [
+      {
+        "outline_um": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            -13.5,
+            50,
+            0
+          ],
+          [
+            -40.5,
+            800,
+            0
+          ],
+          [
+            -40.5,
+            3000,
+            0
+          ],
+          [
+            40.5,
+            3000,
+            0
+          ],
+          [
+            40.5,
+            800,
+            0
+          ],
+          [
+            13.5,
+            50,
+            0
+          ]
+        ],
+        "thickness_um": 15,
+        "shank_id": 0
+      },
+      {
+        "outline_um": [
+          [
+            200,
+            0,
+            0
+          ],
+          [
+            186.5,
+            50,
+            0
+          ],
+          [
+            159.5,
+            800,
+            0
+          ],
+          [
+            159.5,
+            3000,
+            0
+          ],
+          [
+            240.5,
+            3000,
+            0
+          ],
+          [
+            240.5,
+            800,
+            0
+          ],
+          [
+            213.5,
+            50,
+            0
+          ]
+        ],
+        "thickness_um": 15,
+        "shank_id": 1
+      },
+      {
+        "outline_um": [
+          [
+            400,
+            0,
+            0
+          ],
+          [
+            386.5,
+            50,
+            0
+          ],
+          [
+            359.5,
+            800,
+            0
+          ],
+          [
+            359.5,
+            3000,
+            0
+          ],
+          [
+            440.5,
+            3000,
+            0
+          ],
+          [
+            440.5,
+            800,
+            0
+          ],
+          [
+            413.5,
+            50,
+            0
+          ]
+        ],
+        "thickness_um": 15,
+        "shank_id": 2
+      },
+      {
+        "outline_um": [
+          [
+            600,
+            0,
+            0
+          ],
+          [
+            586.5,
+            50,
+            0
+          ],
+          [
+            559.5,
+            800,
+            0
+          ],
+          [
+            559.5,
+            3000,
+            0
+          ],
+          [
+            640.5,
+            3000,
+            0
+          ],
+          [
+            640.5,
+            800,
+            0
+          ],
+          [
+            613.5,
+            50,
+            0
+          ]
+        ],
+        "thickness_um": 15,
+        "shank_id": 3
+      }
+    ],
+    "metadata": {
+      "manufacturer": "NeuroNexus",
+      "sources": [
+        {
+          "url": "https://solutions.neuronexus.com/hubfs/Penetrating_Probe_Catalog_V2.1.pdf",
+          "pdf_page": 88
+        }
+      ],
+      "source_accessed": "2026-09-20",
+      "site_id_convention": "Zero-based shank and physical site index; front/back in local z.",
+      "coordinate_convention": "um; first shank tip at origin; +x across shanks; +y toward base; front is -z.",
+      "layout_note": "4 shanks; 200 um tip pitch; sites ordered tip-to-base then left-to-right.",
+      "body_note": "Schematic shaft silhouettes from catalog dimensions; taper transitions are interpolated. Connector and headstage omitted.",
+      "routing_note": "Choose the exact package / headstage. Other connections remain unassigned.",
+      "site_area_um2": 177,
+      "catalog_sha256": "27881fa444792f145353d81ca0359a272afe4d8f72a88c35bebbc0465d33a5ba",
+      "connection_label": "Package / headstage",
+      "headstage_profiles": [
+        {
+          "source_url": "https://www.neuronexus.com/wp-content/uploads/2026/05/Activus64-Maps-20260527.pdf",
+          "pdf_pages": [
+            4
+          ],
+          "source_sha256": "a0204047b26061bd6ced88fca6e046bb605ac30cf3a81b87d51bf497bf5e4fbe",
+          "numbering": "zero-based recording channel",
+          "source_numbering": "zero-based recording channel",
+          "id": "neuronexus_activus64",
+          "label": "Activus 64 (AV / AVH / AVI / AVIH)",
+          "note": "Official Activus 64 channel numbering (0-63). Use only the AV / AVH / AVI / AVIH package variants listed in this map.",
+          "n_channels": 64,
+          "contact_to_channel": {
+            "s0_front_0000": 0,
+            "s0_front_0001": 13,
+            "s0_front_0002": 2,
+            "s0_front_0003": 15,
+            "s0_front_0004": 3,
+            "s0_front_0005": 14,
+            "s0_front_0006": 1,
+            "s0_front_0007": 12,
+            "s0_front_0008": 4,
+            "s0_front_0009": 9,
+            "s0_front_0010": 6,
+            "s0_front_0011": 11,
+            "s0_front_0012": 7,
+            "s0_front_0013": 10,
+            "s0_front_0014": 5,
+            "s0_front_0015": 8,
+            "s1_front_0000": 29,
+            "s1_front_0001": 28,
+            "s1_front_0002": 31,
+            "s1_front_0003": 24,
+            "s1_front_0004": 30,
+            "s1_front_0005": 20,
+            "s1_front_0006": 25,
+            "s1_front_0007": 16,
+            "s1_front_0008": 27,
+            "s1_front_0009": 18,
+            "s1_front_0010": 26,
+            "s1_front_0011": 19,
+            "s1_front_0012": 21,
+            "s1_front_0013": 17,
+            "s1_front_0014": 23,
+            "s1_front_0015": 22,
+            "s2_front_0000": 35,
+            "s2_front_0001": 34,
+            "s2_front_0002": 39,
+            "s2_front_0003": 32,
+            "s2_front_0004": 43,
+            "s2_front_0005": 33,
+            "s2_front_0006": 47,
+            "s2_front_0007": 38,
+            "s2_front_0008": 45,
+            "s2_front_0009": 36,
+            "s2_front_0010": 44,
+            "s2_front_0011": 37,
+            "s2_front_0012": 46,
+            "s2_front_0013": 42,
+            "s2_front_0014": 41,
+            "s2_front_0015": 40,
+            "s3_front_0000": 50,
+            "s3_front_0001": 63,
+            "s3_front_0002": 48,
+            "s3_front_0003": 61,
+            "s3_front_0004": 49,
+            "s3_front_0005": 60,
+            "s3_front_0006": 51,
+            "s3_front_0007": 62,
+            "s3_front_0008": 54,
+            "s3_front_0009": 59,
+            "s3_front_0010": 52,
+            "s3_front_0011": 57,
+            "s3_front_0012": 53,
+            "s3_front_0013": 56,
+            "s3_front_0014": 55,
+            "s3_front_0015": 58
+          },
+          "source_contact_numbers": {
+            "s0_front_0000": 0,
+            "s0_front_0001": 13,
+            "s0_front_0002": 2,
+            "s0_front_0003": 15,
+            "s0_front_0004": 3,
+            "s0_front_0005": 14,
+            "s0_front_0006": 1,
+            "s0_front_0007": 12,
+            "s0_front_0008": 4,
+            "s0_front_0009": 9,
+            "s0_front_0010": 6,
+            "s0_front_0011": 11,
+            "s0_front_0012": 7,
+            "s0_front_0013": 10,
+            "s0_front_0014": 5,
+            "s0_front_0015": 8,
+            "s1_front_0000": 29,
+            "s1_front_0001": 28,
+            "s1_front_0002": 31,
+            "s1_front_0003": 24,
+            "s1_front_0004": 30,
+            "s1_front_0005": 20,
+            "s1_front_0006": 25,
+            "s1_front_0007": 16,
+            "s1_front_0008": 27,
+            "s1_front_0009": 18,
+            "s1_front_0010": 26,
+            "s1_front_0011": 19,
+            "s1_front_0012": 21,
+            "s1_front_0013": 17,
+            "s1_front_0014": 23,
+            "s1_front_0015": 22,
+            "s2_front_0000": 35,
+            "s2_front_0001": 34,
+            "s2_front_0002": 39,
+            "s2_front_0003": 32,
+            "s2_front_0004": 43,
+            "s2_front_0005": 33,
+            "s2_front_0006": 47,
+            "s2_front_0007": 38,
+            "s2_front_0008": 45,
+            "s2_front_0009": 36,
+            "s2_front_0010": 44,
+            "s2_front_0011": 37,
+            "s2_front_0012": 46,
+            "s2_front_0013": 42,
+            "s2_front_0014": 41,
+            "s2_front_0015": 40,
+            "s3_front_0000": 50,
+            "s3_front_0001": 63,
+            "s3_front_0002": 48,
+            "s3_front_0003": 61,
+            "s3_front_0004": 49,
+            "s3_front_0005": 60,
+            "s3_front_0006": 51,
+            "s3_front_0007": 62,
+            "s3_front_0008": 54,
+            "s3_front_0009": 59,
+            "s3_front_0010": 52,
+            "s3_front_0011": 57,
+            "s3_front_0012": 53,
+            "s3_front_0013": 56,
+            "s3_front_0014": 55,
+            "s3_front_0015": 58
+          }
+        },
+        {
+          "source_url": "https://www.neuronexus.com/wp-content/uploads/2026/09/H64LP-MRH64LP-Maps-20230110.pdf",
+          "pdf_pages": [
+            8
+          ],
+          "source_sha256": "2b4b89f4262b908132f94f9d2bda4b185f7e43b1f69072c87046e23a45cc73ab",
+          "numbering": "zero-based recording channel",
+          "source_numbering": "one-based package pin",
+          "id": "neuronexus_h64lp_smartlink64_chronic",
+          "label": "H64LP / MRH64LP + SmartLink64 Chronic",
+          "headstage_source_url": "https://www.neuronexus.com/files/smartlinkheadstagemapping/SmartLink%20Chronic%2064%20Mapping.pdf",
+          "headstage_source_sha256": "711250150f5b2a1bff5669ec812bc3a4de91e85a6b46d36c6a38408955491cce",
+          "headstage_pdf_page": 1,
+          "connector_pdf_page": 1,
+          "note": "H64LP / MRH64LP + SmartLink64 Chronic only. Channel IDs are zero-based amplifier inputs; verify the reference configuration and acquisition order.",
+          "n_channels": 64,
+          "contact_to_channel": {
+            "s0_front_0000": 48,
+            "s0_front_0001": 63,
+            "s0_front_0002": 49,
+            "s0_front_0003": 62,
+            "s0_front_0004": 50,
+            "s0_front_0005": 61,
+            "s0_front_0006": 51,
+            "s0_front_0007": 60,
+            "s0_front_0008": 52,
+            "s0_front_0009": 59,
+            "s0_front_0010": 53,
+            "s0_front_0011": 58,
+            "s0_front_0012": 54,
+            "s0_front_0013": 57,
+            "s0_front_0014": 55,
+            "s0_front_0015": 56,
+            "s1_front_0000": 33,
+            "s1_front_0001": 34,
+            "s1_front_0002": 32,
+            "s1_front_0003": 38,
+            "s1_front_0004": 35,
+            "s1_front_0005": 42,
+            "s1_front_0006": 37,
+            "s1_front_0007": 46,
+            "s1_front_0008": 36,
+            "s1_front_0009": 47,
+            "s1_front_0010": 39,
+            "s1_front_0011": 44,
+            "s1_front_0012": 41,
+            "s1_front_0013": 45,
+            "s1_front_0014": 40,
+            "s1_front_0015": 43,
+            "s2_front_0000": 29,
+            "s2_front_0001": 30,
+            "s2_front_0002": 25,
+            "s2_front_0003": 31,
+            "s2_front_0004": 21,
+            "s2_front_0005": 28,
+            "s2_front_0006": 19,
+            "s2_front_0007": 26,
+            "s2_front_0008": 16,
+            "s2_front_0009": 27,
+            "s2_front_0010": 17,
+            "s2_front_0011": 24,
+            "s2_front_0012": 18,
+            "s2_front_0013": 22,
+            "s2_front_0014": 20,
+            "s2_front_0015": 23,
+            "s3_front_0000": 0,
+            "s3_front_0001": 15,
+            "s3_front_0002": 1,
+            "s3_front_0003": 14,
+            "s3_front_0004": 2,
+            "s3_front_0005": 13,
+            "s3_front_0006": 3,
+            "s3_front_0007": 12,
+            "s3_front_0008": 4,
+            "s3_front_0009": 11,
+            "s3_front_0010": 5,
+            "s3_front_0011": 10,
+            "s3_front_0012": 6,
+            "s3_front_0013": 9,
+            "s3_front_0014": 7,
+            "s3_front_0015": 8
+          },
+          "source_contact_numbers": {
+            "s0_front_0000": 1,
+            "s0_front_0001": 16,
+            "s0_front_0002": 2,
+            "s0_front_0003": 15,
+            "s0_front_0004": 3,
+            "s0_front_0005": 14,
+            "s0_front_0006": 4,
+            "s0_front_0007": 13,
+            "s0_front_0008": 5,
+            "s0_front_0009": 12,
+            "s0_front_0010": 6,
+            "s0_front_0011": 11,
+            "s0_front_0012": 7,
+            "s0_front_0013": 10,
+            "s0_front_0014": 8,
+            "s0_front_0015": 9,
+            "s1_front_0000": 17,
+            "s1_front_0001": 32,
+            "s1_front_0002": 18,
+            "s1_front_0003": 31,
+            "s1_front_0004": 19,
+            "s1_front_0005": 30,
+            "s1_front_0006": 20,
+            "s1_front_0007": 29,
+            "s1_front_0008": 21,
+            "s1_front_0009": 28,
+            "s1_front_0010": 22,
+            "s1_front_0011": 27,
+            "s1_front_0012": 23,
+            "s1_front_0013": 26,
+            "s1_front_0014": 24,
+            "s1_front_0015": 25,
+            "s2_front_0000": 33,
+            "s2_front_0001": 48,
+            "s2_front_0002": 34,
+            "s2_front_0003": 47,
+            "s2_front_0004": 35,
+            "s2_front_0005": 46,
+            "s2_front_0006": 36,
+            "s2_front_0007": 45,
+            "s2_front_0008": 37,
+            "s2_front_0009": 44,
+            "s2_front_0010": 38,
+            "s2_front_0011": 43,
+            "s2_front_0012": 39,
+            "s2_front_0013": 42,
+            "s2_front_0014": 40,
+            "s2_front_0015": 41,
+            "s3_front_0000": 49,
+            "s3_front_0001": 64,
+            "s3_front_0002": 50,
+            "s3_front_0003": 63,
+            "s3_front_0004": 51,
+            "s3_front_0005": 62,
+            "s3_front_0006": 52,
+            "s3_front_0007": 61,
+            "s3_front_0008": 53,
+            "s3_front_0009": 60,
+            "s3_front_0010": 54,
+            "s3_front_0011": 59,
+            "s3_front_0012": 55,
+            "s3_front_0013": 58,
+            "s3_front_0014": 56,
+            "s3_front_0015": 57
+          }
+        },
+        {
+          "source_url": "https://www.neuronexus.com/wp-content/uploads/2026/09/H64LP-MRH64LP-Maps-20230110.pdf",
+          "pdf_pages": [
+            8
+          ],
+          "source_sha256": "2b4b89f4262b908132f94f9d2bda4b185f7e43b1f69072c87046e23a45cc73ab",
+          "numbering": "zero-based recording channel",
+          "source_numbering": "one-based package pin",
+          "id": "neuronexus_h64lp_intan_rhd64",
+          "label": "H64LP / MRH64LP + Intan RHD64 (C3315 / C3325)",
+          "headstage_source_url": "https://intantech.com/files/Intan_Recording_Controller_user_guide.pdf",
+          "headstage_source_sha256": "2dc9ea5c40e583e209b95c8c9760c06fae12f664eda6bd97e94fc318a10deb3a",
+          "headstage_pdf_page": 11,
+          "connector_pdf_page": 1,
+          "note": "H64LP / MRH64LP + Intan RHD64 (C3315 / C3325) only. Channel IDs are zero-based amplifier inputs; verify the reference configuration and acquisition order.",
+          "n_channels": 64,
+          "contact_to_channel": {
+            "s0_front_0000": 49,
+            "s0_front_0001": 62,
+            "s0_front_0002": 48,
+            "s0_front_0003": 63,
+            "s0_front_0004": 51,
+            "s0_front_0005": 60,
+            "s0_front_0006": 50,
+            "s0_front_0007": 61,
+            "s0_front_0008": 53,
+            "s0_front_0009": 58,
+            "s0_front_0010": 52,
+            "s0_front_0011": 59,
+            "s0_front_0012": 55,
+            "s0_front_0013": 56,
+            "s0_front_0014": 54,
+            "s0_front_0015": 57,
+            "s1_front_0000": 32,
+            "s1_front_0001": 35,
+            "s1_front_0002": 33,
+            "s1_front_0003": 39,
+            "s1_front_0004": 34,
+            "s1_front_0005": 43,
+            "s1_front_0006": 36,
+            "s1_front_0007": 47,
+            "s1_front_0008": 37,
+            "s1_front_0009": 46,
+            "s1_front_0010": 38,
+            "s1_front_0011": 45,
+            "s1_front_0012": 40,
+            "s1_front_0013": 44,
+            "s1_front_0014": 41,
+            "s1_front_0015": 42,
+            "s2_front_0000": 29,
+            "s2_front_0001": 30,
+            "s2_front_0002": 25,
+            "s2_front_0003": 31,
+            "s2_front_0004": 21,
+            "s2_front_0005": 28,
+            "s2_front_0006": 19,
+            "s2_front_0007": 26,
+            "s2_front_0008": 16,
+            "s2_front_0009": 27,
+            "s2_front_0010": 17,
+            "s2_front_0011": 24,
+            "s2_front_0012": 18,
+            "s2_front_0013": 22,
+            "s2_front_0014": 20,
+            "s2_front_0015": 23,
+            "s3_front_0000": 0,
+            "s3_front_0001": 15,
+            "s3_front_0002": 1,
+            "s3_front_0003": 14,
+            "s3_front_0004": 2,
+            "s3_front_0005": 13,
+            "s3_front_0006": 3,
+            "s3_front_0007": 12,
+            "s3_front_0008": 4,
+            "s3_front_0009": 11,
+            "s3_front_0010": 5,
+            "s3_front_0011": 10,
+            "s3_front_0012": 6,
+            "s3_front_0013": 9,
+            "s3_front_0014": 7,
+            "s3_front_0015": 8
+          },
+          "source_contact_numbers": {
+            "s0_front_0000": 1,
+            "s0_front_0001": 16,
+            "s0_front_0002": 2,
+            "s0_front_0003": 15,
+            "s0_front_0004": 3,
+            "s0_front_0005": 14,
+            "s0_front_0006": 4,
+            "s0_front_0007": 13,
+            "s0_front_0008": 5,
+            "s0_front_0009": 12,
+            "s0_front_0010": 6,
+            "s0_front_0011": 11,
+            "s0_front_0012": 7,
+            "s0_front_0013": 10,
+            "s0_front_0014": 8,
+            "s0_front_0015": 9,
+            "s1_front_0000": 17,
+            "s1_front_0001": 32,
+            "s1_front_0002": 18,
+            "s1_front_0003": 31,
+            "s1_front_0004": 19,
+            "s1_front_0005": 30,
+            "s1_front_0006": 20,
+            "s1_front_0007": 29,
+            "s1_front_0008": 21,
+            "s1_front_0009": 28,
+            "s1_front_0010": 22,
+            "s1_front_0011": 27,
+            "s1_front_0012": 23,
+            "s1_front_0013": 26,
+            "s1_front_0014": 24,
+            "s1_front_0015": 25,
+            "s2_front_0000": 33,
+            "s2_front_0001": 48,
+            "s2_front_0002": 34,
+            "s2_front_0003": 47,
+            "s2_front_0004": 35,
+            "s2_front_0005": 46,
+            "s2_front_0006": 36,
+            "s2_front_0007": 45,
+            "s2_front_0008": 37,
+            "s2_front_0009": 44,
+            "s2_front_0010": 38,
+            "s2_front_0011": 43,
+            "s2_front_0012": 39,
+            "s2_front_0013": 42,
+            "s2_front_0014": 40,
+            "s2_front_0015": 41,
+            "s3_front_0000": 49,
+            "s3_front_0001": 64,
+            "s3_front_0002": 50,
+            "s3_front_0003": 63,
+            "s3_front_0004": 51,
+            "s3_front_0005": 62,
+            "s3_front_0006": 52,
+            "s3_front_0007": 61,
+            "s3_front_0008": 53,
+            "s3_front_0009": 60,
+            "s3_front_0010": 54,
+            "s3_front_0011": 59,
+            "s3_front_0012": 55,
+            "s3_front_0013": 58,
+            "s3_front_0014": 56,
+            "s3_front_0015": 57
+          }
+        },
+        {
+          "source_url": "https://www.neuronexus.com/files/probemapping/64-channel/A64-Maps.pdf",
+          "pdf_pages": [
+            3
+          ],
+          "source_sha256": "8396d88c87411e972d5f2430ae50c4cc3edb0a1294e26523d11aece494f4823b",
+          "numbering": "zero-based recording channel",
+          "source_numbering": "one-based package pin",
+          "id": "neuronexus_a64_smartlink64_acute",
+          "label": "A64 / MRA64 / OA64LP + SmartLink64 Acute",
+          "headstage_source_url": "https://www.neuronexus.com/files/smartlinkheadstagemapping/SmartLink%20Acute%2064%20Mapping.pdf",
+          "headstage_source_sha256": "c750831553ff6d725e9ab6a58d00e44bdf8d6f05ac11b39794f9c60f383e2db3",
+          "headstage_pdf_page": 1,
+          "connector_pdf_page": 1,
+          "note": "A64 / MRA64 / OA64LP + SmartLink64 Acute only. Channel IDs are zero-based amplifier inputs; verify the reference configuration and acquisition order. Not for OA64LP V2.",
+          "n_channels": 64,
+          "contact_to_channel": {
+            "s0_front_0000": 48,
+            "s0_front_0001": 43,
+            "s0_front_0002": 52,
+            "s0_front_0003": 62,
+            "s0_front_0004": 53,
+            "s0_front_0005": 45,
+            "s0_front_0006": 56,
+            "s0_front_0007": 60,
+            "s0_front_0008": 57,
+            "s0_front_0009": 47,
+            "s0_front_0010": 58,
+            "s0_front_0011": 59,
+            "s0_front_0012": 50,
+            "s0_front_0013": 63,
+            "s0_front_0014": 61,
+            "s0_front_0015": 54,
+            "s1_front_0000": 46,
+            "s1_front_0001": 55,
+            "s1_front_0002": 41,
+            "s1_front_0003": 49,
+            "s1_front_0004": 44,
+            "s1_front_0005": 51,
+            "s1_front_0006": 39,
+            "s1_front_0007": 37,
+            "s1_front_0008": 42,
+            "s1_front_0009": 35,
+            "s1_front_0010": 34,
+            "s1_front_0011": 33,
+            "s1_front_0012": 40,
+            "s1_front_0013": 36,
+            "s1_front_0014": 32,
+            "s1_front_0015": 38,
+            "s2_front_0000": 8,
+            "s2_front_0001": 17,
+            "s2_front_0002": 14,
+            "s2_front_0003": 22,
+            "s2_front_0004": 12,
+            "s2_front_0005": 19,
+            "s2_front_0006": 26,
+            "s2_front_0007": 24,
+            "s2_front_0008": 28,
+            "s2_front_0009": 21,
+            "s2_front_0010": 30,
+            "s2_front_0011": 29,
+            "s2_front_0012": 27,
+            "s2_front_0013": 23,
+            "s2_front_0014": 25,
+            "s2_front_0015": 31,
+            "s3_front_0000": 20,
+            "s3_front_0001": 15,
+            "s3_front_0002": 1,
+            "s3_front_0003": 11,
+            "s3_front_0004": 18,
+            "s3_front_0005": 10,
+            "s3_front_0006": 3,
+            "s3_front_0007": 7,
+            "s3_front_0008": 16,
+            "s3_front_0009": 6,
+            "s3_front_0010": 4,
+            "s3_front_0011": 5,
+            "s3_front_0012": 0,
+            "s3_front_0013": 13,
+            "s3_front_0014": 9,
+            "s3_front_0015": 2
+          },
+          "source_contact_numbers": {
+            "s0_front_0000": 1,
+            "s0_front_0001": 16,
+            "s0_front_0002": 2,
+            "s0_front_0003": 15,
+            "s0_front_0004": 3,
+            "s0_front_0005": 14,
+            "s0_front_0006": 4,
+            "s0_front_0007": 13,
+            "s0_front_0008": 5,
+            "s0_front_0009": 12,
+            "s0_front_0010": 6,
+            "s0_front_0011": 11,
+            "s0_front_0012": 7,
+            "s0_front_0013": 10,
+            "s0_front_0014": 8,
+            "s0_front_0015": 9,
+            "s1_front_0000": 17,
+            "s1_front_0001": 32,
+            "s1_front_0002": 18,
+            "s1_front_0003": 31,
+            "s1_front_0004": 19,
+            "s1_front_0005": 30,
+            "s1_front_0006": 20,
+            "s1_front_0007": 29,
+            "s1_front_0008": 21,
+            "s1_front_0009": 28,
+            "s1_front_0010": 22,
+            "s1_front_0011": 27,
+            "s1_front_0012": 23,
+            "s1_front_0013": 26,
+            "s1_front_0014": 24,
+            "s1_front_0015": 25,
+            "s2_front_0000": 33,
+            "s2_front_0001": 48,
+            "s2_front_0002": 34,
+            "s2_front_0003": 47,
+            "s2_front_0004": 35,
+            "s2_front_0005": 46,
+            "s2_front_0006": 36,
+            "s2_front_0007": 45,
+            "s2_front_0008": 37,
+            "s2_front_0009": 44,
+            "s2_front_0010": 38,
+            "s2_front_0011": 43,
+            "s2_front_0012": 39,
+            "s2_front_0013": 42,
+            "s2_front_0014": 40,
+            "s2_front_0015": 41,
+            "s3_front_0000": 49,
+            "s3_front_0001": 64,
+            "s3_front_0002": 50,
+            "s3_front_0003": 63,
+            "s3_front_0004": 51,
+            "s3_front_0005": 62,
+            "s3_front_0006": 52,
+            "s3_front_0007": 61,
+            "s3_front_0008": 53,
+            "s3_front_0009": 60,
+            "s3_front_0010": 54,
+            "s3_front_0011": 59,
+            "s3_front_0012": 55,
+            "s3_front_0013": 58,
+            "s3_front_0014": 56,
+            "s3_front_0015": 57
+          }
+        }
+      ]
+    }
+  },
+  "channel_map": {
+    "contact_to_channel": {},
+    "n_channels": 64,
+    "groups": [],
+    "skipped": [],
+    "source_xml": null,
+    "blueprint": {},
+    "source_imro": null,
+    "pending_sites": [],
+    "rois": [],
+    "headstage_id": null
+  }
+}

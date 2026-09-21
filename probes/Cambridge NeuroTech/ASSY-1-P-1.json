@@ -1,0 +1,380 @@
+{
+  "geometry": {
+    "name": "ASSY-1-P-1",
+    "contacts": [
+      {
+        "contact_id": "1",
+        "shank_id": 0,
+        "x_um": -13.333192961267137,
+        "y_um": 246.13197044586644,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "2",
+        "shank_id": 0,
+        "x_um": -13.333192961267137,
+        "y_um": 146.13197044586644,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "3",
+        "shank_id": 0,
+        "x_um": -13.333192961267137,
+        "y_um": 171.13197044586644,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "4",
+        "shank_id": 0,
+        "x_um": -13.333192961267137,
+        "y_um": 271.13197044586644,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "5",
+        "shank_id": 0,
+        "x_um": -13.333192961267137,
+        "y_um": 221.13197044586644,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "6",
+        "shank_id": 0,
+        "x_um": -35.83319296126714,
+        "y_um": 133.63197044586644,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "7",
+        "shank_id": 0,
+        "x_um": -13.333192961267137,
+        "y_um": 196.13197044586644,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "8",
+        "shank_id": 0,
+        "x_um": -35.83319296126714,
+        "y_um": 158.63197044586644,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "9",
+        "shank_id": 0,
+        "x_um": -35.83319296126714,
+        "y_um": 258.63197044586644,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "10",
+        "shank_id": 0,
+        "x_um": -13.333192961267137,
+        "y_um": 96.13197044586643,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "11",
+        "shank_id": 0,
+        "x_um": -35.83319296126714,
+        "y_um": 83.63197044586643,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "12",
+        "shank_id": 0,
+        "x_um": -35.83319296126714,
+        "y_um": 208.63197044586644,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "13",
+        "shank_id": 0,
+        "x_um": -35.83319296126714,
+        "y_um": 233.63197044586644,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "14",
+        "shank_id": 0,
+        "x_um": -35.83319296126714,
+        "y_um": 183.63197044586644,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "15",
+        "shank_id": 0,
+        "x_um": -35.83319296126714,
+        "y_um": 108.63197044586643,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "16",
+        "shank_id": 0,
+        "x_um": -13.333192961267137,
+        "y_um": 121.13197044586643,
+        "z_um": -7.5
+      }
+    ],
+    "tip_um": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "y_to_base": 1,
+    "units": "um",
+    "bodies": [
+      {
+        "outline_um": [
+          [
+            -54.33319296126714,
+            6083.6319704458665,
+            0.0
+          ],
+          [
+            39.16680703873286,
+            6083.6319704458665,
+            0.0
+          ],
+          [
+            39.16680703873286,
+            55.95258148390408,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            -54.33319296126714,
+            60.37021440140793,
+            0.0
+          ]
+        ],
+        "thickness_um": 15.0,
+        "shank_id": 0
+      }
+    ],
+    "metadata": {
+      "manufacturer": "Cambridge NeuroTech",
+      "assembly": "ASSY-1",
+      "provisional": true,
+      "geometry_status": "upstream_unverified",
+      "coordinate_convention": "um; leftmost contour tip at origin; +x across shanks; +y toward base; front is -z.",
+      "site_id_convention": "Physical source IDs retained; recording channels are assigned by the selected official wiring profile.",
+      "source_origin_um": [
+        35.83319296126714,
+        -83.63197044586643,
+        0.0
+      ],
+      "source_annotations": {
+        "manufacturer": "cambridgeneurotech",
+        "model_name": "ASSY-1-P-1"
+      },
+      "source_shank_ids": [],
+      "shank_note": "Zero-based left-to-right shanks recovered from sharp contour tips; common base partitioned at inter-tip midpoints. Source labels retained separately.",
+      "faces": 1,
+      "contact_sides": [
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front"
+      ],
+      "contact_shapes": [
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect"
+      ],
+      "contact_shape_params": [
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        }
+      ],
+      "display_thickness_um": 15.0,
+      "body_note": "Upstream 2D outline retained, including any common base. Nominal extrusion only: 15 um single-sided / 30 um double-sided; exact physical thickness is unspecified.",
+      "geometry_note": "Unverified upstream dimensions and tip origin. x/y are translated without scaling; face z uses nominal half-thickness with unknown physical error. No manufacturer-wide dimensional audit performed.",
+      "routing_note": "Select the connected headstage to assign recording channels. Intan RHD 16ch C3334/C3335 via Cambridge A16-Om16. Channel IDs are native, zero-based Intan amplifier inputs before recording-system port offsets. Uses inputs 8-23 of a 32-input chip; inputs 0-7 and 24-31 are grounded. Not compacted to 0-15. Other adapter brands / wiring are not interchangeable.",
+      "contact_to_connector_pin": {
+        "9": 9,
+        "13": 13,
+        "12": 12,
+        "14": 14,
+        "8": 8,
+        "6": 6,
+        "15": 15,
+        "11": 11,
+        "4": 4,
+        "1": 1,
+        "5": 5,
+        "7": 7,
+        "3": 3,
+        "2": 2,
+        "16": 16,
+        "10": 10
+      },
+      "headstage_profiles": [
+        {
+          "id": "intan-rhd-16-a16-om16",
+          "label": "Intan RHD 16ch + A16-Om16",
+          "n_channels": 32,
+          "contact_to_channel": {
+            "9": 11,
+            "13": 10,
+            "12": 9,
+            "14": 8,
+            "8": 20,
+            "6": 19,
+            "15": 14,
+            "11": 12,
+            "4": 21,
+            "1": 22,
+            "5": 23,
+            "7": 16,
+            "3": 17,
+            "2": 18,
+            "16": 15,
+            "10": 13
+          },
+          "source_url": "https://www.cambridgeneurotech.com/assets/files/ASSY-1-P-1-P-2-map.pdf",
+          "source_sha256": "32a8e7298b2a10d32cfbd984d25e34523e8cc1024d28ac0cba5dc50b0e3a361d",
+          "note": "Intan RHD 16ch C3334/C3335 via Cambridge A16-Om16. Channel IDs are native, zero-based Intan amplifier inputs before recording-system port offsets. Uses inputs 8-23 of a 32-input chip; inputs 0-7 and 24-31 are grounded. Not compacted to 0-15. Other adapter brands / wiring are not interchangeable.",
+          "missing_channels": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31
+          ],
+          "headstage_source_url": "https://intantech.com/files/Intan_Recording_Controller_user_guide.pdf",
+          "headstage_source_sha256": "2dc9ea5c40e583e209b95c8c9760c06fae12f664eda6bd97e94fc318a10deb3a",
+          "adapter_source_url": "https://www.cambridgeneurotech.com/assets/files/ADPT-A16-Om16-map.pdf",
+          "adapter_source_sha256": "10f515c701dc3b613f2828f33ea43a73126487507a7a6183eab40bcd6e624f74"
+        }
+      ],
+      "headstage_fixed": false,
+      "sources": [
+        {
+          "url": "https://www.cambridgeneurotech.com/assets/files/ASSY-1-P-1-P-2-map.pdf",
+          "sha256": "32a8e7298b2a10d32cfbd984d25e34523e8cc1024d28ac0cba5dc50b0e3a361d"
+        },
+        {
+          "url": "https://github.com/SpikeInterface/probeinterface_library/blob/bb40894cdf55787fed7b7198ea854497d52ca687/cambridgeneurotech/ASSY-1-P-1/ASSY-1-P-1.json",
+          "revision": "bb40894cdf55787fed7b7198ea854497d52ca687",
+          "blob_sha1": "9c06b525023993c797f2dd34668f8cc92f79fc61"
+        }
+      ],
+      "source_license": "MIT; see LICENSE-ProbeInterface.txt in this directory.",
+      "upstream_model": "ASSY-1-P-1",
+      "conversion": "ProbeInterface JSON to Atlaxis"
+    }
+  },
+  "channel_map": {
+    "contact_to_channel": {},
+    "n_channels": 16,
+    "groups": [],
+    "skipped": [],
+    "source_xml": null,
+    "blueprint": {},
+    "source_imro": null,
+    "pending_sites": [],
+    "rois": [],
+    "headstage_id": null
+  }
+}

@@ -1,0 +1,697 @@
+{
+  "geometry": {
+    "name": "ASSY-37-P-1",
+    "contacts": [
+      {
+        "contact_id": "1",
+        "shank_id": 0,
+        "x_um": 11.25,
+        "y_um": 140.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "2",
+        "shank_id": 0,
+        "x_um": -11.25,
+        "y_um": 152.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "3",
+        "shank_id": 0,
+        "x_um": 11.25,
+        "y_um": 265.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "4",
+        "shank_id": 0,
+        "x_um": -11.25,
+        "y_um": 127.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "5",
+        "shank_id": 0,
+        "x_um": 11.25,
+        "y_um": 240.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "6",
+        "shank_id": 0,
+        "x_um": -11.25,
+        "y_um": 177.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "7",
+        "shank_id": 0,
+        "x_um": 11.25,
+        "y_um": 165.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "8",
+        "shank_id": 0,
+        "x_um": -11.25,
+        "y_um": 202.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "9",
+        "shank_id": 0,
+        "x_um": 11.25,
+        "y_um": 215.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "10",
+        "shank_id": 0,
+        "x_um": 11.25,
+        "y_um": 90.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "11",
+        "shank_id": 0,
+        "x_um": 11.25,
+        "y_um": 190.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "12",
+        "shank_id": 0,
+        "x_um": -11.25,
+        "y_um": 227.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "13",
+        "shank_id": 0,
+        "x_um": 11.25,
+        "y_um": 115.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "14",
+        "shank_id": 0,
+        "x_um": -11.25,
+        "y_um": 102.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "15",
+        "shank_id": 0,
+        "x_um": -11.25,
+        "y_um": 77.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "16",
+        "shank_id": 0,
+        "x_um": -11.25,
+        "y_um": 252.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "17",
+        "shank_id": 1,
+        "x_um": 238.75,
+        "y_um": 252.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "18",
+        "shank_id": 1,
+        "x_um": 238.75,
+        "y_um": 77.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "19",
+        "shank_id": 1,
+        "x_um": 238.75,
+        "y_um": 102.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "20",
+        "shank_id": 1,
+        "x_um": 261.25,
+        "y_um": 115.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "21",
+        "shank_id": 1,
+        "x_um": 238.75,
+        "y_um": 227.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "22",
+        "shank_id": 1,
+        "x_um": 238.75,
+        "y_um": 202.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "23",
+        "shank_id": 1,
+        "x_um": 261.25,
+        "y_um": 90.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "24",
+        "shank_id": 1,
+        "x_um": 238.75,
+        "y_um": 127.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "25",
+        "shank_id": 1,
+        "x_um": 238.75,
+        "y_um": 177.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "26",
+        "shank_id": 1,
+        "x_um": 261.25,
+        "y_um": 140.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "27",
+        "shank_id": 1,
+        "x_um": 238.75,
+        "y_um": 152.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "28",
+        "shank_id": 1,
+        "x_um": 261.25,
+        "y_um": 240.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "29",
+        "shank_id": 1,
+        "x_um": 261.25,
+        "y_um": 265.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "30",
+        "shank_id": 1,
+        "x_um": 261.25,
+        "y_um": 215.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "31",
+        "shank_id": 1,
+        "x_um": 261.25,
+        "y_um": 165.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "32",
+        "shank_id": 1,
+        "x_um": 261.25,
+        "y_um": 190.0,
+        "z_um": -7.5
+      }
+    ],
+    "tip_um": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "y_to_base": 1,
+    "units": "um",
+    "bodies": [
+      {
+        "outline_um": [
+          [
+            125.0,
+            6277.5,
+            0.0
+          ],
+          [
+            -18.75,
+            6277.5,
+            0.0
+          ],
+          [
+            -18.75,
+            6077.5,
+            0.0
+          ],
+          [
+            -18.75,
+            67.5,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            18.75,
+            67.5,
+            0.0
+          ],
+          [
+            18.75,
+            6077.5,
+            0.0
+          ],
+          [
+            125.0,
+            6077.5,
+            0.0
+          ]
+        ],
+        "thickness_um": 15.0,
+        "shank_id": 0
+      },
+      {
+        "outline_um": [
+          [
+            125.0,
+            6277.5,
+            0.0
+          ],
+          [
+            125.0,
+            6077.5,
+            0.0
+          ],
+          [
+            231.25,
+            6077.5,
+            0.0
+          ],
+          [
+            231.25,
+            67.5,
+            0.0
+          ],
+          [
+            250.0,
+            0.0,
+            0.0
+          ],
+          [
+            268.75,
+            67.5,
+            0.0
+          ],
+          [
+            268.75,
+            6077.5,
+            0.0
+          ],
+          [
+            268.75,
+            6277.5,
+            0.0
+          ]
+        ],
+        "thickness_um": 15.0,
+        "shank_id": 1
+      }
+    ],
+    "metadata": {
+      "manufacturer": "Cambridge NeuroTech",
+      "assembly": "ASSY-37",
+      "provisional": true,
+      "geometry_status": "upstream_unverified",
+      "coordinate_convention": "um; leftmost contour tip at origin; +x across shanks; +y toward base; front is -z.",
+      "site_id_convention": "Physical source IDs retained; recording channels are assigned by the selected official wiring profile.",
+      "source_origin_um": [
+        11.25,
+        -77.5,
+        0.0
+      ],
+      "source_annotations": {
+        "manufacturer": "cambridgeneurotech",
+        "model_name": "ASSY-37-P-1"
+      },
+      "source_shank_ids": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "shank_note": "Zero-based left-to-right shanks recovered from sharp contour tips; common base partitioned at inter-tip midpoints. Source labels retained separately.",
+      "faces": 1,
+      "contact_sides": [
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front"
+      ],
+      "contact_shapes": [
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect"
+      ],
+      "contact_shape_params": [
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        }
+      ],
+      "display_thickness_um": 15.0,
+      "body_note": "Upstream 2D outline retained, including any common base. Nominal extrusion only: 15 um single-sided / 30 um double-sided; exact physical thickness is unspecified.",
+      "geometry_note": "Unverified upstream dimensions and tip origin. x/y are translated without scaling; face z uses nominal half-thickness with unknown physical error. No manufacturer-wide dimensional audit performed.",
+      "routing_note": "Select the connected headstage to assign recording channels. Intan RHD 32ch C3314/C3324 via Cambridge A32-Om32. Channel IDs are native, zero-based Intan amplifier inputs before recording-system port offsets. Other adapter brands / wiring are not interchangeable.",
+      "contact_to_connector_pin": {
+        "16": 16,
+        "12": 12,
+        "8": 8,
+        "6": 6,
+        "2": 2,
+        "4": 4,
+        "14": 14,
+        "15": 15,
+        "3": 3,
+        "5": 5,
+        "9": 9,
+        "11": 11,
+        "7": 7,
+        "1": 1,
+        "13": 13,
+        "10": 10,
+        "17": 17,
+        "21": 21,
+        "22": 22,
+        "25": 25,
+        "27": 27,
+        "24": 24,
+        "19": 19,
+        "18": 18,
+        "29": 29,
+        "28": 28,
+        "30": 30,
+        "32": 32,
+        "31": 31,
+        "26": 26,
+        "20": 20,
+        "23": 23
+      },
+      "headstage_profiles": [
+        {
+          "id": "intan-rhd-32-a32-om32",
+          "label": "Intan RHD 32ch + A32-Om32",
+          "n_channels": 32,
+          "contact_to_channel": {
+            "16": 24,
+            "12": 23,
+            "8": 21,
+            "6": 20,
+            "2": 19,
+            "4": 28,
+            "14": 26,
+            "15": 25,
+            "3": 18,
+            "5": 30,
+            "9": 31,
+            "11": 16,
+            "7": 17,
+            "1": 29,
+            "13": 27,
+            "10": 22,
+            "17": 7,
+            "21": 8,
+            "22": 10,
+            "25": 11,
+            "27": 12,
+            "24": 3,
+            "19": 5,
+            "18": 6,
+            "29": 13,
+            "28": 1,
+            "30": 0,
+            "32": 15,
+            "31": 14,
+            "26": 2,
+            "20": 4,
+            "23": 9
+          },
+          "source_url": "https://www.cambridgeneurotech.com/assets/files/ASSY-37-P-1-P-2-map.pdf",
+          "source_sha256": "2b6bc7eb7c331854b28088248b8aeed517cc61fccb4c21e96a83debc7d343ba1",
+          "note": "Intan RHD 32ch C3314/C3324 via Cambridge A32-Om32. Channel IDs are native, zero-based Intan amplifier inputs before recording-system port offsets. Other adapter brands / wiring are not interchangeable.",
+          "missing_channels": [],
+          "headstage_source_url": "https://intantech.com/files/Intan_Recording_Controller_user_guide.pdf",
+          "headstage_source_sha256": "2dc9ea5c40e583e209b95c8c9760c06fae12f664eda6bd97e94fc318a10deb3a",
+          "adapter_source_url": "https://www.cambridgeneurotech.com/assets/files/ADPT-A32-Om32-map.pdf",
+          "adapter_source_sha256": "f15f7f046603a2d433735abcfe8e9cbf25b628ac2fbc4f80d428c5dd6cafa45d"
+        }
+      ],
+      "headstage_fixed": false,
+      "sources": [
+        {
+          "url": "https://www.cambridgeneurotech.com/assets/files/ASSY-37-P-1-P-2-map.pdf",
+          "sha256": "2b6bc7eb7c331854b28088248b8aeed517cc61fccb4c21e96a83debc7d343ba1"
+        },
+        {
+          "url": "https://github.com/SpikeInterface/probeinterface_library/blob/bb40894cdf55787fed7b7198ea854497d52ca687/cambridgeneurotech/ASSY-37-P-1/ASSY-37-P-1.json",
+          "revision": "bb40894cdf55787fed7b7198ea854497d52ca687",
+          "blob_sha1": "31d6241d3ed75d5599c49b3084e3ea815b10ae19"
+        }
+      ],
+      "source_license": "MIT; see LICENSE-ProbeInterface.txt in this directory.",
+      "upstream_model": "ASSY-37-P-1",
+      "conversion": "ProbeInterface JSON to Atlaxis"
+    }
+  },
+  "channel_map": {
+    "contact_to_channel": {},
+    "n_channels": 32,
+    "groups": [],
+    "skipped": [],
+    "source_xml": null,
+    "blueprint": {},
+    "source_imro": null,
+    "pending_sites": [],
+    "rois": [],
+    "headstage_id": null
+  }
+}

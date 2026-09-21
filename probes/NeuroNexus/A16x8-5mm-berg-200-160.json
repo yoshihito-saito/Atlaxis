@@ -1,0 +1,2035 @@
+{
+  "geometry": {
+    "name": "A16x8-5mm-berg-200-160",
+    "contacts": [
+      {
+        "contact_id": "s0_front_0000",
+        "shank_id": 0,
+        "x_um": 0,
+        "y_um": 22,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0001",
+        "shank_id": 0,
+        "x_um": -8.5,
+        "y_um": 52,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0002",
+        "shank_id": 0,
+        "x_um": 8.5,
+        "y_um": 82,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0003",
+        "shank_id": 0,
+        "x_um": -12.5,
+        "y_um": 112,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0004",
+        "shank_id": 0,
+        "x_um": 12.5,
+        "y_um": 142,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0005",
+        "shank_id": 0,
+        "x_um": -16.5,
+        "y_um": 172,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0006",
+        "shank_id": 0,
+        "x_um": 16.5,
+        "y_um": 202,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s0_front_0007",
+        "shank_id": 0,
+        "x_um": -20.5,
+        "y_um": 232,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0000",
+        "shank_id": 1,
+        "x_um": 200,
+        "y_um": 22,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0001",
+        "shank_id": 1,
+        "x_um": 191.5,
+        "y_um": 52,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0002",
+        "shank_id": 1,
+        "x_um": 208.5,
+        "y_um": 82,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0003",
+        "shank_id": 1,
+        "x_um": 187.5,
+        "y_um": 112,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0004",
+        "shank_id": 1,
+        "x_um": 212.5,
+        "y_um": 142,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0005",
+        "shank_id": 1,
+        "x_um": 183.5,
+        "y_um": 172,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0006",
+        "shank_id": 1,
+        "x_um": 216.5,
+        "y_um": 202,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s1_front_0007",
+        "shank_id": 1,
+        "x_um": 179.5,
+        "y_um": 232,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0000",
+        "shank_id": 2,
+        "x_um": 400,
+        "y_um": 22,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0001",
+        "shank_id": 2,
+        "x_um": 391.5,
+        "y_um": 52,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0002",
+        "shank_id": 2,
+        "x_um": 408.5,
+        "y_um": 82,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0003",
+        "shank_id": 2,
+        "x_um": 387.5,
+        "y_um": 112,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0004",
+        "shank_id": 2,
+        "x_um": 412.5,
+        "y_um": 142,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0005",
+        "shank_id": 2,
+        "x_um": 383.5,
+        "y_um": 172,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0006",
+        "shank_id": 2,
+        "x_um": 416.5,
+        "y_um": 202,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s2_front_0007",
+        "shank_id": 2,
+        "x_um": 379.5,
+        "y_um": 232,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0000",
+        "shank_id": 3,
+        "x_um": 600,
+        "y_um": 22,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0001",
+        "shank_id": 3,
+        "x_um": 591.5,
+        "y_um": 52,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0002",
+        "shank_id": 3,
+        "x_um": 608.5,
+        "y_um": 82,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0003",
+        "shank_id": 3,
+        "x_um": 587.5,
+        "y_um": 112,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0004",
+        "shank_id": 3,
+        "x_um": 612.5,
+        "y_um": 142,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0005",
+        "shank_id": 3,
+        "x_um": 583.5,
+        "y_um": 172,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0006",
+        "shank_id": 3,
+        "x_um": 616.5,
+        "y_um": 202,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s3_front_0007",
+        "shank_id": 3,
+        "x_um": 579.5,
+        "y_um": 232,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s4_front_0000",
+        "shank_id": 4,
+        "x_um": 800,
+        "y_um": 22,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s4_front_0001",
+        "shank_id": 4,
+        "x_um": 791.5,
+        "y_um": 52,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s4_front_0002",
+        "shank_id": 4,
+        "x_um": 808.5,
+        "y_um": 82,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s4_front_0003",
+        "shank_id": 4,
+        "x_um": 787.5,
+        "y_um": 112,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s4_front_0004",
+        "shank_id": 4,
+        "x_um": 812.5,
+        "y_um": 142,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s4_front_0005",
+        "shank_id": 4,
+        "x_um": 783.5,
+        "y_um": 172,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s4_front_0006",
+        "shank_id": 4,
+        "x_um": 816.5,
+        "y_um": 202,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s4_front_0007",
+        "shank_id": 4,
+        "x_um": 779.5,
+        "y_um": 232,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s5_front_0000",
+        "shank_id": 5,
+        "x_um": 1000,
+        "y_um": 22,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s5_front_0001",
+        "shank_id": 5,
+        "x_um": 991.5,
+        "y_um": 52,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s5_front_0002",
+        "shank_id": 5,
+        "x_um": 1008.5,
+        "y_um": 82,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s5_front_0003",
+        "shank_id": 5,
+        "x_um": 987.5,
+        "y_um": 112,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s5_front_0004",
+        "shank_id": 5,
+        "x_um": 1012.5,
+        "y_um": 142,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s5_front_0005",
+        "shank_id": 5,
+        "x_um": 983.5,
+        "y_um": 172,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s5_front_0006",
+        "shank_id": 5,
+        "x_um": 1016.5,
+        "y_um": 202,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s5_front_0007",
+        "shank_id": 5,
+        "x_um": 979.5,
+        "y_um": 232,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s6_front_0000",
+        "shank_id": 6,
+        "x_um": 1200,
+        "y_um": 22,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s6_front_0001",
+        "shank_id": 6,
+        "x_um": 1191.5,
+        "y_um": 52,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s6_front_0002",
+        "shank_id": 6,
+        "x_um": 1208.5,
+        "y_um": 82,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s6_front_0003",
+        "shank_id": 6,
+        "x_um": 1187.5,
+        "y_um": 112,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s6_front_0004",
+        "shank_id": 6,
+        "x_um": 1212.5,
+        "y_um": 142,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s6_front_0005",
+        "shank_id": 6,
+        "x_um": 1183.5,
+        "y_um": 172,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s6_front_0006",
+        "shank_id": 6,
+        "x_um": 1216.5,
+        "y_um": 202,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s6_front_0007",
+        "shank_id": 6,
+        "x_um": 1179.5,
+        "y_um": 232,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s7_front_0000",
+        "shank_id": 7,
+        "x_um": 1400,
+        "y_um": 22,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s7_front_0001",
+        "shank_id": 7,
+        "x_um": 1391.5,
+        "y_um": 52,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s7_front_0002",
+        "shank_id": 7,
+        "x_um": 1408.5,
+        "y_um": 82,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s7_front_0003",
+        "shank_id": 7,
+        "x_um": 1387.5,
+        "y_um": 112,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s7_front_0004",
+        "shank_id": 7,
+        "x_um": 1412.5,
+        "y_um": 142,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s7_front_0005",
+        "shank_id": 7,
+        "x_um": 1383.5,
+        "y_um": 172,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s7_front_0006",
+        "shank_id": 7,
+        "x_um": 1416.5,
+        "y_um": 202,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s7_front_0007",
+        "shank_id": 7,
+        "x_um": 1379.5,
+        "y_um": 232,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s8_front_0000",
+        "shank_id": 8,
+        "x_um": 1600,
+        "y_um": 22,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s8_front_0001",
+        "shank_id": 8,
+        "x_um": 1591.5,
+        "y_um": 52,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s8_front_0002",
+        "shank_id": 8,
+        "x_um": 1608.5,
+        "y_um": 82,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s8_front_0003",
+        "shank_id": 8,
+        "x_um": 1587.5,
+        "y_um": 112,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s8_front_0004",
+        "shank_id": 8,
+        "x_um": 1612.5,
+        "y_um": 142,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s8_front_0005",
+        "shank_id": 8,
+        "x_um": 1583.5,
+        "y_um": 172,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s8_front_0006",
+        "shank_id": 8,
+        "x_um": 1616.5,
+        "y_um": 202,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s8_front_0007",
+        "shank_id": 8,
+        "x_um": 1579.5,
+        "y_um": 232,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s9_front_0000",
+        "shank_id": 9,
+        "x_um": 1800,
+        "y_um": 22,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s9_front_0001",
+        "shank_id": 9,
+        "x_um": 1791.5,
+        "y_um": 52,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s9_front_0002",
+        "shank_id": 9,
+        "x_um": 1808.5,
+        "y_um": 82,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s9_front_0003",
+        "shank_id": 9,
+        "x_um": 1787.5,
+        "y_um": 112,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s9_front_0004",
+        "shank_id": 9,
+        "x_um": 1812.5,
+        "y_um": 142,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s9_front_0005",
+        "shank_id": 9,
+        "x_um": 1783.5,
+        "y_um": 172,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s9_front_0006",
+        "shank_id": 9,
+        "x_um": 1816.5,
+        "y_um": 202,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s9_front_0007",
+        "shank_id": 9,
+        "x_um": 1779.5,
+        "y_um": 232,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s10_front_0000",
+        "shank_id": 10,
+        "x_um": 2000,
+        "y_um": 22,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s10_front_0001",
+        "shank_id": 10,
+        "x_um": 1991.5,
+        "y_um": 52,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s10_front_0002",
+        "shank_id": 10,
+        "x_um": 2008.5,
+        "y_um": 82,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s10_front_0003",
+        "shank_id": 10,
+        "x_um": 1987.5,
+        "y_um": 112,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s10_front_0004",
+        "shank_id": 10,
+        "x_um": 2012.5,
+        "y_um": 142,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s10_front_0005",
+        "shank_id": 10,
+        "x_um": 1983.5,
+        "y_um": 172,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s10_front_0006",
+        "shank_id": 10,
+        "x_um": 2016.5,
+        "y_um": 202,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s10_front_0007",
+        "shank_id": 10,
+        "x_um": 1979.5,
+        "y_um": 232,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s11_front_0000",
+        "shank_id": 11,
+        "x_um": 2200,
+        "y_um": 22,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s11_front_0001",
+        "shank_id": 11,
+        "x_um": 2191.5,
+        "y_um": 52,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s11_front_0002",
+        "shank_id": 11,
+        "x_um": 2208.5,
+        "y_um": 82,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s11_front_0003",
+        "shank_id": 11,
+        "x_um": 2187.5,
+        "y_um": 112,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s11_front_0004",
+        "shank_id": 11,
+        "x_um": 2212.5,
+        "y_um": 142,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s11_front_0005",
+        "shank_id": 11,
+        "x_um": 2183.5,
+        "y_um": 172,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s11_front_0006",
+        "shank_id": 11,
+        "x_um": 2216.5,
+        "y_um": 202,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s11_front_0007",
+        "shank_id": 11,
+        "x_um": 2179.5,
+        "y_um": 232,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s12_front_0000",
+        "shank_id": 12,
+        "x_um": 2400,
+        "y_um": 22,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s12_front_0001",
+        "shank_id": 12,
+        "x_um": 2391.5,
+        "y_um": 52,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s12_front_0002",
+        "shank_id": 12,
+        "x_um": 2408.5,
+        "y_um": 82,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s12_front_0003",
+        "shank_id": 12,
+        "x_um": 2387.5,
+        "y_um": 112,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s12_front_0004",
+        "shank_id": 12,
+        "x_um": 2412.5,
+        "y_um": 142,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s12_front_0005",
+        "shank_id": 12,
+        "x_um": 2383.5,
+        "y_um": 172,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s12_front_0006",
+        "shank_id": 12,
+        "x_um": 2416.5,
+        "y_um": 202,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s12_front_0007",
+        "shank_id": 12,
+        "x_um": 2379.5,
+        "y_um": 232,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s13_front_0000",
+        "shank_id": 13,
+        "x_um": 2600,
+        "y_um": 22,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s13_front_0001",
+        "shank_id": 13,
+        "x_um": 2591.5,
+        "y_um": 52,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s13_front_0002",
+        "shank_id": 13,
+        "x_um": 2608.5,
+        "y_um": 82,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s13_front_0003",
+        "shank_id": 13,
+        "x_um": 2587.5,
+        "y_um": 112,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s13_front_0004",
+        "shank_id": 13,
+        "x_um": 2612.5,
+        "y_um": 142,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s13_front_0005",
+        "shank_id": 13,
+        "x_um": 2583.5,
+        "y_um": 172,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s13_front_0006",
+        "shank_id": 13,
+        "x_um": 2616.5,
+        "y_um": 202,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s13_front_0007",
+        "shank_id": 13,
+        "x_um": 2579.5,
+        "y_um": 232,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s14_front_0000",
+        "shank_id": 14,
+        "x_um": 2800,
+        "y_um": 22,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s14_front_0001",
+        "shank_id": 14,
+        "x_um": 2791.5,
+        "y_um": 52,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s14_front_0002",
+        "shank_id": 14,
+        "x_um": 2808.5,
+        "y_um": 82,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s14_front_0003",
+        "shank_id": 14,
+        "x_um": 2787.5,
+        "y_um": 112,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s14_front_0004",
+        "shank_id": 14,
+        "x_um": 2812.5,
+        "y_um": 142,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s14_front_0005",
+        "shank_id": 14,
+        "x_um": 2783.5,
+        "y_um": 172,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s14_front_0006",
+        "shank_id": 14,
+        "x_um": 2816.5,
+        "y_um": 202,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s14_front_0007",
+        "shank_id": 14,
+        "x_um": 2779.5,
+        "y_um": 232,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s15_front_0000",
+        "shank_id": 15,
+        "x_um": 3000,
+        "y_um": 22,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s15_front_0001",
+        "shank_id": 15,
+        "x_um": 2991.5,
+        "y_um": 52,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s15_front_0002",
+        "shank_id": 15,
+        "x_um": 3008.5,
+        "y_um": 82,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s15_front_0003",
+        "shank_id": 15,
+        "x_um": 2987.5,
+        "y_um": 112,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s15_front_0004",
+        "shank_id": 15,
+        "x_um": 3012.5,
+        "y_um": 142,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s15_front_0005",
+        "shank_id": 15,
+        "x_um": 2983.5,
+        "y_um": 172,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s15_front_0006",
+        "shank_id": 15,
+        "x_um": 3016.5,
+        "y_um": 202,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "s15_front_0007",
+        "shank_id": 15,
+        "x_um": 2979.5,
+        "y_um": 232,
+        "z_um": -7.5
+      }
+    ],
+    "tip_um": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "y_to_base": 1,
+    "units": "um",
+    "bodies": [
+      {
+        "outline_um": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            -14,
+            22,
+            0
+          ],
+          [
+            -26,
+            232,
+            0
+          ],
+          [
+            -28.5,
+            1000,
+            0
+          ],
+          [
+            -28.5,
+            5000,
+            0
+          ],
+          [
+            28.5,
+            5000,
+            0
+          ],
+          [
+            28.5,
+            1000,
+            0
+          ],
+          [
+            26,
+            232,
+            0
+          ],
+          [
+            14,
+            22,
+            0
+          ]
+        ],
+        "thickness_um": 15,
+        "shank_id": 0
+      },
+      {
+        "outline_um": [
+          [
+            200,
+            0,
+            0
+          ],
+          [
+            186,
+            22,
+            0
+          ],
+          [
+            174,
+            232,
+            0
+          ],
+          [
+            171.5,
+            1000,
+            0
+          ],
+          [
+            171.5,
+            5000,
+            0
+          ],
+          [
+            228.5,
+            5000,
+            0
+          ],
+          [
+            228.5,
+            1000,
+            0
+          ],
+          [
+            226,
+            232,
+            0
+          ],
+          [
+            214,
+            22,
+            0
+          ]
+        ],
+        "thickness_um": 15,
+        "shank_id": 1
+      },
+      {
+        "outline_um": [
+          [
+            400,
+            0,
+            0
+          ],
+          [
+            386,
+            22,
+            0
+          ],
+          [
+            374,
+            232,
+            0
+          ],
+          [
+            371.5,
+            1000,
+            0
+          ],
+          [
+            371.5,
+            5000,
+            0
+          ],
+          [
+            428.5,
+            5000,
+            0
+          ],
+          [
+            428.5,
+            1000,
+            0
+          ],
+          [
+            426,
+            232,
+            0
+          ],
+          [
+            414,
+            22,
+            0
+          ]
+        ],
+        "thickness_um": 15,
+        "shank_id": 2
+      },
+      {
+        "outline_um": [
+          [
+            600,
+            0,
+            0
+          ],
+          [
+            586,
+            22,
+            0
+          ],
+          [
+            574,
+            232,
+            0
+          ],
+          [
+            571.5,
+            1000,
+            0
+          ],
+          [
+            571.5,
+            5000,
+            0
+          ],
+          [
+            628.5,
+            5000,
+            0
+          ],
+          [
+            628.5,
+            1000,
+            0
+          ],
+          [
+            626,
+            232,
+            0
+          ],
+          [
+            614,
+            22,
+            0
+          ]
+        ],
+        "thickness_um": 15,
+        "shank_id": 3
+      },
+      {
+        "outline_um": [
+          [
+            800,
+            0,
+            0
+          ],
+          [
+            786,
+            22,
+            0
+          ],
+          [
+            774,
+            232,
+            0
+          ],
+          [
+            771.5,
+            1000,
+            0
+          ],
+          [
+            771.5,
+            5000,
+            0
+          ],
+          [
+            828.5,
+            5000,
+            0
+          ],
+          [
+            828.5,
+            1000,
+            0
+          ],
+          [
+            826,
+            232,
+            0
+          ],
+          [
+            814,
+            22,
+            0
+          ]
+        ],
+        "thickness_um": 15,
+        "shank_id": 4
+      },
+      {
+        "outline_um": [
+          [
+            1000,
+            0,
+            0
+          ],
+          [
+            986,
+            22,
+            0
+          ],
+          [
+            974,
+            232,
+            0
+          ],
+          [
+            971.5,
+            1000,
+            0
+          ],
+          [
+            971.5,
+            5000,
+            0
+          ],
+          [
+            1028.5,
+            5000,
+            0
+          ],
+          [
+            1028.5,
+            1000,
+            0
+          ],
+          [
+            1026,
+            232,
+            0
+          ],
+          [
+            1014,
+            22,
+            0
+          ]
+        ],
+        "thickness_um": 15,
+        "shank_id": 5
+      },
+      {
+        "outline_um": [
+          [
+            1200,
+            0,
+            0
+          ],
+          [
+            1186,
+            22,
+            0
+          ],
+          [
+            1174,
+            232,
+            0
+          ],
+          [
+            1171.5,
+            1000,
+            0
+          ],
+          [
+            1171.5,
+            5000,
+            0
+          ],
+          [
+            1228.5,
+            5000,
+            0
+          ],
+          [
+            1228.5,
+            1000,
+            0
+          ],
+          [
+            1226,
+            232,
+            0
+          ],
+          [
+            1214,
+            22,
+            0
+          ]
+        ],
+        "thickness_um": 15,
+        "shank_id": 6
+      },
+      {
+        "outline_um": [
+          [
+            1400,
+            0,
+            0
+          ],
+          [
+            1386,
+            22,
+            0
+          ],
+          [
+            1374,
+            232,
+            0
+          ],
+          [
+            1371.5,
+            1000,
+            0
+          ],
+          [
+            1371.5,
+            5000,
+            0
+          ],
+          [
+            1428.5,
+            5000,
+            0
+          ],
+          [
+            1428.5,
+            1000,
+            0
+          ],
+          [
+            1426,
+            232,
+            0
+          ],
+          [
+            1414,
+            22,
+            0
+          ]
+        ],
+        "thickness_um": 15,
+        "shank_id": 7
+      },
+      {
+        "outline_um": [
+          [
+            1600,
+            0,
+            0
+          ],
+          [
+            1586,
+            22,
+            0
+          ],
+          [
+            1574,
+            232,
+            0
+          ],
+          [
+            1571.5,
+            1000,
+            0
+          ],
+          [
+            1571.5,
+            5000,
+            0
+          ],
+          [
+            1628.5,
+            5000,
+            0
+          ],
+          [
+            1628.5,
+            1000,
+            0
+          ],
+          [
+            1626,
+            232,
+            0
+          ],
+          [
+            1614,
+            22,
+            0
+          ]
+        ],
+        "thickness_um": 15,
+        "shank_id": 8
+      },
+      {
+        "outline_um": [
+          [
+            1800,
+            0,
+            0
+          ],
+          [
+            1786,
+            22,
+            0
+          ],
+          [
+            1774,
+            232,
+            0
+          ],
+          [
+            1771.5,
+            1000,
+            0
+          ],
+          [
+            1771.5,
+            5000,
+            0
+          ],
+          [
+            1828.5,
+            5000,
+            0
+          ],
+          [
+            1828.5,
+            1000,
+            0
+          ],
+          [
+            1826,
+            232,
+            0
+          ],
+          [
+            1814,
+            22,
+            0
+          ]
+        ],
+        "thickness_um": 15,
+        "shank_id": 9
+      },
+      {
+        "outline_um": [
+          [
+            2000,
+            0,
+            0
+          ],
+          [
+            1986,
+            22,
+            0
+          ],
+          [
+            1974,
+            232,
+            0
+          ],
+          [
+            1971.5,
+            1000,
+            0
+          ],
+          [
+            1971.5,
+            5000,
+            0
+          ],
+          [
+            2028.5,
+            5000,
+            0
+          ],
+          [
+            2028.5,
+            1000,
+            0
+          ],
+          [
+            2026,
+            232,
+            0
+          ],
+          [
+            2014,
+            22,
+            0
+          ]
+        ],
+        "thickness_um": 15,
+        "shank_id": 10
+      },
+      {
+        "outline_um": [
+          [
+            2200,
+            0,
+            0
+          ],
+          [
+            2186,
+            22,
+            0
+          ],
+          [
+            2174,
+            232,
+            0
+          ],
+          [
+            2171.5,
+            1000,
+            0
+          ],
+          [
+            2171.5,
+            5000,
+            0
+          ],
+          [
+            2228.5,
+            5000,
+            0
+          ],
+          [
+            2228.5,
+            1000,
+            0
+          ],
+          [
+            2226,
+            232,
+            0
+          ],
+          [
+            2214,
+            22,
+            0
+          ]
+        ],
+        "thickness_um": 15,
+        "shank_id": 11
+      },
+      {
+        "outline_um": [
+          [
+            2400,
+            0,
+            0
+          ],
+          [
+            2386,
+            22,
+            0
+          ],
+          [
+            2374,
+            232,
+            0
+          ],
+          [
+            2371.5,
+            1000,
+            0
+          ],
+          [
+            2371.5,
+            5000,
+            0
+          ],
+          [
+            2428.5,
+            5000,
+            0
+          ],
+          [
+            2428.5,
+            1000,
+            0
+          ],
+          [
+            2426,
+            232,
+            0
+          ],
+          [
+            2414,
+            22,
+            0
+          ]
+        ],
+        "thickness_um": 15,
+        "shank_id": 12
+      },
+      {
+        "outline_um": [
+          [
+            2600,
+            0,
+            0
+          ],
+          [
+            2586,
+            22,
+            0
+          ],
+          [
+            2574,
+            232,
+            0
+          ],
+          [
+            2571.5,
+            1000,
+            0
+          ],
+          [
+            2571.5,
+            5000,
+            0
+          ],
+          [
+            2628.5,
+            5000,
+            0
+          ],
+          [
+            2628.5,
+            1000,
+            0
+          ],
+          [
+            2626,
+            232,
+            0
+          ],
+          [
+            2614,
+            22,
+            0
+          ]
+        ],
+        "thickness_um": 15,
+        "shank_id": 13
+      },
+      {
+        "outline_um": [
+          [
+            2800,
+            0,
+            0
+          ],
+          [
+            2786,
+            22,
+            0
+          ],
+          [
+            2774,
+            232,
+            0
+          ],
+          [
+            2771.5,
+            1000,
+            0
+          ],
+          [
+            2771.5,
+            5000,
+            0
+          ],
+          [
+            2828.5,
+            5000,
+            0
+          ],
+          [
+            2828.5,
+            1000,
+            0
+          ],
+          [
+            2826,
+            232,
+            0
+          ],
+          [
+            2814,
+            22,
+            0
+          ]
+        ],
+        "thickness_um": 15,
+        "shank_id": 14
+      },
+      {
+        "outline_um": [
+          [
+            3000,
+            0,
+            0
+          ],
+          [
+            2986,
+            22,
+            0
+          ],
+          [
+            2974,
+            232,
+            0
+          ],
+          [
+            2971.5,
+            1000,
+            0
+          ],
+          [
+            2971.5,
+            5000,
+            0
+          ],
+          [
+            3028.5,
+            5000,
+            0
+          ],
+          [
+            3028.5,
+            1000,
+            0
+          ],
+          [
+            3026,
+            232,
+            0
+          ],
+          [
+            3014,
+            22,
+            0
+          ]
+        ],
+        "thickness_um": 15,
+        "shank_id": 15
+      }
+    ],
+    "metadata": {
+      "manufacturer": "NeuroNexus",
+      "sources": [
+        {
+          "url": "https://solutions.neuronexus.com/hubfs/Penetrating_Probe_Catalog_V2.1.pdf",
+          "pdf_page": 123
+        }
+      ],
+      "source_accessed": "2026-09-20",
+      "site_id_convention": "Zero-based shank and physical site index; front/back in local z.",
+      "coordinate_convention": "um; first shank tip at origin; +x across shanks; +y toward base; front is -z.",
+      "layout_note": "16 shanks; 200 um tip pitch; sites ordered tip-to-base then left-to-right.",
+      "body_note": "Schematic shaft silhouettes from catalog dimensions; taper transitions are interpolated. Connector and headstage omitted.",
+      "routing_note": "Choose the exact package / headstage. Other connections remain unassigned.",
+      "site_area_um2": 160,
+      "catalog_sha256": "27881fa444792f145353d81ca0359a272afe4d8f72a88c35bebbc0465d33a5ba",
+      "connection_label": "Package / headstage",
+      "headstage_profiles": [
+        {
+          "source_url": "https://www.neuronexus.com/files/probemapping/128-channel/Activus128-Maps.pdf",
+          "pdf_pages": [
+            6,
+            7,
+            8
+          ],
+          "source_sha256": "f5cb1cc640dce87a13fc7fa000a1897a61b71aaca8d9b83338f55f3bcb1721dd",
+          "numbering": "zero-based recording channel",
+          "source_numbering": "zero-based recording channel",
+          "id": "neuronexus_activus128",
+          "label": "Activus 128 (AV / AVH / AVI / AVIH)",
+          "note": "Official Activus 128 channel numbering (0-127). Use only the AV / AVH / AVI / AVIH package variants listed in this map.",
+          "n_channels": 128,
+          "contact_to_channel": {
+            "s0_front_0000": 70,
+            "s0_front_0001": 69,
+            "s0_front_0002": 68,
+            "s0_front_0003": 71,
+            "s0_front_0004": 66,
+            "s0_front_0005": 67,
+            "s0_front_0006": 64,
+            "s0_front_0007": 65,
+            "s1_front_0000": 73,
+            "s1_front_0001": 72,
+            "s1_front_0002": 75,
+            "s1_front_0003": 74,
+            "s1_front_0004": 77,
+            "s1_front_0005": 76,
+            "s1_front_0006": 79,
+            "s1_front_0007": 78,
+            "s2_front_0000": 84,
+            "s2_front_0001": 83,
+            "s2_front_0002": 86,
+            "s2_front_0003": 85,
+            "s2_front_0004": 82,
+            "s2_front_0005": 87,
+            "s2_front_0006": 80,
+            "s2_front_0007": 81,
+            "s3_front_0000": 90,
+            "s3_front_0001": 88,
+            "s3_front_0002": 92,
+            "s3_front_0003": 89,
+            "s3_front_0004": 94,
+            "s3_front_0005": 91,
+            "s3_front_0006": 95,
+            "s3_front_0007": 93,
+            "s4_front_0000": 124,
+            "s4_front_0001": 126,
+            "s4_front_0002": 121,
+            "s4_front_0003": 122,
+            "s4_front_0004": 117,
+            "s4_front_0005": 118,
+            "s4_front_0006": 113,
+            "s4_front_0007": 115,
+            "s5_front_0000": 125,
+            "s5_front_0001": 127,
+            "s5_front_0002": 120,
+            "s5_front_0003": 123,
+            "s5_front_0004": 116,
+            "s5_front_0005": 119,
+            "s5_front_0006": 112,
+            "s5_front_0007": 114,
+            "s6_front_0000": 100,
+            "s6_front_0001": 98,
+            "s6_front_0002": 104,
+            "s6_front_0003": 102,
+            "s6_front_0004": 108,
+            "s6_front_0005": 106,
+            "s6_front_0006": 111,
+            "s6_front_0007": 110,
+            "s7_front_0000": 97,
+            "s7_front_0001": 96,
+            "s7_front_0002": 101,
+            "s7_front_0003": 99,
+            "s7_front_0004": 105,
+            "s7_front_0005": 103,
+            "s7_front_0006": 109,
+            "s7_front_0007": 107,
+            "s8_front_0000": 1,
+            "s8_front_0001": 3,
+            "s8_front_0002": 5,
+            "s8_front_0003": 7,
+            "s8_front_0004": 9,
+            "s8_front_0005": 8,
+            "s8_front_0006": 13,
+            "s8_front_0007": 12,
+            "s9_front_0000": 0,
+            "s9_front_0001": 2,
+            "s9_front_0002": 4,
+            "s9_front_0003": 6,
+            "s9_front_0004": 10,
+            "s9_front_0005": 11,
+            "s9_front_0006": 14,
+            "s9_front_0007": 15,
+            "s10_front_0000": 16,
+            "s10_front_0001": 17,
+            "s10_front_0002": 19,
+            "s10_front_0003": 22,
+            "s10_front_0004": 26,
+            "s10_front_0005": 28,
+            "s10_front_0006": 30,
+            "s10_front_0007": 32,
+            "s11_front_0000": 18,
+            "s11_front_0001": 20,
+            "s11_front_0002": 21,
+            "s11_front_0003": 24,
+            "s11_front_0004": 23,
+            "s11_front_0005": 25,
+            "s11_front_0006": 27,
+            "s11_front_0007": 29,
+            "s12_front_0000": 35,
+            "s12_front_0001": 31,
+            "s12_front_0002": 39,
+            "s12_front_0003": 36,
+            "s12_front_0004": 41,
+            "s12_front_0005": 42,
+            "s12_front_0006": 45,
+            "s12_front_0007": 46,
+            "s13_front_0000": 33,
+            "s13_front_0001": 34,
+            "s13_front_0002": 37,
+            "s13_front_0003": 38,
+            "s13_front_0004": 43,
+            "s13_front_0005": 40,
+            "s13_front_0006": 47,
+            "s13_front_0007": 44,
+            "s14_front_0000": 50,
+            "s14_front_0001": 51,
+            "s14_front_0002": 54,
+            "s14_front_0003": 55,
+            "s14_front_0004": 58,
+            "s14_front_0005": 59,
+            "s14_front_0006": 62,
+            "s14_front_0007": 63,
+            "s15_front_0000": 48,
+            "s15_front_0001": 49,
+            "s15_front_0002": 52,
+            "s15_front_0003": 53,
+            "s15_front_0004": 56,
+            "s15_front_0005": 57,
+            "s15_front_0006": 60,
+            "s15_front_0007": 61
+          },
+          "source_contact_numbers": {
+            "s0_front_0000": 70,
+            "s0_front_0001": 69,
+            "s0_front_0002": 68,
+            "s0_front_0003": 71,
+            "s0_front_0004": 66,
+            "s0_front_0005": 67,
+            "s0_front_0006": 64,
+            "s0_front_0007": 65,
+            "s1_front_0000": 73,
+            "s1_front_0001": 72,
+            "s1_front_0002": 75,
+            "s1_front_0003": 74,
+            "s1_front_0004": 77,
+            "s1_front_0005": 76,
+            "s1_front_0006": 79,
+            "s1_front_0007": 78,
+            "s2_front_0000": 84,
+            "s2_front_0001": 83,
+            "s2_front_0002": 86,
+            "s2_front_0003": 85,
+            "s2_front_0004": 82,
+            "s2_front_0005": 87,
+            "s2_front_0006": 80,
+            "s2_front_0007": 81,
+            "s3_front_0000": 90,
+            "s3_front_0001": 88,
+            "s3_front_0002": 92,
+            "s3_front_0003": 89,
+            "s3_front_0004": 94,
+            "s3_front_0005": 91,
+            "s3_front_0006": 95,
+            "s3_front_0007": 93,
+            "s4_front_0000": 124,
+            "s4_front_0001": 126,
+            "s4_front_0002": 121,
+            "s4_front_0003": 122,
+            "s4_front_0004": 117,
+            "s4_front_0005": 118,
+            "s4_front_0006": 113,
+            "s4_front_0007": 115,
+            "s5_front_0000": 125,
+            "s5_front_0001": 127,
+            "s5_front_0002": 120,
+            "s5_front_0003": 123,
+            "s5_front_0004": 116,
+            "s5_front_0005": 119,
+            "s5_front_0006": 112,
+            "s5_front_0007": 114,
+            "s6_front_0000": 100,
+            "s6_front_0001": 98,
+            "s6_front_0002": 104,
+            "s6_front_0003": 102,
+            "s6_front_0004": 108,
+            "s6_front_0005": 106,
+            "s6_front_0006": 111,
+            "s6_front_0007": 110,
+            "s7_front_0000": 97,
+            "s7_front_0001": 96,
+            "s7_front_0002": 101,
+            "s7_front_0003": 99,
+            "s7_front_0004": 105,
+            "s7_front_0005": 103,
+            "s7_front_0006": 109,
+            "s7_front_0007": 107,
+            "s8_front_0000": 1,
+            "s8_front_0001": 3,
+            "s8_front_0002": 5,
+            "s8_front_0003": 7,
+            "s8_front_0004": 9,
+            "s8_front_0005": 8,
+            "s8_front_0006": 13,
+            "s8_front_0007": 12,
+            "s9_front_0000": 0,
+            "s9_front_0001": 2,
+            "s9_front_0002": 4,
+            "s9_front_0003": 6,
+            "s9_front_0004": 10,
+            "s9_front_0005": 11,
+            "s9_front_0006": 14,
+            "s9_front_0007": 15,
+            "s10_front_0000": 16,
+            "s10_front_0001": 17,
+            "s10_front_0002": 19,
+            "s10_front_0003": 22,
+            "s10_front_0004": 26,
+            "s10_front_0005": 28,
+            "s10_front_0006": 30,
+            "s10_front_0007": 32,
+            "s11_front_0000": 18,
+            "s11_front_0001": 20,
+            "s11_front_0002": 21,
+            "s11_front_0003": 24,
+            "s11_front_0004": 23,
+            "s11_front_0005": 25,
+            "s11_front_0006": 27,
+            "s11_front_0007": 29,
+            "s12_front_0000": 35,
+            "s12_front_0001": 31,
+            "s12_front_0002": 39,
+            "s12_front_0003": 36,
+            "s12_front_0004": 41,
+            "s12_front_0005": 42,
+            "s12_front_0006": 45,
+            "s12_front_0007": 46,
+            "s13_front_0000": 33,
+            "s13_front_0001": 34,
+            "s13_front_0002": 37,
+            "s13_front_0003": 38,
+            "s13_front_0004": 43,
+            "s13_front_0005": 40,
+            "s13_front_0006": 47,
+            "s13_front_0007": 44,
+            "s14_front_0000": 50,
+            "s14_front_0001": 51,
+            "s14_front_0002": 54,
+            "s14_front_0003": 55,
+            "s14_front_0004": 58,
+            "s14_front_0005": 59,
+            "s14_front_0006": 62,
+            "s14_front_0007": 63,
+            "s15_front_0000": 48,
+            "s15_front_0001": 49,
+            "s15_front_0002": 52,
+            "s15_front_0003": 53,
+            "s15_front_0004": 56,
+            "s15_front_0005": 57,
+            "s15_front_0006": 60,
+            "s15_front_0007": 61
+          }
+        }
+      ]
+    }
+  },
+  "channel_map": {
+    "contact_to_channel": {},
+    "n_channels": 128,
+    "groups": [],
+    "skipped": [],
+    "source_xml": null,
+    "blueprint": {},
+    "source_imro": null,
+    "pending_sites": [],
+    "rois": [],
+    "headstage_id": null
+  }
+}

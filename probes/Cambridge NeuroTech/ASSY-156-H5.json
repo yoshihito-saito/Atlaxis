@@ -1,0 +1,1081 @@
+{
+  "geometry": {
+    "name": "ASSY-156-H5",
+    "contacts": [
+      {
+        "contact_id": "1",
+        "shank_id": 0,
+        "x_um": -11.25,
+        "y_um": 365.2905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "2",
+        "shank_id": 0,
+        "x_um": -11.25,
+        "y_um": 315.2905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "3",
+        "shank_id": 0,
+        "x_um": -11.25,
+        "y_um": 390.2905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "4",
+        "shank_id": 0,
+        "x_um": 11.25,
+        "y_um": 427.7905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "5",
+        "shank_id": 0,
+        "x_um": 11.25,
+        "y_um": 152.79056006761732,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "6",
+        "shank_id": 0,
+        "x_um": -11.25,
+        "y_um": 190.29056006761732,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "7",
+        "shank_id": 0,
+        "x_um": -11.25,
+        "y_um": 90.2905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "8",
+        "shank_id": 0,
+        "x_um": 11.25,
+        "y_um": 252.79056006761732,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "9",
+        "shank_id": 0,
+        "x_um": 11.25,
+        "y_um": 127.7905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "10",
+        "shank_id": 0,
+        "x_um": -11.25,
+        "y_um": 215.29056006761732,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "11",
+        "shank_id": 0,
+        "x_um": -11.25,
+        "y_um": 65.2905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "12",
+        "shank_id": 0,
+        "x_um": 11.25,
+        "y_um": 477.7905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "13",
+        "shank_id": 0,
+        "x_um": -11.25,
+        "y_um": 290.2905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "14",
+        "shank_id": 0,
+        "x_um": -11.25,
+        "y_um": 415.2905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "15",
+        "shank_id": 0,
+        "x_um": 11.25,
+        "y_um": 377.7905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "16",
+        "shank_id": 0,
+        "x_um": 11.25,
+        "y_um": 327.7905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "17",
+        "shank_id": 0,
+        "x_um": 11.25,
+        "y_um": 727.7905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "18",
+        "shank_id": 0,
+        "x_um": 11.25,
+        "y_um": 627.7905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "19",
+        "shank_id": 0,
+        "x_um": 11.25,
+        "y_um": 552.7905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "20",
+        "shank_id": 0,
+        "x_um": 11.25,
+        "y_um": 802.7905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "21",
+        "shank_id": 0,
+        "x_um": -11.25,
+        "y_um": 465.2905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "22",
+        "shank_id": 0,
+        "x_um": -11.25,
+        "y_um": 440.2905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "23",
+        "shank_id": 0,
+        "x_um": -11.25,
+        "y_um": 590.2905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "24",
+        "shank_id": 0,
+        "x_um": -11.25,
+        "y_um": 765.2905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "25",
+        "shank_id": 0,
+        "x_um": -11.25,
+        "y_um": 515.2905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "26",
+        "shank_id": 0,
+        "x_um": -11.25,
+        "y_um": 840.2905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "27",
+        "shank_id": 0,
+        "x_um": -11.25,
+        "y_um": 640.2905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "28",
+        "shank_id": 0,
+        "x_um": -11.25,
+        "y_um": 715.2905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "29",
+        "shank_id": 0,
+        "x_um": 11.25,
+        "y_um": 752.7905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "30",
+        "shank_id": 0,
+        "x_um": 11.25,
+        "y_um": 827.7905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "31",
+        "shank_id": 0,
+        "x_um": 11.25,
+        "y_um": 352.7905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "32",
+        "shank_id": 0,
+        "x_um": 11.25,
+        "y_um": 602.7905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "33",
+        "shank_id": 0,
+        "x_um": -11.25,
+        "y_um": 790.2905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "34",
+        "shank_id": 0,
+        "x_um": -11.25,
+        "y_um": 490.2905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "35",
+        "shank_id": 0,
+        "x_um": -11.25,
+        "y_um": 815.2905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "36",
+        "shank_id": 0,
+        "x_um": -11.25,
+        "y_um": 565.2905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "37",
+        "shank_id": 0,
+        "x_um": -11.25,
+        "y_um": 740.2905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "38",
+        "shank_id": 0,
+        "x_um": -11.25,
+        "y_um": 540.2905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "39",
+        "shank_id": 0,
+        "x_um": -11.25,
+        "y_um": 665.2905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "40",
+        "shank_id": 0,
+        "x_um": -11.25,
+        "y_um": 615.2905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "41",
+        "shank_id": 0,
+        "x_um": -11.25,
+        "y_um": 690.2905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "42",
+        "shank_id": 0,
+        "x_um": 11.25,
+        "y_um": 527.7905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "43",
+        "shank_id": 0,
+        "x_um": 11.25,
+        "y_um": 852.7905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "44",
+        "shank_id": 0,
+        "x_um": 11.25,
+        "y_um": 502.7905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "45",
+        "shank_id": 0,
+        "x_um": 11.25,
+        "y_um": 777.7905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "46",
+        "shank_id": 0,
+        "x_um": 11.25,
+        "y_um": 577.7905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "47",
+        "shank_id": 0,
+        "x_um": 11.25,
+        "y_um": 652.7905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "48",
+        "shank_id": 0,
+        "x_um": 11.25,
+        "y_um": 677.7905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "49",
+        "shank_id": 0,
+        "x_um": -11.25,
+        "y_um": 340.2905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "50",
+        "shank_id": 0,
+        "x_um": 11.25,
+        "y_um": 702.7905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "51",
+        "shank_id": 0,
+        "x_um": 11.25,
+        "y_um": 402.7905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "52",
+        "shank_id": 0,
+        "x_um": 11.25,
+        "y_um": 302.7905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "53",
+        "shank_id": 0,
+        "x_um": 11.25,
+        "y_um": 452.7905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "54",
+        "shank_id": 0,
+        "x_um": -11.25,
+        "y_um": 265.2905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "55",
+        "shank_id": 0,
+        "x_um": 11.25,
+        "y_um": 177.79056006761732,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "56",
+        "shank_id": 0,
+        "x_um": 11.25,
+        "y_um": 277.7905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "57",
+        "shank_id": 0,
+        "x_um": -11.25,
+        "y_um": 165.29056006761732,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "58",
+        "shank_id": 0,
+        "x_um": -11.25,
+        "y_um": 140.29056006761732,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "59",
+        "shank_id": 0,
+        "x_um": 11.25,
+        "y_um": 202.79056006761732,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "60",
+        "shank_id": 0,
+        "x_um": 11.25,
+        "y_um": 102.7905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "61",
+        "shank_id": 0,
+        "x_um": -11.25,
+        "y_um": 240.29056006761732,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "62",
+        "shank_id": 0,
+        "x_um": -11.25,
+        "y_um": 115.2905600676173,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "63",
+        "shank_id": 0,
+        "x_um": 11.25,
+        "y_um": 227.79056006761732,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "64",
+        "shank_id": 0,
+        "x_um": 11.25,
+        "y_um": 77.7905600676173,
+        "z_um": -7.5
+      }
+    ],
+    "tip_um": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "y_to_base": 1,
+    "units": "um",
+    "bodies": [
+      {
+        "outline_um": [
+          [
+            -35.25,
+            9065.290560067617,
+            0.0
+          ],
+          [
+            35.25,
+            9065.290560067617,
+            0.0
+          ],
+          [
+            35.25,
+            52.710280373831765,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            -35.25,
+            52.710280373831765,
+            0.0
+          ]
+        ],
+        "thickness_um": 15.0,
+        "shank_id": 0
+      }
+    ],
+    "metadata": {
+      "manufacturer": "Cambridge NeuroTech",
+      "assembly": "ASSY-156",
+      "provisional": true,
+      "geometry_status": "upstream_unverified",
+      "coordinate_convention": "um; leftmost contour tip at origin; +x across shanks; +y toward base; front is -z.",
+      "site_id_convention": "Physical source IDs retained; recording channels are assigned by the selected official wiring profile.",
+      "source_origin_um": [
+        11.25,
+        -65.2905600676173,
+        0.0
+      ],
+      "source_annotations": {
+        "manufacturer": "cambridgeneurotech",
+        "model_name": "ASSY-156-H5"
+      },
+      "source_shank_ids": [],
+      "shank_note": "Zero-based left-to-right shanks recovered from sharp contour tips; common base partitioned at inter-tip midpoints. Source labels retained separately.",
+      "faces": 1,
+      "contact_sides": [
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front"
+      ],
+      "contact_shapes": [
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect"
+      ],
+      "contact_shape_params": [
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        }
+      ],
+      "display_thickness_um": 15.0,
+      "body_note": "Upstream 2D outline retained, including any common base. Nominal extrusion only: 15 um single-sided / 30 um double-sided; exact physical thickness is unspecified.",
+      "geometry_note": "Unverified upstream dimensions and tip origin. x/y are translated without scaling; face z uses nominal half-thickness with unknown physical error. No manufacturer-wide dimensional audit performed.",
+      "routing_note": "Select the connected headstage to assign recording channels. Intan RHD 64ch C3315/C3325, direct Omnetics connection. Channel IDs are native, zero-based Intan amplifier inputs before recording-system port offsets. Front Omnetics mates with the chip-side headstage connector; Back with the opposite connector.",
+      "contact_to_connector_pin": {
+        "26": 26,
+        "35": 35,
+        "33": 33,
+        "24": 24,
+        "37": 37,
+        "28": 28,
+        "41": 41,
+        "39": 39,
+        "27": 27,
+        "40": 40,
+        "23": 23,
+        "36": 36,
+        "38": 38,
+        "25": 25,
+        "34": 34,
+        "21": 21,
+        "22": 22,
+        "14": 14,
+        "3": 3,
+        "1": 1,
+        "49": 49,
+        "2": 2,
+        "13": 13,
+        "54": 54,
+        "61": 61,
+        "10": 10,
+        "6": 6,
+        "57": 57,
+        "58": 58,
+        "62": 62,
+        "7": 7,
+        "11": 11,
+        "43": 43,
+        "30": 30,
+        "20": 20,
+        "45": 45,
+        "29": 29,
+        "17": 17,
+        "50": 50,
+        "48": 48,
+        "47": 47,
+        "18": 18,
+        "32": 32,
+        "46": 46,
+        "19": 19,
+        "42": 42,
+        "44": 44,
+        "12": 12,
+        "53": 53,
+        "4": 4,
+        "51": 51,
+        "15": 15,
+        "31": 31,
+        "16": 16,
+        "52": 52,
+        "56": 56,
+        "8": 8,
+        "63": 63,
+        "59": 59,
+        "55": 55,
+        "5": 5,
+        "9": 9,
+        "60": 60,
+        "64": 64
+      },
+      "headstage_profiles": [
+        {
+          "id": "intan-rhd-64",
+          "label": "Intan RHD 64ch (C3315/C3325)",
+          "n_channels": 64,
+          "contact_to_channel": {
+            "26": 22,
+            "35": 13,
+            "33": 15,
+            "24": 24,
+            "37": 11,
+            "28": 20,
+            "41": 7,
+            "39": 9,
+            "27": 21,
+            "40": 8,
+            "23": 25,
+            "36": 12,
+            "38": 10,
+            "25": 23,
+            "34": 14,
+            "21": 27,
+            "22": 26,
+            "14": 34,
+            "3": 45,
+            "1": 47,
+            "49": 63,
+            "2": 46,
+            "13": 35,
+            "54": 58,
+            "61": 51,
+            "10": 38,
+            "6": 42,
+            "57": 55,
+            "58": 54,
+            "62": 50,
+            "7": 41,
+            "11": 37,
+            "43": 5,
+            "30": 18,
+            "20": 28,
+            "45": 3,
+            "29": 19,
+            "17": 31,
+            "50": 62,
+            "48": 0,
+            "47": 1,
+            "18": 30,
+            "32": 16,
+            "46": 2,
+            "19": 29,
+            "42": 6,
+            "44": 4,
+            "12": 36,
+            "53": 59,
+            "4": 44,
+            "51": 61,
+            "15": 33,
+            "31": 17,
+            "16": 32,
+            "52": 60,
+            "56": 56,
+            "8": 40,
+            "63": 49,
+            "59": 53,
+            "55": 57,
+            "5": 43,
+            "9": 39,
+            "60": 52,
+            "64": 48
+          },
+          "source_url": "https://www.cambridgeneurotech.com/assets/files/ASSY-156-H5-H9-map.pdf",
+          "source_sha256": "b6afcc4adcdcd21dfb0864a80d31f31b97500ec26aae69ac1fcf41e722d5939f",
+          "note": "Intan RHD 64ch C3315/C3325, direct Omnetics connection. Channel IDs are native, zero-based Intan amplifier inputs before recording-system port offsets. Front Omnetics mates with the chip-side headstage connector; Back with the opposite connector.",
+          "missing_channels": [],
+          "headstage_source_url": "https://intantech.com/files/Intan_Recording_Controller_user_guide.pdf",
+          "headstage_source_sha256": "2dc9ea5c40e583e209b95c8c9760c06fae12f664eda6bd97e94fc318a10deb3a"
+        }
+      ],
+      "headstage_fixed": false,
+      "sources": [
+        {
+          "url": "https://www.cambridgeneurotech.com/assets/files/ASSY-156-H5-H9-map.pdf",
+          "sha256": "b6afcc4adcdcd21dfb0864a80d31f31b97500ec26aae69ac1fcf41e722d5939f"
+        },
+        {
+          "url": "https://github.com/SpikeInterface/probeinterface_library/blob/bb40894cdf55787fed7b7198ea854497d52ca687/cambridgeneurotech/ASSY-156-H5/ASSY-156-H5.json",
+          "revision": "bb40894cdf55787fed7b7198ea854497d52ca687",
+          "blob_sha1": "c7f7722f72b01d6bc1ea4638a7f86ee116dd90f6"
+        }
+      ],
+      "source_license": "MIT; see LICENSE-ProbeInterface.txt in this directory.",
+      "upstream_model": "ASSY-156-H5",
+      "conversion": "ProbeInterface JSON to Atlaxis"
+    }
+  },
+  "channel_map": {
+    "contact_to_channel": {},
+    "n_channels": 64,
+    "groups": [],
+    "skipped": [],
+    "source_xml": null,
+    "blueprint": {},
+    "source_imro": null,
+    "pending_sites": [],
+    "rois": [],
+    "headstage_id": null
+  }
+}

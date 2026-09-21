@@ -1,0 +1,610 @@
+{
+  "geometry": {
+    "name": "ASSY-116-L2",
+    "contacts": [
+      {
+        "contact_id": "1",
+        "shank_id": 1,
+        "x_um": 250.0,
+        "y_um": 585.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "2",
+        "shank_id": 1,
+        "x_um": 250.0,
+        "y_um": 335.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "3",
+        "shank_id": 1,
+        "x_um": 250.0,
+        "y_um": 785.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "4",
+        "shank_id": 1,
+        "x_um": 250.0,
+        "y_um": 685.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "5",
+        "shank_id": 1,
+        "x_um": 250.0,
+        "y_um": 735.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "6",
+        "shank_id": 1,
+        "x_um": 250.0,
+        "y_um": 35.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "7",
+        "shank_id": 1,
+        "x_um": 250.0,
+        "y_um": 135.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "8",
+        "shank_id": 1,
+        "x_um": 250.0,
+        "y_um": 85.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "9",
+        "shank_id": 1,
+        "x_um": 250.0,
+        "y_um": 185.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "10",
+        "shank_id": 1,
+        "x_um": 250.0,
+        "y_um": 635.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "11",
+        "shank_id": 1,
+        "x_um": 250.0,
+        "y_um": 535.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "12",
+        "shank_id": 1,
+        "x_um": 250.0,
+        "y_um": 235.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "13",
+        "shank_id": 1,
+        "x_um": 250.0,
+        "y_um": 435.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "14",
+        "shank_id": 1,
+        "x_um": 250.0,
+        "y_um": 285.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "15",
+        "shank_id": 1,
+        "x_um": 250.0,
+        "y_um": 485.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "16",
+        "shank_id": 1,
+        "x_um": 250.0,
+        "y_um": 385.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "17",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 485.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "18",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 385.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "19",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 435.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "20",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 285.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "21",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 535.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "22",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 235.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "23",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 185.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "24",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 635.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "25",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 135.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "26",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 85.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "27",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 735.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "28",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 35.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "29",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 785.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "30",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 685.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "31",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 585.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "32",
+        "shank_id": 0,
+        "x_um": 0.0,
+        "y_um": 335.5,
+        "z_um": -7.5
+      }
+    ],
+    "tip_um": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "y_to_base": 1,
+    "units": "um",
+    "bodies": [
+      {
+        "outline_um": [
+          [
+            125.0,
+            3235.5,
+            0.0
+          ],
+          [
+            -7.5,
+            3235.5,
+            0.0
+          ],
+          [
+            -7.5,
+            3035.5,
+            0.0
+          ],
+          [
+            -7.5,
+            25.5,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            7.5,
+            25.5,
+            0.0
+          ],
+          [
+            7.5,
+            3035.5,
+            0.0
+          ],
+          [
+            125.0,
+            3035.5,
+            0.0
+          ]
+        ],
+        "thickness_um": 15.0,
+        "shank_id": 0
+      },
+      {
+        "outline_um": [
+          [
+            125.0,
+            3235.5,
+            0.0
+          ],
+          [
+            125.0,
+            3035.5,
+            0.0
+          ],
+          [
+            242.5,
+            3035.5,
+            0.0
+          ],
+          [
+            242.5,
+            25.5,
+            0.0
+          ],
+          [
+            250.0,
+            0.0,
+            0.0
+          ],
+          [
+            257.5,
+            25.5,
+            0.0
+          ],
+          [
+            257.5,
+            3035.5,
+            0.0
+          ],
+          [
+            257.5,
+            3235.5,
+            0.0
+          ]
+        ],
+        "thickness_um": 15.0,
+        "shank_id": 1
+      }
+    ],
+    "metadata": {
+      "manufacturer": "Cambridge NeuroTech",
+      "assembly": "ASSY-116",
+      "provisional": true,
+      "geometry_status": "upstream_unverified",
+      "coordinate_convention": "um; leftmost contour tip at origin; +x across shanks; +y toward base; front is -z.",
+      "site_id_convention": "Source ProbeInterface site/connector labels, not acquisition-channel indices.",
+      "source_origin_um": [
+        0.0,
+        -35.5,
+        0.0
+      ],
+      "source_annotations": {
+        "manufacturer": "cambridgeneurotech",
+        "model_name": "ASSY-116-L2"
+      },
+      "source_shank_ids": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "shank_note": "Zero-based left-to-right shanks recovered from sharp contour tips; common base partitioned at inter-tip midpoints. Source labels retained separately.",
+      "faces": 1,
+      "contact_sides": [
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front"
+      ],
+      "contact_shapes": [
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect"
+      ],
+      "contact_shape_params": [
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        }
+      ],
+      "display_thickness_um": 15.0,
+      "body_note": "Upstream 2D outline retained, including any common base. Nominal extrusion only: 15 um single-sided / 30 um double-sided; exact physical thickness is unspecified.",
+      "geometry_note": "Unverified upstream dimensions and tip origin. x/y are translated without scaling; face z uses nominal half-thickness with unknown physical error. No manufacturer-wide dimensional audit performed.",
+      "routing_note": "Acquisition wiring is unassigned; source contact IDs are not treated as recording channels.",
+      "wiring_unavailable_reason": "This legacy or unverified revision is outside the registered current connection profiles.",
+      "sources": [
+        {
+          "url": "https://github.com/SpikeInterface/probeinterface_library/blob/bb40894cdf55787fed7b7198ea854497d52ca687/cambridgeneurotech/ASSY-116-L2/ASSY-116-L2.json",
+          "revision": "bb40894cdf55787fed7b7198ea854497d52ca687",
+          "blob_sha1": "e475753cf5a182dbd0d1a156aec5eca2e8ee8cad"
+        }
+      ],
+      "source_license": "MIT; see LICENSE-ProbeInterface.txt in this directory.",
+      "upstream_model": "ASSY-116-L2",
+      "conversion": "ProbeInterface JSON to Atlaxis"
+    }
+  },
+  "channel_map": {
+    "contact_to_channel": {},
+    "n_channels": 32,
+    "groups": [],
+    "skipped": [],
+    "source_xml": null,
+    "blueprint": {},
+    "source_imro": null,
+    "pending_sites": [],
+    "rois": [],
+    "headstage_id": null
+  }
+}

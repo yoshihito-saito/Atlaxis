@@ -1,0 +1,1058 @@
+{
+  "geometry": {
+    "name": "ASSY-276-H7",
+    "contacts": [
+      {
+        "contact_id": "1",
+        "shank_id": 1,
+        "x_um": 236.0,
+        "y_um": 497.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "2",
+        "shank_id": 1,
+        "x_um": 265.0,
+        "y_um": 572.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "3",
+        "shank_id": 1,
+        "x_um": 238.0,
+        "y_um": 297.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "4",
+        "shank_id": 1,
+        "x_um": 261.5,
+        "y_um": 222.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "5",
+        "shank_id": 1,
+        "x_um": 235.0,
+        "y_um": 597.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "6",
+        "shank_id": 1,
+        "x_um": 267.5,
+        "y_um": 822.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "7",
+        "shank_id": 1,
+        "x_um": 233.5,
+        "y_um": 747.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "8",
+        "shank_id": 1,
+        "x_um": 232.5,
+        "y_um": 847.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "9",
+        "shank_id": 1,
+        "x_um": 264.0,
+        "y_um": 472.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "10",
+        "shank_id": 1,
+        "x_um": 239.0,
+        "y_um": 197.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "11",
+        "shank_id": 1,
+        "x_um": 262.5,
+        "y_um": 322.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "12",
+        "shank_id": 1,
+        "x_um": 261.0,
+        "y_um": 172.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "13",
+        "shank_id": 1,
+        "x_um": 266.5,
+        "y_um": 722.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "14",
+        "shank_id": 1,
+        "x_um": 267.0,
+        "y_um": 772.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "15",
+        "shank_id": 1,
+        "x_um": 260.0,
+        "y_um": 72.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "16",
+        "shank_id": 1,
+        "x_um": 260.5,
+        "y_um": 122.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "17",
+        "shank_id": 0,
+        "x_um": -17.5,
+        "y_um": 847.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "18",
+        "shank_id": 0,
+        "x_um": -17.0,
+        "y_um": 797.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "19",
+        "shank_id": 0,
+        "x_um": -11.0,
+        "y_um": 197.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "20",
+        "shank_id": 0,
+        "x_um": -10.5,
+        "y_um": 147.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "21",
+        "shank_id": 0,
+        "x_um": -15.0,
+        "y_um": 597.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "22",
+        "shank_id": 0,
+        "x_um": -16.5,
+        "y_um": 747.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "23",
+        "shank_id": 0,
+        "x_um": -13.5,
+        "y_um": 447.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "24",
+        "shank_id": 0,
+        "x_um": 16.5,
+        "y_um": 722.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "25",
+        "shank_id": 0,
+        "x_um": 11.0,
+        "y_um": 172.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "26",
+        "shank_id": 0,
+        "x_um": 10.0,
+        "y_um": 72.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "27",
+        "shank_id": 0,
+        "x_um": 12.5,
+        "y_um": 322.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "28",
+        "shank_id": 0,
+        "x_um": -10.0,
+        "y_um": 97.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "29",
+        "shank_id": 0,
+        "x_um": 15.5,
+        "y_um": 622.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "30",
+        "shank_id": 0,
+        "x_um": -16.0,
+        "y_um": 697.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "31",
+        "shank_id": 1,
+        "x_um": 236.5,
+        "y_um": 447.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "32",
+        "shank_id": 0,
+        "x_um": -12.5,
+        "y_um": 347.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "33",
+        "shank_id": 1,
+        "x_um": 265.5,
+        "y_um": 622.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "34",
+        "shank_id": 1,
+        "x_um": 240.0,
+        "y_um": 97.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "35",
+        "shank_id": 1,
+        "x_um": 262.0,
+        "y_um": 272.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "36",
+        "shank_id": 1,
+        "x_um": 234.5,
+        "y_um": 647.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "37",
+        "shank_id": 1,
+        "x_um": 266.0,
+        "y_um": 672.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "38",
+        "shank_id": 1,
+        "x_um": 238.5,
+        "y_um": 247.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "39",
+        "shank_id": 1,
+        "x_um": 263.5,
+        "y_um": 422.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "40",
+        "shank_id": 1,
+        "x_um": 234.0,
+        "y_um": 697.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "41",
+        "shank_id": 1,
+        "x_um": 264.5,
+        "y_um": 522.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "42",
+        "shank_id": 1,
+        "x_um": 237.0,
+        "y_um": 397.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "43",
+        "shank_id": 1,
+        "x_um": 263.0,
+        "y_um": 372.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "44",
+        "shank_id": 1,
+        "x_um": 235.5,
+        "y_um": 547.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "45",
+        "shank_id": 1,
+        "x_um": 239.5,
+        "y_um": 147.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "46",
+        "shank_id": 1,
+        "x_um": 237.5,
+        "y_um": 347.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "47",
+        "shank_id": 1,
+        "x_um": 233.0,
+        "y_um": 797.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "48",
+        "shank_id": 0,
+        "x_um": 13.5,
+        "y_um": 422.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "49",
+        "shank_id": 0,
+        "x_um": 10.5,
+        "y_um": 122.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "50",
+        "shank_id": 0,
+        "x_um": 14.0,
+        "y_um": 472.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "51",
+        "shank_id": 0,
+        "x_um": 17.0,
+        "y_um": 772.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "52",
+        "shank_id": 0,
+        "x_um": 13.0,
+        "y_um": 372.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "53",
+        "shank_id": 0,
+        "x_um": -14.5,
+        "y_um": 547.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "54",
+        "shank_id": 0,
+        "x_um": 14.5,
+        "y_um": 522.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "55",
+        "shank_id": 0,
+        "x_um": -13.0,
+        "y_um": 397.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "56",
+        "shank_id": 0,
+        "x_um": 15.0,
+        "y_um": 572.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "57",
+        "shank_id": 0,
+        "x_um": -14.0,
+        "y_um": 497.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "58",
+        "shank_id": 0,
+        "x_um": 11.5,
+        "y_um": 222.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "59",
+        "shank_id": 0,
+        "x_um": -11.5,
+        "y_um": 247.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "60",
+        "shank_id": 0,
+        "x_um": 16.0,
+        "y_um": 672.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "61",
+        "shank_id": 0,
+        "x_um": -15.5,
+        "y_um": 647.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "62",
+        "shank_id": 0,
+        "x_um": 12.0,
+        "y_um": 272.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "63",
+        "shank_id": 0,
+        "x_um": -12.0,
+        "y_um": 297.5,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "64",
+        "shank_id": 0,
+        "x_um": 17.5,
+        "y_um": 822.5,
+        "z_um": -7.5
+      }
+    ],
+    "tip_um": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "y_to_base": 1,
+    "units": "um",
+    "bodies": [
+      {
+        "outline_um": [
+          [
+            125.0,
+            9272.5,
+            0.0
+          ],
+          [
+            -25.0,
+            9272.5,
+            0.0
+          ],
+          [
+            -25.0,
+            9072.5,
+            0.0
+          ],
+          [
+            -25.0,
+            62.5,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            25.0,
+            62.5,
+            0.0
+          ],
+          [
+            25.0,
+            9072.5,
+            0.0
+          ],
+          [
+            125.0,
+            9072.5,
+            0.0
+          ]
+        ],
+        "thickness_um": 15.0,
+        "shank_id": 0
+      },
+      {
+        "outline_um": [
+          [
+            125.0,
+            9272.5,
+            0.0
+          ],
+          [
+            125.0,
+            9072.5,
+            0.0
+          ],
+          [
+            225.0,
+            9072.5,
+            0.0
+          ],
+          [
+            225.0,
+            62.5,
+            0.0
+          ],
+          [
+            250.0,
+            0.0,
+            0.0
+          ],
+          [
+            275.0,
+            62.5,
+            0.0
+          ],
+          [
+            275.0,
+            9072.5,
+            0.0
+          ],
+          [
+            275.0,
+            9272.5,
+            0.0
+          ]
+        ],
+        "thickness_um": 15.0,
+        "shank_id": 1
+      }
+    ],
+    "metadata": {
+      "manufacturer": "Cambridge NeuroTech",
+      "assembly": "ASSY-276",
+      "provisional": true,
+      "geometry_status": "upstream_unverified",
+      "coordinate_convention": "um; leftmost contour tip at origin; +x across shanks; +y toward base; front is -z.",
+      "site_id_convention": "Source ProbeInterface site/connector labels, not acquisition-channel indices.",
+      "source_origin_um": [
+        -10.0,
+        -72.5,
+        0.0
+      ],
+      "source_annotations": {
+        "manufacturer": "cambridgeneurotech",
+        "model_name": "ASSY-276-H7"
+      },
+      "source_shank_ids": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "1",
+        "0",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "shank_note": "Zero-based left-to-right shanks recovered from sharp contour tips; common base partitioned at inter-tip midpoints. Source labels retained separately.",
+      "faces": 1,
+      "contact_sides": [
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front"
+      ],
+      "contact_shapes": [
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect"
+      ],
+      "contact_shape_params": [
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        },
+        {
+          "width": 11.0,
+          "height": 15.0
+        }
+      ],
+      "display_thickness_um": 15.0,
+      "body_note": "Upstream 2D outline retained, including any common base. Nominal extrusion only: 15 um single-sided / 30 um double-sided; exact physical thickness is unspecified.",
+      "geometry_note": "Unverified upstream dimensions and tip origin. x/y are translated without scaling; face z uses nominal half-thickness with unknown physical error. No manufacturer-wide dimensional audit performed.",
+      "routing_note": "Acquisition wiring is unassigned; source contact IDs are not treated as recording channels.",
+      "wiring_unavailable_reason": "This legacy or unverified revision is outside the registered current connection profiles.",
+      "sources": [
+        {
+          "url": "https://github.com/SpikeInterface/probeinterface_library/blob/bb40894cdf55787fed7b7198ea854497d52ca687/cambridgeneurotech/ASSY-276-H7/ASSY-276-H7.json",
+          "revision": "bb40894cdf55787fed7b7198ea854497d52ca687",
+          "blob_sha1": "28a9f772354dd100ce3df9e342be648db1ccdf2e"
+        }
+      ],
+      "source_license": "MIT; see LICENSE-ProbeInterface.txt in this directory.",
+      "upstream_model": "ASSY-276-H7",
+      "conversion": "ProbeInterface JSON to Atlaxis"
+    }
+  },
+  "channel_map": {
+    "contact_to_channel": {},
+    "n_channels": 64,
+    "groups": [],
+    "skipped": [],
+    "source_xml": null,
+    "blueprint": {},
+    "source_imro": null,
+    "pending_sites": [],
+    "rois": [],
+    "headstage_id": null
+  }
+}

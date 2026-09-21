@@ -1,0 +1,1463 @@
+{
+  "geometry": {
+    "name": "A6x21-poly2-10mm-50-200-160",
+    "contacts": [
+      {
+        "contact_id": "s0_front_0000",
+        "shank_id": 0,
+        "x_um": 0,
+        "y_um": 35.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s0_front_0001",
+        "shank_id": 0,
+        "x_um": -8.5,
+        "y_um": 60.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s0_front_0002",
+        "shank_id": 0,
+        "x_um": 8.5,
+        "y_um": 85.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s0_front_0003",
+        "shank_id": 0,
+        "x_um": -12.5,
+        "y_um": 110.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s0_front_0004",
+        "shank_id": 0,
+        "x_um": 12.5,
+        "y_um": 135.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s0_front_0005",
+        "shank_id": 0,
+        "x_um": -14.5,
+        "y_um": 160.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s0_front_0006",
+        "shank_id": 0,
+        "x_um": 14.5,
+        "y_um": 185.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s0_front_0007",
+        "shank_id": 0,
+        "x_um": -15,
+        "y_um": 210.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s0_front_0008",
+        "shank_id": 0,
+        "x_um": 15,
+        "y_um": 235.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s0_front_0009",
+        "shank_id": 0,
+        "x_um": -15,
+        "y_um": 260.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s0_front_0010",
+        "shank_id": 0,
+        "x_um": 15,
+        "y_um": 285.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s0_front_0011",
+        "shank_id": 0,
+        "x_um": -15,
+        "y_um": 310.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s0_front_0012",
+        "shank_id": 0,
+        "x_um": 15,
+        "y_um": 335.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s0_front_0013",
+        "shank_id": 0,
+        "x_um": -15,
+        "y_um": 360.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s0_front_0014",
+        "shank_id": 0,
+        "x_um": 15,
+        "y_um": 385.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s0_front_0015",
+        "shank_id": 0,
+        "x_um": -15,
+        "y_um": 410.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s0_front_0016",
+        "shank_id": 0,
+        "x_um": 15,
+        "y_um": 435.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s0_front_0017",
+        "shank_id": 0,
+        "x_um": -15,
+        "y_um": 460.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s0_front_0018",
+        "shank_id": 0,
+        "x_um": 15,
+        "y_um": 485.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s0_front_0019",
+        "shank_id": 0,
+        "x_um": -15,
+        "y_um": 510.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s0_front_0020",
+        "shank_id": 0,
+        "x_um": 15,
+        "y_um": 535.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s1_front_0000",
+        "shank_id": 1,
+        "x_um": 200,
+        "y_um": 35.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s1_front_0001",
+        "shank_id": 1,
+        "x_um": 191.5,
+        "y_um": 60.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s1_front_0002",
+        "shank_id": 1,
+        "x_um": 208.5,
+        "y_um": 85.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s1_front_0003",
+        "shank_id": 1,
+        "x_um": 187.5,
+        "y_um": 110.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s1_front_0004",
+        "shank_id": 1,
+        "x_um": 212.5,
+        "y_um": 135.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s1_front_0005",
+        "shank_id": 1,
+        "x_um": 185.5,
+        "y_um": 160.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s1_front_0006",
+        "shank_id": 1,
+        "x_um": 214.5,
+        "y_um": 185.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s1_front_0007",
+        "shank_id": 1,
+        "x_um": 185,
+        "y_um": 210.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s1_front_0008",
+        "shank_id": 1,
+        "x_um": 215,
+        "y_um": 235.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s1_front_0009",
+        "shank_id": 1,
+        "x_um": 185,
+        "y_um": 260.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s1_front_0010",
+        "shank_id": 1,
+        "x_um": 215,
+        "y_um": 285.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s1_front_0011",
+        "shank_id": 1,
+        "x_um": 185,
+        "y_um": 310.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s1_front_0012",
+        "shank_id": 1,
+        "x_um": 215,
+        "y_um": 335.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s1_front_0013",
+        "shank_id": 1,
+        "x_um": 185,
+        "y_um": 360.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s1_front_0014",
+        "shank_id": 1,
+        "x_um": 215,
+        "y_um": 385.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s1_front_0015",
+        "shank_id": 1,
+        "x_um": 185,
+        "y_um": 410.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s1_front_0016",
+        "shank_id": 1,
+        "x_um": 215,
+        "y_um": 435.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s1_front_0017",
+        "shank_id": 1,
+        "x_um": 185,
+        "y_um": 460.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s1_front_0018",
+        "shank_id": 1,
+        "x_um": 215,
+        "y_um": 485.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s1_front_0019",
+        "shank_id": 1,
+        "x_um": 185,
+        "y_um": 510.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s1_front_0020",
+        "shank_id": 1,
+        "x_um": 215,
+        "y_um": 535.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s2_front_0000",
+        "shank_id": 2,
+        "x_um": 400,
+        "y_um": 35.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s2_front_0001",
+        "shank_id": 2,
+        "x_um": 391.5,
+        "y_um": 60.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s2_front_0002",
+        "shank_id": 2,
+        "x_um": 408.5,
+        "y_um": 85.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s2_front_0003",
+        "shank_id": 2,
+        "x_um": 387.5,
+        "y_um": 110.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s2_front_0004",
+        "shank_id": 2,
+        "x_um": 412.5,
+        "y_um": 135.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s2_front_0005",
+        "shank_id": 2,
+        "x_um": 385.5,
+        "y_um": 160.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s2_front_0006",
+        "shank_id": 2,
+        "x_um": 414.5,
+        "y_um": 185.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s2_front_0007",
+        "shank_id": 2,
+        "x_um": 385,
+        "y_um": 210.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s2_front_0008",
+        "shank_id": 2,
+        "x_um": 415,
+        "y_um": 235.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s2_front_0009",
+        "shank_id": 2,
+        "x_um": 385,
+        "y_um": 260.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s2_front_0010",
+        "shank_id": 2,
+        "x_um": 415,
+        "y_um": 285.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s2_front_0011",
+        "shank_id": 2,
+        "x_um": 385,
+        "y_um": 310.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s2_front_0012",
+        "shank_id": 2,
+        "x_um": 415,
+        "y_um": 335.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s2_front_0013",
+        "shank_id": 2,
+        "x_um": 385,
+        "y_um": 360.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s2_front_0014",
+        "shank_id": 2,
+        "x_um": 415,
+        "y_um": 385.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s2_front_0015",
+        "shank_id": 2,
+        "x_um": 385,
+        "y_um": 410.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s2_front_0016",
+        "shank_id": 2,
+        "x_um": 415,
+        "y_um": 435.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s2_front_0017",
+        "shank_id": 2,
+        "x_um": 385,
+        "y_um": 460.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s2_front_0018",
+        "shank_id": 2,
+        "x_um": 415,
+        "y_um": 485.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s2_front_0019",
+        "shank_id": 2,
+        "x_um": 385,
+        "y_um": 510.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s2_front_0020",
+        "shank_id": 2,
+        "x_um": 415,
+        "y_um": 535.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s2_front_0021",
+        "shank_id": 2,
+        "x_um": 400,
+        "y_um": 635.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s2_front_0022",
+        "shank_id": 2,
+        "x_um": 400,
+        "y_um": 735.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s3_front_0000",
+        "shank_id": 3,
+        "x_um": 600,
+        "y_um": 35.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s3_front_0001",
+        "shank_id": 3,
+        "x_um": 591.5,
+        "y_um": 60.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s3_front_0002",
+        "shank_id": 3,
+        "x_um": 608.5,
+        "y_um": 85.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s3_front_0003",
+        "shank_id": 3,
+        "x_um": 587.5,
+        "y_um": 110.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s3_front_0004",
+        "shank_id": 3,
+        "x_um": 612.5,
+        "y_um": 135.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s3_front_0005",
+        "shank_id": 3,
+        "x_um": 585.5,
+        "y_um": 160.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s3_front_0006",
+        "shank_id": 3,
+        "x_um": 614.5,
+        "y_um": 185.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s3_front_0007",
+        "shank_id": 3,
+        "x_um": 585,
+        "y_um": 210.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s3_front_0008",
+        "shank_id": 3,
+        "x_um": 615,
+        "y_um": 235.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s3_front_0009",
+        "shank_id": 3,
+        "x_um": 585,
+        "y_um": 260.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s3_front_0010",
+        "shank_id": 3,
+        "x_um": 615,
+        "y_um": 285.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s3_front_0011",
+        "shank_id": 3,
+        "x_um": 585,
+        "y_um": 310.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s3_front_0012",
+        "shank_id": 3,
+        "x_um": 615,
+        "y_um": 335.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s3_front_0013",
+        "shank_id": 3,
+        "x_um": 585,
+        "y_um": 360.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s3_front_0014",
+        "shank_id": 3,
+        "x_um": 615,
+        "y_um": 385.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s3_front_0015",
+        "shank_id": 3,
+        "x_um": 585,
+        "y_um": 410.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s3_front_0016",
+        "shank_id": 3,
+        "x_um": 615,
+        "y_um": 435.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s3_front_0017",
+        "shank_id": 3,
+        "x_um": 585,
+        "y_um": 460.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s3_front_0018",
+        "shank_id": 3,
+        "x_um": 615,
+        "y_um": 485.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s3_front_0019",
+        "shank_id": 3,
+        "x_um": 585,
+        "y_um": 510.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s3_front_0020",
+        "shank_id": 3,
+        "x_um": 615,
+        "y_um": 535.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s4_front_0000",
+        "shank_id": 4,
+        "x_um": 800,
+        "y_um": 35.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s4_front_0001",
+        "shank_id": 4,
+        "x_um": 791.5,
+        "y_um": 60.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s4_front_0002",
+        "shank_id": 4,
+        "x_um": 808.5,
+        "y_um": 85.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s4_front_0003",
+        "shank_id": 4,
+        "x_um": 787.5,
+        "y_um": 110.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s4_front_0004",
+        "shank_id": 4,
+        "x_um": 812.5,
+        "y_um": 135.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s4_front_0005",
+        "shank_id": 4,
+        "x_um": 785.5,
+        "y_um": 160.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s4_front_0006",
+        "shank_id": 4,
+        "x_um": 814.5,
+        "y_um": 185.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s4_front_0007",
+        "shank_id": 4,
+        "x_um": 785,
+        "y_um": 210.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s4_front_0008",
+        "shank_id": 4,
+        "x_um": 815,
+        "y_um": 235.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s4_front_0009",
+        "shank_id": 4,
+        "x_um": 785,
+        "y_um": 260.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s4_front_0010",
+        "shank_id": 4,
+        "x_um": 815,
+        "y_um": 285.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s4_front_0011",
+        "shank_id": 4,
+        "x_um": 785,
+        "y_um": 310.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s4_front_0012",
+        "shank_id": 4,
+        "x_um": 815,
+        "y_um": 335.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s4_front_0013",
+        "shank_id": 4,
+        "x_um": 785,
+        "y_um": 360.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s4_front_0014",
+        "shank_id": 4,
+        "x_um": 815,
+        "y_um": 385.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s4_front_0015",
+        "shank_id": 4,
+        "x_um": 785,
+        "y_um": 410.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s4_front_0016",
+        "shank_id": 4,
+        "x_um": 815,
+        "y_um": 435.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s4_front_0017",
+        "shank_id": 4,
+        "x_um": 785,
+        "y_um": 460.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s4_front_0018",
+        "shank_id": 4,
+        "x_um": 815,
+        "y_um": 485.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s4_front_0019",
+        "shank_id": 4,
+        "x_um": 785,
+        "y_um": 510.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s4_front_0020",
+        "shank_id": 4,
+        "x_um": 815,
+        "y_um": 535.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s5_front_0000",
+        "shank_id": 5,
+        "x_um": 1000,
+        "y_um": 35.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s5_front_0001",
+        "shank_id": 5,
+        "x_um": 991.5,
+        "y_um": 60.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s5_front_0002",
+        "shank_id": 5,
+        "x_um": 1008.5,
+        "y_um": 85.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s5_front_0003",
+        "shank_id": 5,
+        "x_um": 987.5,
+        "y_um": 110.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s5_front_0004",
+        "shank_id": 5,
+        "x_um": 1012.5,
+        "y_um": 135.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s5_front_0005",
+        "shank_id": 5,
+        "x_um": 985.5,
+        "y_um": 160.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s5_front_0006",
+        "shank_id": 5,
+        "x_um": 1014.5,
+        "y_um": 185.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s5_front_0007",
+        "shank_id": 5,
+        "x_um": 985,
+        "y_um": 210.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s5_front_0008",
+        "shank_id": 5,
+        "x_um": 1015,
+        "y_um": 235.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s5_front_0009",
+        "shank_id": 5,
+        "x_um": 985,
+        "y_um": 260.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s5_front_0010",
+        "shank_id": 5,
+        "x_um": 1015,
+        "y_um": 285.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s5_front_0011",
+        "shank_id": 5,
+        "x_um": 985,
+        "y_um": 310.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s5_front_0012",
+        "shank_id": 5,
+        "x_um": 1015,
+        "y_um": 335.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s5_front_0013",
+        "shank_id": 5,
+        "x_um": 985,
+        "y_um": 360.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s5_front_0014",
+        "shank_id": 5,
+        "x_um": 1015,
+        "y_um": 385.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s5_front_0015",
+        "shank_id": 5,
+        "x_um": 985,
+        "y_um": 410.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s5_front_0016",
+        "shank_id": 5,
+        "x_um": 1015,
+        "y_um": 435.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s5_front_0017",
+        "shank_id": 5,
+        "x_um": 985,
+        "y_um": 460.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s5_front_0018",
+        "shank_id": 5,
+        "x_um": 1015,
+        "y_um": 485.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s5_front_0019",
+        "shank_id": 5,
+        "x_um": 985,
+        "y_um": 510.5,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s5_front_0020",
+        "shank_id": 5,
+        "x_um": 1015,
+        "y_um": 535.5,
+        "z_um": -25.0
+      }
+    ],
+    "tip_um": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "y_to_base": 1,
+    "units": "um",
+    "bodies": [
+      {
+        "outline_um": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            -14.5,
+            35.5,
+            0
+          ],
+          [
+            -51.5,
+            535.5,
+            0
+          ],
+          [
+            -51.5,
+            10000,
+            0
+          ],
+          [
+            51.5,
+            10000,
+            0
+          ],
+          [
+            51.5,
+            535.5,
+            0
+          ],
+          [
+            14.5,
+            35.5,
+            0
+          ]
+        ],
+        "thickness_um": 50,
+        "shank_id": 0
+      },
+      {
+        "outline_um": [
+          [
+            200,
+            0,
+            0
+          ],
+          [
+            185.5,
+            35.5,
+            0
+          ],
+          [
+            148.5,
+            535.5,
+            0
+          ],
+          [
+            148.5,
+            10000,
+            0
+          ],
+          [
+            251.5,
+            10000,
+            0
+          ],
+          [
+            251.5,
+            535.5,
+            0
+          ],
+          [
+            214.5,
+            35.5,
+            0
+          ]
+        ],
+        "thickness_um": 50,
+        "shank_id": 1
+      },
+      {
+        "outline_um": [
+          [
+            400,
+            0,
+            0
+          ],
+          [
+            385.5,
+            35.5,
+            0
+          ],
+          [
+            348.5,
+            535.5,
+            0
+          ],
+          [
+            348.5,
+            10000,
+            0
+          ],
+          [
+            451.5,
+            10000,
+            0
+          ],
+          [
+            451.5,
+            535.5,
+            0
+          ],
+          [
+            414.5,
+            35.5,
+            0
+          ]
+        ],
+        "thickness_um": 50,
+        "shank_id": 2
+      },
+      {
+        "outline_um": [
+          [
+            600,
+            0,
+            0
+          ],
+          [
+            585.5,
+            35.5,
+            0
+          ],
+          [
+            548.5,
+            535.5,
+            0
+          ],
+          [
+            548.5,
+            10000,
+            0
+          ],
+          [
+            651.5,
+            10000,
+            0
+          ],
+          [
+            651.5,
+            535.5,
+            0
+          ],
+          [
+            614.5,
+            35.5,
+            0
+          ]
+        ],
+        "thickness_um": 50,
+        "shank_id": 3
+      },
+      {
+        "outline_um": [
+          [
+            800,
+            0,
+            0
+          ],
+          [
+            785.5,
+            35.5,
+            0
+          ],
+          [
+            748.5,
+            535.5,
+            0
+          ],
+          [
+            748.5,
+            10000,
+            0
+          ],
+          [
+            851.5,
+            10000,
+            0
+          ],
+          [
+            851.5,
+            535.5,
+            0
+          ],
+          [
+            814.5,
+            35.5,
+            0
+          ]
+        ],
+        "thickness_um": 50,
+        "shank_id": 4
+      },
+      {
+        "outline_um": [
+          [
+            1000,
+            0,
+            0
+          ],
+          [
+            985.5,
+            35.5,
+            0
+          ],
+          [
+            948.5,
+            535.5,
+            0
+          ],
+          [
+            948.5,
+            10000,
+            0
+          ],
+          [
+            1051.5,
+            10000,
+            0
+          ],
+          [
+            1051.5,
+            535.5,
+            0
+          ],
+          [
+            1014.5,
+            35.5,
+            0
+          ]
+        ],
+        "thickness_um": 50,
+        "shank_id": 5
+      }
+    ],
+    "metadata": {
+      "manufacturer": "NeuroNexus",
+      "sources": [
+        {
+          "url": "https://solutions.neuronexus.com/hubfs/Penetrating_Probe_Catalog_V2.1.pdf",
+          "pdf_page": 119
+        }
+      ],
+      "source_accessed": "2026-09-20",
+      "site_id_convention": "Zero-based shank and physical site index; front/back in local z.",
+      "coordinate_convention": "um; first shank tip at origin; +x across shanks; +y toward base; front is -z.",
+      "layout_note": "21 distal sites per shank plus 2 proximal sites on shank 2 (third from left, electrode-facing): 128 total. 200 um shank pitch; 25 um staggered rows.",
+      "body_note": "Schematic shaft silhouettes from catalog dimensions; taper transitions are interpolated. Connector and headstage omitted.",
+      "routing_note": "Provisional Channel IDs 0-127: left-to-right shanks, tip-to-base within each shank. Assigned at user request; manufacturer recording wiring is not verified.",
+      "site_area_um2": 160,
+      "provisional": true,
+      "geometry_note": "Provisional: 35.5 um tip-to-first-site distance digitized from catalog (~2 um reading repeatability, not a manufacturing tolerance).",
+      "catalog_sha256": "27881fa444792f145353d81ca0359a272afe4d8f72a88c35bebbc0465d33a5ba",
+      "connection_label": "Package / headstage",
+      "wiring_unavailable_reason": "No matching A6x21 channel map was found in the official 128-channel package PDFs. Geometry corrected: Shank 2 has 23 sites; all others have 21.",
+      "provisional_channel_map": true,
+      "channel_map_note": "Provisional Channel IDs 0-127: left-to-right shanks, tip-to-base within each shank. Assigned at user request; manufacturer recording wiring is not verified."
+    }
+  },
+  "channel_map": {
+    "contact_to_channel": {
+      "s0_front_0000": 0,
+      "s0_front_0001": 1,
+      "s0_front_0002": 2,
+      "s0_front_0003": 3,
+      "s0_front_0004": 4,
+      "s0_front_0005": 5,
+      "s0_front_0006": 6,
+      "s0_front_0007": 7,
+      "s0_front_0008": 8,
+      "s0_front_0009": 9,
+      "s0_front_0010": 10,
+      "s0_front_0011": 11,
+      "s0_front_0012": 12,
+      "s0_front_0013": 13,
+      "s0_front_0014": 14,
+      "s0_front_0015": 15,
+      "s0_front_0016": 16,
+      "s0_front_0017": 17,
+      "s0_front_0018": 18,
+      "s0_front_0019": 19,
+      "s0_front_0020": 20,
+      "s1_front_0000": 21,
+      "s1_front_0001": 22,
+      "s1_front_0002": 23,
+      "s1_front_0003": 24,
+      "s1_front_0004": 25,
+      "s1_front_0005": 26,
+      "s1_front_0006": 27,
+      "s1_front_0007": 28,
+      "s1_front_0008": 29,
+      "s1_front_0009": 30,
+      "s1_front_0010": 31,
+      "s1_front_0011": 32,
+      "s1_front_0012": 33,
+      "s1_front_0013": 34,
+      "s1_front_0014": 35,
+      "s1_front_0015": 36,
+      "s1_front_0016": 37,
+      "s1_front_0017": 38,
+      "s1_front_0018": 39,
+      "s1_front_0019": 40,
+      "s1_front_0020": 41,
+      "s2_front_0000": 42,
+      "s2_front_0001": 43,
+      "s2_front_0002": 44,
+      "s2_front_0003": 45,
+      "s2_front_0004": 46,
+      "s2_front_0005": 47,
+      "s2_front_0006": 48,
+      "s2_front_0007": 49,
+      "s2_front_0008": 50,
+      "s2_front_0009": 51,
+      "s2_front_0010": 52,
+      "s2_front_0011": 53,
+      "s2_front_0012": 54,
+      "s2_front_0013": 55,
+      "s2_front_0014": 56,
+      "s2_front_0015": 57,
+      "s2_front_0016": 58,
+      "s2_front_0017": 59,
+      "s2_front_0018": 60,
+      "s2_front_0019": 61,
+      "s2_front_0020": 62,
+      "s2_front_0021": 63,
+      "s2_front_0022": 64,
+      "s3_front_0000": 65,
+      "s3_front_0001": 66,
+      "s3_front_0002": 67,
+      "s3_front_0003": 68,
+      "s3_front_0004": 69,
+      "s3_front_0005": 70,
+      "s3_front_0006": 71,
+      "s3_front_0007": 72,
+      "s3_front_0008": 73,
+      "s3_front_0009": 74,
+      "s3_front_0010": 75,
+      "s3_front_0011": 76,
+      "s3_front_0012": 77,
+      "s3_front_0013": 78,
+      "s3_front_0014": 79,
+      "s3_front_0015": 80,
+      "s3_front_0016": 81,
+      "s3_front_0017": 82,
+      "s3_front_0018": 83,
+      "s3_front_0019": 84,
+      "s3_front_0020": 85,
+      "s4_front_0000": 86,
+      "s4_front_0001": 87,
+      "s4_front_0002": 88,
+      "s4_front_0003": 89,
+      "s4_front_0004": 90,
+      "s4_front_0005": 91,
+      "s4_front_0006": 92,
+      "s4_front_0007": 93,
+      "s4_front_0008": 94,
+      "s4_front_0009": 95,
+      "s4_front_0010": 96,
+      "s4_front_0011": 97,
+      "s4_front_0012": 98,
+      "s4_front_0013": 99,
+      "s4_front_0014": 100,
+      "s4_front_0015": 101,
+      "s4_front_0016": 102,
+      "s4_front_0017": 103,
+      "s4_front_0018": 104,
+      "s4_front_0019": 105,
+      "s4_front_0020": 106,
+      "s5_front_0000": 107,
+      "s5_front_0001": 108,
+      "s5_front_0002": 109,
+      "s5_front_0003": 110,
+      "s5_front_0004": 111,
+      "s5_front_0005": 112,
+      "s5_front_0006": 113,
+      "s5_front_0007": 114,
+      "s5_front_0008": 115,
+      "s5_front_0009": 116,
+      "s5_front_0010": 117,
+      "s5_front_0011": 118,
+      "s5_front_0012": 119,
+      "s5_front_0013": 120,
+      "s5_front_0014": 121,
+      "s5_front_0015": 122,
+      "s5_front_0016": 123,
+      "s5_front_0017": 124,
+      "s5_front_0018": 125,
+      "s5_front_0019": 126,
+      "s5_front_0020": 127
+    },
+    "n_channels": 128,
+    "groups": [
+      [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      [
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41
+      ],
+      [
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64
+      ],
+      [
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85
+      ],
+      [
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106
+      ],
+      [
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127
+      ]
+    ],
+    "skipped": [],
+    "source_xml": null,
+    "blueprint": {},
+    "source_imro": null,
+    "pending_sites": [],
+    "rois": [],
+    "headstage_id": null
+  }
+}

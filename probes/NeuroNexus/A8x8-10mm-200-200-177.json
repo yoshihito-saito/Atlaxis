@@ -1,0 +1,1271 @@
+{
+  "geometry": {
+    "name": "A8x8-10mm-200-200-177",
+    "contacts": [
+      {
+        "contact_id": "s0_front_0000",
+        "shank_id": 0,
+        "x_um": 0,
+        "y_um": 50,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s0_front_0001",
+        "shank_id": 0,
+        "x_um": 0,
+        "y_um": 250,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s0_front_0002",
+        "shank_id": 0,
+        "x_um": 0,
+        "y_um": 450,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s0_front_0003",
+        "shank_id": 0,
+        "x_um": 0,
+        "y_um": 650,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s0_front_0004",
+        "shank_id": 0,
+        "x_um": 0,
+        "y_um": 850,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s0_front_0005",
+        "shank_id": 0,
+        "x_um": 0,
+        "y_um": 1050,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s0_front_0006",
+        "shank_id": 0,
+        "x_um": 0,
+        "y_um": 1250,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s0_front_0007",
+        "shank_id": 0,
+        "x_um": 0,
+        "y_um": 1450,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s1_front_0000",
+        "shank_id": 1,
+        "x_um": 200,
+        "y_um": 50,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s1_front_0001",
+        "shank_id": 1,
+        "x_um": 200,
+        "y_um": 250,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s1_front_0002",
+        "shank_id": 1,
+        "x_um": 200,
+        "y_um": 450,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s1_front_0003",
+        "shank_id": 1,
+        "x_um": 200,
+        "y_um": 650,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s1_front_0004",
+        "shank_id": 1,
+        "x_um": 200,
+        "y_um": 850,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s1_front_0005",
+        "shank_id": 1,
+        "x_um": 200,
+        "y_um": 1050,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s1_front_0006",
+        "shank_id": 1,
+        "x_um": 200,
+        "y_um": 1250,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s1_front_0007",
+        "shank_id": 1,
+        "x_um": 200,
+        "y_um": 1450,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s2_front_0000",
+        "shank_id": 2,
+        "x_um": 400,
+        "y_um": 50,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s2_front_0001",
+        "shank_id": 2,
+        "x_um": 400,
+        "y_um": 250,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s2_front_0002",
+        "shank_id": 2,
+        "x_um": 400,
+        "y_um": 450,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s2_front_0003",
+        "shank_id": 2,
+        "x_um": 400,
+        "y_um": 650,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s2_front_0004",
+        "shank_id": 2,
+        "x_um": 400,
+        "y_um": 850,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s2_front_0005",
+        "shank_id": 2,
+        "x_um": 400,
+        "y_um": 1050,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s2_front_0006",
+        "shank_id": 2,
+        "x_um": 400,
+        "y_um": 1250,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s2_front_0007",
+        "shank_id": 2,
+        "x_um": 400,
+        "y_um": 1450,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s3_front_0000",
+        "shank_id": 3,
+        "x_um": 600,
+        "y_um": 50,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s3_front_0001",
+        "shank_id": 3,
+        "x_um": 600,
+        "y_um": 250,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s3_front_0002",
+        "shank_id": 3,
+        "x_um": 600,
+        "y_um": 450,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s3_front_0003",
+        "shank_id": 3,
+        "x_um": 600,
+        "y_um": 650,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s3_front_0004",
+        "shank_id": 3,
+        "x_um": 600,
+        "y_um": 850,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s3_front_0005",
+        "shank_id": 3,
+        "x_um": 600,
+        "y_um": 1050,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s3_front_0006",
+        "shank_id": 3,
+        "x_um": 600,
+        "y_um": 1250,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s3_front_0007",
+        "shank_id": 3,
+        "x_um": 600,
+        "y_um": 1450,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s4_front_0000",
+        "shank_id": 4,
+        "x_um": 800,
+        "y_um": 50,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s4_front_0001",
+        "shank_id": 4,
+        "x_um": 800,
+        "y_um": 250,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s4_front_0002",
+        "shank_id": 4,
+        "x_um": 800,
+        "y_um": 450,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s4_front_0003",
+        "shank_id": 4,
+        "x_um": 800,
+        "y_um": 650,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s4_front_0004",
+        "shank_id": 4,
+        "x_um": 800,
+        "y_um": 850,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s4_front_0005",
+        "shank_id": 4,
+        "x_um": 800,
+        "y_um": 1050,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s4_front_0006",
+        "shank_id": 4,
+        "x_um": 800,
+        "y_um": 1250,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s4_front_0007",
+        "shank_id": 4,
+        "x_um": 800,
+        "y_um": 1450,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s5_front_0000",
+        "shank_id": 5,
+        "x_um": 1000,
+        "y_um": 50,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s5_front_0001",
+        "shank_id": 5,
+        "x_um": 1000,
+        "y_um": 250,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s5_front_0002",
+        "shank_id": 5,
+        "x_um": 1000,
+        "y_um": 450,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s5_front_0003",
+        "shank_id": 5,
+        "x_um": 1000,
+        "y_um": 650,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s5_front_0004",
+        "shank_id": 5,
+        "x_um": 1000,
+        "y_um": 850,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s5_front_0005",
+        "shank_id": 5,
+        "x_um": 1000,
+        "y_um": 1050,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s5_front_0006",
+        "shank_id": 5,
+        "x_um": 1000,
+        "y_um": 1250,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s5_front_0007",
+        "shank_id": 5,
+        "x_um": 1000,
+        "y_um": 1450,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s6_front_0000",
+        "shank_id": 6,
+        "x_um": 1200,
+        "y_um": 50,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s6_front_0001",
+        "shank_id": 6,
+        "x_um": 1200,
+        "y_um": 250,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s6_front_0002",
+        "shank_id": 6,
+        "x_um": 1200,
+        "y_um": 450,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s6_front_0003",
+        "shank_id": 6,
+        "x_um": 1200,
+        "y_um": 650,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s6_front_0004",
+        "shank_id": 6,
+        "x_um": 1200,
+        "y_um": 850,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s6_front_0005",
+        "shank_id": 6,
+        "x_um": 1200,
+        "y_um": 1050,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s6_front_0006",
+        "shank_id": 6,
+        "x_um": 1200,
+        "y_um": 1250,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s6_front_0007",
+        "shank_id": 6,
+        "x_um": 1200,
+        "y_um": 1450,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s7_front_0000",
+        "shank_id": 7,
+        "x_um": 1400,
+        "y_um": 50,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s7_front_0001",
+        "shank_id": 7,
+        "x_um": 1400,
+        "y_um": 250,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s7_front_0002",
+        "shank_id": 7,
+        "x_um": 1400,
+        "y_um": 450,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s7_front_0003",
+        "shank_id": 7,
+        "x_um": 1400,
+        "y_um": 650,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s7_front_0004",
+        "shank_id": 7,
+        "x_um": 1400,
+        "y_um": 850,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s7_front_0005",
+        "shank_id": 7,
+        "x_um": 1400,
+        "y_um": 1050,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s7_front_0006",
+        "shank_id": 7,
+        "x_um": 1400,
+        "y_um": 1250,
+        "z_um": -25.0
+      },
+      {
+        "contact_id": "s7_front_0007",
+        "shank_id": 7,
+        "x_um": 1400,
+        "y_um": 1450,
+        "z_um": -25.0
+      }
+    ],
+    "tip_um": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "y_to_base": 1,
+    "units": "um",
+    "bodies": [
+      {
+        "outline_um": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            -16.5,
+            50,
+            0
+          ],
+          [
+            -41.5,
+            1450,
+            0
+          ],
+          [
+            -41.5,
+            10000,
+            0
+          ],
+          [
+            41.5,
+            10000,
+            0
+          ],
+          [
+            41.5,
+            1450,
+            0
+          ],
+          [
+            16.5,
+            50,
+            0
+          ]
+        ],
+        "thickness_um": 50,
+        "shank_id": 0
+      },
+      {
+        "outline_um": [
+          [
+            200,
+            0,
+            0
+          ],
+          [
+            183.5,
+            50,
+            0
+          ],
+          [
+            158.5,
+            1450,
+            0
+          ],
+          [
+            158.5,
+            10000,
+            0
+          ],
+          [
+            241.5,
+            10000,
+            0
+          ],
+          [
+            241.5,
+            1450,
+            0
+          ],
+          [
+            216.5,
+            50,
+            0
+          ]
+        ],
+        "thickness_um": 50,
+        "shank_id": 1
+      },
+      {
+        "outline_um": [
+          [
+            400,
+            0,
+            0
+          ],
+          [
+            383.5,
+            50,
+            0
+          ],
+          [
+            358.5,
+            1450,
+            0
+          ],
+          [
+            358.5,
+            10000,
+            0
+          ],
+          [
+            441.5,
+            10000,
+            0
+          ],
+          [
+            441.5,
+            1450,
+            0
+          ],
+          [
+            416.5,
+            50,
+            0
+          ]
+        ],
+        "thickness_um": 50,
+        "shank_id": 2
+      },
+      {
+        "outline_um": [
+          [
+            600,
+            0,
+            0
+          ],
+          [
+            583.5,
+            50,
+            0
+          ],
+          [
+            558.5,
+            1450,
+            0
+          ],
+          [
+            558.5,
+            10000,
+            0
+          ],
+          [
+            641.5,
+            10000,
+            0
+          ],
+          [
+            641.5,
+            1450,
+            0
+          ],
+          [
+            616.5,
+            50,
+            0
+          ]
+        ],
+        "thickness_um": 50,
+        "shank_id": 3
+      },
+      {
+        "outline_um": [
+          [
+            800,
+            0,
+            0
+          ],
+          [
+            783.5,
+            50,
+            0
+          ],
+          [
+            758.5,
+            1450,
+            0
+          ],
+          [
+            758.5,
+            10000,
+            0
+          ],
+          [
+            841.5,
+            10000,
+            0
+          ],
+          [
+            841.5,
+            1450,
+            0
+          ],
+          [
+            816.5,
+            50,
+            0
+          ]
+        ],
+        "thickness_um": 50,
+        "shank_id": 4
+      },
+      {
+        "outline_um": [
+          [
+            1000,
+            0,
+            0
+          ],
+          [
+            983.5,
+            50,
+            0
+          ],
+          [
+            958.5,
+            1450,
+            0
+          ],
+          [
+            958.5,
+            10000,
+            0
+          ],
+          [
+            1041.5,
+            10000,
+            0
+          ],
+          [
+            1041.5,
+            1450,
+            0
+          ],
+          [
+            1016.5,
+            50,
+            0
+          ]
+        ],
+        "thickness_um": 50,
+        "shank_id": 5
+      },
+      {
+        "outline_um": [
+          [
+            1200,
+            0,
+            0
+          ],
+          [
+            1183.5,
+            50,
+            0
+          ],
+          [
+            1158.5,
+            1450,
+            0
+          ],
+          [
+            1158.5,
+            10000,
+            0
+          ],
+          [
+            1241.5,
+            10000,
+            0
+          ],
+          [
+            1241.5,
+            1450,
+            0
+          ],
+          [
+            1216.5,
+            50,
+            0
+          ]
+        ],
+        "thickness_um": 50,
+        "shank_id": 6
+      },
+      {
+        "outline_um": [
+          [
+            1400,
+            0,
+            0
+          ],
+          [
+            1383.5,
+            50,
+            0
+          ],
+          [
+            1358.5,
+            1450,
+            0
+          ],
+          [
+            1358.5,
+            10000,
+            0
+          ],
+          [
+            1441.5,
+            10000,
+            0
+          ],
+          [
+            1441.5,
+            1450,
+            0
+          ],
+          [
+            1416.5,
+            50,
+            0
+          ]
+        ],
+        "thickness_um": 50,
+        "shank_id": 7
+      }
+    ],
+    "metadata": {
+      "manufacturer": "NeuroNexus",
+      "sources": [
+        {
+          "url": "https://solutions.neuronexus.com/hubfs/Penetrating_Probe_Catalog_V2.1.pdf",
+          "pdf_page": 98
+        }
+      ],
+      "source_accessed": "2026-09-20",
+      "site_id_convention": "Zero-based shank and physical site index; front/back in local z.",
+      "coordinate_convention": "um; first shank tip at origin; +x across shanks; +y toward base; front is -z.",
+      "layout_note": "8 shanks; 200 um tip pitch; sites ordered tip-to-base then left-to-right.",
+      "body_note": "Schematic shaft silhouettes from catalog dimensions; taper transitions are interpolated. Connector and headstage omitted.",
+      "routing_note": "Choose the exact package / headstage. Other connections remain unassigned.",
+      "site_area_um2": 177,
+      "catalog_sha256": "27881fa444792f145353d81ca0359a272afe4d8f72a88c35bebbc0465d33a5ba",
+      "connection_label": "Package / headstage",
+      "headstage_profiles": [
+        {
+          "source_url": "https://www.neuronexus.com/wp-content/uploads/2026/09/H64LP-MRH64LP-Maps-20230110.pdf",
+          "pdf_pages": [
+            10
+          ],
+          "source_sha256": "2b4b89f4262b908132f94f9d2bda4b185f7e43b1f69072c87046e23a45cc73ab",
+          "numbering": "zero-based recording channel",
+          "source_numbering": "one-based package pin",
+          "id": "neuronexus_h64lp_smartlink64_chronic",
+          "label": "H64LP / MRH64LP + SmartLink64 Chronic",
+          "headstage_source_url": "https://www.neuronexus.com/files/smartlinkheadstagemapping/SmartLink%20Chronic%2064%20Mapping.pdf",
+          "headstage_source_sha256": "711250150f5b2a1bff5669ec812bc3a4de91e85a6b46d36c6a38408955491cce",
+          "headstage_pdf_page": 1,
+          "connector_pdf_page": 1,
+          "note": "H64LP / MRH64LP + SmartLink64 Chronic only. Channel IDs are zero-based amplifier inputs; verify the reference configuration and acquisition order.",
+          "n_channels": 64,
+          "contact_to_channel": {
+            "s0_front_0000": 48,
+            "s0_front_0001": 55,
+            "s0_front_0002": 49,
+            "s0_front_0003": 54,
+            "s0_front_0004": 50,
+            "s0_front_0005": 53,
+            "s0_front_0006": 51,
+            "s0_front_0007": 52,
+            "s1_front_0000": 56,
+            "s1_front_0001": 63,
+            "s1_front_0002": 57,
+            "s1_front_0003": 62,
+            "s1_front_0004": 58,
+            "s1_front_0005": 61,
+            "s1_front_0006": 59,
+            "s1_front_0007": 60,
+            "s2_front_0000": 33,
+            "s2_front_0001": 40,
+            "s2_front_0002": 32,
+            "s2_front_0003": 41,
+            "s2_front_0004": 35,
+            "s2_front_0005": 39,
+            "s2_front_0006": 37,
+            "s2_front_0007": 36,
+            "s3_front_0000": 43,
+            "s3_front_0001": 34,
+            "s3_front_0002": 45,
+            "s3_front_0003": 38,
+            "s3_front_0004": 44,
+            "s3_front_0005": 42,
+            "s3_front_0006": 47,
+            "s3_front_0007": 46,
+            "s4_front_0000": 29,
+            "s4_front_0001": 20,
+            "s4_front_0002": 25,
+            "s4_front_0003": 18,
+            "s4_front_0004": 21,
+            "s4_front_0005": 17,
+            "s4_front_0006": 19,
+            "s4_front_0007": 16,
+            "s5_front_0000": 23,
+            "s5_front_0001": 30,
+            "s5_front_0002": 22,
+            "s5_front_0003": 31,
+            "s5_front_0004": 24,
+            "s5_front_0005": 28,
+            "s5_front_0006": 27,
+            "s5_front_0007": 26,
+            "s6_front_0000": 0,
+            "s6_front_0001": 7,
+            "s6_front_0002": 1,
+            "s6_front_0003": 6,
+            "s6_front_0004": 2,
+            "s6_front_0005": 5,
+            "s6_front_0006": 3,
+            "s6_front_0007": 4,
+            "s7_front_0000": 8,
+            "s7_front_0001": 15,
+            "s7_front_0002": 9,
+            "s7_front_0003": 14,
+            "s7_front_0004": 10,
+            "s7_front_0005": 13,
+            "s7_front_0006": 11,
+            "s7_front_0007": 12
+          },
+          "source_contact_numbers": {
+            "s0_front_0000": 1,
+            "s0_front_0001": 8,
+            "s0_front_0002": 2,
+            "s0_front_0003": 7,
+            "s0_front_0004": 3,
+            "s0_front_0005": 6,
+            "s0_front_0006": 4,
+            "s0_front_0007": 5,
+            "s1_front_0000": 9,
+            "s1_front_0001": 16,
+            "s1_front_0002": 10,
+            "s1_front_0003": 15,
+            "s1_front_0004": 11,
+            "s1_front_0005": 14,
+            "s1_front_0006": 12,
+            "s1_front_0007": 13,
+            "s2_front_0000": 17,
+            "s2_front_0001": 24,
+            "s2_front_0002": 18,
+            "s2_front_0003": 23,
+            "s2_front_0004": 19,
+            "s2_front_0005": 22,
+            "s2_front_0006": 20,
+            "s2_front_0007": 21,
+            "s3_front_0000": 25,
+            "s3_front_0001": 32,
+            "s3_front_0002": 26,
+            "s3_front_0003": 31,
+            "s3_front_0004": 27,
+            "s3_front_0005": 30,
+            "s3_front_0006": 28,
+            "s3_front_0007": 29,
+            "s4_front_0000": 33,
+            "s4_front_0001": 40,
+            "s4_front_0002": 34,
+            "s4_front_0003": 39,
+            "s4_front_0004": 35,
+            "s4_front_0005": 38,
+            "s4_front_0006": 36,
+            "s4_front_0007": 37,
+            "s5_front_0000": 41,
+            "s5_front_0001": 48,
+            "s5_front_0002": 42,
+            "s5_front_0003": 47,
+            "s5_front_0004": 43,
+            "s5_front_0005": 46,
+            "s5_front_0006": 44,
+            "s5_front_0007": 45,
+            "s6_front_0000": 49,
+            "s6_front_0001": 56,
+            "s6_front_0002": 50,
+            "s6_front_0003": 55,
+            "s6_front_0004": 51,
+            "s6_front_0005": 54,
+            "s6_front_0006": 52,
+            "s6_front_0007": 53,
+            "s7_front_0000": 57,
+            "s7_front_0001": 64,
+            "s7_front_0002": 58,
+            "s7_front_0003": 63,
+            "s7_front_0004": 59,
+            "s7_front_0005": 62,
+            "s7_front_0006": 60,
+            "s7_front_0007": 61
+          }
+        },
+        {
+          "source_url": "https://www.neuronexus.com/wp-content/uploads/2026/09/H64LP-MRH64LP-Maps-20230110.pdf",
+          "pdf_pages": [
+            10
+          ],
+          "source_sha256": "2b4b89f4262b908132f94f9d2bda4b185f7e43b1f69072c87046e23a45cc73ab",
+          "numbering": "zero-based recording channel",
+          "source_numbering": "one-based package pin",
+          "id": "neuronexus_h64lp_intan_rhd64",
+          "label": "H64LP / MRH64LP + Intan RHD64 (C3315 / C3325)",
+          "headstage_source_url": "https://intantech.com/files/Intan_Recording_Controller_user_guide.pdf",
+          "headstage_source_sha256": "2dc9ea5c40e583e209b95c8c9760c06fae12f664eda6bd97e94fc318a10deb3a",
+          "headstage_pdf_page": 11,
+          "connector_pdf_page": 1,
+          "note": "H64LP / MRH64LP + Intan RHD64 (C3315 / C3325) only. Channel IDs are zero-based amplifier inputs; verify the reference configuration and acquisition order.",
+          "n_channels": 64,
+          "contact_to_channel": {
+            "s0_front_0000": 49,
+            "s0_front_0001": 54,
+            "s0_front_0002": 48,
+            "s0_front_0003": 55,
+            "s0_front_0004": 51,
+            "s0_front_0005": 52,
+            "s0_front_0006": 50,
+            "s0_front_0007": 53,
+            "s1_front_0000": 57,
+            "s1_front_0001": 62,
+            "s1_front_0002": 56,
+            "s1_front_0003": 63,
+            "s1_front_0004": 59,
+            "s1_front_0005": 60,
+            "s1_front_0006": 58,
+            "s1_front_0007": 61,
+            "s2_front_0000": 32,
+            "s2_front_0001": 41,
+            "s2_front_0002": 33,
+            "s2_front_0003": 40,
+            "s2_front_0004": 34,
+            "s2_front_0005": 38,
+            "s2_front_0006": 36,
+            "s2_front_0007": 37,
+            "s3_front_0000": 42,
+            "s3_front_0001": 35,
+            "s3_front_0002": 44,
+            "s3_front_0003": 39,
+            "s3_front_0004": 45,
+            "s3_front_0005": 43,
+            "s3_front_0006": 46,
+            "s3_front_0007": 47,
+            "s4_front_0000": 29,
+            "s4_front_0001": 20,
+            "s4_front_0002": 25,
+            "s4_front_0003": 18,
+            "s4_front_0004": 21,
+            "s4_front_0005": 17,
+            "s4_front_0006": 19,
+            "s4_front_0007": 16,
+            "s5_front_0000": 23,
+            "s5_front_0001": 30,
+            "s5_front_0002": 22,
+            "s5_front_0003": 31,
+            "s5_front_0004": 24,
+            "s5_front_0005": 28,
+            "s5_front_0006": 27,
+            "s5_front_0007": 26,
+            "s6_front_0000": 0,
+            "s6_front_0001": 7,
+            "s6_front_0002": 1,
+            "s6_front_0003": 6,
+            "s6_front_0004": 2,
+            "s6_front_0005": 5,
+            "s6_front_0006": 3,
+            "s6_front_0007": 4,
+            "s7_front_0000": 8,
+            "s7_front_0001": 15,
+            "s7_front_0002": 9,
+            "s7_front_0003": 14,
+            "s7_front_0004": 10,
+            "s7_front_0005": 13,
+            "s7_front_0006": 11,
+            "s7_front_0007": 12
+          },
+          "source_contact_numbers": {
+            "s0_front_0000": 1,
+            "s0_front_0001": 8,
+            "s0_front_0002": 2,
+            "s0_front_0003": 7,
+            "s0_front_0004": 3,
+            "s0_front_0005": 6,
+            "s0_front_0006": 4,
+            "s0_front_0007": 5,
+            "s1_front_0000": 9,
+            "s1_front_0001": 16,
+            "s1_front_0002": 10,
+            "s1_front_0003": 15,
+            "s1_front_0004": 11,
+            "s1_front_0005": 14,
+            "s1_front_0006": 12,
+            "s1_front_0007": 13,
+            "s2_front_0000": 17,
+            "s2_front_0001": 24,
+            "s2_front_0002": 18,
+            "s2_front_0003": 23,
+            "s2_front_0004": 19,
+            "s2_front_0005": 22,
+            "s2_front_0006": 20,
+            "s2_front_0007": 21,
+            "s3_front_0000": 25,
+            "s3_front_0001": 32,
+            "s3_front_0002": 26,
+            "s3_front_0003": 31,
+            "s3_front_0004": 27,
+            "s3_front_0005": 30,
+            "s3_front_0006": 28,
+            "s3_front_0007": 29,
+            "s4_front_0000": 33,
+            "s4_front_0001": 40,
+            "s4_front_0002": 34,
+            "s4_front_0003": 39,
+            "s4_front_0004": 35,
+            "s4_front_0005": 38,
+            "s4_front_0006": 36,
+            "s4_front_0007": 37,
+            "s5_front_0000": 41,
+            "s5_front_0001": 48,
+            "s5_front_0002": 42,
+            "s5_front_0003": 47,
+            "s5_front_0004": 43,
+            "s5_front_0005": 46,
+            "s5_front_0006": 44,
+            "s5_front_0007": 45,
+            "s6_front_0000": 49,
+            "s6_front_0001": 56,
+            "s6_front_0002": 50,
+            "s6_front_0003": 55,
+            "s6_front_0004": 51,
+            "s6_front_0005": 54,
+            "s6_front_0006": 52,
+            "s6_front_0007": 53,
+            "s7_front_0000": 57,
+            "s7_front_0001": 64,
+            "s7_front_0002": 58,
+            "s7_front_0003": 63,
+            "s7_front_0004": 59,
+            "s7_front_0005": 62,
+            "s7_front_0006": 60,
+            "s7_front_0007": 61
+          }
+        },
+        {
+          "source_url": "https://www.neuronexus.com/files/probemapping/64-channel/A64-Maps.pdf",
+          "pdf_pages": [
+            4
+          ],
+          "source_sha256": "8396d88c87411e972d5f2430ae50c4cc3edb0a1294e26523d11aece494f4823b",
+          "numbering": "zero-based recording channel",
+          "source_numbering": "one-based package pin",
+          "id": "neuronexus_a64_smartlink64_acute",
+          "label": "A64 / MRA64 / OA64LP + SmartLink64 Acute",
+          "headstage_source_url": "https://www.neuronexus.com/files/smartlinkheadstagemapping/SmartLink%20Acute%2064%20Mapping.pdf",
+          "headstage_source_sha256": "c750831553ff6d725e9ab6a58d00e44bdf8d6f05ac11b39794f9c60f383e2db3",
+          "headstage_pdf_page": 1,
+          "connector_pdf_page": 1,
+          "note": "A64 / MRA64 / OA64LP + SmartLink64 Acute only. Channel IDs are zero-based amplifier inputs; verify the reference configuration and acquisition order. Not for OA64LP V2.",
+          "n_channels": 64,
+          "contact_to_channel": {
+            "s0_front_0000": 48,
+            "s0_front_0001": 61,
+            "s0_front_0002": 52,
+            "s0_front_0003": 50,
+            "s0_front_0004": 53,
+            "s0_front_0005": 58,
+            "s0_front_0006": 56,
+            "s0_front_0007": 57,
+            "s1_front_0000": 54,
+            "s1_front_0001": 43,
+            "s1_front_0002": 63,
+            "s1_front_0003": 62,
+            "s1_front_0004": 59,
+            "s1_front_0005": 45,
+            "s1_front_0006": 47,
+            "s1_front_0007": 60,
+            "s2_front_0000": 46,
+            "s2_front_0001": 32,
+            "s2_front_0002": 41,
+            "s2_front_0003": 40,
+            "s2_front_0004": 44,
+            "s2_front_0005": 34,
+            "s2_front_0006": 39,
+            "s2_front_0007": 42,
+            "s3_front_0000": 38,
+            "s3_front_0001": 55,
+            "s3_front_0002": 36,
+            "s3_front_0003": 49,
+            "s3_front_0004": 33,
+            "s3_front_0005": 51,
+            "s3_front_0006": 35,
+            "s3_front_0007": 37,
+            "s4_front_0000": 8,
+            "s4_front_0001": 25,
+            "s4_front_0002": 14,
+            "s4_front_0003": 27,
+            "s4_front_0004": 12,
+            "s4_front_0005": 30,
+            "s4_front_0006": 26,
+            "s4_front_0007": 28,
+            "s5_front_0000": 31,
+            "s5_front_0001": 17,
+            "s5_front_0002": 23,
+            "s5_front_0003": 22,
+            "s5_front_0004": 29,
+            "s5_front_0005": 19,
+            "s5_front_0006": 21,
+            "s5_front_0007": 24,
+            "s6_front_0000": 20,
+            "s6_front_0001": 9,
+            "s6_front_0002": 1,
+            "s6_front_0003": 0,
+            "s6_front_0004": 18,
+            "s6_front_0005": 4,
+            "s6_front_0006": 3,
+            "s6_front_0007": 16,
+            "s7_front_0000": 2,
+            "s7_front_0001": 15,
+            "s7_front_0002": 13,
+            "s7_front_0003": 11,
+            "s7_front_0004": 5,
+            "s7_front_0005": 10,
+            "s7_front_0006": 6,
+            "s7_front_0007": 7
+          },
+          "source_contact_numbers": {
+            "s0_front_0000": 1,
+            "s0_front_0001": 8,
+            "s0_front_0002": 2,
+            "s0_front_0003": 7,
+            "s0_front_0004": 3,
+            "s0_front_0005": 6,
+            "s0_front_0006": 4,
+            "s0_front_0007": 5,
+            "s1_front_0000": 9,
+            "s1_front_0001": 16,
+            "s1_front_0002": 10,
+            "s1_front_0003": 15,
+            "s1_front_0004": 11,
+            "s1_front_0005": 14,
+            "s1_front_0006": 12,
+            "s1_front_0007": 13,
+            "s2_front_0000": 17,
+            "s2_front_0001": 24,
+            "s2_front_0002": 18,
+            "s2_front_0003": 23,
+            "s2_front_0004": 19,
+            "s2_front_0005": 22,
+            "s2_front_0006": 20,
+            "s2_front_0007": 21,
+            "s3_front_0000": 25,
+            "s3_front_0001": 32,
+            "s3_front_0002": 26,
+            "s3_front_0003": 31,
+            "s3_front_0004": 27,
+            "s3_front_0005": 30,
+            "s3_front_0006": 28,
+            "s3_front_0007": 29,
+            "s4_front_0000": 33,
+            "s4_front_0001": 40,
+            "s4_front_0002": 34,
+            "s4_front_0003": 39,
+            "s4_front_0004": 35,
+            "s4_front_0005": 38,
+            "s4_front_0006": 36,
+            "s4_front_0007": 37,
+            "s5_front_0000": 41,
+            "s5_front_0001": 48,
+            "s5_front_0002": 42,
+            "s5_front_0003": 47,
+            "s5_front_0004": 43,
+            "s5_front_0005": 46,
+            "s5_front_0006": 44,
+            "s5_front_0007": 45,
+            "s6_front_0000": 49,
+            "s6_front_0001": 56,
+            "s6_front_0002": 50,
+            "s6_front_0003": 55,
+            "s6_front_0004": 51,
+            "s6_front_0005": 54,
+            "s6_front_0006": 52,
+            "s6_front_0007": 53,
+            "s7_front_0000": 57,
+            "s7_front_0001": 64,
+            "s7_front_0002": 58,
+            "s7_front_0003": 63,
+            "s7_front_0004": 59,
+            "s7_front_0005": 62,
+            "s7_front_0006": 60,
+            "s7_front_0007": 61
+          }
+        }
+      ]
+    }
+  },
+  "channel_map": {
+    "contact_to_channel": {},
+    "n_channels": 64,
+    "groups": [],
+    "skipped": [],
+    "source_xml": null,
+    "blueprint": {},
+    "source_imro": null,
+    "pending_sites": [],
+    "rois": [],
+    "headstage_id": null
+  }
+}

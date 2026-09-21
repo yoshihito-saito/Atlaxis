@@ -1,0 +1,8 @@
+.venv/
+.tools/
+.uv-cache/
+.python/
+__pycache__/
+*.pyc
+dist/
+.DS_Store

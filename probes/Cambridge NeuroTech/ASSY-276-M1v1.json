@@ -1,0 +1,942 @@
+{
+  "geometry": {
+    "name": "ASSY-276-M1v1",
+    "contacts": [
+      {
+        "contact_id": "1",
+        "shank_id": 0,
+        "x_um": 46.0,
+        "y_um": 376.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "2",
+        "shank_id": 0,
+        "x_um": 78.0,
+        "y_um": 256.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "3",
+        "shank_id": 0,
+        "x_um": 46.0,
+        "y_um": 416.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "4",
+        "shank_id": 0,
+        "x_um": 46.0,
+        "y_um": 176.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "5",
+        "shank_id": 0,
+        "x_um": 62.0,
+        "y_um": 356.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "6",
+        "shank_id": 0,
+        "x_um": 46.0,
+        "y_um": 296.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "7",
+        "shank_id": 0,
+        "x_um": 78.0,
+        "y_um": 336.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "8",
+        "shank_id": 0,
+        "x_um": 94.0,
+        "y_um": 316.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "9",
+        "shank_id": 0,
+        "x_um": 94.0,
+        "y_um": 236.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "10",
+        "shank_id": 0,
+        "x_um": 62.0,
+        "y_um": 436.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "11",
+        "shank_id": 0,
+        "x_um": 62.0,
+        "y_um": 196.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "12",
+        "shank_id": 0,
+        "x_um": 78.0,
+        "y_um": 176.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "13",
+        "shank_id": 0,
+        "x_um": 62.0,
+        "y_um": 276.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "14",
+        "shank_id": 0,
+        "x_um": 78.0,
+        "y_um": 296.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "15",
+        "shank_id": 0,
+        "x_um": 94.0,
+        "y_um": 156.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "16",
+        "shank_id": 0,
+        "x_um": 62.0,
+        "y_um": 156.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "17",
+        "shank_id": 0,
+        "x_um": 46.0,
+        "y_um": 776.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "18",
+        "shank_id": 0,
+        "x_um": 46.0,
+        "y_um": 736.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "19",
+        "shank_id": 0,
+        "x_um": 78.0,
+        "y_um": 696.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "20",
+        "shank_id": 0,
+        "x_um": 78.0,
+        "y_um": 656.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "21",
+        "shank_id": 0,
+        "x_um": 46.0,
+        "y_um": 576.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "22",
+        "shank_id": 0,
+        "x_um": 46.0,
+        "y_um": 696.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "23",
+        "shank_id": 0,
+        "x_um": 62.0,
+        "y_um": 676.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "24",
+        "shank_id": 0,
+        "x_um": 78.0,
+        "y_um": 496.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "25",
+        "shank_id": 0,
+        "x_um": 94.0,
+        "y_um": 716.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "26",
+        "shank_id": 0,
+        "x_um": 78.0,
+        "y_um": 576.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "27",
+        "shank_id": 0,
+        "x_um": 94.0,
+        "y_um": 596.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "28",
+        "shank_id": 0,
+        "x_um": 78.0,
+        "y_um": 616.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "29",
+        "shank_id": 0,
+        "x_um": 94.0,
+        "y_um": 516.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "30",
+        "shank_id": 0,
+        "x_um": 46.0,
+        "y_um": 656.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "31",
+        "shank_id": 0,
+        "x_um": 94.0,
+        "y_um": 396.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "32",
+        "shank_id": 0,
+        "x_um": 62.0,
+        "y_um": 596.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "33",
+        "shank_id": 0,
+        "x_um": 46.0,
+        "y_um": 256.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "34",
+        "shank_id": 0,
+        "x_um": 46.0,
+        "y_um": 456.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "35",
+        "shank_id": 0,
+        "x_um": 94.0,
+        "y_um": 196.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "36",
+        "shank_id": 0,
+        "x_um": 94.0,
+        "y_um": 356.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "37",
+        "shank_id": 0,
+        "x_um": 94.0,
+        "y_um": 276.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "38",
+        "shank_id": 0,
+        "x_um": 94.0,
+        "y_um": 436.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "39",
+        "shank_id": 0,
+        "x_um": 46.0,
+        "y_um": 216.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "40",
+        "shank_id": 0,
+        "x_um": 46.0,
+        "y_um": 336.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "41",
+        "shank_id": 0,
+        "x_um": 62.0,
+        "y_um": 236.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "42",
+        "shank_id": 0,
+        "x_um": 62.0,
+        "y_um": 396.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "43",
+        "shank_id": 0,
+        "x_um": 78.0,
+        "y_um": 216.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "44",
+        "shank_id": 0,
+        "x_um": 78.0,
+        "y_um": 376.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "45",
+        "shank_id": 0,
+        "x_um": 78.0,
+        "y_um": 456.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "46",
+        "shank_id": 0,
+        "x_um": 78.0,
+        "y_um": 416.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "47",
+        "shank_id": 0,
+        "x_um": 62.0,
+        "y_um": 316.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "48",
+        "shank_id": 0,
+        "x_um": 94.0,
+        "y_um": 556.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "49",
+        "shank_id": 0,
+        "x_um": 94.0,
+        "y_um": 756.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "50",
+        "shank_id": 0,
+        "x_um": 46.0,
+        "y_um": 536.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "51",
+        "shank_id": 0,
+        "x_um": 62.0,
+        "y_um": 476.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "52",
+        "shank_id": 0,
+        "x_um": 62.0,
+        "y_um": 556.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "53",
+        "shank_id": 0,
+        "x_um": 62.0,
+        "y_um": 756.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "54",
+        "shank_id": 0,
+        "x_um": 78.0,
+        "y_um": 536.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "55",
+        "shank_id": 0,
+        "x_um": 62.0,
+        "y_um": 636.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "56",
+        "shank_id": 0,
+        "x_um": 62.0,
+        "y_um": 516.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "57",
+        "shank_id": 0,
+        "x_um": 62.0,
+        "y_um": 716.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "58",
+        "shank_id": 0,
+        "x_um": 94.0,
+        "y_um": 676.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "59",
+        "shank_id": 0,
+        "x_um": 78.0,
+        "y_um": 736.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "60",
+        "shank_id": 0,
+        "x_um": 46.0,
+        "y_um": 496.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "61",
+        "shank_id": 0,
+        "x_um": 46.0,
+        "y_um": 616.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "62",
+        "shank_id": 0,
+        "x_um": 94.0,
+        "y_um": 636.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "63",
+        "shank_id": 0,
+        "x_um": 78.0,
+        "y_um": 776.0,
+        "z_um": -7.5
+      },
+      {
+        "contact_id": "64",
+        "shank_id": 0,
+        "x_um": 94.0,
+        "y_um": 476.0,
+        "z_um": -7.5
+      }
+    ],
+    "tip_um": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "y_to_base": 1,
+    "units": "um",
+    "bodies": [
+      {
+        "outline_um": [
+          [
+            0,
+            15156,
+            0.0
+          ],
+          [
+            0,
+            190,
+            0.0
+          ],
+          [
+            0,
+            145,
+            0.0
+          ],
+          [
+            0,
+            0,
+            0.0
+          ],
+          [
+            110,
+            145,
+            0.0
+          ],
+          [
+            140,
+            190,
+            0.0
+          ],
+          [
+            140,
+            15156,
+            0.0
+          ]
+        ],
+        "thickness_um": 15.0,
+        "shank_id": 0
+      }
+    ],
+    "metadata": {
+      "manufacturer": "Cambridge NeuroTech",
+      "assembly": "ASSY-276",
+      "provisional": true,
+      "geometry_status": "upstream_unverified",
+      "coordinate_convention": "um; leftmost contour tip at origin; +x across shanks; +y toward base; front is -z.",
+      "site_id_convention": "Source ProbeInterface site/connector labels, not acquisition-channel indices.",
+      "source_origin_um": [
+        -62,
+        -156,
+        0.0
+      ],
+      "source_annotations": {
+        "manufacturer": "cambridgeneurotech",
+        "model_name": "ASSY-276-M1v1"
+      },
+      "source_shank_ids": [],
+      "shank_note": "Zero-based left-to-right shanks recovered from sharp contour tips; common base partitioned at inter-tip midpoints. Source labels retained separately.",
+      "faces": 1,
+      "contact_sides": [
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front",
+        "front"
+      ],
+      "contact_shapes": [
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect",
+        "rect"
+      ],
+      "contact_shape_params": [
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        },
+        {
+          "width": 12.0,
+          "height": 12.0
+        }
+      ],
+      "display_thickness_um": 15.0,
+      "body_note": "Upstream 2D outline retained, including any common base. Nominal extrusion only: 15 um single-sided / 30 um double-sided; exact physical thickness is unspecified.",
+      "geometry_note": "Unverified upstream dimensions and tip origin. x/y are translated without scaling; face z uses nominal half-thickness with unknown physical error. No manufacturer-wide dimensional audit performed.",
+      "routing_note": "Acquisition wiring is unassigned; source contact IDs are not treated as recording channels.",
+      "wiring_unavailable_reason": "This legacy or unverified revision is outside the registered current connection profiles.",
+      "sources": [
+        {
+          "url": "https://github.com/SpikeInterface/probeinterface_library/blob/bb40894cdf55787fed7b7198ea854497d52ca687/cambridgeneurotech/ASSY-276-M1v1/ASSY-276-M1v1.json",
+          "revision": "bb40894cdf55787fed7b7198ea854497d52ca687",
+          "blob_sha1": "23afc7f08c155fd56bdc15097fb43a75e6fd5ed6"
+        }
+      ],
+      "source_license": "MIT; see LICENSE-ProbeInterface.txt in this directory.",
+      "upstream_model": "ASSY-276-M1v1",
+      "conversion": "ProbeInterface JSON to Atlaxis"
+    }
+  },
+  "channel_map": {
+    "contact_to_channel": {},
+    "n_channels": 64,
+    "groups": [],
+    "skipped": [],
+    "source_xml": null,
+    "blueprint": {},
+    "source_imro": null,
+    "pending_sites": [],
+    "rois": [],
+    "headstage_id": null
+  }
+}

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<parameters version="1.0">
+  <!--Channel-group template; add actual acquisition metadata. Intan RHD 32ch C3314/C3324 via Cambridge A32-Om32. Channel IDs are native, zero-based Intan amplifier inputs before recording-system port offsets. Other adapter brands / wiring are not interchangeable.-->
+  <acquisitionSystem>
+    <nChannels>32</nChannels>
+  </acquisitionSystem>
+  <anatomicalDescription>
+    <channelGroups>
+      <!--Zero-based shank 0-->
+      <group>
+        <channel skip="0">24</channel>
+        <channel skip="0">23</channel>
+        <channel skip="0">21</channel>
+        <channel skip="0">20</channel>
+        <channel skip="0">19</channel>
+        <channel skip="0">18</channel>
+        <channel skip="0">30</channel>
+        <channel skip="0">31</channel>
+        <channel skip="0">16</channel>
+        <channel skip="0">17</channel>
+        <channel skip="0">29</channel>
+        <channel skip="0">28</channel>
+        <channel skip="0">27</channel>
+        <channel skip="0">26</channel>
+        <channel skip="0">22</channel>
+        <channel skip="0">25</channel>
+        <channel skip="0">7</channel>
+        <channel skip="0">8</channel>
+        <channel skip="0">10</channel>
+        <channel skip="0">11</channel>
+        <channel skip="0">12</channel>
+        <channel skip="0">13</channel>
+        <channel skip="0">1</channel>
+        <channel skip="0">0</channel>
+        <channel skip="0">15</channel>
+        <channel skip="0">14</channel>
+        <channel skip="0">2</channel>
+        <channel skip="0">3</channel>
+        <channel skip="0">4</channel>
+        <channel skip="0">5</channel>
+        <channel skip="0">9</channel>
+        <channel skip="0">6</channel>
+      </group>
+    </channelGroups>
+  </anatomicalDescription>
+</parameters>
