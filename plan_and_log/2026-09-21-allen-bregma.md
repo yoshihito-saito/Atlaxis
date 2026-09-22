@@ -245,3 +245,22 @@ the existing release while keeping version 0.1.0.
 3. Replace v0.1.0 installers and matching source archive, align the release tag
    with the build revision, and update release notes with the exact build identity.
    Record final artifact verification and remaining installation limits here.
+
+### Release update outcome
+
+Committed the atlas changes as `10b02abba71707e468b2d3058b308bb041e84cb3` and pushed
+main. Dispatched `build-desktop.yml`; [run 35674414926](https://github.com/yoshihito-saito/Atlaxis/actions/runs/35674414926)
+succeeded on macos-14 and windows-2022. Artifact IDs are 10671579642 (Mac) and
+10672791991 (Windows). Verified downloaded archive SHA-256 hashes and both source
+ZIP commit comments against the build SHA, then verified all uploaded asset
+sizes/digests against their local files before replacing the old downloads.
+
+Updated [v0.1.0](https://github.com/yoshihito-saito/Atlaxis/releases/tag/v0.1.0)
+with `Atlaxis-macOS-arm64.dmg`, `Atlaxis-Windows-x64-Setup.exe` and the matching
+macOS-produced `Atlaxis-source.zip`. Moved only the v0.1.0 tag using an explicit
+force-with-lease against its previous `dfc1bb5` revision; branch history was not
+rewritten. Release notes identify the rebuild and exact source revision. A final
+API read confirmed the published state, expected three filenames and their
+hashes/sizes. Application version remains 0.1.0. Installed apps were not replaced
+and these rebuilt installers were not interactively installed or GUI-tested.
+The unrelated local installer-check note was left untouched and uncommitted.
