@@ -3,7 +3,7 @@
 from configparser import ConfigParser, Error as ConfigError
 
 from brainglobe_atlasapi import config, descriptors
-from brainglobe_atlasapi.list_atlases import get_downloaded_atlases
+from brainglobe_atlasapi.list_atlases import get_downloaded_atlases, get_local_atlas_version
 from PySide6.QtCore import QUrl
 from PySide6.QtNetwork import QNetworkAccessManager, QNetworkReply, QNetworkRequest
 from PySide6.QtWidgets import (
@@ -12,25 +12,41 @@ from PySide6.QtWidgets import (
 )
 
 
+# Chooser policy; older saved plans retain backend support for other atlases.
+# Versions must have matching presets in atlas_default_coordinates.
+_AUTOMATIC_ATLASES = {
+    "whs_sd_rat_39um": "1.2",
+    "whs_sd_swc_female_rat_39um": "1.0",
+    "allen_mouse_10um": "1.2",
+    "allen_mouse_25um": "1.2",
+    "allen_mouse_50um": "1.2",
+}
+
+
 class AtlasDialog(QDialog):
     def __init__(self, current="whs_sd_rat_39um", parent=None):
         super().__init__(parent)
         self.setWindowTitle("Load atlas")
         self.resize(700, 520)
         self.downloaded = set(get_downloaded_atlases())
-        self.names = self.downloaded | {current}
+        self.local_versions = {
+            name: get_local_atlas_version(name)
+            for name in self.downloaded & _AUTOMATIC_ATLASES.keys()
+        }
+        self.versions = {}
         root = config.get_brainglobe_dir()
         for filename in ("last_versions.conf", "custom_atlases.conf"):
             cached = ConfigParser()
             try:
                 cached.read(root / filename, encoding="utf-8")
                 if cached.has_section("atlases"):
-                    self.names.update(cached.options("atlases"))
+                    self.versions.update(cached.items("atlases"))
             except (OSError, ConfigError):
                 # The online request below can recover an unreadable catalogue.
                 pass
 
         layout = QVBoxLayout(self)
+        layout.addWidget(QLabel("Rat and mouse atlases with automatic Bregma presets."))
         self.search = QLineEdit()
         self.search.setPlaceholderText("Search atlases (e.g. rat, mouse, Allen)")
         layout.addWidget(self.search)
@@ -71,7 +87,12 @@ class AtlasDialog(QDialog):
     def populate(self, selected):
         self.table.blockSignals(True)
         self.table.clear()
-        names = sorted(self.names, key=lambda name: (
+        # BrainGlobe opens downloaded data without upgrading it. An unsupported
+        # local version must not be presented as automatic based on a newer listing.
+        versions = self.versions | self.local_versions
+        names = sorted((name for name, version in versions.items()
+                        if name in _AUTOMATIC_ATLASES
+                        and version == _AUTOMATIC_ATLASES[name]), key=lambda name: (
             name not in self.downloaded,
             0 if "_rat_" in name else 1 if "_mouse_" in name else 2,
             name,
@@ -103,9 +124,11 @@ class AtlasDialog(QDialog):
         name = self.selected_name
         self.buttons.button(QDialogButtonBox.Ok).setEnabled(bool(name))
         self.calibration.setText(
-            "Bregma preset available for supported Waxholm versions."
+            "Waxholm-registered female rat: automatic Waxholm Bregma in the packaged atlas grid."
+            if name == "whs_sd_swc_female_rat_39um" else
+            "Bregma is set automatically from the Waxholm atlas landmark."
             if name == "whs_sd_rat_39um" else
-            "Atlas viewing is available. Set a verified Bregma origin before placing probes."
+            "Estimated Allen CCF Bregma with 5° skull-level pitch correction; not individual-animal registration."
             if name else "No matching atlas. Try a different search."
         )
 
@@ -115,13 +138,16 @@ class AtlasDialog(QDialog):
                 raise ValueError(self.reply.errorString())
             catalogue = ConfigParser()
             catalogue.read_string(bytes(self.reply.readAll()).decode("utf-8"))
-            names = catalogue.options("atlases")
-            if not names:
+            versions = dict(catalogue.items("atlases"))
+            if not versions:
                 raise ValueError("The atlas catalogue is empty.")
             selected = self.selected_name
-            self.names.update(names)
+            self.versions.update(versions)
             self.populate(selected)
-            self.status.setText(f"{len(self.names)} atlases · Missing data downloads when you click Load.")
+            self.status.setText(
+                f"{self.table.topLevelItemCount()} supported atlases · "
+                "Missing data downloads when you click Load."
+            )
         except (ValueError, ConfigError, UnicodeError) as error:
             self.status.setText("Catalogue refresh unavailable; showing locally known atlases.")
             self.status.setToolTip(str(error))

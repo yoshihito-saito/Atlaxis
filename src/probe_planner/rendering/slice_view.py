@@ -20,11 +20,14 @@ from .scene import Scene
 from .navigation import NavigationInteractor
 
 
-def anatomical_views(orientation):
-    """Camera-side normals and upright directions in BrainGlobe atlas axes."""
+def anatomical_views(orientation, frame=None):
+    """Skull-aligned camera directions, expressed in native atlas axes."""
     anterior = np.array([1 if c == "p" else -1 if c == "a" else 0 for c in orientation])
     right = np.array([1 if c == "l" else -1 if c == "r" else 0 for c in orientation])
     dorsal = np.array([1 if c == "i" else -1 if c == "s" else 0 for c in orientation])
+    if frame is not None:
+        basis = frame.stereo_to_atlas_matrix[:3, :3]
+        anterior, right, dorsal = basis[:, 0], basis[:, 1], -basis[:, 2]
     return {"Front": (anterior, dorsal), "Back": (-anterior, dorsal),
             "Right": (right, dorsal), "Left": (-right, dorsal),
             "Top": (dorsal, anterior), "Bottom": (-dorsal, anterior),
@@ -307,19 +310,22 @@ class SliceWorkspace(QWidget):
 
     def show_probes(self, atlas, frame, probes, selected, fit=False):
         new_atlas = atlas is not self.atlas
+        old_pitch = self.frame.pitch_correction_deg if self.frame else 0.0
+        new_pitch = frame.pitch_correction_deg if frame else 0.0
+        orientation_changed = new_atlas or old_pitch != new_pitch
         if new_atlas:
             self.cache.clear()
             self.displayed_keys.clear()
             self.atlas = atlas
             self.set_mask(set(), False, self.mask_opacity)
-            if atlas is not None:
-                self.set_orientation_markers(atlas.orientation)
             fit = True
         reference = (id(selected), selected.selected_shank_id) if selected is not None else None
         if new_atlas or reference != self.selected_reference:
             self.section_indices.clear()
         self.selected_reference = reference
         self.frame = frame
+        if orientation_changed and atlas is not None:
+            self.set_orientation_markers(atlas.orientation)
         self.has_reference_tip = selected is not None and frame is not None and atlas is not None
         self.section_center = None
         if atlas is not None:
@@ -331,7 +337,7 @@ class SliceWorkspace(QWidget):
         # Atlas and probe positions share the same physical axes; no flattened
         # projected copies of the probe are added to the section planes.
         placed_probes = probes if atlas is not None and frame is not None else []
-        if new_atlas and atlas is not None:
+        if orientation_changed and atlas is not None:
             self.orient_camera(atlas)
         self.outline.show_probes(placed_probes, selected, frame, fit)
 
@@ -407,6 +413,8 @@ class SliceWorkspace(QWidget):
             self.section_actors[name].visibility = self.visible_views[name]
         self.plotter.interactor.setToolTip("\n".join(
             section.caption + " · " + section.axis_labels for section in self.sections.values())
+            + ("\nSections follow native atlas planes; camera views follow the skull-level axes."
+               if frame is not None and frame.pitch_correction_deg else "")
             + "\nDouble-click: home · right-drag: pan · swipe / wheel / pinch: zoom at cursor"
             + "\nLeft / Right: sagittal · Up / Down: coronal")
         self.follow_tip_button.setEnabled(self.has_reference_tip and bool(self.section_indices))
@@ -421,7 +429,7 @@ class SliceWorkspace(QWidget):
         if self.atlas is None:
             return
         atlas = self.atlas
-        direction, up = anatomical_views(atlas.orientation)[name]
+        direction, up = anatomical_views(atlas.orientation, self.frame)[name]
         self.set_view_direction(direction, up)
 
     def set_view_direction(self, direction, up=None):
@@ -431,7 +439,7 @@ class SliceWorkspace(QWidget):
         direction = np.asarray(direction, dtype=float)
         direction /= np.linalg.norm(direction)
         if up is None:
-            views = anatomical_views(atlas.orientation)
+            views = anatomical_views(atlas.orientation, self.frame)
             dorsal = views["Top"][0]
             up = views["Front"][0] if abs(np.dot(direction, dorsal)) > 0.999 else dorsal
         center = np.asarray(atlas.annotation.shape) * np.asarray(atlas.resolution_um) / 2
@@ -445,7 +453,7 @@ class SliceWorkspace(QWidget):
             self.cube_widget.SetEnabled(False)
         cube = vtkPropAssembly()
         self.cube_faces = {}
-        for name, (normal, up) in anatomical_views(orientation).items():
+        for name, (normal, up) in anatomical_views(orientation, self.frame).items():
             if name == "Oblique":
                 continue
             # Each label's x/y axes match its camera preset, including opposite
@@ -524,10 +532,13 @@ class SliceWorkspace(QWidget):
         picked = path.GetLastNode().GetViewProp() if path else None
         for name, actor in self.cube_faces.items():
             if picked == actor:
-                # Near an edge/corner, combine the corresponding atlas axes.
+                # Snap in the cube's skull-aligned axes, not native atlas axes.
                 # The middle 60% of each face keeps its cardinal view.
                 hit = np.asarray(self.cube_picker.GetPickPosition())
-                direction = np.where(np.abs(hit) >= 0.30, np.sign(hit), 0.0)
+                views = anatomical_views(self.atlas.orientation, self.frame)
+                basis = np.column_stack((views["Front"][0], views["Right"][0], views["Bottom"][0]))
+                local = basis.T @ hit
+                direction = basis @ np.where(np.abs(local) >= 0.30, np.sign(local), 0.0)
                 self.set_view_direction(direction)
                 return True
         return False

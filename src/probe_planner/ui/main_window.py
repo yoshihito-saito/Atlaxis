@@ -474,6 +474,12 @@ class MainWindow(QMainWindow):
                      if probe else ImplantPose())
         surface = (shank_surface_reference(probe.geometry, probe.pose, probe.selected_shank_id,
                                            self.atlas, self.frame) if probe else None)
+        unavailable = ("Load atlas" if self.atlas is None else
+                       "Set Bregma" if self.frame is None else "No surface")
+        unavailable_hint = ("Load an atlas to place probes." if self.atlas is None else
+                            "Bregma is not set for this atlas. Open Bregma settings."
+                            if self.frame is None else
+                            "No annotated surface along this shank's axis. Adjust AP/ML or tilt.")
         values = asdict(displayed)
         if surface is not None:
             values["ap_mm"], values["ml_mm"] = surface.entry_mm[:2]
@@ -485,7 +491,7 @@ class MainWindow(QMainWindow):
             control.blockSignals(True)
             value = values[name]
             if name in ("dv_mm", "depth_mm"):
-                control.setSpecialValueText("No surface" if surface is None else "")
+                control.setSpecialValueText(unavailable if surface is None else "")
                 value = control.minimum() if surface is None else value
                 control.setEnabled(surface is not None)
             control.setValue(value)
@@ -497,11 +503,11 @@ class MainWindow(QMainWindow):
         self.controls["dv_mm"].setToolTip(
             "Vertical tip depth from this shank's insertion-axis intersection with the brain surface. "
             "Editing DV adjusts insertion depth along the current axis; positive = ventral."
-            if surface is not None else
-            "No annotated surface along this shank's axis, or atlas/Bregma not loaded. Adjust AP/ML or tilt.")
+            if surface is not None else unavailable_hint)
         self.controls["depth_mm"].setToolTip(
             "Distance along this shank's axis from the brain surface: negative before entry, "
-            "zero at the surface, positive after entry. Editing moves the whole probe.")
+            "zero at the surface, positive after entry. Editing moves the whole probe."
+            if surface is not None else unavailable_hint)
         self.controls["ap_tilt_deg"].setToolTip("Sagittal tilt: positive = anterior, negative = posterior")
         self.controls["ml_tilt_deg"].setToolTip("Tilt out of the sagittal plane: positive = anatomical left, negative = anatomical right")
         self.controls["roll_deg"].setToolTip("Rotation about the tilted probe axis")
@@ -663,7 +669,9 @@ class MainWindow(QMainWindow):
             self.frame, self.calibration_source = plan.coordinates, "Saved project Bregma"
         elif not same_atlas or self.frame is None:
             self.frame = atlas_default_coordinates(atlas)
-            self.calibration_source = "Waxholm Bregma preset · atlas-aligned axes" if self.frame else ""
+            self.calibration_source = (
+                "Allen CCF estimated Bregma · skull-level axes" if atlas.name.startswith("allen_mouse_")
+                else "Waxholm Bregma preset · atlas-aligned axes") if self.frame else ""
         self.atlas_name.setText(atlas.name)
         resolution = " × ".join(f"{value:g}" for value in atlas.resolution_um)
         missing = sorted(rid for rid, region in atlas.structures.items() if region.get("metadata_missing"))
@@ -703,12 +711,18 @@ class MainWindow(QMainWindow):
 
     @guarded
     def calibrate(self, checked=False):
-        if self.frame and self.calibration_source.startswith("Waxholm"):
+        if self.frame and self.calibration_source.startswith("Allen CCF"):
+            registration_hint = ("The Allen CCF estimated Bregma preset is applied automatically. "
+                                 "It is a coordinate estimate, not individual-animal registration. ")
+        elif self.frame and self.calibration_source.startswith("Waxholm"):
             registration_hint = "The Waxholm atlas preset is applied automatically, so normally no edit is needed. "
         elif self.frame:
             registration_hint = "This atlas already has a saved or custom Bregma origin. "
         else:
             registration_hint = "This atlas has no automatic Bregma preset; enter a verified landmark position. "
+        if self.frame and self.frame.pitch_correction_deg:
+            registration_hint += (f"A {self.frame.pitch_correction_deg:g}° skull-level pitch correction is active "
+                                  "and is retained when editing the origin. ")
         dialog = CoordinateDialog("Bregma — coordinate origin",
             "Bregma sets atlas registration and the AP/ML origin. The probe's DV is measured "
             "from the local brain surface. " + registration_hint +
@@ -718,8 +732,9 @@ class MainWindow(QMainWindow):
             self.frame.bregma_atlas_um if self.frame else None, parent=self)
         if dialog.exec() != QDialog.Accepted:
             return
-        self.frame = AtlasCoordinates(self.atlas.resolution_um, self.atlas.orientation, dialog.values)
-        self.calibration_source = "Custom Bregma · atlas-aligned axes"
+        self.frame = (replace(self.frame, bregma_atlas_um=dialog.values) if self.frame else
+                      AtlasCoordinates(self.atlas.resolution_um, self.atlas.orientation, dialog.values))
+        self.calibration_source = "Custom Bregma"
         self.place_pending_probes_on_surface()
         self.refresh_pose_controls()
         self.update_calibration_label()
@@ -729,10 +744,15 @@ class MainWindow(QMainWindow):
     def update_calibration_label(self):
         if self.frame:
             position = ", ".join(f"{v:.2f}" for v in um_to_mm(self.frame.bregma_atlas_um))
-            self.calibration_info.setText("Bregma: automatic atlas preset" if self.calibration_source.startswith("Waxholm")
+            self.calibration_info.setText("Bregma: estimated Allen CCF preset" if self.calibration_source.startswith("Allen CCF")
+                                          else "Bregma: automatic atlas preset" if self.calibration_source.startswith("Waxholm")
                                           else "Bregma: saved origin" if self.calibration_source.startswith("Saved")
                                           else "Bregma: custom origin")
-            self.calibration_info.setToolTip(f"{self.calibration_source}\nAtlas x/y/z: {position} mm")
+            if self.frame.pitch_correction_deg:
+                self.calibration_info.setText(self.calibration_info.text()
+                    + f" · {self.frame.pitch_correction_deg:g}° pitch")
+            self.calibration_info.setToolTip(f"{self.calibration_source}\nAtlas x/y/z: {position} mm\n"
+                f"Skull-level pitch correction: {self.frame.pitch_correction_deg:g}° (no scaling)")
         else:
             self.calibration_info.setText("Bregma not set · open Bregma settings")
 

@@ -35,6 +35,7 @@ class AtlasCoordinates:
     resolution_um: tuple[float, float, float]
     orientation: str
     bregma_atlas_um: tuple[float, float, float]
+    pitch_correction_deg: float = 0.0
 
     def __post_init__(self):
         for value in (self.resolution_um, self.bregma_atlas_um):
@@ -42,6 +43,8 @@ class AtlasCoordinates:
                 raise ValueError("Calibration requires finite three-component vectors.")
         if np.any(np.asarray(self.resolution_um) <= 0):
             raise ValueError("Atlas resolution must be positive.")
+        if np.asarray(self.pitch_correction_deg).shape != () or not np.isfinite(self.pitch_correction_deg):
+            raise ValueError("Atlas pitch correction must be finite degrees.")
         self.stereo_to_atlas_matrix
 
     @property
@@ -58,6 +61,10 @@ class AtlasCoordinates:
         matrix[:3, :3] = 0
         for row, (axis, sign) in enumerate(mapping):
             matrix[row, axis] = sign
+        # Skull-level -> native atlas, about Bregma. Positive pitch sends a
+        # ventral skull trajectory anteriorward in native anatomical axes.
+        matrix[:3, :3] = matrix[:3, :3] @ Rotation.from_euler(
+            "y", self.pitch_correction_deg, degrees=True).as_matrix()
         matrix[:3, 3] = self.bregma_atlas_um
         return matrix
 
@@ -271,8 +278,12 @@ def brain_surface_dv_mm(atlas, frame: AtlasCoordinates, ap_mm: float, ml_mm: flo
     """Dorsal annotated voxel-cell boundary at AP/ML, or None without tissue.
 
     Follow the same floor-index cells as region lookup and section textures.
-    Hidden regions still count as tissue. Only one native DV column is read.
+    Hidden regions still count as tissue. A corrected frame requires a ray
+    through native voxel cells instead of an axis-aligned DV column.
     """
+    if frame.pitch_correction_deg:
+        entry = insertion_surface_entry_mm(atlas, frame, [ap_mm, ml_mm, 0], [0, 0, 1])
+        return None if entry is None else float(entry[2])
     position = frame.stereotaxic_to_atlas([[ap_mm * 1000, ml_mm * 1000, 0]])[0]
     indices = np.floor(frame.atlas_to_voxel(position)).astype(int)
     dv_axis = next(axis for axis, letter in enumerate(frame.orientation) if letter in "si")
@@ -290,13 +301,44 @@ def brain_surface_dv_mm(atlas, frame: AtlasCoordinates, ap_mm: float, ml_mm: flo
 
 
 def atlas_default_coordinates(atlas):
-    """Published WHS v1.01 Bregma mapped by the packaged atlas transform.
+    """Atlas-specific origins and skull-level pitch for recognized volumes.
 
+    Allen uses cortex-lab's estimated Bregma [540, 0, 570] in 10 um voxels,
+    converted to physical AP/DV/LR coordinates, never scaled by the loaded
+    resolution. It is an estimate, not individual-animal registration.
+    Source: https://github.com/cortex-lab/allenCCF/blob/master/Browsing%20Functions/allenCCFbregma.m
+    Allen also uses Pinpoint's nominal 5-degree pitch correction, without its
+    optional in-vivo scaling. This is not individual skull registration.
+    Source: https://virtualbrainlab.org/pinpoint/in_vivo_alignment.html
+
+    WHS v1.01 Bregma is mapped by the packaged atlas transform.
     Source: https://www.nitrc.org/docman/view.php/1081/2095/Coordinates_v1-v1.01.pdf
     Native x/y/z voxel landmark: (246, 653, 440). BrainGlobe v1.2 records the
     physical-coordinate reorientation in metadata['trasform_to_bg'] (sic).
-    This sets the Bregma origin, not animal registration or flat-skull leveling.
+    WHS sets only the Bregma origin, without a skull-level rotation.
     """
+    allen_resolution = {"allen_mouse_10um": 10.0, "allen_mouse_25um": 25.0,
+                        "allen_mouse_50um": 50.0, "allen_mouse_100um": 100.0}.get(atlas.name)
+    if allen_resolution is not None:
+        expected_shape = tuple(int(size / allen_resolution) for size in (13200, 8000, 11400))
+        if (atlas.version == "1.2" and atlas.orientation == "asr"
+                and tuple(atlas.resolution_um) == (allen_resolution,) * 3
+                and atlas.annotation.shape == expected_shape):
+            return AtlasCoordinates(atlas.resolution_um, atlas.orientation, (5400.0, 0.0, 5700.0),
+                                    pitch_correction_deg=5.0)
+        return None
+    if atlas.name == "whs_sd_swc_female_rat_39um":
+        if (atlas.version != "1.0" or atlas.orientation != "asr"
+                or atlas.annotation.shape != (1024, 512, 512)
+                or tuple(atlas.resolution_um) != (39.0, 39.0, 39.0)):
+            return None
+        # The registered SWC NIfTI maps the WHS landmark to (653, 440, 246).
+        # Its v1.0 packager declares PIR, unlike the original WHS LPI input.
+        # PIR -> ASR flips AP/DV only; use BrainGlobe's full-extent point
+        # convention and packaged 39 um spacing. No transform is in metadata.
+        # Source: brainglobe/brainglobe-atlasapi, atlas_scripts/whs_sd_swc_female_rat.py
+        bregma = np.array([1024.0 - 653.0, 512.0 - 440.0, 246.0]) * 39.0
+        return AtlasCoordinates(atlas.resolution_um, atlas.orientation, tuple(bregma))
     if (atlas.name != "whs_sd_rat_39um" or atlas.version != "1.2"
             or atlas.orientation != "asr" or atlas.annotation.shape != (1024, 512, 512)
             or tuple(atlas.resolution_um) != (39.0, 39.0, 39.0)):

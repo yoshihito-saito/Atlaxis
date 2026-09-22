@@ -30,7 +30,10 @@ brain surface as zero. **Insertion depth** measures distance along that axis;
 means before entry. Switching shanks updates the displayed coordinates without
 moving the probe. Entering zero moves the whole probe until the selected tip
 reaches the surface; other shanks can remain above or below it. **No surface**
-means the axis misses annotated tissue (or atlas/Bregma is not loaded).
+means the axis misses annotated tissue. **Set Bregma** means the atlas coordinate
+origin is missing; **Load atlas** means no atlas is loaded.
+
+Choose a supported rat or mouse atlas from **Load atlas**. Bregma is set automatically.
 
 ## Neuropixels channel selection
 

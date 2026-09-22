@@ -73,6 +73,8 @@ def section_at(atlas, frame, center, name, *, slice_index=None):
         stereo = um_to_mm(frame.atlas_to_stereotaxic(location[None, :]))[0]
         coordinate = 0 if name == "Coronal" else 1
         label = "AP" if name == "Coronal" else "ML"
+        if name == "Coronal" and frame.pitch_correction_deg:
+            label = "AP at center"
         caption = f"{name} · {label} {stereo[coordinate]:.2f} mm"
     else:
         caption = f"{name} · atlas slice {index}"

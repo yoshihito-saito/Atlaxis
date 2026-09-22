@@ -35,6 +35,8 @@ data folder and saved settings are retained.
 2. **+ Probe** — choose a probe, check its wiring, and set position, tilt and depth.
 3. Select Neuropixels channels as below, then **Save & Update** to save the plan.
 
+Choose a supported rat or mouse atlas from **Load atlas**. Bregma is set automatically.
+
 ## Probes
 
 | Library | Layouts |
