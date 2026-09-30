@@ -557,3 +557,29 @@ Apply/Cancel, overlapping parent/child selection without duplicate sites, empty
 filter rejection, legacy single-region loading, and plan/NP selection JSON
 round-trips. The temporary cache/plan directories were cleaned. No new tests,
 broad suite, full application launch or manual macOS interaction was run.
+
+### XML spatial order (2026-09-30)
+
+Goal: align saved XML channel order with physical sites while retaining actual
+hardware IDs. The combined exporter currently sorts channels numerically.
+
+Steps:
+1. Order fully mapped, generated XML groups base-to-tip, then by lateral position,
+   matching per-probe companions. Preserve hardware IDs, concatenation offsets,
+   group membership, explicit imported XML order and unknown-wiring groups.
+2. Document the physical ordering in the bundle README and probe-library guide.
+3. Review the scoped diff and run one lightweight changed-file syntax check.
+   No new tests, broad validation or generated probe-library updates.
+
+Result: combined XML now orders fully mapped generated groups by
+physical base-to-tip/lateral position rather than numeric channel ID. Original
+IDs, offsets, group membership and skip flags remain unchanged. Imported ordinary
+XML order and unknown-wiring groups retain their prior ordering. No static XML
+files were regenerated; existing bundles update on their next Save & Update.
+
+Reviewed the task-scoped diff. One syntax check passed (exit 0):
+`PYTHONPYCACHEPREFIX=/private/tmp/atlaxis-channel-pycache.lrQXQy .venv/bin/python -m py_compile src/probe_planner/probes/neuropixels.py src/probe_planner/project/bundle.py src/probe_planner/ui/probe_summary.py`
+The temporary bytecode cache was removed. No tests were added/run. Live XML
+generation remains unverified; the reported XML file was not supplied for direct
+comparison. Commit scope requested by the user: XML ordering and its documentation
+only. Electrical-reference display additions remain a separate working-tree change.

@@ -40,6 +40,10 @@ These describe the current selection; missing channels have no inferred position
 MAT channels are local to that probe; `combined_xml_channel` records the offset
 into the combined XML. Saving after Reset/removal removes obsolete managed NP
 companions. IMRO/CSV exports remain manual and are not changed by Save.
+Generated, fully mapped groups in `probes.xml` list the original hardware channel
+IDs in physical base-to-tip order, matching the per-probe XML companions.
+Explicit imported XML order and groups without known site correspondence remain
+unchanged. Channel-index CSV and MAT rows remain indexed by hardware channel.
 
 Regenerate companions after updating the geometry library:
 `python -m probe_planner.probes.companions`.

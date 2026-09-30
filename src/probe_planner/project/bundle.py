@@ -148,6 +148,11 @@ def save_planning_bundle(path, plan, atlas, region_rows):
         for label, channels in probe_groups:
             if not channels:
                 continue
+            # Generated groups follow physical base-to-tip order. Imported XML
+            # order and groups lacking complete site correspondence stay intact.
+            if (np_probe or mapping.source_xml is None) and all(channel in by_channel for channel in channels):
+                channels = sorted(channels, key=lambda channel: (
+                    -geometry.y_to_base * by_channel[channel].y_um, by_channel[channel].x_um))
             groups.append(ET.Comment(f"Probe {number}: {label}"))
             group = ET.SubElement(groups, "group")
             for channel in channels:
@@ -200,6 +205,8 @@ def save_planning_bundle(path, plan, atlas, region_rows):
         "Plan JSON retains the canonical pose transform; its depth field is not the per-shank surface depth.\n"
         "probes.xml combines all probes in plan order. Hardware and XML channels are zero-based;\n"
         "channel_index.csv records each probe's headstage, offset and any known site/shank correspondence.\n"
+        "Generated, fully mapped XML groups follow physical base-to-tip order, retaining hardware IDs.\n"
+        "Imported XML group order and groups with unknown site correspondence are preserved.\n"
         "This is a channelGroups template, not complete recording metadata. Merge it with\n"
         "the recording's XML (sampling rate, bit depth, gain, auxiliary/sync channels, etc.).\n"
         "Offsets assume concatenated neural channels, excluding auxiliary/sync channels.\n"
