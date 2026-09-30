@@ -30,6 +30,26 @@ def active_site_ids(geometry, channel_map):
             if channel not in channel_map.skipped}
 
 
+def reference_description(geometry, mapping):
+    """Describe the electrical reference independently of recording-channel IDs."""
+    from neurocarto.probe_npx.io import parse_imro
+    from neurocarto.probe_npx.npx import ChannelMap as NpxChannelMap
+
+    code = PART_CODES[geometry.metadata["part_number"]]
+    routed = (parse_imro(mapping.source_imro.strip()) if mapping.source_imro is not None
+              else NpxChannelMap(code))
+    if routed.probe_code != code:
+        raise ValueError(f"Expected IMRO type {code}, received {routed.probe_code}.")
+    reference = routed.reference_info
+    if reference.type == "tip":
+        label = f"Tip (shank {reference.shank})"
+    elif reference.type == "bank":
+        label = f"On-shank (shank {reference.shank}, bank {reference.bank})"
+    else:
+        label = {"ext": "External", "ground": "Ground"}[reference.type]
+    return f"{label} (IMRO reference ID {reference.code})"
+
+
 def site_topology(geometry):
     """Validate catalog layout before treating site indices as electrode IDs.
 

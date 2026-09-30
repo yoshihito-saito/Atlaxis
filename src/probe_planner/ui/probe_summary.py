@@ -5,7 +5,7 @@ from PySide6.QtGui import QColor
 from PySide6.QtWidgets import (QWidget, QVBoxLayout, QHBoxLayout, QLabel, QTabWidget,
     QTableWidget, QTableWidgetItem, QHeaderView, QAbstractItemView, QCheckBox, QPushButton)
 
-from probe_planner.probes.neuropixels import is_neuropixels, active_site_ids
+from probe_planner.probes.neuropixels import is_neuropixels, active_site_ids, reference_description
 from probe_planner.rendering.probe_view import ProbeView, ACTIVE_COLOR
 
 
@@ -34,6 +34,14 @@ class ProbeSummary(QWidget):
         self.export_button.clicked.connect(self.exportRequested)
         actions.addWidget(self.export_button)
         layout.addLayout(actions)
+        self.reference_label = None
+        if is_neuropixels(probe.geometry):
+            self.reference_label = QLabel(f"Electrical reference: {reference_description(probe.geometry, probe.channel_map)}")
+            self.reference_label.setWordWrap(True)
+            self.reference_label.setToolTip(
+                "IMRO reference IDs are separate from recording-channel IDs and the coordinate reference shank. "
+                "ROI activation retains imported IMRO reference settings.")
+            layout.addWidget(self.reference_label)
         tabs = QTabWidget()
         self.tabs = tabs
         layout.addWidget(tabs, 1)
@@ -42,7 +50,7 @@ class ProbeSummary(QWidget):
         geometry_layout.setContentsMargins(0, 0, 0, 0)
         self.view = ProbeView()
         geometry_layout.addWidget(self.view, 1)
-        legend = QLabel("Magenta: active · Cyan edge: reference\nScroll to zoom · Hover for site / ch / region")
+        legend = QLabel("Magenta: active · Cyan edge: coordinate reference shank\nScroll to zoom · Hover for site / ch / region")
         legend.setWordWrap(True)
         geometry_layout.addWidget(legend)
         tabs.addTab(geometry, "Geometry")
@@ -75,6 +83,8 @@ class ProbeSummary(QWidget):
         self.probe, self.rows = probe, rows
         active = len(active_site_ids(probe.geometry, probe.channel_map))
         self.export_button.setEnabled(active > 0 if is_neuropixels(probe.geometry) else bool(rows))
+        if self.reference_label is not None:
+            self.reference_label.setText(f"Electrical reference: {reference_description(probe.geometry, probe.channel_map)}")
         self.view.set_probe(probe, rows)
         self.fill_table()
 

@@ -581,5 +581,26 @@ Reviewed the task-scoped diff. One syntax check passed (exit 0):
 `PYTHONPYCACHEPREFIX=/private/tmp/atlaxis-channel-pycache.lrQXQy .venv/bin/python -m py_compile src/probe_planner/probes/neuropixels.py src/probe_planner/project/bundle.py src/probe_planner/ui/probe_summary.py`
 The temporary bytecode cache was removed. No tests were added/run. Live XML
 generation remains unverified; the reported XML file was not supplied for direct
-comparison. Commit scope requested by the user: XML ordering and its documentation
-only. Electrical-reference display additions remain a separate working-tree change.
+comparison. XML ordering and its documentation were committed separately in
+`17f3d80`. Electrical-reference display additions are documented below.
+
+### Electrical-reference description (2026-09-30)
+
+Goal: clarify which electrical reference an NP selection uses. Describe the actual
+stored IMRO/default reference in the NP summary and export/bundle README, retaining
+reference settings, gains, routing, target activity, completion and file formats.
+Reference semantics: https://billkarsh.github.io/SpikeGLX/help/imroTables/ .
+
+Electrical-reference investigation found no selection of a recording channel as
+reference: NeuroCarto initializes reference ID 0 (external), automatic selection
+restores the prior reference, and IMRO serialization writes this separate field.
+Added a shared description of the actual stored IMRO/default reference to the NP
+summary and manual-export/bundle README. Clarified the coordinate-reference
+shank legend. Reference/routing algorithms and persisted data are unchanged.
+
+Reviewed the task-scoped diff; included in the syntax check recorded above.
+GUI operation and acquisition/hardware behavior remain unverified; the reported
+IMRO file was not supplied for direct comparison.
+The user requested a separate reference-display commit and a push of the current
+branch including both XML and reference changes. Unrelated plan/log edits are
+excluded. No source changes or additional checks were needed for this commit.

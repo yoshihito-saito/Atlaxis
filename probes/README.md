@@ -45,6 +45,12 @@ IDs in physical base-to-tip order, matching the per-probe XML companions.
 Explicit imported XML order and groups without known site correspondence remain
 unchanged. Channel-index CSV and MAT rows remain indexed by hardware channel.
 
+The NP summary and export README show the electrical reference. New selections
+use external reference (IMRO reference ID 0); this does not mean recording channel
+0. ROI activation retains reference settings from imported IMRO maps. The cyan
+shank outline indicates the coordinate reference shank. See
+[SpikeGLX reference-ID definitions](https://billkarsh.github.io/SpikeGLX/help/imroTables/).
+
 Regenerate companions after updating the geometry library:
 `python -m probe_planner.probes.companions`.
 Use `--probemaps-source-dir <pinned-checkout>` to also copy the seven original
