@@ -1788,3 +1788,28 @@ Verification scope is the previously recorded checks, the integration diff and
 the explicitly requested installer builds. No new tests or broad audits. Existing
 installed apps require replacement/reinstallation; their external data folder
 and saved settings must be retained.
+
+Integration outcome: feature commit `caba636` was pushed and merged via
+[PR #1](https://github.com/yoshihito-saito/Atlaxis/pull/1). The installer source is
+merge commit `50cd7de630dcd3a5d1d4c272a773a07420f6a17b`, version 0.2.0. Local `main`
+was fast-forwarded to that commit; the five unrelated dirty files/hunks remain
+uncommitted. The staged feature diff was reviewed; `git diff --cached --check`
+passed. No additional tests or scientific checks were run for integration.
+
+[Desktop workflow run 37075131147](https://github.com/yoshihito-saito/Atlaxis/actions/runs/37075131147)
+completed successfully for both native runners. Both ran `uv sync --locked`,
+`uv pip install "pyinstaller==6.22.3"`, and
+`uv run --no-sync python -m PyInstaller --noconfirm packaging/Atlaxis.spec`.
+macOS ran `bash packaging/build_macos_dmg.sh` (including `hdiutil verify`);
+Windows ran Inno Setup with `AppVersion=0.2.0`. Both archived matching source
+with `git archive` and uploaded the installer/source artifacts:
+
+- macOS arm64: artifact `11255284193`, 253,122,382 bytes.
+- Windows x64: artifact `11256461199`, 160,810,409 bytes.
+
+These are Actions artifacts; no new Release was published. Installed apps were
+not replaced, and the newly frozen GUIs were not launched on a physical machine.
+Update by quitting Atlaxis, replacing the Mac app from the DMG or running the
+Windows installer, and retaining the existing data folder. To opt an older plan
+into the current atlas correction, use Settings → Use atlas alignment preset,
+then Save & Update. Residual CT/brain mismatch remains as documented above.
