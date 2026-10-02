@@ -1,4 +1,4 @@
-"""Native atlas slices in one 3D scene, plus the local import preview."""
+"""Calibrated atlas slices in one 3D scene, plus the local import preview."""
 
 from collections import OrderedDict
 
@@ -14,19 +14,20 @@ from PySide6.QtWidgets import (
 from vtkmodules.vtkInteractionWidgets import vtkOrientationMarkerWidget
 from vtkmodules.vtkRenderingCore import vtkCellPicker, vtkPropAssembly
 
-from probe_planner.atlas.sections import section_at, shank_tip_atlas_position
+from probe_planner.atlas.coordinates import transform_points
+from probe_planner.atlas.sections import section_at, section_cache_key, shank_tip_atlas_position
 from .regions import brain_display_region_ids
 from .scene import Scene
 from .navigation import NavigationInteractor
 
 
 def anatomical_views(orientation, frame=None):
-    """Skull-aligned camera directions, expressed in native atlas axes."""
+    """Skull-aligned camera directions in the rigid physical display frame."""
     anterior = np.array([1 if c == "p" else -1 if c == "a" else 0 for c in orientation])
     right = np.array([1 if c == "l" else -1 if c == "r" else 0 for c in orientation])
     dorsal = np.array([1 if c == "i" else -1 if c == "s" else 0 for c in orientation])
     if frame is not None:
-        basis = frame.stereo_to_atlas_matrix[:3, :3]
+        basis = frame.stereo_to_display_matrix[:3, :3]
         anterior, right, dorsal = basis[:, 0], basis[:, 1], -basis[:, 2]
     return {"Front": (anterior, dorsal), "Back": (-anterior, dorsal),
             "Right": (right, dorsal), "Left": (-right, dorsal),
@@ -76,6 +77,8 @@ def section_mesh(section, resolution_um):
     points[:, section.normal] = section.index * resolution_um[section.normal]
     points[:, section.horizontal] = np.array([0, width, width, 0]) * section.pixel_um[0]
     points[:, section.vertical] = np.array([0, 0, height, height]) * section.pixel_um[1]
+    if section.corners_um is not None:
+        points = section.corners_um
     mesh = pv.PolyData(points, [4, 0, 1, 2, 3])
     # PyVista's numpy texture conversion flips image rows into VTK's bottom-up
     # texture convention. v=1 therefore represents row zero, not the last row.
@@ -200,8 +203,10 @@ class SliceWorkspace(QWidget):
     def __init__(self):
         super().__init__()
         self.cache = OrderedDict()
+        self.section_data = OrderedDict()
         self.atlas = None
         self.frame = None
+        self.frame_key = None
         self.section_center = None
         self.selected_reference = None
         self.has_reference_tip = False
@@ -310,20 +315,24 @@ class SliceWorkspace(QWidget):
 
     def show_probes(self, atlas, frame, probes, selected, fit=False):
         new_atlas = atlas is not self.atlas
-        old_pitch = self.frame.pitch_correction_deg if self.frame else 0.0
-        new_pitch = frame.pitch_correction_deg if frame else 0.0
-        orientation_changed = new_atlas or old_pitch != new_pitch
-        if new_atlas:
+        frame_key = tuple(frame.stereo_to_atlas_matrix.ravel()) if frame else None
+        frame_changed = frame_key != self.frame_key
+        orientation_changed = new_atlas or frame_changed
+        if orientation_changed:
             self.cache.clear()
+            self.section_data.clear()
             self.displayed_keys.clear()
+        if new_atlas:
             self.atlas = atlas
             self.set_mask(set(), False, self.mask_opacity)
             fit = True
         reference = (id(selected), selected.selected_shank_id) if selected is not None else None
-        if new_atlas or reference != self.selected_reference:
+        if orientation_changed or reference != self.selected_reference:
             self.section_indices.clear()
         self.selected_reference = reference
         self.frame = frame
+        self.frame_key = frame_key
+        self.outline.set_atlas_frame(frame)
         if orientation_changed and atlas is not None:
             self.set_orientation_markers(atlas.orientation)
         self.has_reference_tip = selected is not None and frame is not None and atlas is not None
@@ -334,8 +343,7 @@ class SliceWorkspace(QWidget):
             else:
                 self.section_center = np.asarray(atlas.annotation.shape) * np.asarray(atlas.resolution_um) / 2
         self._refresh_sections(render=False)
-        # Atlas and probe positions share the same physical axes; no flattened
-        # projected copies of the probe are added to the section planes.
+        # Corrected atlas surfaces and physical probes share the display frame.
         placed_probes = probes if atlas is not None and frame is not None else []
         if orientation_changed and atlas is not None:
             self.orient_camera(atlas)
@@ -354,7 +362,7 @@ class SliceWorkspace(QWidget):
         if section is None:
             return
         # Atlas origin letters determine the sign of anatomical AP/ML travel.
-        sign = 1 if self.atlas.orientation[section.normal] in "pl" else -1
+        sign = 1 if section.orientation[section.normal] in "pl" else -1
         slider = self.section_sliders[name]
         slider.setValue(slider.value() + direction * sign)
 
@@ -377,17 +385,25 @@ class SliceWorkspace(QWidget):
                 self.displayed_keys.pop(name, None)
                 self.section_labels[name].setText("—")
                 continue
-            section = section_at(atlas, frame, center, name, slice_index=self.section_indices.get(name))
+            data_key = section_cache_key(atlas, frame, center, name, slice_index=self.section_indices.get(name))
+            if data_key not in self.section_data:
+                self.section_data[data_key] = section_at(atlas, frame, center, name,
+                    slice_index=self.section_indices.get(name),
+                    cache_dir=atlas.root_mesh_path.parent.parent / "probe_planner_cache")
+                if len(self.section_data) > 8:
+                    self.section_data.popitem(last=False)
+            self.section_data.move_to_end(data_key)
+            section = self.section_data[data_key]
             self.sections[name] = section
             slider.blockSignals(True)
-            slider.setRange(0, atlas.annotation.shape[section.normal] - 1)
-            slider.setPageStep(max(1, slider.maximum() // 100))
-            slider.setInvertedAppearance(atlas.orientation[section.normal] in "ar")
-            slider.setInvertedControls(atlas.orientation[section.normal] in "ar")
+            slider.setRange(*section.index_range)
+            slider.setPageStep(max(1, (slider.maximum() - slider.minimum()) // 100))
+            slider.setInvertedAppearance(section.orientation[section.normal] in "ar")
+            slider.setInvertedControls(section.orientation[section.normal] in "ar")
             slider.setValue(section.index)
             slider.blockSignals(False)
             mode = "Manual slice" if name in self.section_indices else "Following tip" if self.has_reference_tip else "Atlas center"
-            slider.setToolTip(f"{section.caption}\n{mode} · 1 step = {atlas.resolution_um[section.normal]:g} µm")
+            slider.setToolTip(f"{section.caption}\n{mode} · 1 step = {section.normal_step_um:g} µm")
             self.section_labels[name].setText(section.caption.split(" · ")[1])
             key = (name, section.index)
             if key != self.displayed_keys.get(name):
@@ -410,11 +426,11 @@ class SliceWorkspace(QWidget):
                     actor.mapper.dataset = mesh
                     actor.SetTexture(self.cache[key])
                 self.displayed_keys[name] = key
+            self.section_actors[name].user_matrix = frame.atlas_to_display_matrix if frame else np.eye(4)
             self.section_actors[name].visibility = self.visible_views[name]
         self.plotter.interactor.setToolTip("\n".join(
             section.caption + " · " + section.axis_labels for section in self.sections.values())
-            + ("\nSections follow native atlas planes; camera views follow the skull-level axes."
-               if frame is not None and frame.pitch_correction_deg else "")
+            + ("\nSkull-level sections: constant AP / ML." if frame is not None else "")
             + "\nDouble-click: home · right-drag: pan · swipe / wheel / pinch: zoom at cursor"
             + "\nLeft / Right: sagittal · Up / Down: coronal")
         self.follow_tip_button.setEnabled(self.has_reference_tip and bool(self.section_indices))
@@ -443,6 +459,8 @@ class SliceWorkspace(QWidget):
             dorsal = views["Top"][0]
             up = views["Front"][0] if abs(np.dot(direction, dorsal)) > 0.999 else dorsal
         center = np.asarray(atlas.annotation.shape) * np.asarray(atlas.resolution_um) / 2
+        if self.frame is not None:
+            center = transform_points(center[None, :], self.frame.atlas_to_display_matrix)[0]
         extent = max(np.asarray(atlas.annotation.shape) * np.asarray(atlas.resolution_um))
         self.plotter.camera_position = (center + direction * extent, center, up)
         self.plotter.enable_parallel_projection()

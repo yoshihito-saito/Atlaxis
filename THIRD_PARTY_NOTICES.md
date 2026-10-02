@@ -74,6 +74,26 @@ included for reference under [atlas licenses](third_party/licenses/atlas/);
 this does not select or grant a license on the authors' behalf. Confirm the
 terms for the exact atlas package and derived images before redistribution.
 
+## Downloaded CT skull references
+
+Atlaxis distributes source links and approximate registration metadata only;
+skull meshes download directly to the user's data folder on first use.
+
+- Rat: Bernd M. Pohl, Fernando Gasca, Olaf Christ and Ulrich G. Hofmann (2013),
+  [3D .stl file of rat skull](https://doi.org/10.6084/m9.figshare.777745.v1),
+  [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Local preparation
+  crops attached posterior structures, applies rigid registration and uniform
+  reference scaling, and simplifies the surface.
+- Mouse: UT Austin / DigiMorph, specimen TMM M-3196,
+  [CT-derived STL](https://digimorph.org/specimens/Mus_musculus/stl.html).
+  [Provider terms](https://digimorph.org/aboutdigimorph.phtml) apply;
+  redistribution permission is not established. Local preparation applies
+  rigid registration, uniform reference scaling and surface simplification.
+
+Downloading from a provider does not waive its terms. Saved plans embed the
+prepared mesh, so sharing such plans may also constitute redistribution.
+See [reference metadata and limitations](src/probe_planner/data/skulls/README.md).
+
 ## Distribution status
 
 These notices preserve available upstream texts; they are not certification of

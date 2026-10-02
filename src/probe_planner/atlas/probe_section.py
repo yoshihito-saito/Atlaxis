@@ -33,7 +33,7 @@ def probe_section(atlas, frame, instance, interrupted=lambda: False):
     uv = points[:, :2] * (1, -geometry.y_to_base)
     tip_uv = np.asarray(geometry.tip_um[:2]) * (1, -geometry.y_to_base)
     bounds = np.vstack((uv, tip_uv))
-    pitch = float(min(atlas.resolution_um))
+    pitch = float(min(atlas.resolution_um) * min(frame.in_vivo_scale_ap_ml_dv))
     lower = np.floor((bounds.min(axis=0) - 5000) / pitch) * pitch
     upper = np.ceil((bounds.max(axis=0) + 5000) / pitch) * pitch
     width, height = np.ceil((upper - lower) / pitch).astype(int)

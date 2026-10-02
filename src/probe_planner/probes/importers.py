@@ -8,6 +8,7 @@ import numpy as np
 from scipy.io import loadmat
 
 from .model import ChannelMap, Contact, ProbeGeometry, ProbeBody
+from .mounting import with_package_base
 
 
 def geometry_from_dict(data):
@@ -16,6 +17,7 @@ def geometry_from_dict(data):
         tip_um=tuple(data["tip_um"]), y_to_base=data["y_to_base"], units=data["units"],
         bodies=[ProbeBody(**body) for body in data.get("bodies", [])],
         metadata=data.get("metadata", {}),
+        mounting_base=ProbeBody(**data["mounting_base"]) if data.get("mounting_base") else None,
     )
 
 
@@ -24,6 +26,7 @@ def load_geometry_json(path: Path):
     geometry = geometry_from_dict(data["geometry"])
     channels = ChannelMap(**data["channel_map"])
     channels.validate(geometry)
+    geometry = with_package_base(geometry, channels)
     return geometry, channels
 
 

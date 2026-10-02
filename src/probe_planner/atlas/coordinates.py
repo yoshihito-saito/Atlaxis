@@ -36,6 +36,7 @@ class AtlasCoordinates:
     orientation: str
     bregma_atlas_um: tuple[float, float, float]
     pitch_correction_deg: float = 0.0
+    in_vivo_scale_ap_ml_dv: tuple[float, float, float] = (1.0, 1.0, 1.0)
 
     def __post_init__(self):
         for value in (self.resolution_um, self.bregma_atlas_um):
@@ -45,10 +46,13 @@ class AtlasCoordinates:
             raise ValueError("Atlas resolution must be positive.")
         if np.asarray(self.pitch_correction_deg).shape != () or not np.isfinite(self.pitch_correction_deg):
             raise ValueError("Atlas pitch correction must be finite degrees.")
+        scale = np.asarray(self.in_vivo_scale_ap_ml_dv, dtype=float)
+        if scale.shape != (3,) or not np.isfinite(scale).all() or np.any(scale <= 0):
+            raise ValueError("Atlas scale requires three positive AP/ML/DV factors.")
         self.stereo_to_atlas_matrix
 
     @property
-    def stereo_to_atlas_matrix(self):
+    def anatomical_to_atlas_axes(self):
         # BrainGlobe letters name the origin side, so increasing a-axis is posterior.
         axes = {"a": (0, -1), "p": (0, 1), "l": (1, 1),
                 "r": (1, -1), "s": (2, 1), "i": (2, -1)}
@@ -57,22 +61,47 @@ class AtlasCoordinates:
         mapping = [axes[c] for c in self.orientation]
         if len({axis for axis, _ in mapping}) != 3:
             raise ValueError("Atlas orientation must include three distinct anatomical axes.")
-        matrix = np.eye(4)
-        matrix[:3, :3] = 0
+        matrix = np.zeros((3, 3))
         for row, (axis, sign) in enumerate(mapping):
             matrix[row, axis] = sign
+        return matrix
+
+    @property
+    def stereo_to_atlas_matrix(self):
         # Skull-level -> native atlas, about Bregma. Positive pitch sends a
         # ventral skull trajectory anteriorward in native anatomical axes.
-        matrix[:3, :3] = matrix[:3, :3] @ Rotation.from_euler(
+        # Forward atlas correction scales native anatomical displacements,
+        # then levels pitch. Inverse lookup must undo them in reverse order.
+        matrix = np.eye(4)
+        matrix[:3, :3] = (self.anatomical_to_atlas_axes
+            @ np.diag(1 / np.asarray(self.in_vivo_scale_ap_ml_dv))
+            @ Rotation.from_euler("y", self.pitch_correction_deg, degrees=True).as_matrix())
+        matrix[:3, 3] = self.bregma_atlas_um
+        return matrix
+
+    @property
+    def stereo_to_display_matrix(self):
+        """Rigid scene frame: preserve physical probe/skull/drive dimensions."""
+        matrix = np.eye(4)
+        matrix[:3, :3] = self.anatomical_to_atlas_axes @ Rotation.from_euler(
             "y", self.pitch_correction_deg, degrees=True).as_matrix()
         matrix[:3, 3] = self.bregma_atlas_um
         return matrix
+
+    @property
+    def atlas_to_display_matrix(self):
+        """Native atlas surfaces -> corrected scene, with Bregma fixed."""
+        return self.stereo_to_display_matrix @ np.linalg.inv(self.stereo_to_atlas_matrix)
 
     def stereotaxic_to_atlas(self, stereo_um):
         return transform_points(stereo_um, self.stereo_to_atlas_matrix)
 
     def atlas_to_stereotaxic(self, atlas_um):
-        return transform_points(atlas_um, np.linalg.inv(self.stereo_to_atlas_matrix))
+        # Subtract the origin first so Bregma is exactly zero, including when
+        # a section index is computed with floor at the zero-coordinate boundary.
+        inverse = np.eye(4)
+        inverse[:3, :3] = np.linalg.inv(self.stereo_to_atlas_matrix[:3, :3])
+        return transform_points(np.asarray(atlas_um) - self.bregma_atlas_um, inverse)
 
     def atlas_to_voxel(self, atlas_um):
         return np.asarray(atlas_um, dtype=float) / np.asarray(self.resolution_um)
@@ -307,15 +336,24 @@ def atlas_default_coordinates(atlas):
     converted to physical AP/DV/LR coordinates, never scaled by the loaded
     resolution. It is an estimate, not individual-animal registration.
     Source: https://github.com/cortex-lab/allenCCF/blob/master/Browsing%20Functions/allenCCFbregma.m
-    Allen also uses Pinpoint's nominal 5-degree pitch correction, without its
-    optional in-vivo scaling. This is not individual skull registration.
+    Allen uses Qiu/MRI Toronto population scaling (AP/ML/DV), followed by
+    nominal 5-degree pitch leveling. In our anterior+/right+/ventral+ axes the
+    forward correction is Ry(+5): posterior points move ventrally. The stored
+    pitch belongs to the inverse lookup, so it is -5, not +5. Pinpoint's -5
+    native rotation uses posterior-positive AP; its sign cannot be copied into
+    our forward anatomical rotation. This is not individual skull registration.
     Source: https://virtualbrainlab.org/pinpoint/in_vivo_alignment.html
+    Source: https://docs.internationalbrainlab.org/_modules/iblatlas/atlas.html#MRITorontoAtlas
 
     WHS v1.01 Bregma is mapped by the packaged atlas transform.
     Source: https://www.nitrc.org/docman/view.php/1081/2095/Coordinates_v1-v1.01.pdf
     Native x/y/z voxel landmark: (246, 653, 440). BrainGlobe v1.2 records the
     physical-coordinate reorientation in metadata['trasform_to_bg'] (sic).
-    WHS sets only the Bregma origin, without a skull-level rotation.
+    The same table gives Lambda (244, 442, 464). Its AP/DV displacement
+    relative to Bregma is (-211, -24) voxels in anterior+/ventral+ axes.
+    Use atan2(-24, 211) degrees for landmark-based skull leveling. This
+    differs from the nominal 4-degree description in the 2023 atlas paper;
+    it is not an individual skull-to-brain registration or size correction.
     """
     allen_resolution = {"allen_mouse_10um": 10.0, "allen_mouse_25um": 25.0,
                         "allen_mouse_50um": 50.0, "allen_mouse_100um": 100.0}.get(atlas.name)
@@ -325,7 +363,8 @@ def atlas_default_coordinates(atlas):
                 and tuple(atlas.resolution_um) == (allen_resolution,) * 3
                 and atlas.annotation.shape == expected_shape):
             return AtlasCoordinates(atlas.resolution_um, atlas.orientation, (5400.0, 0.0, 5700.0),
-                                    pitch_correction_deg=5.0)
+                                    pitch_correction_deg=-5.0,
+                                    in_vivo_scale_ap_ml_dv=(1.031, .952, .885))
         return None
     if atlas.name == "whs_sd_swc_female_rat_39um":
         if (atlas.version != "1.0" or atlas.orientation != "asr"
@@ -338,7 +377,8 @@ def atlas_default_coordinates(atlas):
         # convention and packaged 39 um spacing. No transform is in metadata.
         # Source: brainglobe/brainglobe-atlasapi, atlas_scripts/whs_sd_swc_female_rat.py
         bregma = np.array([1024.0 - 653.0, 512.0 - 440.0, 246.0]) * 39.0
-        return AtlasCoordinates(atlas.resolution_um, atlas.orientation, tuple(bregma))
+        return AtlasCoordinates(atlas.resolution_um, atlas.orientation, tuple(bregma),
+                                pitch_correction_deg=float(np.rad2deg(np.arctan2(-24.0, 211.0))))
     if (atlas.name != "whs_sd_rat_39um" or atlas.version != "1.2"
             or atlas.orientation != "asr" or atlas.annotation.shape != (1024, 512, 512)
             or tuple(atlas.resolution_um) != (39.0, 39.0, 39.0)):
@@ -348,4 +388,5 @@ def atlas_default_coordinates(atlas):
         return None
     native_bregma_um = np.array([[246.0, 653.0, 440.0]]) * 39.0
     bregma = transform_points(native_bregma_um, matrix)[0]
-    return AtlasCoordinates(atlas.resolution_um, atlas.orientation, tuple(bregma))
+    return AtlasCoordinates(atlas.resolution_um, atlas.orientation, tuple(bregma),
+                            pitch_correction_deg=float(np.rad2deg(np.arctan2(-24.0, 211.0))))

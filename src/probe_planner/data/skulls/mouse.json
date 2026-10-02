@@ -1,0 +1,57 @@
+{
+  "format_version": 1,
+  "preparation_version": 2,
+  "species": "mouse",
+  "name": "Mouse CT reference \u2014 DigiMorph TMM M-3196",
+  "provider": "DigiMorph / UT Austin",
+  "download_url": "https://digimorph.org/specimens/Mus_musculus/mus.stl",
+  "source_url": "https://digimorph.org/specimens/Mus_musculus/stl.html",
+  "authors": "University of Texas High-Resolution X-ray CT Facility / DigiMorph; specimen TMM M-3196",
+  "license": "Provider-specific terms; redistribution permission not established",
+  "terms_url": "https://digimorph.org/aboutdigimorph.phtml",
+  "reference_bl_mm": 4.25,
+  "size_source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3863333/",
+  "size_note": "Approximate reference size: AtlasGuide adult CT/MRI reference Bregma\u2013Lambda distance 4.25 mm; not an Allen CCF measurement or source CT calibration.",
+  "source_sha256": "5eb8bb8d65760667b28cab63d6f16fa51a2153282cc48ce9b465317f53ca6fb1",
+  "display_triangles": 20000,
+  "source_to_stereotaxic_rigid_matrix": [
+    [
+      0.01968902292789418,
+      0.225657221067997,
+      -0.974007782800535,
+      10.98246600504001
+    ],
+    [
+      0.9998024297649983,
+      -0.007102265221772338,
+      0.018565001069891243,
+      -5.983432980832667
+    ],
+    [
+      -0.0027283350509637767,
+      -0.9741808745857152,
+      -0.22575247458059222,
+      12.455722081634153
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "source_landmarks": {
+    "Bregma": [
+      5.800000190734863,
+      9.613357543945312,
+      13.619999885559082
+    ],
+    "Lambda": [
+      5.720946788787842,
+      8.707321166992188,
+      17.530738830566406
+    ]
+  },
+  "alignment": "User-reviewed landmark candidates; rigid leveling only. Approximate reference, not validated atlas registration.",
+  "modifications": "Rigid placement, uniform reference sizing and mesh simplification; native_z_max removes attached posterior structures for rat."
+}

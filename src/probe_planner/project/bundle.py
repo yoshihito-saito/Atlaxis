@@ -183,6 +183,9 @@ def save_planning_bundle(path, plan, atlas, region_rows):
                 "tip_dv_below_entry_surface_mm": "" if surface is None else surface.dv_mm,
                 "ap_tilt_deg": ap_tilt, "ml_tilt_deg": ml_tilt, "roll_deg": roll,
                 "atlas_pitch_correction_deg": plan.coordinates.pitch_correction_deg,
+                "atlas_scale_ap": plan.coordinates.in_vivo_scale_ap_ml_dv[0],
+                "atlas_scale_ml": plan.coordinates.in_vivo_scale_ap_ml_dv[1],
+                "atlas_scale_dv": plan.coordinates.in_vivo_scale_ap_ml_dv[2],
                 "insertion_depth_mm": "" if surface is None else surface.depth_mm})
         manifest_probes.append({"number": number, "id": probe.id, "model": geometry.name,
                                 "headstage_id": mapping.headstage_id,
@@ -197,7 +200,8 @@ def save_planning_bundle(path, plan, atlas, region_rows):
         "Atlaxis planning bundle\n\n"
         f"Saved at: {datetime.now(timezone.utc).isoformat(timespec='seconds')}\n"
         f"Atlas: {plan.atlas_name}, version {plan.atlas_version}\n"
-        f"Atlas pitch correction: {plan.coordinates.pitch_correction_deg:g} degrees (skull to atlas; no scaling).\n"
+        f"Atlas pitch correction: {plan.coordinates.pitch_correction_deg:g} degrees (skull to scaled atlas axes).\n"
+        f"Native AP/ML/DV scale about Bregma: {tuple(plan.coordinates.in_vivo_scale_ap_ml_dv)}.\n"
         "Open the plan JSON in Atlaxis to restore probes, poses and ROI selections.\n"
         "CSV coordinates match the controls: mm, Bregma AP anterior+, ML anatomical left+, DV ventral+.\n"
         "Angles: degrees, AP tilt anterior+, ML tilt anatomical left+.\n"
