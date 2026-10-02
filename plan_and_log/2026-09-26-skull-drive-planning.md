@@ -1813,3 +1813,20 @@ Update by quitting Atlaxis, replacing the Mac app from the DMG or running the
 Windows installer, and retaining the existing data folder. To opt an older plan
 into the current atlas correction, use Settings → Use atlas alignment preset,
 then Save & Update. Residual CT/brain mismatch remains as documented above.
+
+### Release publication follow-up — 2026-10-02
+
+The user reported that Releases still showed 0.1.0. Published
+[Atlaxis v0.2.0](https://github.com/yoshihito-saito/Atlaxis/releases/tag/v0.2.0)
+as Latest, tagged at the exact built merge commit `50cd7de630dcd3a5d1d4c272a773a07420f6a17b`.
+The existing 0.1.0 release was retained. Assets are the macOS arm64 DMG, Windows
+x64 Setup.exe and matching source ZIP from workflow run 37075131147.
+
+Publication checks: downloaded Actions ZIP sizes and SHA-256 hashes match their
+API metadata; both source archives identify the built commit and version 0.2.0.
+Their whole-archive hashes differed: inspection confirmed 789 text files differed
+only by Windows CRLF versus LF, with all other bytes identical. The macOS LF
+archive supplies the release source. All three uploaded release assets match the
+prepared sizes and SHA-256 hashes, and `/releases/latest` confirms v0.2.0 with the
+complete asset set. Preparation/publication used scoped temporary Python scripts
+with the GitHub REST API; no rebuild, source change or new GUI test was performed.
