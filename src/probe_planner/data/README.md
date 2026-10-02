@@ -9,6 +9,8 @@ Plan electrophysiology probe placement and Neuropixels recording channels in a
 - `probes/standard/`: the bundled probe library and its reference files.
 - `probes/custom/`: your own probe definitions.
 - `planning/`: saved plans, coordinates and channel-map outputs.
+- `skulls/`: CT reference surfaces downloaded from their providers and prepared
+  on first use. Later atlas loads reuse these compact files; provider terms apply.
 - `.atlaxis/`: application metadata and BrainGlobe configuration. Keep this folder.
 
 App updates do not require replacing this data folder. Keep backups of your

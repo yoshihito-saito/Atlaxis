@@ -23,6 +23,45 @@ interchangeable. Before every use, verify Channel ID against physical Site using
 the exact probe revision and recording-system documentation; the import preview
 retains this reminder and links to the source maps.
 
+## Mounting-base display
+
+All 31 registered arrays have a shared 3D base separate from their shanks. These
+are per-model rectangular envelopes of the bare base illustrated in the
+[manufacturer's catalog](https://solutions.neuronexus.com/hubfs/Penetrating_Probe_Catalog_V2.1.pdf),
+not models of the cable, connector, headstage or encapsulating epoxy overhang.
+The base begins at the modeled shaft roots and uses the existing drive attachment
+datum. Contacts, shafts, site IDs and recording-channel maps are unchanged.
+
+**Width and height are estimates from illustrations, not annotated dimensions.**
+For each model, the full-array drawing is scaled using its labeled shaft length.
+If that dimension spans `d` PDF points for a shaft length `L` mm, a base width
+`w` and height `h` in the same drawing give `(w L/d, h L/d)` mm. The measurement
+uses the dimension's extension lines, not the inset arrowheads or enlarged tip
+details. Values are rounded to 0.01 mm for storage; this is not an accuracy claim.
+The drawings are not certified to scale and physical error is unknown.
+Thickness is the previously accepted common **0.3 mm planning value**, not the
+silicon shaft thickness. Base taper and precise lateral/front registration remain
+approximate. Use **Microdrive → Dimensions…** to match a physical probe.
+
+The per-model values and one-based PDF pages are recorded in
+[`mounting.py`](../../src/probe_planner/probes/mounting.py). Examples (width × height):
+A1x32-Edge-5mm-20-177: 1.40 × 2.75 mm; Buzsaki64: 1.55 × 4.99 mm;
+A16x8-5mm-berg-200-160: 3.17 × 3.96 mm. Unknown/custom array names do not inherit
+dimensions from their channel count.
+
+Catalog retrieved 2026-10-02, SHA-256:
+`27881fa444792f145353d81ca0359a272afe4d8f72a88c35bebbc0465d33a5ba`.
+Only derived dimensions are included; no manufacturer PDF or drawing is bundled.
+
+The existing **Package / headstage** selection controls acute eligibility. The
+registered A64 / MRA64 / OA64LP + SmartLink64 Acute profile hides the base and
+disallows drive attachment. Detach a drive before selecting that acute profile.
+H64LP and Activus profiles retain the planning base. **Unassigned** also retains
+the chronic planning envelope; it does not assert a particular physical package.
+Saved and user-entered base dimensions are preserved, including when toggling
+between package profiles. Old plans without a base obtain the model's envelope
+when opened; plans with explicit bases keep their geometry.
+
 ## Added models
 
 | Family | Added variants | Channels |

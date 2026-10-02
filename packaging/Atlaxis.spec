@@ -28,6 +28,7 @@ datas = [
     (str(root / "third_party/licenses/atlas"), "third_party/licenses/atlas"),
     (str(root / "probes"), "probe_planner/data/probes"),
     (str(root / "src/probe_planner/data/README.md"), "probe_planner/data"),
+    (str(root / "src/probe_planner/data/skulls"), "probe_planner/data/skulls"),
     (str(root / "logo/Atlaxis.png"), "probe_planner/data"),
 ]
 datas += collect_data_files("brainglobe_atlasapi")

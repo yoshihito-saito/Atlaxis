@@ -557,3 +557,50 @@ Apply/Cancel, overlapping parent/child selection without duplicate sites, empty
 filter rejection, legacy single-region loading, and plan/NP selection JSON
 round-trips. The temporary cache/plan directories were cleaned. No new tests,
 broad suite, full application launch or manual macOS interaction was run.
+
+### XML spatial order (2026-09-30)
+
+Goal: align saved XML channel order with physical sites while retaining actual
+hardware IDs. The combined exporter currently sorts channels numerically.
+
+Steps:
+1. Order fully mapped, generated XML groups base-to-tip, then by lateral position,
+   matching per-probe companions. Preserve hardware IDs, concatenation offsets,
+   group membership, explicit imported XML order and unknown-wiring groups.
+2. Document the physical ordering in the bundle README and probe-library guide.
+3. Review the scoped diff and run one lightweight changed-file syntax check.
+   No new tests, broad validation or generated probe-library updates.
+
+Result: combined XML now orders fully mapped generated groups by
+physical base-to-tip/lateral position rather than numeric channel ID. Original
+IDs, offsets, group membership and skip flags remain unchanged. Imported ordinary
+XML order and unknown-wiring groups retain their prior ordering. No static XML
+files were regenerated; existing bundles update on their next Save & Update.
+
+Reviewed the task-scoped diff. One syntax check passed (exit 0):
+`PYTHONPYCACHEPREFIX=/private/tmp/atlaxis-channel-pycache.lrQXQy .venv/bin/python -m py_compile src/probe_planner/probes/neuropixels.py src/probe_planner/project/bundle.py src/probe_planner/ui/probe_summary.py`
+The temporary bytecode cache was removed. No tests were added/run. Live XML
+generation remains unverified; the reported XML file was not supplied for direct
+comparison. XML ordering and its documentation were committed separately in
+`17f3d80`. Electrical-reference display additions are documented below.
+
+### Electrical-reference description (2026-09-30)
+
+Goal: clarify which electrical reference an NP selection uses. Describe the actual
+stored IMRO/default reference in the NP summary and export/bundle README, retaining
+reference settings, gains, routing, target activity, completion and file formats.
+Reference semantics: https://billkarsh.github.io/SpikeGLX/help/imroTables/ .
+
+Electrical-reference investigation found no selection of a recording channel as
+reference: NeuroCarto initializes reference ID 0 (external), automatic selection
+restores the prior reference, and IMRO serialization writes this separate field.
+Added a shared description of the actual stored IMRO/default reference to the NP
+summary and manual-export/bundle README. Clarified the coordinate-reference
+shank legend. Reference/routing algorithms and persisted data are unchanged.
+
+Reviewed the task-scoped diff; included in the syntax check recorded above.
+GUI operation and acquisition/hardware behavior remain unverified; the reported
+IMRO file was not supplied for direct comparison.
+The user requested a separate reference-display commit and a push of the current
+branch including both XML and reference changes. Unrelated plan/log edits are
+excluded. No source changes or additional checks were needed for this commit.

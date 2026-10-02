@@ -23,6 +23,7 @@ from probe_planner.atlas.coordinates import (
 from probe_planner.implant.pose import ImplantPose
 from probe_planner.atlas.regions import brain_region_ids
 from probe_planner.implant.instance import ProbeInstance
+from probe_planner.implant.skull import default_skull
 from probe_planner.implant.region_mapping import map_contacts
 from probe_planner.probes.importers import load_geometry_json, load_cellexplorer
 from probe_planner.probes.library import probe_import_path, probe_library_path, planning_path
@@ -40,12 +41,15 @@ from probe_planner.rendering.slice_view import SliceWorkspace
 from probe_planner.rendering.regions import load_region_meshes, default_hidden_regions, brain_display_region_ids
 from probe_planner.rendering.scene import load_display_mesh
 from .dialogs import CoordinateDialog, ProbeImportDialog, HeadstageSelector, ProbeLibraryFilter
-from .atlas_dialog import AtlasDialog
 from .storage_dialog import DataFoldersDialog
 from .region_dialog import RegionDialog
 from .probe_plane import ProbePlanePanel
 from .probe_summary import ProbeSummary
 from .probe_selection import ProbeSelector, FavoriteProbesDialog
+from .skull_dialog import SkullDialog, CraniotomyDialog
+from .drive_dialog import DriveDialog
+from probe_planner.implant.drive import MODELS, updated_mount_pose
+from probe_planner.probes.mounting import is_acute_package, with_package_base
 from .style import STYLE, question
 
 
@@ -61,7 +65,7 @@ def guarded(function):
 
 
 class AtlasLoader(QThread):
-    loaded = Signal(object, object, object)
+    loaded = Signal(object, object, object, object)
     failed = Signal(str)
     progress = Signal(str)
 
@@ -74,8 +78,10 @@ class AtlasLoader(QThread):
             atlas = load_atlas(self.name, self.version, self.progress.emit)
             outline = load_display_mesh(atlas.root_mesh_path, self.progress.emit, atlas=atlas)
             meshes = load_region_meshes(atlas, self.progress.emit)
+            self.progress.emit("Loading skull reference…")
+            skull = default_skull(atlas, outline, self.progress.emit)
             self.progress.emit("Preparing atlas sections…")
-            self.loaded.emit(atlas, meshes, outline)
+            self.loaded.emit(atlas, meshes, outline, skull)
         except Exception as error:
             self.failed.emit(str(error))
 
@@ -107,6 +113,9 @@ class MainWindow(QMainWindow):
         self.resize(min(1320, available.width() - 40), min(800, available.height() - 60))
         self.setStyleSheet(STYLE)
         self.atlas = self.frame = None
+        self.skull = None
+        self.reference_skull = None
+        self._skull_mesh_key = self._skull_mesh = self._skull_mesh_source = None
         self.probes = []
         self.favorite_probes = FavoriteProbes()
         self.surface_pending_probes = set()
@@ -133,7 +142,11 @@ class MainWindow(QMainWindow):
             toolbar.addAction(action)
             self.actions.append(action)
 
+        self.craniotomy_action = toolbar.addAction("Make craniotomy", self.edit_craniotomy)
+
         settings_menu = self.menuBar().addMenu("Settings")
+        self.skull_action = settings_menu.addAction("Skull…", self.edit_skull)
+        settings_menu.addAction("Use atlas alignment preset", self.use_atlas_alignment_preset)
         self.storage_action = settings_menu.addAction("Data folder…", self.configure_data_folders)
         settings_menu.addAction("Open data folder", lambda: self.open_data_folder(False))
         settings_menu.addAction("Open atlas folder", lambda: self.open_data_folder(True))
@@ -212,6 +225,27 @@ class MainWindow(QMainWindow):
         self.headstage_label = QLabel("Headstage")
         headstage_form.addRow(self.headstage_label, self.headstage_selector)
         page_layout.addWidget(self.headstage_row)
+        self.drive_button = QPushButton("Microdrive…")
+        self.drive_button.clicked.connect(self.edit_drive)
+        page_layout.addWidget(self.drive_button)
+        self.drive_travel_row = QWidget()
+        travel_form = QFormLayout(self.drive_travel_row)
+        travel_form.setContentsMargins(0, 0, 0, 0)
+        self.drive_travel = QDoubleSpinBox()
+        self.drive_travel.setDecimals(3)
+        self.drive_travel.setSingleStep(.05)
+        self.drive_travel.setSuffix(" mm")
+        self.drive_travel.setKeyboardTracking(False)
+        self.drive_travel.setAccessibleName("Drive travel")
+        self.drive_travel.setToolTip("Downward carriage travel from its raised position. Moves the probe and updates insertion depth; the drive body stays fixed.")
+        self.drive_travel.valueChanged.connect(self.update_drive_travel)
+        travel_form.addRow("Drive travel", self.drive_travel)
+        self.drive_travel_slider = QSlider(Qt.Horizontal)
+        self.drive_travel_slider.setTracking(False)
+        self.drive_travel_slider.setAccessibleName("Drive travel slider")
+        self.drive_travel_slider.valueChanged.connect(lambda value: self.drive_travel.setValue(value / 1000))
+        travel_form.addRow(self.drive_travel_slider)
+        page_layout.addWidget(self.drive_travel_row)
         page_layout.addWidget(QLabel("Reference shank"))
         self.shank_selector = QComboBox()
         self.shank_selector.setMinimumHeight(27)
@@ -259,6 +293,10 @@ class MainWindow(QMainWindow):
             checkbox.toggled.connect(lambda visible, name=name: self.slices.set_view_visible(name, visible))
             view_controls.addWidget(checkbox)
             self.view_checks[name] = checkbox
+        self.skull_check = QCheckBox("Skull")
+        self.skull_check.setChecked(False)
+        self.skull_check.toggled.connect(self.toggle_skull)
+        view_controls.addWidget(self.skull_check)
         self.regions_button = QPushButton("Region mask")
         self.regions_button.clicked.connect(self.select_regions)
         view_controls.addWidget(self.regions_button)
@@ -463,13 +501,29 @@ class MainWindow(QMainWindow):
         probe = self.selected_probe
         if probe is None or self.headstage_selector.itemData(index) == "saved":
             return
-        probe.channel_map = headstage_map(probe.geometry, self.headstage_selector.itemData(index))
+        mapping = headstage_map(probe.geometry, self.headstage_selector.itemData(index))
+        geometry = with_package_base(probe.geometry, mapping)
+        if probe.drive is not None and is_acute_package(geometry):
+            self.refresh_headstage()
+            raise ValueError("Detach the microdrive before selecting an acute probe package.")
+        probe.channel_map = mapping
+        probe.geometry = geometry
         self.refresh_headstage()
         self.recompute()
         self.setWindowModified(True)
 
     def refresh_pose_controls(self):
         probe = self.selected_probe
+        mount = probe.drive if probe else None
+        self.drive_travel.blockSignals(True)
+        self.drive_travel_slider.blockSignals(True)
+        maximum = MODELS[mount.model_id].travel_mm if mount else 0
+        self.drive_travel.setRange(0, maximum)
+        self.drive_travel.setValue(mount.travel_mm if mount else 0)
+        self.drive_travel_slider.setRange(0, round(maximum * 1000))
+        self.drive_travel_slider.setValue(round(mount.travel_mm * 1000) if mount else 0)
+        self.drive_travel.blockSignals(False)
+        self.drive_travel_slider.blockSignals(False)
         displayed = (reference_pose(probe.geometry, probe.pose, probe.selected_shank_id)
                      if probe else ImplantPose())
         surface = (shank_surface_reference(probe.geometry, probe.pose, probe.selected_shank_id,
@@ -588,8 +642,26 @@ class MainWindow(QMainWindow):
         self.calibrate_button.setEnabled(self.atlas is not None and not self.busy)
         self.regions_button.setEnabled(self.atlas is not None and not self.busy)
         self.mask_opacity.setEnabled(self.atlas is not None and not self.busy)
+        self.skull_action.setEnabled(self.frame is not None and not self.busy)
+        self.craniotomy_action.setEnabled(self.skull is not None and self.frame is not None and not self.busy)
+        self.skull_check.setEnabled(self.frame is not None and not self.busy)
+        self.skull_check.setToolTip((
+            "Load an atlas and set Bregma first." if self.frame is None else
+            "Click to import a skull surface." if self.skull is None else
+            "CT reference; approximate alignment / scale. Red: Bregma; blue: Lambda."
+            if self.skull.reference_info else
+            f"{self.skull.source_name}. Approximate shape for placement planning." if self.skull.approximate else
+            "Show or hide the skull.") + (
+                "\nSome cut faces are unavailable because the source surface has open contours."
+                if self.slices.outline.skull_wall_incomplete else ""))
         ready = all(x is not None for x in (self.atlas, self.frame, self.geometry, self.mapping))
         self.pose_box.setEnabled(self.selected_probe is not None and not self.busy)
+        acute = self.selected_probe is not None and is_acute_package(self.selected_probe.geometry)
+        self.drive_button.setEnabled(self.selected_probe is not None and not self.busy
+                                     and (not acute or self.selected_probe.drive is not None))
+        self.drive_button.setToolTip("Microdrive mounting is for chronic probe packages." if acute else "")
+        self.drive_travel_row.setVisible(self.selected_probe is not None and self.selected_probe.drive is not None)
+        self.drive_travel_row.setEnabled(not self.busy)
         self.headstage_row.setEnabled(not self.busy)
         self.probe_page.setVisible(self.selected_probe is not None)
         for action in self.actions:
@@ -620,6 +692,8 @@ class MainWindow(QMainWindow):
 
     @guarded
     def start_atlas(self, checked=False):
+        from .atlas_dialog import AtlasDialog
+
         current = self.atlas.name if self.atlas is not None else "whs_sd_rat_39um"
         dialog = AtlasDialog(current, self)
         accepted = dialog.exec() == QDialog.Accepted
@@ -650,7 +724,8 @@ class MainWindow(QMainWindow):
         self.worker.start()
 
     @guarded
-    def atlas_loaded(self, atlas, meshes, outline):
+    def atlas_loaded(self, atlas, meshes, outline, automatic_skull):
+        self.reference_skull = automatic_skull
         plan = self.pending_plan
         if plan and (plan.coordinates.orientation != atlas.orientation or
                      not np.array_equal(plan.coordinates.resolution_um, atlas.resolution_um)):
@@ -671,7 +746,7 @@ class MainWindow(QMainWindow):
             self.frame = atlas_default_coordinates(atlas)
             self.calibration_source = (
                 "Allen CCF estimated Bregma · skull-level axes" if atlas.name.startswith("allen_mouse_")
-                else "Waxholm Bregma preset · atlas-aligned axes") if self.frame else ""
+                else "Waxholm Bregma preset · landmark-leveled axes") if self.frame else ""
         self.atlas_name.setText(atlas.name)
         resolution = " × ".join(f"{value:g}" for value in atlas.resolution_um)
         missing = sorted(rid for rid, region in atlas.structures.items() if region.get("metadata_missing"))
@@ -684,11 +759,16 @@ class MainWindow(QMainWindow):
                                      if missing else ""))
         if plan:
             self.probes = plan.probes
+            self.skull = automatic_skull if plan.use_default_skull else plan.skull
             self.surface_pending_probes.clear()
             self.current_probe_id = plan.selected_probe_id
             self.save_path = self.pending_path
         else:
             self.save_path = None
+            if not same_atlas:
+                self.skull = automatic_skull
+        self.render_skull(self.skull)
+        self.sync_skull_controls()
         self.place_pending_probes_on_surface()
         self.refresh_probe_selector()
         self.update_region_mask()
@@ -750,11 +830,145 @@ class MainWindow(QMainWindow):
                                           else "Bregma: custom origin")
             if self.frame.pitch_correction_deg:
                 self.calibration_info.setText(self.calibration_info.text()
-                    + f" · {self.frame.pitch_correction_deg:g}° pitch")
+                    + f" · {self.frame.pitch_correction_deg:.2f}° pitch")
+            scale = self.frame.in_vivo_scale_ap_ml_dv
+            if tuple(scale) != (1., 1., 1.):
+                self.calibration_info.setText(self.calibration_info.text() + " · in-vivo scale")
             self.calibration_info.setToolTip(f"{self.calibration_source}\nAtlas x/y/z: {position} mm\n"
-                f"Skull-level pitch correction: {self.frame.pitch_correction_deg:g}° (no scaling)")
+                f"Skull-level pitch correction: {self.frame.pitch_correction_deg:g}°\n"
+                + "Native AP/ML/DV scale: " + ", ".join(f"{value:g}" for value in scale))
         else:
             self.calibration_info.setText("Bregma not set · open Bregma settings")
+
+    @guarded
+    def use_atlas_alignment_preset(self, checked=False):
+        if self.atlas is None or self.busy:
+            return
+        preset = atlas_default_coordinates(self.atlas)
+        if preset is None:
+            raise ValueError("This atlas has no verified alignment preset.")
+        # Preserve the chosen origin and physical probe/drive poses when adopting
+        # the current population alignment for an older saved plan.
+        self.frame = (replace(self.frame, pitch_correction_deg=preset.pitch_correction_deg,
+            in_vivo_scale_ap_ml_dv=preset.in_vivo_scale_ap_ml_dv) if self.frame else preset)
+        self.refresh_pose_controls()
+        self.update_calibration_label()
+        self.render_skull(self.skull)
+        self.recompute()
+        self.setWindowModified(True)
+        self.statusBar().showMessage("Atlas alignment applied · Save & Update to retain it")
+
+    def render_skull(self, skull, *, fit=False):
+        # Imported source arrays are not edited in place. Keep their owner alive
+        # so identity keys cannot be reused during successive import previews.
+        key = None if skull is None else (
+            id(skull.points_mm), id(skull.triangles), tuple(skull.axes),
+            tuple(skull.rotation_deg), tuple(skull.translation_mm), skull.scale)
+        if key != self._skull_mesh_key:
+            mesh = skull.source_mesh(display=True) if skull is not None else None
+            self._skull_mesh_key, self._skull_mesh = key, mesh
+            self._skull_mesh_source = skull
+        self.slices.outline.set_skull(self._skull_mesh, self.frame,
+            visible=skull.visible if skull else False, opacity=skull.opacity if skull else 1.0,
+            openings=skull.openings if skull else (), landmarks=skull.landmark_points() if skull else {})
+        if fit:
+            self.slices.fit_views()
+
+    def sync_skull_controls(self):
+        self.skull_check.blockSignals(True)
+        self.skull_check.setText("Skull (CT ref.)" if self.skull and self.skull.reference_info else
+                                "Skull (approx.)" if self.skull and self.skull.approximate else "Skull")
+        self.skull_check.setChecked(self.skull.visible if self.skull else False)
+        self.skull_check.blockSignals(False)
+        self.refresh_enabled()
+
+    def toggle_skull(self, visible):
+        if self.skull is None:
+            self.sync_skull_controls()
+            if visible and self.frame is not None:
+                self.edit_skull()
+            return
+        self.skull.visible = visible
+        actor = self.slices.outline.skull_actor
+        if actor is not None:
+            actor.visibility = visible
+            if self.slices.outline.skull_wall_actor is not None:
+                self.slices.outline.skull_wall_actor.visibility = visible
+            for marker in self.slices.outline.skull_landmark_actors:
+                marker.visibility = visible
+            self.slices.plotter.render()
+        self.setWindowModified(True)
+
+    @guarded
+    def edit_skull(self, checked=False):
+        dialog = SkullDialog(self.skull, lambda candidate: self.render_skull(candidate, fit=True), self,
+                             reference_skull=self.reference_skull)
+        try:
+            if dialog.exec() == QDialog.Accepted:
+                self.skull = dialog.result_skull
+                self.setWindowModified(True)
+        finally:
+            self.render_skull(self.skull)
+            self.sync_skull_controls()
+            dialog.deleteLater()
+
+    def apply_craniotomy(self, skull):
+        self.skull = skull
+        self.render_skull(skull)
+        self.sync_skull_controls()
+        self.setWindowModified(True)
+        self.statusBar().showMessage(
+            "Craniotomy applied · Some cut faces are unavailable (open source contours)."
+            if self.slices.outline.skull_wall_incomplete else "Craniotomy applied")
+
+    @guarded
+    def edit_craniotomy(self, checked=False):
+        if self.skull is None:
+            return
+        self.workspace_tabs.setCurrentWidget(self.slices)
+        self.slices.set_view("Top")
+        basis = self.frame.stereo_to_display_matrix[:3, :3]
+        screen_right = np.cross(basis[:, 0], -basis[:, 2])
+        ml_sign = float(np.sign(np.dot(screen_right, basis[:, 1])))
+        dialog = CraniotomyDialog(self.skull, self.apply_craniotomy, self, ml_sign=ml_sign)
+        try:
+            dialog.exec()
+        finally:
+            # Apply already committed; closing drops only unapplied table edits.
+            dialog.deleteLater()
+
+    @guarded
+    def update_drive_travel(self, value):
+        probe = self.selected_probe
+        if probe is None or probe.drive is None or self.busy:
+            return
+        mount = replace(probe.drive, travel_mm=value)
+        probe.pose = updated_mount_pose(probe.geometry, probe.pose, probe.drive, mount)
+        probe.drive = mount
+        self.refresh_pose_controls()
+        self.recompute()
+        self.setWindowModified(True)
+
+    @guarded
+    def edit_drive(self, checked=False):
+        probe = self.selected_probe
+        if probe is None:
+            return
+
+        def apply(mount, geometry=None, align_base=False):
+            geometry = geometry if geometry is not None else probe.geometry
+            probe.pose = updated_mount_pose(geometry, probe.pose, probe.drive, mount, align_base=align_base)
+            probe.geometry = geometry
+            probe.drive = mount
+            self.refresh_pose_controls()
+            self.recompute()
+            self.setWindowModified(True)
+
+        dialog = DriveDialog(probe, apply, self)
+        try:
+            dialog.exec()
+        finally:
+            dialog.deleteLater()
 
     @guarded
     def import_geometry(self, checked=False):
@@ -791,7 +1005,7 @@ class MainWindow(QMainWindow):
     def confirm_probe_import(self, geometry, mapping):
         confirmation = ProbeImportDialog(geometry, mapping, self)
         if confirmation.exec() == QDialog.Accepted:
-            self._add_probe(geometry, confirmation.mapping)
+            self._add_probe(confirmation.geometry, confirmation.mapping)
         confirmation.deleteLater()
 
     def rebuild_probe(self):
@@ -1067,7 +1281,8 @@ class MainWindow(QMainWindow):
                             QMessageBox.Save | QMessageBox.Cancel, QMessageBox.Cancel) != QMessageBox.Save:
                         return False
         save_planning_bundle(path,
-            Plan.from_instances(self.atlas, self.frame, self.probes, self.current_probe_id), self.atlas, self.rows)
+            Plan.from_instances(self.atlas, self.frame, self.probes, self.current_probe_id,
+                                skull=self.skull), self.atlas, self.rows)
         self.save_path = path
         self.setWindowModified(False)
         self.statusBar().showMessage(f"Saved planning bundle · {path.parent}")

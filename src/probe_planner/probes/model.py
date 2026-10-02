@@ -49,6 +49,7 @@ class ProbeGeometry:
     units: str = "um"
     bodies: list[ProbeBody] = field(default_factory=list)
     metadata: dict = field(default_factory=dict)
+    mounting_base: ProbeBody | None = None
 
     def __post_init__(self):
         ids = [c.contact_id for c in self.contacts]
@@ -63,6 +64,15 @@ class ProbeGeometry:
         shanks = {c.shank_id for c in self.contacts}
         if any(body.shank_id is not None and body.shank_id not in shanks for body in self.bodies):
             raise ValueError("Probe body references a shank without contacts.")
+        if self.mounting_base is not None and self.mounting_base.shank_id is not None:
+            raise ValueError("The mounting base is shared by the probe, not an individual shank.")
+        if self.mounting_base is None:
+            from .mounting import base_specification, make_base
+
+            dimensions, source = base_specification(self)
+            if all(dimensions):
+                self.mounting_base = make_base(self, dimensions)
+                self.metadata = {**self.metadata, "mounting_base_source": source}
 
     @property
     def points(self) -> np.ndarray:
@@ -70,6 +80,13 @@ class ProbeGeometry:
 
     @property
     def display_bodies(self):
+        from .mounting import is_acute_package
+
+        return self.shaft_bodies + ([self.mounting_base]
+            if self.mounting_base is not None and not is_acute_package(self) else [])
+
+    @property
+    def shaft_bodies(self):
         if self.bodies:
             return self.bodies
         # Geometry-only formats lack shaft dimensions. Keep an explicitly

@@ -37,6 +37,41 @@ data folder and saved settings are retained.
 
 Choose a supported rat or mouse atlas from **Load atlas**. Bregma is set automatically.
 
+### Skull and craniotomy
+
+Supported mouse/rat atlases automatically prepare a CT reference skull, hidden by
+default. Enable **Skull (CT ref.)** to show it; use **Settings → Skull…** to adjust
+placement. Models download on first use and are cached locally.
+
+1. Open **Make craniotomy** for a top view with Bregma/Lambda.
+2. Use **+** / **×** to add or remove openings. Choose Rectangle, Circle or Polygon;
+   enter the AP/ML center and rectangle size or circle diameter in mm. ML is left-positive.
+3. Left-drag draws rectangles/circles; click polygon vertices and press Enter to
+   finish. Right-drag moves an opening, middle-drag pans, the wheel zooms, and
+   double-click resets the view.
+4. **Apply craniotomy** updates the 3D view and closes the editor.
+   **Save & Update** saves the skull and editable openings with the plan.
+
+CT skulls have approximate alignment and size; they do not establish individual
+anatomical fit or validated bone thickness. Check [source terms](THIRD_PARTY_NOTICES.md)
+before sharing plans containing downloaded meshes. To update an older plan's
+atlas correction, use **Settings → Use atlas alignment preset**, then **Save & Update**.
+
+### Microdrives
+
+Select a chronic probe, open **Microdrive…**, and choose Cambridge NeuroTech
+**nano-Drive**, **pico-Drive**, **3Dneuro Metal drive** or **Metal drive NP**.
+**Attach to probe** applies the attachment and closes the dialog.
+
+- **Mount offset** sets the probe's vertical position on the carriage. At zero,
+  their lower-left corners align when viewed from the probe side; positive values
+  move the probe up. **Align base** aligns an existing mount to this reference.
+- **Drive travel** in the left **Probe** panel moves the carriage and attached
+  probe together, updating insertion depth and tip DV. The fixed body stays in place.
+- **Dimensions…** adjusts the simplified model to your hardware. Some probe-base
+  dimensions are estimates; Metal drive NP provisionally represents R2drive L.
+  See [dimension notes](plan_and_log/2026-09-26-skull-drive-planning.md).
+
 ## Probes
 
 | Library | Layouts |

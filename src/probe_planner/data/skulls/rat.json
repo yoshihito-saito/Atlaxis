@@ -1,0 +1,58 @@
+{
+  "format_version": 1,
+  "preparation_version": 2,
+  "species": "rat",
+  "name": "Rat CT reference \u2014 Pohl et al.",
+  "provider": "Figshare",
+  "download_url": "https://ndownloader.figshare.com/files/1176654",
+  "source_url": "https://doi.org/10.6084/m9.figshare.777745.v1",
+  "authors": "Bernd M. Pohl; Fernando Gasca; Olaf Christ; Ulrich G. Hofmann",
+  "license": "CC BY 4.0",
+  "terms_url": "https://creativecommons.org/licenses/by/4.0/",
+  "reference_bl_mm": 8.3,
+  "native_z_max": 580.0,
+  "size_source": "https://www.nitrc.org/docman/view.php/1081/194197/",
+  "size_note": "Approximate reference size: rounded Euclidean separation of WHS metric landmarks (about 8.30 mm); not a calibration of the original CT or an individual animal.",
+  "source_sha256": "876cd14c99e4dcccea1da2ee041b159ccdaaaa7b8de282bd6bfc8740882bbba5",
+  "display_triangles": 20000,
+  "source_to_stereotaxic_rigid_matrix": [
+    [
+      0.0413334913303376,
+      -0.05489002914677071,
+      -0.9976365205798711,
+      415.6428892180884
+    ],
+    [
+      -0.9978320353574769,
+      0.04891164803715682,
+      -0.04403271398226703,
+      263.5194521607133
+    ],
+    [
+      0.05121300331751446,
+      0.9972937056788014,
+      -0.0527493403242571,
+      -68.0841698702415
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "source_landmarks": {
+    "Bregma": [
+      249.25497436523438,
+      77.82539367675781,
+      422.672607421875
+    ],
+    "Lambda": [
+      245.32421875,
+      82.96102905273438,
+      515.9520874023438
+    ]
+  },
+  "alignment": "User-reviewed landmark candidates; rigid leveling only. Approximate reference, not validated atlas registration.",
+  "modifications": "Rigid placement, uniform reference sizing and mesh simplification; native_z_max removes attached posterior structures for rat."
+}

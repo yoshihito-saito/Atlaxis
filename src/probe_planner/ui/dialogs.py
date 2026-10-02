@@ -10,6 +10,7 @@ import numpy as np
 
 from probe_planner.rendering.slice_view import SectionView
 from probe_planner.probes.wiring import headstage_map
+from probe_planner.probes.mounting import with_package_base
 from probe_planner.probes.neuropixels import is_neuropixels
 
 
@@ -57,6 +58,7 @@ class ProbeImportDialog(QDialog):
 
     def __init__(self, geometry, mapping, parent=None):
         super().__init__(parent)
+        geometry = with_package_base(geometry, mapping)
         self.geometry, self.mapping = geometry, mapping
         self.imported_mapping = mapping
         self.setWindowTitle("Import probe")
@@ -73,7 +75,8 @@ class ProbeImportDialog(QDialog):
                    if body.shank_id is not None]
         details.addRow("Shaft length", QLabel(", ".join(f"{value:.2f} mm" for value in sorted(set(lengths)))))
         thicknesses = sorted({body.thickness_um for body in geometry.display_bodies})
-        details.addRow("Thickness", QLabel(", ".join(f"{value:g} µm" for value in thicknesses)))
+        self.thickness_label = QLabel(", ".join(f"{value:g} µm" for value in thicknesses))
+        details.addRow("Thickness", self.thickness_label)
         self.headstage = HeadstageSelector()
         self.headstage.set_probe(geometry, mapping)
         if geometry.metadata.get("headstage_profiles"):
@@ -85,12 +88,8 @@ class ProbeImportDialog(QDialog):
         self.preview.setToolTip("Local front view · scroll to zoom, drag to pan")
         # Use local x/y, including the supplied shaft direction, not an atlas transform.
         scene = self.preview.scene()
-        for body in geometry.display_bodies:
-            polygon = QPolygonF([QPointF(float(x), float(-geometry.y_to_base * y))
-                                 for x, y, _ in body.outline_um])
-            pen = QPen(QColor("#9ab8eb"), 1.2)
-            pen.setCosmetic(True)
-            scene.addPolygon(polygon, pen, QBrush(QColor("#33435e")))
+        self.body_items = []
+        self.update_bodies()
         self.contact_markers = []
         for contact in geometry.contacts:
             color = QColor("#88cce5" if contact.z_um > 0 else "#e5c888")
@@ -124,12 +123,32 @@ class ProbeImportDialog(QDialog):
         buttons.rejected.connect(self.reject)
         layout.addWidget(buttons)
 
+    def update_bodies(self):
+        scene = self.preview.scene()
+        for item in self.body_items:
+            scene.removeItem(item)
+        self.body_items = []
+        for body in self.geometry.display_bodies:
+            polygon = QPolygonF([QPointF(float(x), float(-self.geometry.y_to_base * y))
+                                 for x, y, _ in body.outline_um])
+            pen = QPen(QColor("#9ab8eb"), 1.2)
+            pen.setCosmetic(True)
+            item = scene.addPolygon(polygon, pen, QBrush(QColor("#33435e")))
+            item.setZValue(-1)
+            self.body_items.append(item)
+        thicknesses = sorted({body.thickness_um for body in self.geometry.display_bodies})
+        self.thickness_label.setText(", ".join(f"{value:g} µm" for value in thicknesses))
+
     def change_headstage(self, index):
         profile_id = self.headstage.itemData(index)
         if profile_id == "saved":
             self.mapping = self.imported_mapping
         else:
             self.mapping = headstage_map(self.geometry, profile_id)
+        geometry = with_package_base(self.geometry, self.mapping)
+        if geometry is not self.geometry:
+            self.geometry = geometry
+            self.update_bodies()
         for contact, marker in self.contact_markers:
             marker.setToolTip(f"{contact.contact_id} · Shank {contact.shank_id}\n"
                               f"Local z: {contact.z_um:g} µm\n"
