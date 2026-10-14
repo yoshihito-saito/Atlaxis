@@ -485,6 +485,7 @@ class SliceWorkspace(QWidget):
             actor.prop.lighting = False
             actor.prop.show_edges = True
             actor.prop.edge_color = "#53647d"
+            actor.prop.line_width = 1.5
             cube.AddPart(actor)
             self.cube_faces[name] = actor
             # Texture text gives the cube a real bold sans-serif font instead

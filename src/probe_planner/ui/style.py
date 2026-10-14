@@ -1,6 +1,29 @@
-from PySide6.QtCore import Qt
-from PySide6.QtGui import QPainter
+from PySide6.QtCore import QRectF, Qt
+from PySide6.QtGui import QColor, QIcon, QPainter, QPainterPath, QPen, QPixmap
 from PySide6.QtWidgets import QMessageBox
+
+
+def probe_visibility_icon(visible):
+    """Draw the eye without relying on an emoji font."""
+    pixmap = QPixmap(48, 48)
+    pixmap.setDevicePixelRatio(2)
+    pixmap.fill(Qt.transparent)
+    painter = QPainter(pixmap)
+    painter.setRenderHint(QPainter.Antialiasing)
+    pen = QPen(QColor("#d6dde8"), 1.8)
+    pen.setCapStyle(Qt.RoundCap)
+    pen.setJoinStyle(Qt.RoundJoin)
+    painter.setPen(pen)
+    eye = QPainterPath()
+    eye.moveTo(2, 12)
+    eye.cubicTo(7, 4, 17, 4, 22, 12)
+    eye.cubicTo(17, 20, 7, 20, 2, 12)
+    painter.drawPath(eye)
+    painter.drawEllipse(QRectF(9, 9, 6, 6))
+    if not visible:
+        painter.drawLine(4, 4, 20, 20)
+    painter.end()
+    return QIcon(pixmap)
 
 
 def question(parent, title, text, buttons, default_button):
@@ -30,6 +53,7 @@ QToolButton#addProbe:hover { background: #253349; color: #edf3ff; border-color: 
 QToolButton#addProbe:pressed { background: #33435e; }
 QToolButton#addProbe:focus { border-color: #7aa7ff; }
 QToolButton#addProbe:disabled { background: transparent; color: #616977; border-color: #242c39; }
+QToolButton#probeVisibility { padding: 0; }
 QPushButton#closeProbe { padding: 0; border: 0; background: transparent; }
 QPushButton#closeProbe:hover { background: #49556a; }
 QToolButton#favoriteProbe { padding: 0; border: 0; background: transparent;

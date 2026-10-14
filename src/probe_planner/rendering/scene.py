@@ -1,6 +1,5 @@
 import numpy as np
 import pyvista as pv
-from vtkmodules.vtkRenderingCore import vtkRenderer
 from vtkmodules.vtkRenderingOpenGL2 import vtkOpenGLPolyDataMapper
 
 from probe_planner.atlas.coordinates import probe_to_stereotaxic_matrix
@@ -63,17 +62,6 @@ class Scene:
         self.atlas_display_matrix = np.eye(4)
         plotter.set_background("#101216")
         plotter.enable_anti_aliasing("fxaa")
-        # Contacts are fixed-pixel position markers, including when their true
-        # centers lie inside a schematic body. Share the camera, not its depth.
-        self.contact_renderer = vtkRenderer()
-        self.contact_renderer.SetLayer(1)
-        self.contact_renderer.SetInteractive(False)
-        self.contact_renderer.SetActiveCamera(plotter.camera)
-        self.contact_renderer.PreserveColorBufferOn()
-        self.contact_renderer.PreserveDepthBufferOff()
-        window = plotter.render_window
-        window.SetNumberOfLayers(max(window.GetNumberOfLayers(), 2))
-        window.AddRenderer(self.contact_renderer)
 
     def set_brain_outline(self, mesh):
         if self.brain_outline_actor is not None:
@@ -215,7 +203,6 @@ class Scene:
     def clear_probe(self):
         for actors in self.probe_actors.values():
             for actor, _, _ in actors:
-                self.contact_renderer.RemoveActor(actor)
                 self.plotter.remove_actor(actor, render=False)
         self.probe_actors = {}
 
@@ -251,6 +238,7 @@ class Scene:
             matrix = self.probe_display_matrix(probe, frame)
             for actor in self.drive_actors[probe.id]:
                 actor.user_matrix = matrix
+                actor.visibility = probe.visible
 
     def show_probes(self, probes, selected, frame, fit=False):
         self.set_atlas_frame(frame)
@@ -281,18 +269,29 @@ class Scene:
                         line_width=1, lighting=False, reset_camera=False, render=False)
                     actors.append((edge, "edge", body.shank_id))
                 active_sites = active_site_ids(probe.geometry, probe.channel_map)
+                contact_points = probe.geometry.points
+                if not probe.geometry.bodies:
+                    # The generated schematic shaft encloses planar contact
+                    # centers. Put display markers on its near face only;
+                    # anatomical contact coordinates remain unchanged.
+                    contact_points = contact_points.copy()
+                    for body in probe.geometry.shaft_bodies:
+                        indices = np.flatnonzero([contact.shank_id == body.shank_id
+                                                  for contact in probe.geometry.contacts])
+                        center_z = float(np.median(np.asarray(body.outline_um)[:, 2]))
+                        half = body.thickness_um / 2
+                        delta = contact_points[indices, 2] - center_z
+                        inside = np.abs(delta) < half
+                        contact_points[indices[inside], 2] = center_z + np.where(
+                            delta[inside] > 0, half + 1.0, -half - 1.0)
                 for shank in sorted({c.shank_id for c in probe.geometry.contacts}):
                     for active in (True, False):
                         mask = [c.shank_id == shank and
                                 ((c.contact_id in active_sites) == active)
                                 for c in probe.geometry.contacts]
                         if any(mask):
-                            actor = self.plotter.add_points(probe.geometry.points[mask], point_size=5 if active else 7,
+                            actor = self.plotter.add_points(contact_points[mask], point_size=5 if active else 7,
                                 render_points_as_spheres=True, reset_camera=False, render=False)
-                            self.contact_renderer.AddActor(actor)
-                            # Render once in the contact layer: drawing in both
-                            # layers would compound 50% opacity into 75%.
-                            self.plotter.renderer.RemoveActor(actor)
                             actors.append((actor, "active" if active else "inactive", shank))
                 self.probe_actors[probe.id] = actors
             self.signature = signature
@@ -303,8 +302,9 @@ class Scene:
                 actor.user_matrix = matrix
                 highlighted = probe is selected and shank == probe.selected_shank_id
                 if role == "edge":
-                    actor.SetVisibility(highlighted)
+                    actor.SetVisibility(probe.visible and highlighted)
                     continue
+                actor.visibility = probe.visible
                 color = ("#59656f" if role == "base" else
                          ("#9aa9bc" if probe is selected else "#525f72") if role == "body" else
                          "#ff19ef" if role == "active" else "#616977")

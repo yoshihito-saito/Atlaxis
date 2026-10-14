@@ -324,6 +324,67 @@ def _selection_routing(geometry, mapping):
     return routed, topology
 
 
+def site_channel_ids(geometry):
+    """Return the hardware channel each physical site can occupy."""
+    from neurocarto.probe_npx.npx import ChannelMap as NpxChannelMap, e2cb
+
+    code, topology = site_topology(geometry)
+    probe_type = NpxChannelMap(code).probe_type
+    return {site: int(e2cb(probe_type, coordinate)[0])
+            for site, coordinate in topology.items()}
+
+
+def set_site_active(geometry, mapping, site, active):
+    """Edit one target without replacing another active hardware assignment."""
+    from neurocarto.probe_npx.io import parse_imro
+    from neurocarto.probe_npx.npx import e2cb
+
+    routed, topology = _selection_routing(geometry, mapping)
+    if site not in topology:
+        raise ValueError("Choose a physical site on this Neuropixels probe.")
+    channel = int(e2cb(routed.probe_type, topology[site])[0])
+    selected = active_site_ids(geometry, mapping)
+    if (site in selected) == active:
+        return deepcopy(mapping)
+    result = deepcopy(mapping)
+    if active:
+        occupied = next((other for other in selected
+                         if other != site and mapping.contact_to_channel[other] == channel), None)
+        if occupied is not None:
+            raise ValueError(f"Channel {channel} is ON at {occupied}. Turn that site OFF first.")
+        # Keep the complete acquisition template so reference, per-channel gains
+        # and inactive routing survive an OFF/ON or alternate-site edit.
+        if mapping.source_imro is not None:
+            routed = parse_imro(mapping.source_imro.strip())
+        previous = routed.channels[channel]
+        if previous is not None:
+            routed.del_electrode(previous)
+        electrode = routed.add_electrode(topology[site])
+        if previous is not None:
+            electrode.copy(previous)
+        electrode.in_used = True
+        removed = {other for other, assigned in result.contact_to_channel.items()
+                   if assigned == channel and other != site}
+        for other in removed:
+            result.contact_to_channel.pop(other)
+        result.contact_to_channel[site] = channel
+        result.skipped = [value for value in result.skipped if value != channel]
+        result.source_imro = _complete_routing(routed, topology)
+    else:
+        removed = {site}
+        result.contact_to_channel.pop(site, None)
+        result.skipped = [value for value in result.skipped if value != channel]
+    for roi in result.rois:
+        roi.assigned_sites = [value for value in roi.assigned_sites if value not in removed]
+    if active and not any(site in roi.assigned_sites for roi in result.rois):
+        owner = next((roi for roi in result.rois if roi.registered and site in roi.sites), None)
+        if owner is not None:
+            owner.assigned_sites.append(site)
+            owner.assigned_sites.sort()
+    result.validate(geometry)
+    return result
+
+
 def export_acquisition_imro(geometry, mapping):
     """Complete unassigned acquisition slots without changing target selection.
 

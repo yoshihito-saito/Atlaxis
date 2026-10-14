@@ -37,7 +37,8 @@ embed their own geometry and remain unchanged; re-import to use updated files.
   Atlaxis adds manufacturer maps separately: 35 built-in Intan entries have
   recording-channel assignments; 18 ASSY-236 entries have selectable Mini-Amp-64
   V1 profiles; 61 current external-headstage entries have selectable Intan RHD
-  profiles. All physical sites remain active, including when wiring is unassigned.
+  profiles. H20 and E-1 128ch also offer selectable Mini-Amp-128 profiles.
+  All physical sites remain active, including when wiring is unassigned.
 
 Each JSON records its source URL, revision, Git blob hash, conversion status and
 dimensional limitations. `.manifest.json` lists all models, counts and correction
@@ -52,6 +53,18 @@ the table then displays zero-based Intan recording Channel IDs. The choice and
 complete mapping are embedded in saved plans; `channel_index.csv` and the bundle
 manifest identify the headstage. Re-import older saved probes to obtain new profiles.
 Favorite probes remember the headstage chosen when the favorite is registered.
+
+For `ASSY-350-H20.json`, choose **Mini-Amp-128 H20**; for
+`ASSY-325D-E-1.json`, choose **Mini-Amp-128 E-1-D / E-2-D**. Both options use
+the user-supplied Cambridge maps (H20: 29 Aug 2024; E-1-D/E-2-D: 03 Dec 2025),
+with zero-based channels 0-127. The existing Built-in Intan profile remains the
+default. H20 shanks 0-3 are A-D, with remote channels 127/95/63/31;
+E-1 shanks 0-3 are D-A in the common projection for both faces. Geometry and
+physical Site IDs are shared between connection profiles. The supplied image
+titles, dates and SHA-256 hashes are recorded in each Mini-Amp profile; those
+hashes identify the attached PNGs, not downloaded PDFs. No public URL for these
+two Mini-Amp maps was verified. Re-import existing saved/favorite probes to
+obtain these options; their embedded wiring is not migrated automatically.
 
 Coverage from the [manufacturer map index](https://www.cambridgeneurotech.com/neural-probes/probe-maps):
 
@@ -113,8 +126,10 @@ transcribed spatial rows/columns against pinned source site IDs. Its `connection
 tables record connector-to-native-channel permutations and adapter pin composition;
 the converter resolves these into offline profiles without a runtime dependency.
 Source labels
-are not simply decremented: several models use different permutations. Maps
-describe wiring, not independently verified mechanical dimensions. The existing
+are not simply decremented: several models use different permutations.
+Mini-Amp-128 H20/E-1 maps are transcribed from the supplied images in each
+model's `additional_profiles` and retained by the converter.
+Maps describe wiring, not independently verified mechanical dimensions. The existing
 upstream geometry limitations above still apply; no new sites or dimensions are
 invented. Physical hardware validation has not been performed.
 

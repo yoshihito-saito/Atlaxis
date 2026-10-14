@@ -14,10 +14,13 @@ class ProbeInstance:
     pose: ImplantPose = field(default_factory=ImplantPose)
     selected_shank_id: int | None = None
     drive: DriveMount | None = None
+    visible: bool = True
 
     def __post_init__(self):
         if not isinstance(self.id, str) or not self.id:
             raise ValueError("Each probe instance requires a nonempty ID.")
+        if type(self.visible) is not bool:
+            raise ValueError("Probe visibility must be boolean.")
         self.channel_map.validate(self.geometry)
         self.geometry = with_package_base(self.geometry, self.channel_map)
         shanks = sorted({c.shank_id for c in self.geometry.contacts})

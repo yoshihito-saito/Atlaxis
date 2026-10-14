@@ -5,17 +5,19 @@ from PySide6.QtCore import QPointF, QRectF, Qt, Signal
 from PySide6.QtGui import QColor, QFont, QPen, QPolygonF, QImage, QPixmap
 from PySide6.QtWidgets import QToolTip, QGraphicsView
 
-from probe_planner.probes.neuropixels import active_site_ids
+from probe_planner.probes.neuropixels import active_site_ids, is_neuropixels
 from .slice_view import SectionView
 
 
 ACTIVE_COLOR = "#ff19ef"
+AVAILABLE_COLOR = "#65d99a"
 REFERENCE_COLOR = "#00fff0"
 
 
 class ProbeView(SectionView):
     sitesSelected = Signal(object, object, object)
     selectionStarted = Signal()
+    siteToggled = Signal(str, bool)
 
     def __init__(self, *, labels=True):
         super().__init__()
@@ -23,6 +25,8 @@ class ProbeView(SectionView):
         self.probe = None
         self.rows = {}
         self.active_sites = set()
+        self.site_channels = {}
+        self.available_sites = set()
         self.uv = np.empty((0, 2))
         self.shank_centers = {}
         self.bounds = QRectF()
@@ -63,6 +67,10 @@ class ProbeView(SectionView):
         self.probe = probe
         self.rows = {row["contact_id"]: row for row in rows}
         self.active_sites = active_site_ids(probe.geometry, probe.channel_map) if probe else set()
+        occupied = ({probe.channel_map.contact_to_channel[site] for site in self.active_sites}
+                    if probe and self.site_channels else set())
+        self.available_sites = {site for site, channel in self.site_channels.items()
+                                if channel not in occupied} if probe else set()
         if probe is None:
             self.uv = np.empty((0, 2))
             self.bounds = QRectF()
@@ -127,10 +135,11 @@ class ProbeView(SectionView):
             row = self.rows.get(contact.contact_id, {})
             channel = self.probe.channel_map.contact_to_channel.get(contact.contact_id)
             active = contact.contact_id in self.active_sites
+            available = contact.contact_id in self.available_sites
             point = QPointF(*self.uv[index])
             radius = max(3.5 if active else 5.0, (1.6 if active else 1.2) / zoom)
             painter.setPen(Qt.NoPen)
-            color = QColor(ACTIVE_COLOR if active else "#78818f")
+            color = QColor(ACTIVE_COLOR if active else AVAILABLE_COLOR if available else "#78818f")
             if active:
                 color.setAlphaF(0.5)
             painter.setBrush(color)
@@ -144,11 +153,12 @@ class ProbeView(SectionView):
                 painter.setPen(pen)
                 painter.setBrush(Qt.NoBrush)
                 painter.drawRect(QRectF(point.x() - radius, point.y() - radius, 2 * radius, 2 * radius))
-            if self.labels and (active or not self.probe.channel_map.contact_to_channel):
+            if self.labels and (active or available or not self.probe.channel_map.contact_to_channel):
                 region = row.get("region_acronym", "—")
-                label = (f"ch {channel} · {region}" if channel is not None
+                label = (f"{contact.contact_id} · {region}" if is_neuropixels(geometry)
+                         else f"ch {channel} · {region}" if channel is not None
                          else f"{contact.contact_id} · {region}")
-                labels.append((point, label, active, contact.shank_id, contact.x_um))
+                labels.append((point, label, active, available, contact.shank_id, contact.x_um))
         for shape, registered, selected in self.roi_shapes:
             pen = QPen(QColor("#00fff0" if registered else "#ffd166"), 0,
                        Qt.SolidLine if registered else Qt.DashLine)
@@ -179,7 +189,7 @@ class ProbeView(SectionView):
         painter.setFont(QFont("Helvetica Neue", 9))
         metrics = painter.fontMetrics()
         occupied = []
-        for point, label, active, shank, x in labels:
+        for point, label, active, available, shank, x in labels:
             position = transform.map(point)
             width = metrics.horizontalAdvance(label)
             left = x < self.shank_centers[shank]
@@ -188,7 +198,7 @@ class ProbeView(SectionView):
             if any(label_rect.intersects(other) for other in occupied):
                 continue
             occupied.append(label_rect.adjusted(-3, -2, 3, 2))
-            color = QColor(ACTIVE_COLOR if active else "#abb4c2")
+            color = QColor(ACTIVE_COLOR if active else AVAILABLE_COLOR if available else "#abb4c2")
             if active:
                 color.setAlphaF(0.5)
             painter.setPen(color)
@@ -205,8 +215,29 @@ class ProbeView(SectionView):
             self.finish_polygon()
             event.accept()
             return
+        if not self.draw_selection and self.site_channels and event.button() == Qt.LeftButton:
+            index = self._site_index_at(self.mapToScene(event.position().toPoint()))
+            if index is not None:
+                site = self.probe.geometry.contacts[index].contact_id
+                active = site in self.active_sites
+                if active or site in self.available_sites:
+                    self.siteToggled.emit(site, not active)
+                else:
+                    QToolTip.showText(event.globalPosition().toPoint(),
+                        "This site shares a channel with an active site. Turn that site OFF first.", self)
+                event.accept()
+                return
         self.fit()
         event.accept()
+
+    def _site_index_at(self, point):
+        if self.probe is None or not len(self.uv):
+            return None
+        distances = np.sum((self.uv - (point.x(), point.y())) ** 2, axis=1)
+        index = int(np.argmin(distances))
+        if distances[index] <= (10 / max(self.transform().m11(), 1e-8)) ** 2:
+            return index
+        return None
 
     def cancel_selection(self):
         self.selection_start = self.selection_rect = None
@@ -291,22 +322,24 @@ class ProbeView(SectionView):
             self.selection_rect = QRectF(self.selection_start, point).normalized()
             self.viewport().update()
             return
-        if self.probe and len(self.uv):
-            distances = np.sum((self.uv - (point.x(), point.y())) ** 2, axis=1)
-            index = int(np.argmin(distances))
-            if distances[index] <= (10 / max(self.transform().m11(), 1e-8)) ** 2:
-                contact = self.probe.geometry.contacts[index]
-                row = self.rows.get(contact.contact_id, {})
-                channel = self.probe.channel_map.contact_to_channel.get(contact.contact_id)
-                active = contact.contact_id in self.active_sites
-                text = (f"{contact.contact_id} · Shank {contact.shank_id}\n"
-                        f"{'Active' if active else 'Inactive'} · Channel {channel if channel is not None else '—'}\n"
-                        f"{row.get('region_acronym', '—')} · {row.get('region_name', 'Atlas not loaded')}")
-                if self.face_z is not None:
-                    text += f"\nDistance from displayed plane: {abs(contact.z_um - self.face_z):.2f} µm"
-                category = self.probe.channel_map.blueprint.get(contact.contact_id, "Low")
-                QToolTip.showText(event.globalPosition().toPoint(), text + f"\nSelection: {category}", self)
-                return
+        index = self._site_index_at(point)
+        if index is not None:
+            contact = self.probe.geometry.contacts[index]
+            row = self.rows.get(contact.contact_id, {})
+            channel = self.site_channels.get(contact.contact_id,
+                self.probe.channel_map.contact_to_channel.get(contact.contact_id))
+            active = contact.contact_id in self.active_sites
+            status = ("Active" if active else "Available" if contact.contact_id in self.available_sites
+                      else "Blocked" if self.site_channels else "Inactive")
+            channel_label = "Hardware channel" if is_neuropixels(self.probe.geometry) else "Channel"
+            text = (f"{contact.contact_id} · Shank {contact.shank_id}\n"
+                    f"{status} · {channel_label} {channel if channel is not None else '—'}\n"
+                    f"{row.get('region_acronym', '—')} · {row.get('region_name', 'Atlas not loaded')}")
+            if self.face_z is not None:
+                text += f"\nDistance from displayed plane: {abs(contact.z_um - self.face_z):.2f} µm"
+            category = self.probe.channel_map.blueprint.get(contact.contact_id, "Low")
+            QToolTip.showText(event.globalPosition().toPoint(), text + f"\nSelection: {category}", self)
+            return
         if self.section is not None:
             x, y = np.floor((np.array([point.x(), point.y()]) - self.section.origin_uv) / self.section.pixel_um).astype(int)
             if 0 <= y < self.section.annotation.shape[0] and 0 <= x < self.section.annotation.shape[1]:

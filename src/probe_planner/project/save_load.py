@@ -28,18 +28,21 @@ class Plan:
     # Legacy plans had no skull field. An explicit null in newer plans means removed.
     use_default_skull: bool = False
     drive: DriveMount | None = None
+    probe_visible: bool = True
 
     @property
     def probes(self):
         return [ProbeInstance(self.probe_id, self.geometry, self.channel_map, self.pose,
-                              self.selected_shank_id, self.drive), *self.additional_probes]
+                              self.selected_shank_id, self.drive, self.probe_visible),
+                *self.additional_probes]
 
     @classmethod
     def from_instances(cls, atlas, coordinates, probes, selected_probe_id, *, skull=None):
         first, *remaining = probes
         return cls(atlas.name, atlas.version, coordinates, first.geometry,
                    first.channel_map, first.pose, remaining, first.id,
-                   first.selected_shank_id, selected_probe_id, skull, False, first.drive)
+                   first.selected_shank_id, selected_probe_id, skull, False,
+                   first.drive, first.visible)
 
 
 def save_plan(path: Path, plan: Plan):
@@ -58,6 +61,7 @@ def save_plan(path: Path, plan: Plan):
         "probes": [{"id": probe.id, "geometry": asdict(probe.geometry),
                     "channel_map": asdict(probe.channel_map), "pose": asdict(probe.pose),
                     "selected_shank_id": probe.selected_shank_id,
+                    "visible": probe.visible,
                     "drive": asdict(probe.drive) if probe.drive else None} for probe in probes],
     }
     # Replace only after the complete JSON has been serialized and written.
@@ -81,7 +85,8 @@ def load_plan(path: Path) -> Plan:
     probes = [ProbeInstance(probe["id"], geometry_from_dict(probe["geometry"]),
                             ChannelMap(**probe["channel_map"]), ImplantPose(**probe["pose"]),
                             probe.get("selected_shank_id"),
-                            DriveMount(**probe["drive"]) if probe.get("drive") else None) for probe in data["probes"]]
+                            DriveMount(**probe["drive"]) if probe.get("drive") else None,
+                            probe.get("visible", True)) for probe in data["probes"]]
     ids = [probe.id for probe in probes]
     selected = data.get("selected_probe_id", probes[0].id)
     if len(ids) != len(set(ids)) or selected not in ids:
@@ -91,7 +96,7 @@ def load_plan(path: Path) -> Plan:
                 AtlasCoordinates(**data["coordinates"]), first.geometry, first.channel_map,
                 first.pose, remaining, first.id, first.selected_shank_id, selected,
                 Skull.from_dict(data["skull"]) if data.get("skull") is not None else None,
-                "skull" not in data, first.drive)
+                "skull" not in data, first.drive, first.visible)
 
 
 def export_contacts(path: Path, rows):

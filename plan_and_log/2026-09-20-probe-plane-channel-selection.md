@@ -604,3 +604,195 @@ IMRO file was not supplied for direct comparison.
 The user requested a separate reference-display commit and a push of the current
 branch including both XML and reference changes. Unrelated plan/log edits are
 excluded. No source changes or additional checks were needed for this commit.
+
+## Manual channel editing and plan export names (2026-10-13)
+
+Goal: export Neuropixels XML with the IMRO basename, name the combined XML
+<plan-folder>.xml, edit individual channels after NeuroCarto selection with
+visible routing availability, and add Save As Different Plan beside Save & Update.
+
+Scope: retain physical geometry, hardware channel IDs, reference/gain settings,
+ROI ownership, existing plan loading and manual-export snapshot semantics.
+
+Steps:
+1. Add per-site hardware routing availability and manual activation/deactivation
+   without moving other active sites; retain valid ROI and acquisition metadata.
+2. Add individual controls and available/blocked states in the right probe summary.
+3. Write XML beside manual IMRO exports and rename the saved combined XML; update
+   output descriptions, manifest ownership and export destination protection.
+4. Add a separate-plan action that requires a new bundle destination, review the
+   task diff and run at most one lightweight changed-file syntax check.
+
+Result: manual IMRO exports now include a matching-basename XML, built from the
+exported acquisition routing with target skip flags. Save writes the combined
+<plan-folder>.xml and retires manifest-owned legacy probes.xml. Existing per-probe
+selection companions and independent acquisition exports retain their semantics.
+The Channel map table has ON checkboxes, hardware/site IDs and ON/Available/Blocked
+states. Availability follows NeuroCarto's hardware routing; an occupied channel
+cannot displace another active site. OFF releases a target assignment; ON preserves
+reference and channel gains and updates registered ROI ownership where applicable.
+IMRO still records 384 channels; manual OFF does not disable an acquisition input.
+Save As Different Plan (Ctrl+Shift+S) rejects occupied bundle destinations and
+switches subsequent saves to the new plan. README guidance was updated.
+
+Verification: reviewed the task-owned source/diffs. One lightweight check passed
+(exit 0): `python -m py_compile` on neuropixels.py, bundle.py, main_window.py and
+probe_summary.py, using the existing Miniforge Python and an OS-temporary bytecode
+cache that was removed afterward. No tests, broad validation, dependency installs,
+GUI interaction, live XML generation or hardware execution were run. No commits.
+Remaining: user validation of channel editing, export and separate-plan saving.
+
+### Follow-up: distinguish channel assignments from alternative sites
+
+Reported: switching one site OFF displays many alternative sites with the same
+channel ID; replacing s1_front_0208 with s3_front_0304 retains channel 208.
+Source inspection confirms that both NP2013 sites route to hardware channel 208
+under NeuroCarto 0.2.2 and SpikeGLX's shank block table. The unchanged hardware ID
+is correct; the two sites are alternative inputs and cannot be ON simultaneously.
+
+Steps:
+1. Default the table to current acquisition routing, one site per hardware channel,
+   retaining the routed OFF site so it can be re-enabled.
+2. Show alternative physical sites only through an explicit checkbox, retaining
+   available/blocked states and existing target selection/routing semantics.
+3. Clarify the hardware-channel heading/documentation, review the narrow diff and
+   run at most one changed-file syntax check. Do not change routing or site IDs.
+
+Result: the normal NP table now displays current IMRO routing (or known assignments
+when there is no IMRO template), with one row per hardware channel. An OFF site
+remains visible in the stored template instead of expanding to every alternative.
+Show alternative sites explicitly opens the physical-site candidates; its optional
+active/available filter and blocked states are retained. The header is Hardware ch.
+README guidance was updated. Routing, target persistence and exports are unchanged.
+
+Confirmed by source inspection: channel 208 has subindex 16 in channel block 4.
+SpikeGLX maps this block to electrode block 4 on shank 1 (electrode 208) and block
+6 on shank 3 (electrode 304); installed NeuroCarto 0.2.2 implements the inverse.
+Source: https://github.com/billkarsh/SpikeGLX/blob/master/Src-imro/IMROTbl_T24base.cpp .
+The table uses probe-local hardware IDs, matching individual XML. Combined XML
+adds each probe's channel offset; it does not use physical site IDs as channel IDs.
+
+Verification: reviewed the follow-up diff and ran one changed-file syntax check:
+`.venv/Scripts/python.exe -m py_compile src/probe_planner/ui/probe_summary.py`.
+Passed (exit 0); the OS-temporary bytecode cache was removed. No tests, live GUI
+interaction or exported-IMRO execution were run; these remain unverified.
+
+## PreprocessPipeline exports and support folder (2026-10-14)
+
+Goal: add combined channelmap.mat and anatomical_map.csv for downstream processing,
+including ordinary probes, and separate processing inputs from Atlaxis support files.
+Scope: use the current D:/PreprocessPipeline MAT/CSV contracts; retain hardware/DAT
+column IDs, XML group/channel order, verified wiring, target flags and old plan loading.
+
+Steps:
+1. Serialize a grouped anatomical CSV and a combined MAT with original-column IDs,
+   connected, x/y, globally unique shank groups and physical probe IDs.
+2. Preserve each probe's native planar distances; unfold consecutive probe-tip
+   AP/ML separation along x and retain tip DV offsets along y. Keep full physical
+   stereotaxic XYZ separately. Do not use global PCA or scale electrode spacing.
+3. Move plan JSON, manifests, descriptions and selection/display companions into
+   atlaxis/; update save/open/export paths and retire only manifest-owned old files.
+4. Update affected documentation, review the scoped diff and run one lightweight
+   changed-file check. No tests, sorting, broad validation or dependency installs.
+
+Decision: user chose exact within-probe planar distances and approximate inter-probe
+2D distances. General nonplanar within-probe geometry cannot satisfy that condition;
+missing wiring or nonplanar geometry must prevent MAT output with a stated reason,
+while keeping the plan saveable. Sampling/gain and auxiliary-channel layout remain
+recording-specific and are not inferred from the plan.
+
+Result: Save now writes combined channelmap.mat and a headerless anatomical_map.csv
+alongside <plan-folder>.xml. MAT vectors use original combined DAT/XML columns;
+connected matches XML skip flags, and probe/shank identities remain explicit.
+Native probe XY is translated/reflected without scaling. Consecutive tip AP/ML
+distances unfold along x; relative tip DV shifts y. physical_xyz_um retains true
+AP/right-ML/DV coordinates separately and is not a replacement for sorter XY.
+Unknown wiring or differing native site Z values suppress MAT output and trigger
+a GUI warning; plan/CSV saving remains available. Sparse NP maps never invent
+inactive geometry during Save. Explicit IMRO export uses its actual completed
+acquisition map to produce matching XML, processing MAT and anatomical CSV.
+
+Version-2 bundle manifests, plan JSON, README, coordinate/index CSVs and NP display
+companions now live in atlaxis/. The save handler retains the returned plan path,
+resolves the bundle root for later Save/Export/Save As, and protects processing and
+support destinations. Legacy root plans still load; known manifest-owned support
+files are retired only after replacement. Obsolete owned MATs are removed when
+geometry becomes unavailable. Historical manual exports remain separate snapshots.
+Manual selection JSON, descriptive target CSV and README use the support folder;
+ordinary-probe coordinate export defaults there too. Both READMEs were updated.
+
+Verification: inspected current PreprocessPipeline channel_layout.py, io.py,
+recording.py and gui/anatomical_map.py contracts; reviewed task-owned source/diffs.
+One changed-file syntax check passed (exit 0): `.venv/Scripts/python.exe -m
+py_compile` on pipeline_exports.py, bundle.py and main_window.py. Its OS-temporary
+bytecode cache was removed. No tests, MAT/CSV round trips, GUI save/migration runs,
+real recordings or sorting were executed. No PreprocessPipeline edits or commits.
+Remaining: user runtime validation of saved outputs, migration and downstream use.
+
+### Follow-up: use PreprocessPipeline's existing 3D map support
+
+The user identified existing double-sided/3D support. Current PreprocessPipeline
+main retains standard xcoords/ycoords/zcoords in recording.py; local CMR and
+postprocess radius/closest-channel sparsity use XYZ. Phy alone uses x+z/y for
+display. The double_sided template in io.py still uses a 2D face offset; an
+explicitly selected 3D MAT takes the physical-geometry path. Kilosort geometry
+and SpikeInterface's built-in locations still have 2D assumptions.
+
+Goal: remove the unnecessary native-Z rejection and expose native 3D distances
+through the standard zcoords field, keeping approved approximate probe spacing.
+Steps:
+1. Keep native x/y layout and add per-probe native z relative to its minimum z
+   when any probe has differing site z; preserve within-probe XYZ distances.
+2. Remove planar-only warnings and clarify 3D consumers/sorting limits in docs.
+3. Review the scoped changes and run one lightweight changed-file syntax check.
+   No PreprocessPipeline edits, new tests, real-data runs or sorting validation.
+
+Result: maps with differing native z now emit standard zcoords, shifted by a
+constant per probe. Existing x/y translations and y reflection are unchanged;
+XYZ differences within each probe therefore retain the supplied site distances.
+Planar-only maps remain 2D. Removed the native-Z rejection and planar-only warning;
+unknown wiring still prevents MAT output. Updated descriptions and both READMEs.
+Use this file as an existing selected map in PreprocessPipeline, rather than its
+currently 2D double_sided preset generator. No claim of 3D Kilosort distance use.
+
+Verification: source/diff inspection against current main at c17fbc6, including
+recording.py, channel_layout.py, io.py, postprocess/pipeline.py and parameters.md.
+One changed-file syntax check passed (exit 0) on pipeline_exports.py, bundle.py and
+main_window.py; its OS-temporary cache was removed. No MAT round trip, GUI run,
+PreprocessPipeline execution or sorting was performed. No commits or dependency
+changes. Runtime compatibility and real-data sorting remain unverified.
+
+## Geometry site editing and Site ID display (2026-10-14)
+
+Goal: identify Neuropixels physical sites consistently, remove the Hardware ch
+table column, and enable Geometry double-click ON/OFF with visible alternatives.
+Scope: reuse `set_site_active` and existing hardware-conflict rules; preserve
+IMRO channel IDs, reference/gain settings, ROI selection tools and ordinary probes.
+
+Steps:
+1. Display Site IDs in Neuropixels Geometry and the five-column Channel map table.
+2. Connect Geometry site double-clicks to the existing per-probe edit signal,
+   keeping background fit and polygon/rectangle ROI interactions intact.
+3. Color active sites magenta, available inactive sites green and blocked sites
+   gray; refresh eligibility after each edit without changing other active sites.
+4. Update the workflow notes, inspect the scoped diff and run one focused Qt
+   Geometry interaction check without initializing the 3D OpenGL window.
+
+Result: NP Geometry now labels physical Site IDs (the previous `ch` labels were
+hardware channels). Its double-click signal forwards through ProbeSummary to
+the existing per-probe ON/OFF handler. Background fitting and ROI drawing are
+unchanged. Eligibility uses the same site-to-channel mapping as the table;
+free candidates and their labels are green, active sites magenta, and occupied
+candidates gray. Blocked sites require releasing the current active site first.
+The NP table now has ON, Site ID, Shank, Region and Status columns; hardware
+routing remains in the model, exports and explanatory hover text. No routing
+algorithm or scientific coordinates changed. README workflow notes were updated.
+
+Verification: scoped diff/source inspection and one focused Qt offscreen
+interaction check passed. The real NP2013 library geometry and existing
+`set_site_active` were used: s3_front_0304 was blocked while s1_front_0208 was ON;
+double-clicking 0208 OFF made both candidates available and rendered 0304 green;
+double-clicking 0304 ON retained hardware channel 208 and kept s1_front_0201 ON.
+The five table headings were confirmed. No new tests/fixtures, full application
+3D run, atlas-backed region validation, export round trip, hardware execution,
+broad checks, environment changes or commits were performed.

@@ -34,16 +34,29 @@ Channel IDs (left-to-right shanks, tip-to-base, 0-127), clearly marked in its fi
 and import preview. Other unassigned models receive no invented XML/chanCoords.
 
 Neuropixels has no static all-site recording map. After selecting channels, use
-**Save & update**: the plan folder receives `probe_N.channels.xml` and
-`probe_N.chanCoords.channelInfo.mat`, alongside combined `probes.xml`.
-These describe the current selection; missing channels have no inferred position.
-MAT channels are local to that probe; `combined_xml_channel` records the offset
+**Save & update**: `atlaxis/` contains `probe_N.channels.xml` and
+`probe_N.chanCoords.channelInfo.mat`, alongside the plan JSON and support files.
+The plan folder contains combined `<plan-folder>.xml`, `channelmap.mat` and
+`anatomical_map.csv` for PreprocessPipeline. MAT generation requires confirmed
+geometry for every hardware channel. Double-sided/nonplanar maps retain native
+face/depth separation in the standard `zcoords` field.
+The selection companions describe the current selection; missing channels have no inferred position.
+Their MAT channels are local to that probe; `combined_xml_channel` records the offset
 into the combined XML. Saving after Reset/removal removes obsolete managed NP
 companions. IMRO/CSV exports remain manual and are not changed by Save.
-Generated, fully mapped groups in `probes.xml` list the original hardware channel
+Generated, fully mapped groups in `<plan-folder>.xml` list the original hardware channel
 IDs in physical base-to-tip order, matching the per-probe XML companions.
 Explicit imported XML order and groups without known site correspondence remain
 unchanged. Channel-index CSV and MAT rows remain indexed by hardware channel.
+The processing MAT preserves each probe's native distances in µm (XYZ when
+`zcoords` is present, otherwise XY) and uses
+approximate unfolded distances between probes, retaining full physical XYZ in
+`physical_xyz_um`. The anatomical CSV has one column per XML group and no header;
+its labels follow XML channel order. Support files move only when owned by the
+saved bundle's manifest; historical manual exports are preserved.
+PreprocessPipeline's 3D map reader, local reference and postprocess sparsity can use
+standard XYZ. A sorter that reads only XY still ignores separation between faces;
+the Phy display projection must not be mistaken for a 3D sorting geometry.
 
 The NP summary and export README show the electrical reference. New selections
 use external reference (IMRO reference ID 0); this does not mean recording channel

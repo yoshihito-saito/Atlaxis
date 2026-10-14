@@ -35,6 +35,30 @@ data folder and saved settings are retained.
 2. **+ Probe** — choose a probe, check its wiring, and set position, tilt and depth.
 3. Select Neuropixels channels as below, then **Save & Update** to save the plan.
 
+**Save & Update** writes `<plan-folder>.xml`, `channelmap.mat` and
+`anatomical_map.csv` in the plan folder. These combine all probes in plan order.
+Open `atlaxis/plan.json` to edit the saved plan; descriptions, coordinate lists,
+manifests and selection/display companions are also kept under `atlaxis/`.
+Use **Save As Different Plan** (Ctrl+Shift+S) to save the current state in a new
+plan folder. Subsequent **Save & Update** applies to that new plan.
+
+The channelmap uses PreprocessPipeline's `chanMap`/`chanMap0ind`, `connected`,
+`xcoords`/`ycoords`, `kcoords` and `probe_ids` fields. Coordinates are in µm.
+Each probe keeps its native channel distances without scaling. Consecutive
+probe-tip AP/ML distances are unfolded along x, with tip DV offsets along y;
+distances between probes are approximate. Double-sided/nonplanar probes also write
+standard `zcoords`, relative to each probe's minimum native z, so PreprocessPipeline
+can retain within-probe XYZ distances for local reference and postprocess sparsity.
+`physical_xyz_um` separately retains the real 3D positions (AP, right-positive ML, DV).
+Sorting that only uses x/y still omits face separation; writing z does not make a
+2D sorter use 3D distances. Phy's display projection is separate from analysis.
+Unknown wiring prevents MAT output and shows a warning;
+the plan remains saveable. The anatomical CSV has no header: columns follow XML
+groups, and rows follow the channels within each group. Unknown labels are blank.
+
+Saving an older bundle moves only its manifest-owned support files into `atlaxis/`.
+Earlier manual exports remain independent snapshots.
+
 Choose a supported rat or mouse atlas from **Load atlas**. Bregma is set automatically.
 
 ### Skull and craniotomy
@@ -93,11 +117,28 @@ Select a chronic probe, open **Microdrive…**, and choose Cambridge NeuroTech
 1. Click **Select…**, draw an ROI, choose **Region** and **Density**, then **Register**.
 2. **Activate Channels** uses NeuroCarto to select sites within the ROI. Activate
    priority ROIs first; **Add ROI** adds another range while keeping existing assignments.
-3. **Export → IMRO + selection**, then load the `.imro` in
+3. In the right-hand **Geometry**, double-click a Neuropixels site to turn it
+   ON/OFF. Labels identify physical **Site IDs**. Active sites are magenta;
+   inactive sites that can be activated are green; blocked sites are gray.
+   Turning a site OFF makes alternatives sharing its channel available.
+   Double-click the background to fit the view. The **Channel map** also offers
+   **ON** checkboxes and Site IDs, without a Hardware channel column.
+   The default view has one row per hardware channel in the current acquisition
+   routing, including its OFF sites. **Show alternative sites** displays other
+   physical electrodes; green **Available** sites can be added with the current ON sites.
+   **Blocked** sites share a channel with an ON site; turn that site OFF first.
+   In this candidate view, clear **Active / available only** to show blocked sites.
+   Switching to another site on the same hardware channel retains that channel ID.
+4. **Export → IMRO + selection**, then load the `.imro` in
    [Open Ephys](https://open-ephys.github.io/gui-docs/User-Manual/Plugins/Neuropixels-PXI.html#imro-files)
    or [SpikeGLX](https://billkarsh.github.io/SpikeGLX/help/imroTables/).
 
 IMRO fills all 384 channels, including additional sites outside your ROIs when needed.
-The CSV marks targets with `is_target=1`; `.selection.json` restores your ROI selection.
+The support CSV `atlaxis/<IMRO-name>.active_channels.csv` marks targets with
+`is_target=1`; `atlaxis/<IMRO-name>.selection.json` restores your ROI selection.
+The matching `<IMRO-name>.xml` uses the same routing and marks non-target channels
+with `skip=1`. IMRO exports also write `<IMRO-name>.channelmap.mat` and
+`<IMRO-name>.anatomical_map.csv` for that probe; explanations go under `atlaxis/`.
+XML outputs are channel-group templates; add actual recording metadata.
 
 Licensed under [GNU GPL v3.0](LICENSE.md). See [third-party notices](THIRD_PARTY_NOTICES.md).

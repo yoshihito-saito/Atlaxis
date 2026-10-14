@@ -1279,7 +1279,8 @@
       "mapped_channels": 128,
       "curated_correction": true,
       "headstage_profiles": [
-        "builtin-intan"
+        "builtin-intan",
+        "mini-amp-128-e1-d"
       ],
       "source_blob_sha1": "6f607c7b685c15cd5c673e56f46b92fdcc41ff57"
     },
@@ -1481,7 +1482,8 @@
       "mapped_channels": 128,
       "curated_correction": true,
       "headstage_profiles": [
-        "builtin-intan"
+        "builtin-intan",
+        "mini-amp-128-h20"
       ],
       "source_blob_sha1": "2d7eadf699001c6ffad3bda68a5862dee4ed2725"
     },

@@ -194,8 +194,11 @@ def generate(source_dir, destination, *, download=False):
             if "adapter_source_url" in route:
                 profile.update(adapter_source_url=route["adapter_source_url"],
                                adapter_source_sha256=route["adapter_source_sha256"])
-            geometry.metadata["headstage_profiles"] = [profile]
-            geometry.metadata["headstage_fixed"] = route["fixed"]
+            additional_profiles = route.get("additional_profiles", [])
+            geometry.metadata["headstage_profiles"] = [profile, *additional_profiles]
+            geometry.metadata["headstage_fixed"] = route["fixed"] and not additional_profiles
+            for additional_profile in additional_profiles:
+                headstage_map(geometry, additional_profile["id"])
             verified = headstage_map(geometry, profile["id"])
             if route["fixed"]:
                 mapping = verified
@@ -203,6 +206,8 @@ def generate(source_dir, destination, *, download=False):
                 "Manufacturer zero-based Intan / Open Ephys channels. " if route["fixed"] else
                 "Select the connected headstage to assign recording channels. "
             ) + route["note"]
+            if additional_profiles:
+                geometry.metadata["routing_note"] += " Multiple wiring profiles are available; select the actual connection."
             geometry.metadata.setdefault("sources", []).append({"url": route["source_url"],
                                                                  "sha256": route["source_sha256"]})
             geometry.metadata["site_id_convention"] = "Physical source IDs retained; recording channels are assigned by the selected official wiring profile."

@@ -1,15 +1,16 @@
 from dataclasses import fields, asdict, astuple, replace
-from copy import deepcopy
+from copy import copy, deepcopy
 from functools import wraps
 from pathlib import Path
+import json
 
 import numpy as np
-from PySide6.QtCore import QThread, Signal, Qt, QTimer, QUrl
-from PySide6.QtGui import QAction, QDesktopServices
+from PySide6.QtCore import QThread, Signal, Qt, QTimer, QUrl, QSize
+from PySide6.QtGui import QAction, QDesktopServices, QIcon
 from PySide6.QtWidgets import (
     QMainWindow, QWidget, QHBoxLayout, QVBoxLayout, QFormLayout, QGroupBox,
     QLabel, QLineEdit, QPushButton, QDoubleSpinBox, QSplitter,
-    QFileDialog, QMessageBox, QDialog, QToolButton,
+    QFileDialog, QMessageBox, QDialog, QInputDialog, QToolButton,
     QProgressBar, QComboBox, QTabWidget, QStackedWidget,
     QCheckBox, QSlider, QProgressDialog,
 )
@@ -33,10 +34,13 @@ from probe_planner.probes.wiring import headstage_map
 from probe_planner.probes.model import ChannelMap
 from probe_planner.probes.neuropixels import (
     activate_roi, activate_rois_balanced, remove_roi, import_imro, is_neuropixels, active_site_ids,
-    import_selection,
+    import_selection, set_site_active,
 )
 from probe_planner.project.save_load import Plan, load_plan, export_contacts
-from probe_planner.project.bundle import save_planning_bundle, prepare_channel_export, write_channel_export
+from probe_planner.project.bundle import (
+    save_planning_bundle, prepare_channel_export, write_channel_export,
+    planning_bundle_directory, SUPPORT_DIRECTORY,
+)
 from probe_planner.rendering.slice_view import SliceWorkspace
 from probe_planner.rendering.regions import load_region_meshes, default_hidden_regions, brain_display_region_ids
 from probe_planner.rendering.scene import load_display_mesh
@@ -50,7 +54,7 @@ from .skull_dialog import SkullDialog, CraniotomyDialog
 from .drive_dialog import DriveDialog
 from probe_planner.implant.drive import MODELS, updated_mount_pose
 from probe_planner.probes.mounting import is_acute_package, with_package_base
-from .style import STYLE, question
+from .style import STYLE, question, probe_visibility_icon
 
 
 def guarded(function):
@@ -128,12 +132,17 @@ class MainWindow(QMainWindow):
         self.channel_worker = None
         self.save_path = None
         self.busy = False
+        self._history = []
+        self._history_index = -1
+        self._clean_history_index = -1
+        self._restoring_history = False
         toolbar = self.addToolBar("Plan")
         toolbar.setMovable(False)
         self.actions = []
         for label, handler, shortcut in (
             ("Open plan", self.open_project, "Ctrl+O"),
             ("Save && Update", self.save_project, "Ctrl+S"),
+            ("Save As Different Plan", lambda checked: self.save_project(checked, save_as=True), "Ctrl+Shift+S"),
         ):
             action = QAction(label, self)
             if shortcut:
@@ -141,6 +150,15 @@ class MainWindow(QMainWindow):
             action.triggered.connect(handler)
             toolbar.addAction(action)
             self.actions.append(action)
+
+        self.undo_action = QAction("Undo", self)
+        self.undo_action.setShortcut("Ctrl+Z")
+        self.undo_action.triggered.connect(self.undo)
+        toolbar.addAction(self.undo_action)
+        self.redo_action = QAction("Redo", self)
+        self.redo_action.setShortcut("Ctrl+Shift+Z")
+        self.redo_action.triggered.connect(self.redo)
+        toolbar.addAction(self.redo_action)
 
         self.craniotomy_action = toolbar.addAction("Make craniotomy", self.edit_craniotomy)
 
@@ -211,7 +229,22 @@ class MainWindow(QMainWindow):
         self.probe_selector.setAccessibleName("Probe")
         self.probe_selector.currentIndexChanged.connect(self.select_probe)
         self.probe_selector.removeRequested.connect(self.remove_probe)
-        probe_layout.addWidget(self.probe_selector)
+        selector_row = QHBoxLayout()
+        selector_row.addWidget(self.probe_selector, 1)
+        self.probe_eye = QToolButton()
+        self.probe_eye.setObjectName("probeVisibility")
+        self.probe_eye.setCheckable(True)
+        self.probe_eye.setFixedSize(27, 27)
+        self.probe_eye.setIconSize(QSize(18, 18))
+        eye_icon = QIcon()
+        for visible, state in ((True, QIcon.On), (False, QIcon.Off)):
+            eye_icon.addPixmap(probe_visibility_icon(visible).pixmap(QSize(24, 24)),
+                               QIcon.Normal, state)
+        self.probe_eye.setIcon(eye_icon)
+        self.probe_eye.setAccessibleName("Probe visibility")
+        self.probe_eye.clicked.connect(self.toggle_probe_visibility)
+        selector_row.addWidget(self.probe_eye)
+        probe_layout.addLayout(selector_row)
         self.probe_page = QWidget()
         self.probe_page.setObjectName("probePage")
         page_layout = QVBoxLayout(self.probe_page)
@@ -356,6 +389,7 @@ class MainWindow(QMainWindow):
         self.statusBar().addPermanentWidget(self.loading_progress)
         self.loading_progress.hide()
         self.refresh_probe_selector()
+        self._reset_history()
         self.statusBar().showMessage("Load an atlas, then use + to import a probe.")
 
     @property
@@ -373,6 +407,104 @@ class MainWindow(QMainWindow):
     @property
     def pose(self):
         return self.selected_probe.pose if self.selected_probe else ImplantPose()
+
+    @staticmethod
+    def _copy_history_state(state):
+        probes, frame, skull, selected, pending, calibration = state
+        copies = []
+        for probe in probes:
+            saved = copy(probe)
+            saved.channel_map = deepcopy(probe.channel_map)
+            saved.pose = deepcopy(probe.pose)
+            saved.drive = deepcopy(probe.drive)
+            copies.append(saved)
+        saved_skull = copy(skull) if skull is not None else None
+        if saved_skull is not None:
+            saved_skull.openings = deepcopy(skull.openings)
+            saved_skull.landmarks_mm = deepcopy(skull.landmarks_mm)
+            saved_skull.reference_info = deepcopy(skull.reference_info)
+        return copies, deepcopy(frame), saved_skull, selected, set(pending), calibration
+
+    def _history_state(self):
+        return self._copy_history_state((self.probes, self.frame, self.skull,
+                                         self.current_probe_id, self.surface_pending_probes,
+                                         self.calibration_source))
+
+    @staticmethod
+    def _history_key(state):
+        probes, frame, skull, selected, pending, calibration = state
+        probe_key = tuple((probe.id, id(probe.geometry), asdict(probe.channel_map),
+                           astuple(probe.pose), probe.selected_shank_id,
+                           asdict(probe.drive) if probe.drive else None, probe.visible)
+                          for probe in probes)
+        skull_key = None if skull is None else (
+            id(skull.points_mm), id(skull.triangles), skull.source_name,
+            tuple(skull.axes), tuple(skull.rotation_deg), tuple(skull.translation_mm),
+            skull.visible, skull.opacity, skull.approximate, skull.scale,
+            repr(skull.openings), repr(skull.landmarks_mm), repr(skull.reference_info))
+        return probe_key, repr(frame), skull_key, selected, frozenset(pending), calibration
+
+    def _refresh_history_actions(self):
+        if hasattr(self, "undo_action"):
+            available = not self.busy and self.channel_worker is None
+            self.undo_action.setEnabled(available and self._history_index > 0)
+            self.redo_action.setEnabled(available and self._history_index < len(self._history) - 1)
+
+    def _reset_history(self, *, clean=True):
+        state = self._history_state()
+        self._history = [(self._history_key(state), state)]
+        self._history_index = 0
+        self._clean_history_index = 0 if clean else -1
+        self._refresh_history_actions()
+
+    def setWindowModified(self, modified):
+        if self._history_index >= 0 and not self._restoring_history:
+            if modified:
+                state = self._history_state()
+                key = self._history_key(state)
+                if key != self._history[self._history_index][0]:
+                    self._history = self._history[:self._history_index + 1]
+                    if self._clean_history_index > self._history_index:
+                        self._clean_history_index = -1
+                    self._history.append((key, state))
+                    if len(self._history) > 100:
+                        self._history.pop(0)
+                        self._clean_history_index -= 1
+                    self._history_index = len(self._history) - 1
+            else:
+                self._clean_history_index = self._history_index
+            modified = self._history_index != self._clean_history_index
+        super().setWindowModified(modified)
+        self._refresh_history_actions()
+
+    def _restore_history(self, index):
+        if self.busy or self.channel_worker is not None or not 0 <= index < len(self._history):
+            return
+        camera_position = deepcopy(self.slices.plotter.camera_position)
+        self._restoring_history = True
+        try:
+            (self.probes, self.frame, self.skull, self.current_probe_id,
+             self.surface_pending_probes, self.calibration_source) = self._copy_history_state(
+                 self._history[index][1])
+            self._history_index = index
+            self.render_skull(self.skull)
+            self.sync_skull_controls()
+            self.refresh_probe_selector()
+            self.update_calibration_label()
+            self.slices.plotter.camera_position = camera_position
+            self.slices.plotter.render()
+            super().setWindowModified(index != self._clean_history_index)
+            self._refresh_history_actions()
+        finally:
+            self._restoring_history = False
+
+    @guarded
+    def undo(self, checked=False):
+        self._restore_history(self._history_index - 1)
+
+    @guarded
+    def redo(self, checked=False):
+        self._restore_history(self._history_index + 1)
 
     def _add_probe(self, geometry, mapping, mark_modified=True):
         number = 1
@@ -420,6 +552,8 @@ class MainWindow(QMainWindow):
                 summary.selectRequested.connect(lambda: self.workspace_tabs.setCurrentIndex(1))
                 summary.importRequested.connect(self.import_channel_map)
                 summary.exportRequested.connect(self.export_channel_map)
+                summary.siteToggled.connect(lambda site, active, probe_id=probe.id:
+                                            self.set_channel_active(probe_id, site, active))
                 self.probe_summaries[probe.id] = summary
             self.summary_pages.addWidget(self.probe_summaries[probe.id])
         index = next((i for i, p in enumerate(self.probes) if p.id == self.current_probe_id),
@@ -429,6 +563,27 @@ class MainWindow(QMainWindow):
         self.probe_selector.blockSignals(False)
         self.summary_selector.blockSignals(False)
         self.select_probe(index)
+
+    def refresh_probe_eye(self):
+        probe = self.selected_probe
+        visible = probe.visible if probe else False
+        self.probe_eye.blockSignals(True)
+        self.probe_eye.setChecked(visible)
+        self.probe_eye.setToolTip("Hide selected probe and drive in 3D" if visible else
+                                  "Show selected probe and drive in 3D")
+        self.probe_eye.blockSignals(False)
+        self.probe_eye.setEnabled(probe is not None and not self.busy)
+
+    @guarded
+    def toggle_probe_visibility(self, checked=False):
+        probe = self.selected_probe
+        if probe is None or self.busy:
+            self.refresh_probe_eye()
+            return
+        probe.visible = not probe.visible
+        self.refresh_probe_eye()
+        self.slices.outline.show_probes(self.probes, probe, self.frame)
+        self.setWindowModified(True)
 
     def refresh_favorite_button(self):
         probe = self.selected_probe
@@ -471,6 +626,7 @@ class MainWindow(QMainWindow):
         if index is None:
             index = self.probe_selector.currentIndex()
         probe_id = self.probe_selector.itemData(index)
+        previous_id = self.current_probe_id
         self.current_probe_id = probe_id
         self.summary_selector.blockSignals(True)
         self.summary_selector.setCurrentIndex(index if self.probes else -1)
@@ -479,6 +635,7 @@ class MainWindow(QMainWindow):
         for selector in (self.probe_selector, self.summary_selector):
             selector.setToolTip(selector.currentText())
         self.refresh_favorite_button()
+        self.refresh_probe_eye()
         self.shank_selector.blockSignals(True)
         self.shank_selector.clear()
         if self.selected_probe:
@@ -489,6 +646,8 @@ class MainWindow(QMainWindow):
         self.shank_selector.blockSignals(False)
         self.refresh_headstage()
         self.recompute(fit=True)
+        if probe_id != previous_id and self._history_index >= 0 and not self._restoring_history:
+            self.setWindowModified(True)
 
     def refresh_headstage(self):
         probe = self.selected_probe
@@ -668,6 +827,11 @@ class MainWindow(QMainWindow):
             action.setEnabled(not self.busy)
         for action in self.actions[1:]:
             action.setEnabled(ready and not self.busy)
+        for summary in self.probe_summaries.values():
+            if is_neuropixels(summary.probe.geometry):
+                summary.table.setEnabled(not self.busy and self.channel_worker is None)
+        self.refresh_probe_eye()
+        self._refresh_history_actions()
 
     def discard_changes(self):
         if not self.isWindowModified():
@@ -773,7 +937,9 @@ class MainWindow(QMainWindow):
         self.refresh_probe_selector()
         self.update_region_mask()
         self.update_calibration_label()
-        self.setWindowModified(self.pre_load_modified if plan is None else False)
+        dirty = self.pre_load_modified if plan is None else False
+        self._reset_history(clean=not dirty)
+        super().setWindowModified(dirty)
         self.statusBar().showMessage("Atlas ready · Bregma loaded." if self.frame else
                                      "Atlas loaded. No Bregma preset is available; open Bregma settings.")
 
@@ -1114,6 +1280,22 @@ class MainWindow(QMainWindow):
         self.probe_plane.status.setText("ROI removed. Other channel assignments are unchanged.")
 
     @guarded
+    def set_channel_active(self, probe_id, site, active):
+        probe = next((probe for probe in self.probes if probe.id == probe_id), None)
+        if probe is None:
+            return
+        if self.busy or self.channel_worker is not None:
+            self.probe_summaries[probe_id].fill_table()
+            return
+        try:
+            probe.channel_map = set_site_active(probe.geometry, probe.channel_map, site, active)
+        except Exception:
+            self.probe_summaries[probe_id].fill_table()
+            raise
+        self.recompute()
+        self.setWindowModified(True)
+
+    @guarded
     def import_channel_map(self):
         probe = self.selected_probe
         if probe is None or not is_neuropixels(probe.geometry):
@@ -1133,10 +1315,10 @@ class MainWindow(QMainWindow):
         probe = self.selected_probe
         if probe is None:
             return
-        export_directory = self.save_path.parent if self.save_path else planning_path()
+        export_directory = planning_bundle_directory(self.save_path) if self.save_path else planning_path()
         if not is_neuropixels(probe.geometry):
-            filename, _ = QFileDialog.getSaveFileName(self, "Export probe channels",
-                str(export_directory / f"{probe.id}.csv"), "Channels CSV (*.csv)")
+            filename, _ = QFileDialog.getSaveFileName(self, "Export probe coordinates",
+                str(export_directory / SUPPORT_DIRECTORY / f"{probe.id}.csv"), "Probe coordinates CSV (*.csv)")
             if filename:
                 path = Path(filename)
                 if not path.suffix:
@@ -1144,6 +1326,7 @@ class MainWindow(QMainWindow):
                 self.check_export_destination([path])
                 if self.save_path and not self.save_project():
                     return
+                path.parent.mkdir(parents=True, exist_ok=True)
                 export_contacts(path, [row for row in self.rows if row["probe"] == probe.id])
                 self.statusBar().showMessage(f"Exported {path.name}")
             return
@@ -1158,6 +1341,8 @@ class MainWindow(QMainWindow):
             path = path.with_suffix(suffix)
         if path.suffix.lower() != suffix:
             raise ValueError(f"Use the {suffix} extension for the selected export format.")
+        if suffix == ".imro":
+            path = planning_bundle_directory(path) / path.name
         active = active_site_ids(probe.geometry, probe.channel_map)
         files = prepare_channel_export(path, probe, self.rows)
         self.check_export_destination(files)
@@ -1183,9 +1368,17 @@ class MainWindow(QMainWindow):
     def check_export_destination(self, paths):
         if self.save_path is None:
             return
+        directory = planning_bundle_directory(self.save_path)
         reserved = {self.save_path.resolve()} | {
-            (self.save_path.parent / name).resolve() for name in
-            ("bundle_manifest.json", "README.txt", "planned_coordinates.csv", "channel_index.csv", "probes.xml")}
+            (directory / name).resolve() for name in
+            ("bundle_manifest.json", "README.txt", "planned_coordinates.csv", "channel_index.csv", "probes.xml",
+             f"{directory.name}.xml", "channelmap.mat", "anatomical_map.csv")}
+        reserved.update((directory / SUPPORT_DIRECTORY / name).resolve() for name in
+                        ("bundle_manifest.json", "README.txt", "planned_coordinates.csv", "channel_index.csv"))
+        reserved.update((directory / folder / f"probe_{number}.{suffix}").resolve()
+                        for folder in ("", SUPPORT_DIRECTORY)
+                        for number in range(1, len(self.probes) + 1)
+                        for suffix in ("channels.xml", "chanCoords.channelInfo.mat"))
         if any(path.resolve() in reserved for path in paths):
             raise ValueError("Choose an export filename that does not replace a saved-plan file.")
 
@@ -1231,6 +1424,7 @@ class MainWindow(QMainWindow):
         self.channel_worker.failed.connect(lambda message: QMessageBox.critical(self, "Channel selection", message))
         self.channel_worker.finished.connect(self.channel_selection_finished)
         self.channel_worker.start()
+        self.refresh_enabled()
 
     @guarded
     def channels_selected(self, mapping):
@@ -1256,6 +1450,7 @@ class MainWindow(QMainWindow):
         self.channel_progress.deleteLater()
         self.channel_worker.deleteLater()
         self.channel_worker = None
+        self.refresh_enabled()
 
     @guarded
     def save_project(self, checked=False, *, save_as=False):
@@ -1263,34 +1458,48 @@ class MainWindow(QMainWindow):
             raise ValueError("Load an atlas and geometry, then calibrate Bregma before saving a plan.")
         path = self.save_path
         if path is None or save_as:
-            name = f"{path.parent.name}_copy.json" if path else "implant_plan.json"
-            filename, _ = QFileDialog.getSaveFileName(self, "Save planning bundle (new name creates a folder)",
-                str(planning_path() / name), "Implantation plan (*.json)")
-            if not filename:
+            current_directory = planning_bundle_directory(path) if path else None
+            parent = current_directory.parent if current_directory else planning_path()
+            title = "Save As Different Plan" if save_as else "Save Planning Bundle"
+            parent_name = QFileDialog.getExistingDirectory(self,
+                f"{title} - Choose parent folder", str(parent))
+            if not parent_name:
                 return False
-            path = Path(filename)
-            if not path.suffix:
-                path = path.with_suffix(".json")
-            if path.suffix.lower() != ".json":
-                raise ValueError("Use the .json extension for a plan.")
-            if path != self.save_path:
-                path = path.with_suffix("") / "plan.json"
-                if path.parent.exists() and any(path.parent.iterdir()):
-                    if question(self, "Replace planning bundle",
-                            f"Update the plan and companion outputs in {path.parent}?",
-                            QMessageBox.Save | QMessageBox.Cancel, QMessageBox.Cancel) != QMessageBox.Save:
-                        return False
-        save_planning_bundle(path,
+            name = f"{current_directory.name}_copy" if current_directory else "implant_plan"
+            name, accepted = QInputDialog.getText(self, title, "New plan folder name:", text=name)
+            if not accepted:
+                return False
+            name = name.strip()
+            if not name or name in {".", ".."} or Path(name).name != name:
+                raise ValueError("Enter a folder name without a path.")
+            directory = Path(parent_name) / name
+            if save_as and current_directory is not None and directory.resolve() == current_directory.resolve():
+                raise ValueError("Choose a new folder name to save a different plan.")
+            path = directory / "plan.json"
+            if directory.exists() and any(directory.iterdir()):
+                if save_as:
+                    raise ValueError("This plan folder already contains files. Choose a new folder name.")
+                if question(self, "Replace planning bundle",
+                        f"Update the plan and companion outputs in {directory}?",
+                        QMessageBox.Save | QMessageBox.Cancel, QMessageBox.Cancel) != QMessageBox.Save:
+                    return False
+        self.save_path = save_planning_bundle(path,
             Plan.from_instances(self.atlas, self.frame, self.probes, self.current_probe_id,
                                 skull=self.skull), self.atlas, self.rows)
-        self.save_path = path
         self.setWindowModified(False)
-        self.statusBar().showMessage(f"Saved planning bundle · {path.parent}")
+        self.statusBar().showMessage(f"Saved planning bundle · {planning_bundle_directory(self.save_path)}")
+        manifest = json.loads((self.save_path.parent / "bundle_manifest.json").read_text(encoding="utf-8"))
+        if manifest["channelmap_issues"]:
+            QMessageBox.warning(self, "Channelmap unavailable",
+                "The plan and anatomical CSV were saved, but channelmap.mat could not be generated:\n\n"
+                + "\n".join(manifest["channelmap_issues"])
+                + "\n\nSelect confirmed wiring for every hardware input to export the channelmap.")
         return True
 
     @guarded
     def open_project(self, checked=False):
-        filename, _ = QFileDialog.getOpenFileName(self, "Open implantation plan", str(planning_path()), "Plan (*.json)")
+        filename, _ = QFileDialog.getOpenFileName(self, "Open implantation plan",
+            str(planning_path()), "Plan (plan.json)")
         if not filename:
             return
         plan = load_plan(Path(filename))
