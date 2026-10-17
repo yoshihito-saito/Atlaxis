@@ -35,7 +35,7 @@ data folder and saved settings are retained.
 2. **+ Probe** — choose a probe, check its wiring, and set position, tilt and depth.
 3. Select Neuropixels channels as below, then **Save & Update** to save the plan.
 
-**Save & Update** writes `<plan-folder>.xml`, `channelmap.mat` and
+**Save & Update** writes `<plan-folder>.xml`, `chanMap.mat` and
 `anatomical_map.csv` in the plan folder. These combine all probes in plan order.
 Open `atlaxis/plan.json` to edit the saved plan; descriptions, coordinate lists,
 manifests and selection/display companions are also kept under `atlaxis/`.

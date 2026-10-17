@@ -1372,7 +1372,7 @@ class MainWindow(QMainWindow):
         reserved = {self.save_path.resolve()} | {
             (directory / name).resolve() for name in
             ("bundle_manifest.json", "README.txt", "planned_coordinates.csv", "channel_index.csv", "probes.xml",
-             f"{directory.name}.xml", "channelmap.mat", "anatomical_map.csv")}
+             f"{directory.name}.xml", "channelmap.mat", "chanMap.mat", "anatomical_map.csv")}
         reserved.update((directory / SUPPORT_DIRECTORY / name).resolve() for name in
                         ("bundle_manifest.json", "README.txt", "planned_coordinates.csv", "channel_index.csv"))
         reserved.update((directory / folder / f"probe_{number}.{suffix}").resolve()

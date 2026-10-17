@@ -90,8 +90,8 @@ def prepare_channel_export(path, probe, region_rows):
         processing, issues = prepare_pipeline_exports(
             [replace(probe, channel_map=acquisition)], ET.fromstring(xml), region_rows)
         files[path.with_suffix(".anatomical_map.csv")] = processing["anatomical_map.csv"]
-        if "channelmap.mat" in processing:
-            files[path.with_suffix(".channelmap.mat")] = processing["channelmap.mat"]
+        if "chanMap.mat" in processing:
+            files[path.with_suffix(".channelmap.mat")] = processing["chanMap.mat"]
     elif suffix == ".json":
         files = {support / path.name: export_selection(geometry, mapping)}
     elif suffix == ".csv":
@@ -242,7 +242,7 @@ def save_planning_bundle(path, plan, atlas, region_rows):
     files[xml_name] = '<?xml version="1.0" encoding="utf-8"?>\n' + ET.tostring(root, encoding="unicode") + "\n"
     processing, issues = prepare_pipeline_exports(probes, root, region_rows)
     files.update(processing)
-    notes.extend(f"No channelmap.mat: {issue}" for issue in issues)
+    notes.extend(f"No chanMap.mat: {issue}" for issue in issues)
     files[f"{SUPPORT_DIRECTORY}/planned_coordinates.csv"] = _csv(list(coordinates[0]), coordinates)
     files[f"{SUPPORT_DIRECTORY}/channel_index.csv"] = _csv(list(channel_rows[0]), channel_rows)
     files[f"{SUPPORT_DIRECTORY}/README.txt"] = (
@@ -255,7 +255,7 @@ def save_planning_bundle(path, plan, atlas, region_rows):
         "Processing inputs stay in the plan folder; Atlaxis support files are in atlaxis/.\n"
         "anatomical_map.csv has no header: each XML group is a column, with labels in XML channel order.\n"
         "Blank anatomical cells mean unknown wiring, outside/unannotated tissue, or an absent channel.\n"
-        "channelmap.mat is written only when every hardware input has confirmed site geometry.\n"
+        "chanMap.mat is written only when every hardware input has confirmed site geometry.\n"
         "chanMap0ind uses zero-based combined XML/DAT IDs; chanMap uses those same IDs plus one.\n"
         "connected follows XML skip flags. probe_ids identify physical probes; kcoords are unique shank IDs.\n"
         "Coordinates are in um. Nonplanar/double-sided probes also have standard zcoords, retaining native XYZ distances.\n"
@@ -321,7 +321,7 @@ def save_planning_bundle(path, plan, atlas, region_rows):
     # Retire only known obsolete outputs and support files owned by this bundle.
     # Manual IMRO/CSV/selection exports remain independent snapshots.
     for name in set(old_manifest.get("files", [])) - managed:
-        if (name in {"probes.xml", "README.txt", "planned_coordinates.csv", "channel_index.csv", "bundle_manifest.json", "channelmap.mat"}
+        if (name in {"probes.xml", "README.txt", "planned_coordinates.csv", "channel_index.csv", "bundle_manifest.json", "channelmap.mat", "chanMap.mat"}
                 or name == path.name
                 or re.fullmatch(r"(?:atlaxis/)?probe_\d+\.(?:channels\.xml|chanCoords\.channelInfo\.mat)", name)):
             (directory / name).unlink(missing_ok=True)

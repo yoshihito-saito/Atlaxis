@@ -91,5 +91,5 @@ def prepare_pipeline_exports(probes, xml_root, region_rows):
         payload["zcoords"] = np.array([row[7] for row in rows]).reshape(-1, 1)
     binary = io.BytesIO()
     savemat(binary, payload, do_compression=True)
-    files["channelmap.mat"] = binary.getvalue()
+    files["chanMap.mat"] = binary.getvalue()
     return files, issues
