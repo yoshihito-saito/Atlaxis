@@ -4,8 +4,9 @@
 
 Save the plan's combined processing map as `chanMap.mat`, preserving its MATLAB
 variables, channel ordering and coordinates. Build v0.2.2 with the existing
-desktop workflow, then update this PC's Windows installation. Manual
-per-IMRO companion names remain independent snapshots.
+desktop workflow, update this PC's Windows installation, and publish matching
+installers/source following the user's explicit approval. Manual per-IMRO
+companion names remain independent snapshots.
 
 ## Steps
 
@@ -15,6 +16,8 @@ per-IMRO companion names remain independent snapshots.
 3. Commit, push and tag the build commit; run the existing desktop workflow.
 4. Verify the matching Windows artifact and install the update locally without
    changing user data.
+5. Following explicit approval, publish both native installers and matching
+   source, verifying uploaded sizes/hashes and the Latest release.
 
 ## Source review
 
@@ -41,5 +44,18 @@ The log is `dist/release-v0.2.2/install-windows.log`. GUI operations were not te
 GitHub Release publication was attempted as part of the inferred update flow but
 blocked before execution by automatic approval review: the current request
 explicitly authorized push and local installation, not a new public Release.
-No Release was created or asset uploaded. Publication awaits explicit approval;
-the requested build, push and local installation are complete.
+No Release was created or asset uploaded by that attempt. The user subsequently
+explicitly approved publication; resume using the existing successful build.
+The requested build, push and local installation are complete.
+
+## Publication outcome
+
+[Atlaxis v0.2.2](https://github.com/yoshihito-saito/Atlaxis/releases/tag/v0.2.2)
+was published as Latest with `Atlaxis-Windows-x64-Setup.exe`,
+`Atlaxis-macOS-arm64.dmg` and `Atlaxis-source.zip`. Both downloaded Actions
+archives matched their API sizes/SHA-256 digests; their source ZIPs matched the
+tagged commit and package/runtime/lock version 0.2.2. The macOS source ZIP is the
+published source archive. All three uploaded asset sizes/SHA-256 digests matched
+the prepared files, and the latest-release API confirmed publication.
+The published Windows installer hash matches the installer used on this PC.
+No additional GUI, real-data or downstream sorting checks were run.
