@@ -54,6 +54,23 @@ installation, and publish matching Windows/macOS installers and source as Latest
 ## Desktop release
 
 - The user authorized rebuilding, local installation, and release publication.
-- The current local/remote main is `adfc383390d770fb4760e3340cace4d0fe647089`;
-  Latest is v0.2.2 and v0.2.3 does not yet exist.
-- Native builds, artifact verification, installation, and publication are pending.
+- Build commit `9b6c8685cad3a9682f45cc82e60ba47a3326c83b` and annotated tag
+  `v0.2.3` were pushed. The
+  [desktop build](https://github.com/yoshihito-saito/Atlaxis/actions/runs/39480847095)
+  succeeded for Windows x64 and macOS arm64.
+- Both downloaded Actions archives matched their API sizes/SHA-256 digests.
+  Their source ZIPs matched the tagged commit and package/runtime/lock version
+  0.2.3.
+- After a normal close request, the user saved and closed the running application.
+  The Windows installer exited 0 and the uninstall registry confirmed version
+  0.2.3 at `C:\Users\aalab\AppData\Local\Programs\Atlaxis`.
+  The installation log is `dist/release-v0.2.3/install-windows.log`.
+- The installed Windows installer SHA-256 is
+  `206477364f6e8dd84ebf74995717dfda13d0fb9432b12ccdde6ba1cf3fd6e0e8`.
+- [Atlaxis v0.2.3](https://github.com/yoshihito-saito/Atlaxis/releases/tag/v0.2.3)
+  is published as Latest with the Windows installer, macOS DMG, and matching
+  source ZIP. All uploaded sizes/SHA-256 digests matched the prepared files;
+  the public Windows installer is the one used for the local update.
+- Packaged GUI operations and atlas downloads were not tested. The source-based
+  first-download result above is unchanged; native build and artifact checks do
+  not establish full GUI or scientific validation.
