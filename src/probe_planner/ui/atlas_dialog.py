@@ -33,7 +33,9 @@ class AtlasDialog(QDialog):
             name: get_local_atlas_version(name)
             for name in self.downloaded & _AUTOMATIC_ATLASES.keys()
         }
-        self.versions = {}
+        # Show supported candidates even on first launch without a catalogue.
+        # Cached, online, and installed versions still take precedence.
+        self.versions = _AUTOMATIC_ATLASES.copy()
         root = config.get_brainglobe_dir()
         for filename in ("last_versions.conf", "custom_atlases.conf"):
             cached = ConfigParser()
@@ -55,7 +57,10 @@ class AtlasDialog(QDialog):
         self.table.setRootIsDecorated(False)
         self.table.setColumnWidth(0, 475)
         layout.addWidget(self.table, 1)
-        self.status = QLabel("Checking the BrainGlobe catalogue…")
+        self.status = QLabel(
+            "Checking the BrainGlobe catalogue… Supported atlases are already listed; "
+            "the server may take over a minute to respond."
+        )
         self.status.setWordWrap(True)
         layout.addWidget(self.status)
         self.calibration = QLabel()
@@ -75,7 +80,8 @@ class AtlasDialog(QDialog):
         # running QThread, and no network work blocks the GUI thread.
         self.network = QNetworkAccessManager(self)
         request = QNetworkRequest(QUrl(descriptors.remote_url_base.format("last_versions.conf")))
-        request.setTransferTimeout(10_000)
+        # Allow for the catalogue server's slow initial response on first use.
+        request.setTransferTimeout(90_000)
         self.reply = self.network.get(request)
         self.reply.finished.connect(self.catalogue_finished)
 
@@ -149,7 +155,10 @@ class AtlasDialog(QDialog):
                 "Missing data downloads when you click Load."
             )
         except (ValueError, ConfigError, UnicodeError) as error:
-            self.status.setText("Catalogue refresh unavailable; showing locally known atlases.")
+            self.status.setText(
+                "Catalogue refresh unavailable; showing supported atlas candidates. "
+                "Downloading missing data requires an internet connection."
+            )
             self.status.setToolTip(str(error))
         finally:
             self.reply.deleteLater()
