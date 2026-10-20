@@ -41,12 +41,21 @@
       "tag": "v6.22.3",
       "revision": "ecd7993d65c43b254f4e3f718e36d5b4a70a3ed5",
       "source_archive": "https://github.com/pyinstaller/pyinstaller/archive/ecd7993d65c43b254f4e3f718e36d5b4a70a3ed5.tar.gz"
+    },
+    {
+      "component": "itkwasm-downsample",
+      "repository": "https://github.com/InsightSoftwareConsortium/ITK-Wasm",
+      "version": "2.0.2",
+      "revision": "36cf6e457acd4ca24cde2a1ae95604f2698d1029",
+      "source_archive": "https://github.com/InsightSoftwareConsortium/ITK-Wasm/archive/36cf6e457acd4ca24cde2a1ae95604f2698d1029.tar.gz"
     }
   ],
   "versions": {
     "qt": "6.11.2",
     "vtk": "9.5.2",
-    "pyinstaller": "6.22.3"
+    "pyinstaller": "6.22.3",
+    "itkwasm-downsample": "2.0.2",
+    "itkwasm-downsample-wasi": "2.0.2"
   },
   "scope": "Original license, copyright and attribution files from pinned source trees. Includes optional/platform-specific components; not an assertion that every listed component is bundled.",
   "files": [
@@ -1419,6 +1428,11 @@
       "path": "vtk/Utilities/MetaIO/vtkmetaio/License.txt",
       "url": "https://raw.githubusercontent.com/Kitware/VTK/7c0494a68bff379d32d6b1fbaa3d10d27a73af54/Utilities/MetaIO/vtkmetaio/License.txt",
       "sha256": "de2b1b69404af9ca85e649957a57ea0b0cd2fa89c90ca999954d8ca9fae0c09b"
+    },
+    {
+      "path": "itkwasm-downsample/LICENSE",
+      "url": "https://raw.githubusercontent.com/InsightSoftwareConsortium/ITK-Wasm/36cf6e457acd4ca24cde2a1ae95604f2698d1029/LICENSE",
+      "sha256": "aac73b3148f6d1d7111dbca32099f68d26c644c6813ae1e4f05f6579aa2663fe"
     }
   ]
 }

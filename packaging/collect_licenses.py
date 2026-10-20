@@ -121,6 +121,10 @@ def collect(output: Path, *, include_build_tool: bool = False) -> dict:
             if dist.version != upstream["versions"][name]:
                 raise RuntimeError(f"Refresh the {name} upstream notices for {dist.version}")
             supplemental.append(f"../upstream/{name}/")
+        if name in {"itkwasm-downsample", "itkwasm-downsample-wasi"}:
+            if dist.version != upstream["versions"][name]:
+                raise RuntimeError(f"Refresh the {name} upstream notices for {dist.version}")
+            supplemental.append("../upstream/itkwasm-downsample/")
         if not files and not supplemental:
             raise RuntimeError(f"No license text found for {name} {dist.version}")
         packages.append({

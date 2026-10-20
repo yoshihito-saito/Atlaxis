@@ -5,8 +5,10 @@
 Make supported atlas candidates available on a fresh installation and use the
 official BrainGlobe 3/S3 distribution for new downloads. Preserve existing v2
 data and saved-plan versions, coordinate conventions, physical units, and label
-IDs. Build v0.3.0 with the existing desktop workflow, update this PC's Windows
+IDs. Build v0.3.1 with the existing desktop workflow, update this PC's Windows
 installation, and publish matching Windows/macOS installers and source as Latest.
+The initial v0.3.0 build stopped before packaging; deliver the repaired build as
+v0.3.1 without replacing the existing v0.3.0 tag.
 
 ## Implementation steps
 
@@ -15,7 +17,7 @@ installation, and publish matching Windows/macOS installers and source as Latest
    bounded image-memory use and a separate reader for existing v2 folders.
 3. Make chooser versions explicit and retain coordinate/preset contracts for
    recognized grids; check one fresh Allen mouse loading path.
-4. Synchronize package/runtime/lock versions to 0.3.0, commit and tag the release,
+4. Synchronize package/runtime/lock versions to 0.3.1, commit and tag the release,
    push it, and run the existing native desktop workflow.
 5. Verify matching artifacts, install the Windows update, publish the release,
    and record the final outcome and validation limits.
@@ -139,7 +141,7 @@ Follow-up evidence:
 - Bundle Wasmtime's platform library at its package-relative location, as its
   ctypes loader constructs that location dynamically in the new dependency.
 
-## v0.3.0 validation and release progress
+## BrainGlobe 3 migration validation and release progress
 
 - Reviewed the scoped source diff. Ran the existing `AtlasLoader.run` path once
   with an empty, isolated temporary data folder and Allen mouse 50 um v3.1.
@@ -156,4 +158,18 @@ Follow-up evidence:
   the local result. No tests were added or package-wide suites run.
 - Other resolutions, rat volumes, existing legacy-folder runtime loading,
   packaged GUI operation, and anatomical landmark accuracy were not validated.
-- Native build/install and release publication remain pending.
+- The v0.3.0 build at `5ddfa43214a577c7558f439b7b309230c80432c6` failed
+  on both platforms in the existing license collection step:
+  `No license text found for itkwasm-downsample 2.0.2`. No installers were
+  published or installed. The
+  [failed build](https://github.com/yoshihito-saito/Atlaxis/actions/runs/39507807100)
+  and tag are retained.
+- Add the original Apache-2.0 license from ITK-Wasm commit
+  `36cf6e457acd4ca24cde2a1ae95604f2698d1029`, whose downsample dispatcher and
+  WASI version files both read 2.0.2. Pin the supplemental notices to those
+  versions without weakening the missing-notice check. Publish as v0.3.1.
+- Reran the failed runtime license-collection stage locally with the corrected
+  notices: 88 distributions and Python notices collected successfully. The
+  native build will additionally collect its build-tool notices. Atlas-loading
+  logic was unchanged after the successful S3 check above.
+- Repaired native build/install and release publication remain pending.

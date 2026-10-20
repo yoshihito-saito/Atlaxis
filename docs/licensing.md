@@ -31,6 +31,8 @@ To update the snapshot, collect to an empty staging directory and review the
 replacement. Upstream files under `third_party/licenses/upstream/` retain their
 original contents; their manifest records pinned source commits, file URLs and
 hashes. Refresh them from those projects when updating dependency versions.
+The ITK-Wasm downsample 2.0.2 Python wheels omit their license text; the pinned
+upstream Apache-2.0 license supplements both the dispatcher and WASI packages.
 
 The index may contain more packages than the frozen app. Installed metadata and
 RECORD files cannot prove that every embedded native dependency has been found.
