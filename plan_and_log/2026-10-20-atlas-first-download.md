@@ -172,4 +172,24 @@ Follow-up evidence:
   notices: 88 distributions and Python notices collected successfully. The
   native build will additionally collect its build-tool notices. Atlas-loading
   logic was unchanged after the successful S3 check above.
-- Repaired native build/install and release publication remain pending.
+- Build commit `a303fd1258d0292c0d52aac717a05f387b247a49` and annotated tag
+  `v0.3.1` were pushed. The
+  [native build](https://github.com/yoshihito-saito/Atlaxis/actions/runs/39508332187)
+  succeeded for Windows x64 and macOS arm64, including build-tool notices.
+- Both downloaded Actions archives matched their API sizes and SHA-256 digests.
+  Their source ZIPs matched the tagged commit and package/runtime/lock version
+  0.3.1. All three uploaded release assets matched the prepared sizes/digests.
+- With Atlaxis closed, the verified Windows installer exited 0. The uninstall
+  registry confirmed version 0.3.1 at
+  `C:\Users\aalab\AppData\Local\Programs\Atlaxis`; the executable exists there.
+  The installation log is `dist/release-v0.3.1/install-windows.log`.
+- [Atlaxis v0.3.1](https://github.com/yoshihito-saito/Atlaxis/releases/tag/v0.3.1)
+  is published as Latest with the Windows installer, macOS DMG and matching
+  source ZIP. The public Windows installer is the one used for this PC's update.
+- Asset SHA-256 values:
+  - Windows: `20860d3984cbe59eb33300155c41509eb78e22335814536f26bba4f6bdbe4d51`.
+  - macOS: `2bb6244602d256d703d419a32a93c0f4bac6d535324d52752218701d26c82c37`.
+  - Source: `6fdd093878b7317f2f4dd4662ebb1a41099f64ec33e914867e27f283843549ea`.
+- Delivery is complete. The source-run validation and its limits above remain
+  unchanged: packaged GUI operation, other resolutions/rat data, legacy-folder
+  runtime loading and anatomical landmark accuracy were not validated.
