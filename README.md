@@ -60,6 +60,10 @@ Saving an older bundle moves only its manifest-owned support files into `atlaxis
 Earlier manual exports remain independent snapshots.
 
 Choose a supported rat or mouse atlas from **Load atlas**. Bregma is set automatically.
+New downloads use the official BrainGlobe S3 distribution. The chooser displays
+atlas versions explicitly. Existing local legacy atlases and saved plans keep
+their original versions; a missing legacy atlas must be restored from its
+original data folder. Loading a newer atlas does not upgrade an older plan.
 
 ### Skull and craniotomy
 

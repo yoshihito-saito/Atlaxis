@@ -16,7 +16,7 @@ uv sync --locked
 uv run atlaxis
 ```
 
-The repository selects Python 3.11 through `.python-version`; `uv sync --locked`
+The repository selects Python 3.12 through `.python-version`; `uv sync --locked`
 creates `.venv` and installs the pinned dependencies from `uv.lock`, including
 BrainGlobe and NeuroCarto. No separate NeuroCarto server is needed.
 If using a repository-local uv installation, run `.tools/bin/uv run atlaxis`.
@@ -24,6 +24,12 @@ If using a repository-local uv installation, run `.tools/bin/uv run atlaxis`.
 macOS Apple Silicon and Windows x64 are the intended desktop platforms.
 Source runs use the same first-launch data-folder dialog as packaged apps.
 Atlas volumes download on demand and are not part of the environment install.
+BrainGlobe 3.0.3 reads the official S3 distribution; Atlaxis adapts its selected
+OME-Zarr level to unresampled, disk-backed TIFFs and its decoded meshes to OBJ.
+The level's physical translation is subtracted from meshes and Bregma together,
+so the application's atlas coordinates remain relative to the first voxel.
+Label IDs, physical spacing, pitch and in-vivo scale parameters are preserved.
+Existing v2 TIFF/JSON/OBJ folders are read locally without conversion or upgrades.
 
 ## Build a standalone app
 
@@ -31,7 +37,7 @@ Atlas volumes download on demand and are not part of the environment install.
 Python, dependencies and the probe library. Atlas volumes and user plans are not
 bundled. The supplied `logo/Atlaxis.icns` is the macOS app icon, `logo/Atlaxis.ico`
 is the Windows executable icon, and `logo/Atlaxis.png` is included for Qt windows
-in source, wheel and standalone launches. Build on the target OS with Python 3.11:
+in source, wheel and standalone launches. Build on the target OS with Python 3.12:
 
 ```sh
 uv sync --locked

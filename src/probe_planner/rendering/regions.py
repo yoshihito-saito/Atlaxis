@@ -91,7 +91,7 @@ def load_region_meshes(atlas, progress):
     for index, region_id in enumerate(sorted(labels), 1):
         region = atlas.structures[region_id]
         progress(f"Preparing 3D regions… {index}/{len(labels)} · {region['acronym']}")
-        path = (None if region.get("metadata_missing") else
+        path = (None if region.get("metadata_missing") or region_id in parents or region_id in clipped_labels else
                 Path(atlas.backend.meshfile_from_structure(region_id)))
         # Parent mesh files include their descendants; using them for a direct
         # parent label would make unchecked children remain visible.

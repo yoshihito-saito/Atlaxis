@@ -859,9 +859,10 @@ class MainWindow(QMainWindow):
         from .atlas_dialog import AtlasDialog
 
         current = self.atlas.name if self.atlas is not None else "whs_sd_rat_39um"
-        dialog = AtlasDialog(current, self)
+        dialog = AtlasDialog(current, self, current_version=self.atlas.version if self.atlas is not None else None)
         accepted = dialog.exec() == QDialog.Accepted
         name = dialog.selected_name
+        version = dialog.selected_version
         dialog.deleteLater()
         if not accepted:
             return
@@ -870,7 +871,7 @@ class MainWindow(QMainWindow):
         if self.atlas is not None and not self.discard_changes():
             return
         self.pending_plan = None
-        self.begin_load(name)
+        self.begin_load(name, version)
 
     def begin_load(self, name, version=None):
         if not name:

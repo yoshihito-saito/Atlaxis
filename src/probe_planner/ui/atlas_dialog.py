@@ -3,7 +3,6 @@
 from configparser import ConfigParser, Error as ConfigError
 
 from brainglobe_atlasapi import config, descriptors
-from brainglobe_atlasapi.list_atlases import get_downloaded_atlases, get_local_atlas_version
 from PySide6.QtCore import QUrl
 from PySide6.QtNetwork import QNetworkAccessManager, QNetworkReply, QNetworkRequest
 from PySide6.QtWidgets import (
@@ -11,41 +10,18 @@ from PySide6.QtWidgets import (
     QVBoxLayout,
 )
 
-
-# Chooser policy; older saved plans retain backend support for other atlases.
-# Versions must have matching presets in atlas_default_coordinates.
-_AUTOMATIC_ATLASES = {
-    "whs_sd_rat_39um": "1.2",
-    "whs_sd_swc_female_rat_39um": "1.0",
-    "allen_mouse_10um": "1.2",
-    "allen_mouse_25um": "1.2",
-    "allen_mouse_50um": "1.2",
-}
+from probe_planner.atlas.catalogue import S3_VERSIONS, local_atlases, supported_version
 
 
 class AtlasDialog(QDialog):
-    def __init__(self, current="whs_sd_rat_39um", parent=None):
+    def __init__(self, current="whs_sd_rat_39um", parent=None, *, current_version=None):
         super().__init__(parent)
         self.setWindowTitle("Load atlas")
         self.resize(700, 520)
-        self.downloaded = set(get_downloaded_atlases())
-        self.local_versions = {
-            name: get_local_atlas_version(name)
-            for name in self.downloaded & _AUTOMATIC_ATLASES.keys()
-        }
-        # Show supported candidates even on first launch without a catalogue.
-        # Cached, online, and installed versions still take precedence.
-        self.versions = _AUTOMATIC_ATLASES.copy()
         root = config.get_brainglobe_dir()
-        for filename in ("last_versions.conf", "custom_atlases.conf"):
-            cached = ConfigParser()
-            try:
-                cached.read(root / filename, encoding="utf-8")
-                if cached.has_section("atlases"):
-                    self.versions.update(cached.items("atlases"))
-            except (OSError, ConfigError):
-                # The online request below can recover an unreadable catalogue.
-                pass
+        self.downloaded = local_atlases(root)
+        # Pin recognized grids so first-launch candidates need no network request.
+        self.versions = S3_VERSIONS.copy()
 
         layout = QVBoxLayout(self)
         layout.addWidget(QLabel("Rat and mouse atlases with automatic Bregma presets."))
@@ -53,13 +29,14 @@ class AtlasDialog(QDialog):
         self.search.setPlaceholderText("Search atlases (e.g. rat, mouse, Allen)")
         layout.addWidget(self.search)
         self.table = QTreeWidget()
-        self.table.setHeaderLabels(["Atlas", "Data"])
+        self.table.setHeaderLabels(["Atlas", "Version", "Data"])
         self.table.setRootIsDecorated(False)
-        self.table.setColumnWidth(0, 475)
+        self.table.setColumnWidth(0, 340)
+        self.table.setColumnWidth(1, 65)
         layout.addWidget(self.table, 1)
         self.status = QLabel(
-            "Checking the BrainGlobe catalogue… Supported atlases are already listed; "
-            "the server may take over a minute to respond."
+            "Checking the BrainGlobe S3 catalogue… "
+            "Missing data downloads when you click Load."
         )
         self.status.setWordWrap(True)
         layout.addWidget(self.status)
@@ -74,13 +51,12 @@ class AtlasDialog(QDialog):
         self.table.currentItemChanged.connect(self.selection_changed)
         self.table.itemDoubleClicked.connect(lambda *_: self.accept())
         self.search.textChanged.connect(self.filter_atlases)
-        self.populate(current)
+        self.populate((current, current_version or self.versions.get(current)))
 
         # Qt owns the request lifetime; closing the dialog does not leave a
         # running QThread, and no network work blocks the GUI thread.
         self.network = QNetworkAccessManager(self)
-        request = QNetworkRequest(QUrl(descriptors.remote_url_base.format("last_versions.conf")))
-        # Allow for the catalogue server's slow initial response on first use.
+        request = QNetworkRequest(QUrl(descriptors.remote_url_s3_http.format("atlases/last_versions.conf")))
         request.setTransferTimeout(90_000)
         self.reply = self.network.get(request)
         self.reply.finished.connect(self.catalogue_finished)
@@ -90,23 +66,27 @@ class AtlasDialog(QDialog):
         item = self.table.currentItem()
         return item.text(0) if item is not None and not item.isHidden() else ""
 
+    @property
+    def selected_version(self):
+        item = self.table.currentItem()
+        return item.text(1) if self.selected_name else None
+
     def populate(self, selected):
         self.table.blockSignals(True)
         self.table.clear()
-        # BrainGlobe opens downloaded data without upgrading it. An unsupported
-        # local version must not be presented as automatic based on a newer listing.
-        versions = self.versions | self.local_versions
-        names = sorted((name for name, version in versions.items()
-                        if name in _AUTOMATIC_ATLASES
-                        and version == _AUTOMATIC_ATLASES[name]), key=lambda name: (
-            name not in self.downloaded,
-            0 if "_rat_" in name else 1 if "_mouse_" in name else 2,
-            name,
+        pairs = sorted((pair for pair in (set(self.versions.items()) | self.downloaded)
+                        if supported_version(*pair)), key=lambda pair: (
+            pair not in self.downloaded,
+            0 if "_rat_" in pair[0] else 1 if "_mouse_" in pair[0] else 2,
+            pair,
         ))
-        for name in names:
-            item = QTreeWidgetItem([name, "Downloaded" if name in self.downloaded else "Download on load"])
+        for name, version in pairs:
+            legacy = int(version.split(".")[0]) < 3
+            data = ("Local (legacy)" if legacy else "Cached (completes on load)"
+                    if (name, version) in self.downloaded else "Download on load")
+            item = QTreeWidgetItem([name, version, data])
             self.table.addTopLevelItem(item)
-            if name == selected:
+            if (name, version) == selected:
                 self.table.setCurrentItem(item)
         self.table.blockSignals(False)
         self.filter_atlases()
@@ -147,8 +127,11 @@ class AtlasDialog(QDialog):
             versions = dict(catalogue.items("atlases"))
             if not versions:
                 raise ValueError("The atlas catalogue is empty.")
-            selected = self.selected_name
-            self.versions.update(versions)
+            selected = self.selected_name, self.selected_version
+            self.versions.update({name: version.replace("_", ".") for name, version in versions.items()
+                                  if name in S3_VERSIONS
+                                  and supported_version(name, version.replace("_", "."))
+                                  and version.replace("_", ".").startswith("3.")})
             self.populate(selected)
             self.status.setText(
                 f"{self.table.topLevelItemCount()} supported atlases · "

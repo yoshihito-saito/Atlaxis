@@ -359,15 +359,16 @@ def atlas_default_coordinates(atlas):
                         "allen_mouse_50um": 50.0, "allen_mouse_100um": 100.0}.get(atlas.name)
     if allen_resolution is not None:
         expected_shape = tuple(int(size / allen_resolution) for size in (13200, 8000, 11400))
-        if (atlas.version == "1.2" and atlas.orientation == "asr"
+        if (atlas.version in {"1.2", "3.0", "3.1"} and atlas.orientation == "asr"
                 and tuple(atlas.resolution_um) == (allen_resolution,) * 3
                 and atlas.annotation.shape == expected_shape):
-            return AtlasCoordinates(atlas.resolution_um, atlas.orientation, (5400.0, 0.0, 5700.0),
+            bregma = np.array([5400.0, 0.0, 5700.0]) - getattr(atlas.backend, "origin_um", 0)
+            return AtlasCoordinates(atlas.resolution_um, atlas.orientation, tuple(bregma),
                                     pitch_correction_deg=-5.0,
                                     in_vivo_scale_ap_ml_dv=(1.031, .952, .885))
         return None
     if atlas.name == "whs_sd_swc_female_rat_39um":
-        if (atlas.version != "1.0" or atlas.orientation != "asr"
+        if (atlas.version not in {"1.0", "3.0"} or atlas.orientation != "asr"
                 or atlas.annotation.shape != (1024, 512, 512)
                 or tuple(atlas.resolution_um) != (39.0, 39.0, 39.0)):
             return None
@@ -377,16 +378,23 @@ def atlas_default_coordinates(atlas):
         # convention and packaged 39 um spacing. No transform is in metadata.
         # Source: brainglobe/brainglobe-atlasapi, atlas_scripts/whs_sd_swc_female_rat.py
         bregma = np.array([1024.0 - 653.0, 512.0 - 440.0, 246.0]) * 39.0
+        bregma -= getattr(atlas.backend, "origin_um", 0)
         return AtlasCoordinates(atlas.resolution_um, atlas.orientation, tuple(bregma),
                                 pitch_correction_deg=float(np.rad2deg(np.arctan2(-24.0, 211.0))))
-    if (atlas.name != "whs_sd_rat_39um" or atlas.version != "1.2"
+    if (atlas.name != "whs_sd_rat_39um" or atlas.version not in {"1.2", "3.0"}
             or atlas.orientation != "asr" or atlas.annotation.shape != (1024, 512, 512)
             or tuple(atlas.resolution_um) != (39.0, 39.0, 39.0)):
         return None
-    matrix = np.asarray(atlas.backend.metadata.get("trasform_to_bg"), dtype=float)
-    if matrix.shape != (4, 4) or not np.isfinite(matrix).all():
-        return None
-    native_bregma_um = np.array([[246.0, 653.0, 440.0]]) * 39.0
-    bregma = transform_points(native_bregma_um, matrix)[0]
+    if atlas.version == "3.0":
+        # The v3 packager retains the WHS LPI source but omits the legacy
+        # matrix. LPI -> ASR reorders y/z/x and flips all three full extents.
+        bregma = np.array([1024.0 - 653.0, 512.0 - 440.0, 512.0 - 246.0]) * 39.0
+        bregma -= getattr(atlas.backend, "origin_um", 0)
+    else:
+        matrix = np.asarray(atlas.backend.metadata.get("trasform_to_bg"), dtype=float)
+        if matrix.shape != (4, 4) or not np.isfinite(matrix).all():
+            return None
+        native_bregma_um = np.array([[246.0, 653.0, 440.0]]) * 39.0
+        bregma = transform_points(native_bregma_um, matrix)[0]
     return AtlasCoordinates(atlas.resolution_um, atlas.orientation, tuple(bregma),
                             pitch_correction_deg=float(np.rad2deg(np.arctan2(-24.0, 211.0))))

@@ -6,7 +6,7 @@ import sys
 from tempfile import TemporaryDirectory
 import tomllib
 
-from PyInstaller.utils.hooks import collect_data_files, collect_submodules, copy_metadata
+from PyInstaller.utils.hooks import collect_data_files, collect_dynamic_libs, collect_submodules, copy_metadata
 
 root = Path(SPECPATH).parent
 version = tomllib.loads((root / "pyproject.toml").read_text(encoding="utf-8"))["project"]["version"]
@@ -40,6 +40,8 @@ a = Analysis(
     [str(root / "src/probe_planner/__main__.py")],
     pathex=[str(root / "src")],
     datas=datas,
+    # ngff-zarr's Wasm dependency resolves its platform library with ctypes.
+    binaries=collect_dynamic_libs("wasmtime"),
     hiddenimports=collect_submodules("neurocarto.probe_npx") + collect_submodules("vtkmodules"),
     excludes=["PyQt5", "PyQt6", "PySide2"],
 )

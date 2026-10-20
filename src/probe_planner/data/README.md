@@ -6,6 +6,9 @@ Plan electrophysiology probe placement and Neuropixels recording channels in a
 ## Folders
 
 - `atlases/`: downloaded BrainGlobe atlases. Atlases download when first loaded.
+  New downloads use official S3 data under `brainglobe-atlasapi/`; disk-backed
+  images and converted meshes are under `probe_planner_cache/`. Existing legacy
+  atlas folders remain usable. Keep them for plans that require their versions.
 - `probes/standard/`: the bundled probe library and its reference files.
 - `probes/custom/`: your own probe definitions.
 - `planning/`: saved plans, coordinates and channel-map outputs.
