@@ -214,3 +214,36 @@ Implementation steps:
 3. Install over the currently mixed runtime and check the installed files and
    actual application startup. Keep this check scoped to the reported failure.
 4. Publish the matching release artifacts and record the result and limits.
+
+Outcome:
+
+- Added `[InstallDelete]` for `{app}\_internal` before the installer copies the
+  new bundle. No atlas-loading, coordinate or user-storage logic changed.
+- Build commit `5a0726c1901f30aadf482430ce51c706916c65c4`, annotated tag `v0.3.2`,
+  and [desktop build 40104690903](https://github.com/yoshihito-saito/Atlaxis/actions/runs/40104690903)
+  completed successfully for Windows x64 and macOS arm64.
+- Before installing, verified the replacement folder was the normal `_internal`
+  subdirectory of the existing Atlaxis installation, the configured user-data
+  folder was outside it, and Atlaxis was not running. The affected mixed runtime
+  was retained until the new installer replaced it, so this exercised upgrading
+  the installation that produced the reported error.
+- The installer exited 0 and registered version 0.3.2. `python311.dll` was absent,
+  the installed VTK directory contained zero cp311 modules, and the cp312 VTK
+  core was present. The user-data root remained available. Installation log:
+  `dist/release-v0.3.2/install-windows.log`.
+- Launched the installed executable and visually confirmed the Atlaxis main
+  window opened without the reported error using Windows Computer Use. Left
+  the application open. This scoped check stopped at startup; no tests were
+  added and no package-wide test suite or atlas download was run again.
+- [v0.3.2](https://github.com/yoshihito-saito/Atlaxis/releases/tag/v0.3.2) is
+  published as Latest. Both Actions archives matched their API sizes/digests;
+  source commits and package/runtime/lock versions matched the tag. Uploaded
+  asset sizes/digests matched the prepared files. The public Windows installer
+  is the same one used for the verified local upgrade.
+- Asset SHA-256 values:
+  - Windows: `9850438ef873621b65d0bf4a1c9cbee35e4e7237bc8dc185911310ec3ea46fd9`.
+  - macOS: `847af3c43624551ab677b88b9dbf9a02f8ad4fa16c3cf716992f9638d874bf4d`.
+  - Source: `7f668483443e1fe8787d2eb6aaf96adaf0cca949eb78d5f18520c2f2d0a48f88`.
+- This resolves the reported Windows startup failure. Full packaged atlas
+  loading, macOS interactive operation and anatomical accuracy remain outside
+  this follow-up's validation scope.
