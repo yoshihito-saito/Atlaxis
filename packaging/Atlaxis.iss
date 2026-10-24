@@ -25,6 +25,11 @@ SolidCompression=yes
 [Tasks]
 Name: "desktopicon"; Description: "Create a desktop shortcut"; GroupDescription: "Shortcuts:"; Flags: unchecked
 
+[InstallDelete]
+; Replace the frozen runtime so obsolete extensions from a different Python
+; version cannot survive an upgrade. User data is stored outside this bundle.
+Type: filesandordirs; Name: "{app}\_internal"
+
 [Files]
 Source: "..\dist\Atlaxis\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 

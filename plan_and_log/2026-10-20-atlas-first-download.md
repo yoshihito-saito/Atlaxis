@@ -193,3 +193,24 @@ Follow-up evidence:
 - Delivery is complete. The source-run validation and its limits above remain
   unchanged: packaged GUI operation, other resolutions/rat data, legacy-folder
   runtime loading and anatomical landmark accuracy were not validated.
+
+## 2026-10-24 Windows upgrade follow-up
+
+Goal: fix the packaged startup error `Module use of python311.dll conflicts
+with this version of Python` after updating from the Python 3.11 bundle to
+v0.3.1's Python 3.12 bundle. Keep user atlases, plans, probes and settings.
+
+Findings: the installed `_internal` contains both `python311.dll` and
+`python312.dll`, and both cp311/cp312 VTK extensions. VTK's `find_lib_path`
+glob selects the first matching native module without checking its Python ABI.
+The Windows installer only overwrites incoming files and leaves obsolete names.
+
+Implementation steps:
+
+1. Make the Windows installer replace only its owned `{app}\_internal` runtime
+   before copying the new bundle; retain all user-data locations.
+2. Synchronize package/runtime/lock versions to 0.3.2, commit and tag the fix,
+   and rebuild with the existing native desktop workflow.
+3. Install over the currently mixed runtime and check the installed files and
+   actual application startup. Keep this check scoped to the reported failure.
+4. Publish the matching release artifacts and record the result and limits.
